@@ -1,29 +1,33 @@
-CADA QUIEN SU TEMA — AUDIO
+CADA QUIEN SU TEMA · AUDIO
 
 Convención
-assets/audio/<ciclo>/<autor>-<slug-o-identificador>.mp3
+assets/audio/<ciclo>/<autor>-<slug>.mp3
 
 Este artículo
 assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3
 
 Cómo conectarlo
-1. Crea la carpeta /assets/audio/empezar/ si todavía no existe.
-2. Copia ahí:
+1. Entra a /assets/audio/empezar/
+2. Sube exactamente
    rodolfo-la-fecha-la-ponemos-despues.mp3
-3. Abre:
-   /empezar/digamos-que-empieza-aqui/index.html
-4. Busca:
-   data-audio-ready="false"
-5. Cámbialo por:
-   data-audio-ready="true"
-6. Descomenta el <source> que ya está preparado.
+3. Nada más
+
+El HTML del artículo ya apunta a esa ruta.
+/assets/js/article/audio.js detecta automáticamente si el archivo existe y lee su metadata.
+
+Cuando el MP3 esté disponible se activan
+- duración real
+- play y pausa
+- timeline
+- velocidad
+- reproductor persistente
+- Media Session en dispositivos compatibles
+- eventos de Umami
 
 No escribas la duración manualmente.
-/assets/js/article/audio.js lee la duración desde la metadata del MP3.
-
-Al conectar el dominio real, si quieres que el audio también quede declarado
-para plataformas compatibles, puedes añadir en <head>:
-<meta property="og:audio" content="https://cadaquiensutema.com/assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3">
-<meta property="og:audio:type" content="audio/mpeg">
-
+No hay que editar data-audio-ready.
+No hay que descomentar ningún source.
 Nunca autoplay.
+
+Para detalles específicos de este ciclo consulta
+/assets/audio/empezar/README.txt
