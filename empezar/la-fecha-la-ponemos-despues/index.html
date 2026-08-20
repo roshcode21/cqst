@@ -34,16 +34,17 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Imagen gráfica del ciclo Empezar de Cada quien su tema">
   <meta property="article:published_time" content="2026-08-19T00:00:00-06:00">
-  <meta property="article:modified_time" content="2026-08-20T01:15:00-06:00">
+  <meta property="article:modified_time" content="2026-08-20T01:45:00-06:00">
   <meta property="article:section" content="Empezar">
   <meta property="article:author" content="Rodolfo Raudales">
   <meta property="article:tag" content="comienzos">
   <meta property="article:tag" content="memoria autobiográfica">
   <meta property="article:tag" content="sesgo retrospectivo">
 
-  <!-- Audio. El archivo puede subirse después. -->
-  <meta property="og:audio" content="https://cadaquiensutema.com/assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3">
-  <meta property="og:audio:type" content="audio/mpeg">
+  <!-- AUDIO METADATA
+       La interfaz ya detecta automáticamente el MP3 cuando exista.
+       og:audio y AudioObject se añaden solamente cuando el archivo sea real,
+       para no publicar structured data que apunte a un recurso inexistente. -->
 
   <!-- X / Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -52,7 +53,7 @@
   <meta name="twitter:image" content="https://roshcode21.github.io/cqst/assets/brand/share-empezar-1200x630.png">
   <meta name="twitter:image:alt" content="Imagen gráfica del ciclo Empezar de Cada quien su tema">
 
-  <!-- Favicons oficiales. No hay favicon.svg. -->
+  <!-- Favicons oficiales. -->
   <link rel="icon" href="../../assets/brand/favicon.ico" sizes="any">
   <link rel="icon" href="../../assets/brand/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="../../assets/brand/favicon-48.png" type="image/png" sizes="48x48">
@@ -116,20 +117,13 @@
           "@id": "https://cadaquiensutema.com/empezar/#cycle",
           "name": "Empezar",
           "url": "https://cadaquiensutema.com/empezar/"
-        },
-        "associatedMedia": {
-          "@type": "AudioObject",
-          "name": "La fecha la ponemos después, leído por Rodolfo Raudales",
-          "contentUrl": "https://cadaquiensutema.com/assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3",
-          "encodingFormat": "audio/mpeg",
-          "inLanguage": "es-MX"
         }
       },
       {
         "@type": "Person",
         "@id": "https://cadaquiensutema.com/empezar/la-fecha-la-ponemos-despues/#author",
         "name": "Rodolfo Raudales",
-        "description": "Diseño, escribo y estudio arquitectura. Llevo años traduciendo ideas complejas en algo que se entienda y funcione. Me interesan las preguntas que sobreviven a una primera respuesta.",
+        "description": "Diseño, escribo y estudio arquitectura. El trabajo me llevó también a la estrategia y la tecnología. Casi nunca me basta la primera explicación.",
         "sameAs": [
           "https://www.instagram.com/heyrolphie/",
           "https://www.linkedin.com/in/rodolforaudales/",
@@ -168,6 +162,8 @@
 <body id="top" data-lab="true" data-article="la-fecha-la-ponemos-despues" data-cycle="empezar" data-title="La fecha la ponemos después" data-author-name="Rodolfo Raudales" data-cycle-name="Empezar">
   <a class="skip-link" href="#texto">Saltar al texto</a>
 
+  <!-- HEADER DE LECTURA
+       Desktop muestra solo el wordmark, sin tagline. Móvil usa el favicon. -->
   <header class="reading-header" aria-label="Navegación de lectura">
     <a class="header-logo" href="../../" aria-label="Cada quien su tema, ir al inicio">
       <img src="../../assets/brand/logo-static.png" alt="Cada quien su tema" width="2048" height="519" fetchpriority="high">
@@ -199,8 +195,9 @@
         </div>
 
         <!-- AUDIO
-             Solo sube /assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3
-             El reproductor detecta el archivo y la duración automáticamente. -->
+             Cuando exista, solo sube
+             /assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3
+             La interfaz detecta el archivo y la duración automáticamente. -->
         <div class="audio-entry" id="audioEntry" data-audio-ready="checking" data-state="paused">
           <button class="audio-main-button" id="audioMainButton" type="button" aria-label="Escuchar este texto" aria-disabled="true">
             <span class="audio-icon" id="audioIcon" aria-hidden="true">▶</span>
@@ -249,12 +246,20 @@
 
         <section class="voice-spot" aria-labelledby="voiceName">
           <div class="voice-avatar-wrap">
-            <span class="voice-orbit voice-orbit-a" aria-hidden="true"></span><span class="voice-orbit voice-orbit-b" aria-hidden="true"></span><span class="voice-orbit voice-orbit-c" aria-hidden="true"></span><span class="voice-orbit voice-orbit-d" aria-hidden="true"></span><div class="voice-avatar" aria-hidden="true">RR</div>
+            <span class="voice-orbit voice-orbit-a" aria-hidden="true"></span>
+            <span class="voice-orbit voice-orbit-b" aria-hidden="true"></span>
+            <span class="voice-orbit voice-orbit-c" aria-hidden="true"></span>
+            <span class="voice-orbit voice-orbit-d" aria-hidden="true"></span>
+            <div class="voice-avatar">
+              <span class="voice-avatar-fallback" aria-hidden="true">RR</span>
+              <!-- Sube assets/voices/rodolfo.jpg y aparecerá automáticamente. -->
+              <img src="../../assets/voices/rodolfo.jpg" alt="Rodolfo Raudales" width="500" height="500" loading="lazy" decoding="async" onerror="this.hidden=true">
+            </div>
           </div>
           <div class="voice-copy">
             <p class="voice-label">La voz</p>
             <h2 class="voice-name" id="voiceName">Rodolfo Raudales</h2>
-            <p class="voice-bio">Diseño, escribo y estudio arquitectura. Llevo años traduciendo ideas complejas en algo que se entienda y funcione. Me interesan las preguntas que sobreviven a una primera respuesta.</p>
+            <p class="voice-bio">Diseño, escribo y estudio arquitectura. El trabajo me llevó también a la estrategia y la tecnología. Casi nunca me basta la primera explicación.</p>
             <nav class="voice-socials" aria-label="Redes de Rodolfo Raudales">
               <a class="voice-social" data-tone="purple" href="https://www.instagram.com/heyrolphie/" target="_blank" rel="me noopener">Instagram <span class="arrow" aria-hidden="true">↗</span></a>
               <a class="voice-social" data-tone="blue" href="https://www.linkedin.com/in/rodolforaudales/" target="_blank" rel="me noopener">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a>
@@ -285,25 +290,49 @@
     </section>
   </main>
 
+  <!-- FOOTER GLOBAL
+       El bloque anterior resuelve continuidad del ciclo.
+       Este footer solo resuelve marca, redes y utilidades permanentes. -->
   <footer class="site-footer">
     <div class="site-footer-inner">
       <div class="site-footer-brand">
-        <a class="site-footer-logo" href="../../" aria-label="Cada quien su tema, inicio"><img src="../../assets/brand/logo-static.png" alt="Cada quien su tema" width="2048" height="519" loading="lazy"></a>
+        <a class="site-footer-logo" href="../../" aria-label="Cada quien su tema, inicio">
+          <img src="../../assets/brand/logo-static.png" alt="Cada quien su tema" width="2048" height="519" loading="lazy">
+        </a>
         <p class="site-footer-copy">© 2026 Cada quien su tema</p>
       </div>
-      <nav class="site-footer-nav" aria-label="Enlaces de Cada quien su tema">
-        <a class="site-footer-link" data-tone="green" href="#top">Arriba ↑</a>
-        <a class="site-footer-link" data-tone="blue" href="../../feed.xml">RSS</a>
-        <a class="site-footer-link" data-tone="purple" href="https://www.instagram.com/cadaquiensutema/" target="_blank" rel="me noopener">Instagram ↗</a>
-        <a class="site-footer-link" data-tone="orange" href="https://www.tiktok.com/@cada.quien.su.tema" target="_blank" rel="me noopener">TikTok ↗</a>
-        <a class="site-footer-link" data-tone="blue" href="../../privacidad/">Privacidad</a>
-      </nav>
+
+      <div class="site-footer-links">
+        <nav class="site-footer-socials" aria-label="Cada quien su tema en redes">
+          <a class="site-footer-link" data-tone="purple" href="https://www.instagram.com/cadaquiensutema/" target="_blank" rel="me noopener">Instagram ↗</a>
+          <a class="site-footer-link" data-tone="orange" href="https://www.tiktok.com/@cada.quien.su.tema" target="_blank" rel="me noopener">TikTok ↗</a>
+          <!-- La página de Facebook se conectará aquí cuando exista su URL real. -->
+          <a class="site-footer-link" data-tone="blue" href="#" data-stub>Facebook ↗</a>
+        </nav>
+
+        <nav class="site-footer-utilities" aria-label="Utilidades de Cada quien su tema">
+          <a class="site-footer-utility" href="#top">Arriba ↑</a>
+          <a class="site-footer-utility" href="../../feed.xml" title="Feed RSS de Cada quien su tema">RSS</a>
+          <a class="site-footer-utility" href="../../privacidad/">Privacidad</a>
+        </nav>
+      </div>
     </div>
   </footer>
 
+  <!-- MENÚ LOCAL DEL CICLO
+       Aquí sí usamos la versión completa del logo con tagline. -->
   <dialog id="cycleDialog" aria-labelledby="cycleDialogTitle">
     <div class="cycle-drawer">
-      <div class="drawer-top"><a class="drawer-home" href="../../" aria-label="Cada quien su tema, ir al inicio"><img src="../../assets/brand/logo-static.png" alt="Cada quien su tema" width="2048" height="519"></a><button class="drawer-close" id="closeCycle" type="button" aria-label="Cerrar índice del ciclo">×</button></div>
+      <div class="drawer-top">
+        <a class="drawer-home" href="../../" aria-label="Cada quien su tema, ir al inicio">
+          <img src="../../assets/brand/logo-static.png" alt="Cada quien su tema" width="2048" height="519">
+        </a>
+        <div class="drawer-top-actions">
+          <a class="drawer-home-button" href="../../">Inicio <span aria-hidden="true">↗</span></a>
+          <button class="drawer-close" id="closeCycle" type="button" aria-label="Cerrar índice del ciclo">×</button>
+        </div>
+      </div>
+
       <div class="drawer-title-row"><h2 id="cycleDialogTitle">Empezar</h2><span>3 voces</span></div>
       <p class="drawer-intro">El principio cambia según quién lo cuenta.</p>
       <nav class="drawer-list" aria-label="Textos de Empezar">
@@ -311,7 +340,7 @@
         <a class="drawer-item" href="#" data-stub><span><strong>No fue ese día</strong><small>Mariví Cerisola · 4 min</small></span><span class="drawer-state">→</span></a>
         <a class="drawer-item placeholder" href="#" data-stub><span><strong>[tu título aquí]</strong><small>Mel Castán</small></span><span class="drawer-state">→</span></a>
       </nav>
-      <div class="drawer-footer"><a href="../../">Inicio</a><a href="../">Ver Empezar →</a><button id="drawerShare" type="button">Compartir esta pieza ↗</button></div>
+      <div class="drawer-footer"><a href="../">Ver Empezar →</a><button id="drawerShare" type="button">Compartir esta pieza ↗</button></div>
     </div>
   </dialog>
 
