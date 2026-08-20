@@ -1,0 +1,17 @@
+{
+  "name": "Cada quien su tema",
+  "short_name": "CQST",
+  "description": "Cada quien su tema",
+  "start_url": "/cqst/",
+  "display": "standalone",
+  "background_color": "#F4F2EC",
+  "theme_color": "#0000FF",
+  "icons": [
+    {
+      "src": "/cqst/assets/brand/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
