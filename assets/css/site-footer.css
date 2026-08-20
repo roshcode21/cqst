@@ -1,12 +1,14 @@
 /* ==========================================================================
    CQST — site-footer.css
-   Footer global. No repite la navegación del ciclo.
-   Sirve como cierre del sitio, no como otra card editorial.
+   Footer global.
+
+   El navegador grande anterior resuelve qué leer después.
+   Este footer solo resuelve marca, redes y utilidades permanentes.
    ========================================================================== */
 
 .site-footer{
-  margin-top:clamp(3rem,7vw,6rem);
-  padding:clamp(1.4rem,3vw,2.3rem) var(--edge) max(1.4rem,env(safe-area-inset-bottom));
+  margin-top:clamp(3.8rem,8vw,7rem);
+  padding:clamp(1.6rem,3.5vw,2.7rem) var(--edge) max(1.55rem,env(safe-area-inset-bottom));
   border-top:1px solid var(--cqst-rule);
   background:var(--cqst-paper);
 }
@@ -15,40 +17,38 @@
   max-width:94rem;
   margin:0 auto;
   display:grid;
-  grid-template-columns:minmax(10rem,16rem) minmax(0,1fr);
-  gap:1.5rem clamp(2rem,5vw,5rem);
+  grid-template-columns:minmax(10rem,14rem) minmax(0,1fr);
+  gap:1.8rem clamp(2.5rem,7vw,7rem);
   align-items:end;
 }
 
-.site-footer-brand{display:grid;gap:.7rem;align-content:end}
-.site-footer-logo{display:block;width:min(13rem,100%);line-height:0}
-.site-footer-logo img{display:block;width:100%;height:auto}
-.site-footer-copy{margin:0;color:var(--cqst-muted);font-size:.7rem;line-height:1.45}
-
-.site-footer-nav{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-  gap:.55rem clamp(.9rem,2vw,1.65rem);
-  align-items:center;
+.site-footer-brand{display:grid;gap:.75rem;align-content:end}
+.site-footer-logo{display:block;width:min(11.3rem,100%);line-height:0}
+.site-footer-logo img{
+  display:block;
+  width:100%;
+  height:auto;
+  filter:grayscale(1) brightness(0);
+  opacity:.68;
 }
+.site-footer-copy{margin:0;color:var(--cqst-muted);font-size:.66rem;line-height:1.45}
 
-.site-footer-link{
-  min-height:38px;
-  display:inline-flex;
-  align-items:center;
-  position:relative;
-  font-size:.74rem;
-  font-weight:690;
-}
+.site-footer-links{display:grid;gap:1rem;justify-items:end}
+.site-footer-socials,.site-footer-utilities{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.site-footer-socials{gap:.55rem clamp(1rem,2.2vw,1.9rem)}
+.site-footer-utilities{gap:.35rem 1.15rem}
 
-.site-footer-link::after{
+.site-footer-link,.site-footer-utility{position:relative;display:inline-flex;align-items:center}
+.site-footer-link{min-height:38px;font-size:.76rem;font-weight:720}
+.site-footer-utility{min-height:30px;color:var(--cqst-muted);font-size:.66rem;font-weight:650;letter-spacing:.01em}
+
+.site-footer-link::after,.site-footer-utility::after{
   content:"";
   position:absolute;
   left:0;
   right:0;
-  bottom:.25rem;
-  height:2px;
+  bottom:.16rem;
+  height:1.5px;
   background:currentColor;
   opacity:.28;
   transform:scaleX(.16);
@@ -56,23 +56,28 @@
   transition:transform .22s var(--ease-out),opacity .18s ease,color .18s ease;
 }
 
-.site-footer-link[data-tone="green"]:hover{color:#4aa800}
-.site-footer-link[data-tone="purple"]:hover{color:var(--cqst-purple)}
-.site-footer-link[data-tone="orange"]:hover{color:var(--cqst-orange)}
-.site-footer-link[data-tone="blue"]:hover{color:var(--cqst-blue)}
-
 @media (hover:hover) and (pointer:fine){
-  .site-footer-link:hover::after,.site-footer-link:focus-visible::after{transform:scaleX(1);opacity:1}
-  .site-footer-logo img{transition:transform .22s var(--ease-out)}
-  .site-footer-logo:hover img{transform:translateX(.16rem)}
+  .site-footer-link:hover::after,.site-footer-utility:hover::after,.site-footer-link:focus-visible::after,.site-footer-utility:focus-visible::after{transform:scaleX(1);opacity:1}
+  .site-footer-link[data-tone="green"]:hover{color:#4aa800}
+  .site-footer-link[data-tone="purple"]:hover{color:var(--cqst-purple)}
+  .site-footer-link[data-tone="orange"]:hover{color:var(--cqst-orange)}
+  .site-footer-link[data-tone="blue"]:hover{color:var(--cqst-blue)}
+  .site-footer-utility:hover{color:var(--cqst-blue)}
+  .site-footer-logo img{transition:opacity .22s ease,transform .22s var(--ease-out)}
+  .site-footer-logo:hover img{opacity:.92;transform:translateX(.12rem)}
+}
+
+@media (hover:none){
+  .site-footer-link:active::after,.site-footer-utility:active::after{transform:scaleX(1);opacity:1}
 }
 
 @media (max-width:720px){
   .site-footer-inner{grid-template-columns:1fr;align-items:start}
-  .site-footer-logo{width:10.5rem}
-  .site-footer-nav{justify-content:flex-start}
+  .site-footer-logo{width:9.8rem}
+  .site-footer-links{justify-items:start}
+  .site-footer-socials,.site-footer-utilities{justify-content:flex-start}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .site-footer-link::after,.site-footer-logo img{transition:none}
+  .site-footer-link::after,.site-footer-utility::after,.site-footer-logo img{transition:none}
 }
