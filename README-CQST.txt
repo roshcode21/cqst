@@ -11,8 +11,9 @@ ESTRUCTURA
 /empezar/index.html
   Índice del ciclo Empezar.
 
-/empezar/la-fecha-la-ponemos-despues/index.html
-  Artículo de Rodolfo. Aquí vive el contenido y la metadata de esta pieza.
+/empezar/digamos-que-empieza-aqui/index.html
+  Artículo de Rodolfo. El slug se mantiene estable aunque el título editorial
+  todavía cambie. Aquí vive el contenido y la metadata de esta pieza.
 
 /assets/css/base.css
   Paleta, tipografía base, selección de texto, links, focus y tokens.
@@ -48,18 +49,13 @@ ESTRUCTURA
   Índice del ciclo.
 
 /assets/brand/
-  logo-static.svg          wordmark oficial del header de artículos
+  logo-static.png          wordmark estático oficial exacto del header
   favicon.svg              favicon simple de anillos
   favicon-32.png
   apple-touch-icon.png
-  icon-192.png
-  icon-512.png
 
 /assets/audio/
   Lee README.txt dentro de esta carpeta.
-
-/assets/social/
-  Imágenes 1200x630 para previews al compartir.
 
 
 GRIFT
@@ -74,21 +70,35 @@ CÓMO DUPLICAR UN ARTÍCULO
 1. Duplica la carpeta del artículo.
 2. Renómbrala con el nuevo slug.
 3. En index.html busca el comentario "EDITA ESTO EN CADA ARTÍCULO".
-4. Cambia title, description, canonical, OG, Twitter y JSON-LD.
-5. Cambia h1, autor, fecha, texto y notas.
+4. Cambia title, description, canonical, Open Graph, Twitter y JSON-LD.
+5. Cambia h1, autor, fecha, deck, texto y notas.
 6. Ajusta las tres entradas del navegador final del ciclo.
 7. Si existe audio, sigue /assets/audio/README.txt.
-8. Genera una imagen social 1200x630 y actualiza og:image / twitter:image.
+8. Antes de producción asigna una imagen social raster 1200x630 en og:image.
+
+
+AUDIO DEL ARTÍCULO ACTUAL
+
+Ruta prevista:
+/assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3
+
+Cuando exista el MP3:
+1. súbelo exactamente en esa ruta;
+2. abre /empezar/digamos-que-empieza-aqui/index.html;
+3. cambia data-audio-ready="false" por data-audio-ready="true";
+4. descomenta la línea <source> dentro de #articleAudio.
+
+La duración se obtiene automáticamente de la metadata del MP3.
 
 
 RUTAS
 
-/                         home (laboratorio por ahora)
-/empezar/                 índice del ciclo
-/empezar/<slug>/          artículo
+/                                  home (laboratorio por ahora)
+/empezar/                          índice del ciclo
+/empezar/digamos-que-empieza-aqui/ artículo estable de Rodolfo
 
 El logo del header siempre vuelve a /.
-"Ver el ciclo completo" siempre vuelve al índice del ciclo: /empezar/.
+"Ver ciclo" siempre vuelve al índice del ciclo: /empezar/.
 
 
 LINKS DE LABORATORIO
@@ -103,11 +113,12 @@ ANTES DE LANZAR CADAQUIENSUTEMA.COM
 
 - Quitar noindex,nofollow.
 - Sustituir todos los data-stub por URLs reales.
-- Confirmar canonical y og:url.
-- Confirmar og:image absoluta 1200x630.
+- Cambiar canonical y og:url a cadaquiensutema.com.
+- Sustituir og:image por una imagen raster 1200x630 por artículo.
 - Confirmar title, description, autor y fecha.
 - Conectar cada MP3 disponible.
-- Crear un Website ID de Umami para PRODUCCIÓN (separado del Lab).
+- Añadir Grift webfont .woff2 con su licencia web.
+- Crear Website ID de Umami para PRODUCCIÓN (separado del Lab).
 - Probar Share en iPhone / Android / desktop.
 - Probar 320 CSS px y zoom 200%.
 - Probar Reduce Motion.
