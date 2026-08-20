@@ -6,15 +6,12 @@
   <meta name="theme-color" content="#F4F2EC">
   <meta name="robots" content="noindex,nofollow">
 
-  <!-- ======================================================================
-       EDITA ESTO EN CADA ARTÍCULO
-       En producción cambia canonical / og:url al dominio cadaquiensutema.com.
-       ====================================================================== -->
+  <!-- EDITA ESTO EN CADA ARTÍCULO -->
   <title>La fecha la ponemos después — Cada quien su tema</title>
   <meta name="description" content="Hay comienzos que elegimos y otros que solo aprendemos a reconocer cuando ya pasaron. Un texto de Rodolfo Raudales para el ciclo Empezar.">
   <link rel="canonical" href="https://roshcode21.github.io/cqst/empezar/digamos-que-empieza-aqui/">
 
-  <!-- Open Graph / WhatsApp / LinkedIn / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:locale" content="es_MX">
   <meta property="og:site_name" content="Cada quien su tema">
@@ -40,10 +37,11 @@
   <link rel="apple-touch-icon" href="../../assets/brand/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="../../site.webmanifest">
 
-  <!-- CSS: cada módulo vive en su propio archivo -->
+  <!-- CSS modular -->
   <link rel="stylesheet" href="../../assets/css/base.css">
   <link rel="stylesheet" href="../../assets/css/article/layout.css">
   <link rel="stylesheet" href="../../assets/css/article/notes.css">
+  <link rel="stylesheet" href="../../assets/css/article/voice.css">
   <link rel="stylesheet" href="../../assets/css/article/cycle-nav.css">
   <link rel="stylesheet" href="../../assets/css/article/audio.css">
   <link rel="stylesheet" href="../../assets/css/article/responsive.css">
@@ -89,13 +87,10 @@
 
   <a class="skip-link" href="#texto">Saltar al texto</a>
 
-  <!-- ======================================================================
-       HEADER
-       Logo = home. Línea = progreso real del texto. Botón = índice del ciclo.
-       ====================================================================== -->
+  <!-- HEADER -->
   <header class="reading-header" aria-label="Navegación de lectura">
     <a class="header-logo" href="../../" aria-label="Cada quien su tema, ir al inicio">
-      <img src="../../assets/brand/logo-static.png" alt="Cada quien su tema" width="1044" height="268">
+      <img src="../../assets/brand/logo-static.svg" alt="Cada quien su tema" width="1044" height="268">
     </a>
 
     <a class="header-logo-mobile" href="../../" aria-label="Cada quien su tema, ir al inicio">
@@ -122,9 +117,7 @@
   </header>
 
   <main>
-    <!-- ====================================================================
-         ENTRADA DEL ARTÍCULO
-         ==================================================================== -->
+    <!-- ENTRADA -->
     <section class="article-hero" aria-labelledby="articleTitle">
       <div class="article-hero-inner">
         <p class="article-cycle-label">Ciclo / Empezar</p>
@@ -137,13 +130,10 @@
           <span id="readTime">3 min de lectura</span>
         </div>
 
-        <!-- AUDIO
-             Archivo esperado:
-             /assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3
-
-             Cuando exista:
-             1) data-audio-ready="true"
-             2) descomenta el <source> dentro de #articleAudio.
+        <!--
+          AUDIO
+          /assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3
+          Cuando exista cambia data-audio-ready a true y descomenta source.
         -->
         <div class="audio-entry" id="audioEntry" data-audio-ready="false" data-state="paused">
           <button class="audio-main-button" id="audioMainButton" type="button" aria-label="Escuchar este texto">
@@ -160,17 +150,12 @@
           </audio>
         </div>
 
-        <!-- El primer párrafo funciona como deck Y como comienzo real de lectura. -->
         <span class="read-sentinel" id="readStart" aria-hidden="true"></span>
         <p class="article-deck">Hay comienzos que elegimos y otros que solo aprendemos a reconocer cuando ya pasaron. En el medio queda el presente, esa zona borrosa donde las cosas ya están sucediendo, pero todavía no sabemos qué lugar van a ocupar en nuestra vida.</p>
       </div>
     </section>
 
-    <!-- ====================================================================
-         TEXTO
-         Mantener todos los párrafos sobre el mismo eje.
-         class="breath" solo añade una pausa vertical.
-         ==================================================================== -->
+    <!-- TEXTO -->
     <section class="reader" id="texto" aria-label="Texto del artículo">
       <div class="article-shell">
         <article class="article-copy">
@@ -193,7 +178,6 @@
 
         <span class="read-sentinel" id="readEnd" aria-hidden="true"></span>
 
-        <!-- Solo aparece en escritorio ancho; en móvil la nota se abre inline. -->
         <aside class="margin-note" id="marginNote" aria-live="polite">
           <div class="margin-note-inner">
             <span class="margin-note-count">Nota</span>
@@ -205,9 +189,7 @@
       </div>
     </section>
 
-    <!-- ====================================================================
-         NOTAS + SHARE
-         ==================================================================== -->
+    <!-- NOTAS, SHARE Y FIRMA -->
     <section class="after-article" aria-label="Notas y herramientas">
       <div class="after-inner">
         <details class="notes-ledger" id="notesLedger">
@@ -235,7 +217,7 @@
             <li>
               <div class="note-body">
                 <h3>Sesgo retrospectivo</h3>
-                <p>Conocer el desenlace puede hacer que ese resultado parezca más previsible —o inevitable— de lo que parecía antes de ocurrir.</p>
+                <p>Conocer el desenlace puede hacer que ese resultado parezca más previsible o inevitable de lo que parecía antes de ocurrir.</p>
                 <cite><a class="cqst-link" href="https://doi.org/10.1037/0096-1523.1.3.288" target="_blank" rel="noopener">Fischhoff, 1975 <span class="arrow" aria-hidden="true">↗</span></a></cite>
               </div>
             </li>
@@ -246,13 +228,33 @@
           <span class="article-tools-label">Esta pieza</span>
           <button class="share-button cqst-link" id="shareButton" type="button">Compartir <span class="arrow" aria-hidden="true">↗</span></button>
         </div>
+
+        <!--
+          LA VOZ
+          Cuando exista la foto sustituye RR por
+          <img src="../../assets/voices/rodolfo.jpg" alt="Rodolfo Raudales">
+        -->
+        <section class="voice-spot" aria-labelledby="voiceName">
+          <div class="voice-avatar-wrap">
+            <div class="voice-avatar" aria-hidden="true">RR</div>
+          </div>
+
+          <div class="voice-copy">
+            <p class="voice-label">La voz</p>
+            <h2 class="voice-name" id="voiceName">Rodolfo Raudales</h2>
+            <p class="voice-bio">[bio breve, dos líneas máximo]</p>
+
+            <nav class="voice-socials" aria-label="Redes de Rodolfo Raudales">
+              <a class="voice-social" data-tone="purple" href="#" data-stub>Instagram <span class="arrow" aria-hidden="true">↗</span></a>
+              <a class="voice-social" data-tone="blue" href="#" data-stub>LinkedIn <span class="arrow" aria-hidden="true">↗</span></a>
+              <a class="voice-social" data-tone="orange" href="#" data-stub>TikTok <span class="arrow" aria-hidden="true">↗</span></a>
+            </nav>
+          </div>
+        </section>
       </div>
     </section>
 
-    <!-- ====================================================================
-         NAVEGADOR DEL CICLO
-         No hay “artículos relacionados”: el ciclo continúa.
-         ==================================================================== -->
+    <!-- NAVEGADOR DEL CICLO -->
     <section class="cycle-navigator-wrap" aria-labelledby="cycleNavigatorTitle">
       <div class="cycle-navigator">
         <div class="cycle-index">
@@ -300,20 +302,21 @@
             </a>
 
             <a
-              class="cycle-entry"
+              class="cycle-entry placeholder"
               href="#"
               data-stub
-              data-preview-title="Lo que ya venía conmigo"
-              data-preview-excerpt="Empezar otra vez sonaba como una página en blanco. La parte incómoda fue descubrir todo lo que también había llegado conmigo."
-              data-preview-author="Mel"
-              data-preview-time="3 min de lectura"
-              data-preview-audio="audio"
+              data-preview-title="[tu título aquí]"
+              data-preview-excerpt=""
+              data-preview-author="Mel Castán"
+              data-preview-time=""
+              data-preview-audio=""
               data-preview-href="#"
               data-preview-audio-href="#"
+              data-preview-placeholder="true"
               data-preview-stub="true">
               <span class="cycle-entry-copy">
-                <strong>Lo que ya venía conmigo</strong>
-                <small>Mel</small>
+                <strong>[tu título aquí]</strong>
+                <small>Mel Castán</small>
               </span>
               <span class="entry-state" aria-hidden="true"></span>
             </a>
@@ -325,7 +328,6 @@
           </div>
         </div>
 
-        <!-- Empieza seleccionado en Mariví: la ruta está curada, no impuesta. -->
         <div class="cycle-preview" aria-live="polite">
           <span class="preview-label">Siguiente lectura</span>
 
@@ -352,14 +354,12 @@
     </section>
   </main>
 
-  <!-- ======================================================================
-       PANEL DEL CICLO EN EL HEADER
-       ====================================================================== -->
+  <!-- PANEL DEL CICLO -->
   <dialog id="cycleDialog" aria-labelledby="cycleDialogTitle">
     <div class="cycle-drawer">
       <div class="drawer-top">
         <a class="drawer-home" href="../../" aria-label="Cada quien su tema, ir al inicio">
-          <img src="../../assets/brand/logo-static.png" alt="Cada quien su tema" width="1044" height="268">
+          <img src="../../assets/brand/logo-static.svg" alt="Cada quien su tema" width="1044" height="268">
         </a>
         <button class="drawer-close" id="closeCycle" type="button" aria-label="Cerrar índice del ciclo">×</button>
       </div>
@@ -368,7 +368,7 @@
         <h2 id="cycleDialogTitle">Empezar</h2>
         <span>3 voces</span>
       </div>
-      <p class="drawer-intro">Un ciclo sobre el momento en que algo empieza —o eso creemos.</p>
+      <p class="drawer-intro">El principio cambia según quién lo cuenta.</p>
 
       <nav class="drawer-list" aria-label="Textos de Empezar">
         <a class="drawer-item current" href="./">
@@ -379,8 +379,8 @@
           <span><strong>No fue ese día</strong><small>Mariví Cerisola · 4 min</small></span>
           <span class="drawer-state">→</span>
         </a>
-        <a class="drawer-item" href="#" data-stub>
-          <span><strong>Lo que ya venía conmigo</strong><small>Mel · 3 min</small></span>
+        <a class="drawer-item placeholder" href="#" data-stub>
+          <span><strong>[tu título aquí]</strong><small>Mel Castán</small></span>
           <span class="drawer-state">→</span>
         </a>
       </nav>
@@ -392,7 +392,7 @@
     </div>
   </dialog>
 
-  <!-- Reproductor persistente: solo aparece al iniciar audio real. -->
+  <!-- Reproductor persistente -->
   <div class="audio-dock" id="audioDock" aria-label="Reproductor de audio">
     <button class="audio-dock-play" id="audioDockPlay" type="button" aria-label="Reproducir o pausar">▶</button>
     <div>
@@ -410,7 +410,7 @@
   <div class="register-mark" id="registerMark" aria-hidden="true"></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <!-- JS modular: core SIEMPRE primero. -->
+  <!-- JS modular -->
   <script defer src="../../assets/js/article/core.js"></script>
   <script defer src="../../assets/js/article/notes.js"></script>
   <script defer src="../../assets/js/article/audio.js"></script>
