@@ -38,7 +38,7 @@
 
 /*
   Fallback automático.
-  Mientras /assets/voices/rodolfo.jpg no exista se ven las iniciales.
+  Mientras /assets/voices/rodolfo.jpg no exista se ven SOLO las iniciales.
   Al subir ese archivo, la foto cubre el fallback sin tocar HTML ni CSS.
 */
 .voice-avatar-fallback {
@@ -58,6 +58,12 @@
   object-fit: cover;
   display: block;
 }
+
+/* El atributo hidden debe ganar sobre el display:block de la imagen. */
+.voice-avatar img[hidden] { display: none !important; }
+
+/* Threads no forma parte de los socials visibles de esta voz. */
+.voice-social[href*="threads.com"] { display: none !important; }
 
 /*
   Los círculos derivan del favicon.
