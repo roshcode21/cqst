@@ -49,7 +49,22 @@ ASSETS
 
 /assets/brand/
 Identidad web.
-logo-static.png es el wordmark estático del artículo.
+logo-static.png es el lockup estático completo con tagline.
+
+ROLES DEL LOGO EN ARTÍCULO
+Header desktop
+Muestra solamente el wordmark sin tagline mediante una ventana CSS sobre logo-static.png.
+
+Header móvil
+Usa favicon-master-600.png por espacio y legibilidad.
+
+Menú del ciclo
+Usa logo-static.png completo con tagline y a color.
+
+Footer global
+Usa logo-static.png completo con tagline, pequeño y monocromático mediante CSS.
+
+Favicons
 favicon.ico, favicon-32.png y favicon-48.png sirven al navegador.
 apple-touch-icon.png sirve a superficies Apple.
 icon-192.png e icon-512.png son iconos generales.
@@ -70,7 +85,7 @@ Header, hero, metadata, audio de entrada, columna de lectura y landmarks de prog
 Notas al margen y referencias.
 
 /assets/css/article/voice.css
-Bloque La voz con avatar, bio y redes.
+Bloque La voz con avatar, bio, foto futura y redes.
 
 /assets/css/article/cycle-nav.css
 Navegador final y drawer local del ciclo.
@@ -82,7 +97,7 @@ Reproductor persistente y microinteracciones de audio.
 Tablet, móvil y pantallas estrechas.
 
 /assets/css/site-footer.css
-Footer global mínimo. No repite la navegación del ciclo.
+Footer global. No repite la navegación del ciclo.
 
 /assets/js/article/core.js
 Estado común, Umami, tiempo de lectura, progreso, compartir y drawer.
@@ -98,8 +113,14 @@ Preview dinámico del resto del ciclo.
 
 /assets/voices/
 Fotos cuadradas de las personas.
-Recomendado 500 x 500 px.
+Recomendado 500 x 500 px o más.
 CSS hace el recorte circular.
+
+Foto prevista para este artículo
+/assets/voices/rodolfo.jpg
+
+Mientras no exista se muestran las iniciales RR.
+Cuando se suba con ese nombre aparece automáticamente.
 
 /assets/audio/<ciclo>/
 Audios organizados por ciclo.
@@ -128,8 +149,8 @@ No currículum.
 No cargos como sustituto de personalidad.
 Debe dejar claro desde dónde habla la persona y cómo mira.
 
-Ejemplo actual de Rodolfo
-Diseño, escribo y estudio arquitectura. Llevo años traduciendo ideas complejas en algo que se entienda y funcione. Me interesan las preguntas que sobreviven a una primera respuesta.
+Bio actual de Rodolfo
+Diseño, escribo y estudio arquitectura. El trabajo me llevó también a la estrategia y la tecnología. Casi nunca me basta la primera explicación.
 
 AUDIO DEL ARTÍCULO ACTUAL
 
@@ -144,6 +165,27 @@ Para activarlo
 El HTML ya tiene el source.
 audio.js detecta automáticamente la metadata, duración y disponibilidad.
 No hay que cambiar data-audio-ready ni descomentar código.
+
+IMPORTANTE PARA SEO
+Mientras el MP3 no exista no declaramos og:audio ni AudioObject.
+Eso evita structured data que apunte a un recurso inexistente.
+Cuando se suba el audio se añade esa metadata en la pasada de publicación.
+
+FOOTER GLOBAL
+
+Redes principales visibles
+Instagram
+TikTok
+Facebook reservado como data-stub hasta tener la URL real
+
+Utilidades secundarias
+Arriba
+RSS
+Privacidad
+
+RSS existe aunque sea una función de nicho.
+El enlace visible queda deliberadamente en segundo nivel.
+El feed también se descubre desde rel=alternate en el head.
 
 LINKS DE LABORATORIO
 
@@ -173,7 +215,6 @@ Person
 Organization
 BreadcrumbList
 citation
-AudioObject
 RSS autodiscovery
 favicon estable
 robots directives
@@ -188,7 +229,7 @@ Cambiar hosts github.io usados temporalmente en imágenes Open Graph al dominio 
 Eliminar todos los data-stub.
 Confirmar title, description, canonical, autor y fecha.
 Subir imágenes sociales por artículo.
-Subir MP3 disponibles.
+Subir MP3 disponibles y añadir og:audio + AudioObject donde realmente existan.
 Añadir fotos reales de La voz.
 Añadir Grift WOFF2 con licencia web.
 Crear Website ID de Umami para Producción.
