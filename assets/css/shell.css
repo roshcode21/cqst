@@ -1,0 +1,93 @@
+/* CQST V3 · shell
+   Desktop usa un dock flotante. Mobile usa navegación inferior.
+   Las superficies declaran data-shell-tone y shell.js adapta el dock. */
+:root{
+  --cqst-ui:"Grift","Helvetica Neue",Arial,sans-serif;
+  --cqst-reading:"Newsreader",Georgia,"Times New Roman",serif;
+  --shell-bg:rgba(244,242,236,.92);
+  --shell-fg:var(--cqst-night);
+  --shell-border:rgba(11,11,24,.14);
+  --shell-shadow:0 10px 34px rgba(11,11,24,.08);
+}
+
+@view-transition{navigation:auto}
+
+body{padding-bottom:0}
+
+.cqst-dock{
+  position:fixed;
+  z-index:300;
+  top:max(14px,env(safe-area-inset-top));
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:.25rem;
+  min-height:48px;
+  padding:.34rem .42rem .34rem .36rem;
+  border:1px solid var(--shell-border);
+  border-radius:999px;
+  background:var(--shell-bg);
+  color:var(--shell-fg);
+  box-shadow:var(--shell-shadow);
+  backdrop-filter:blur(18px) saturate(1.2);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);
+  transition:background .24s ease,color .24s ease,border-color .24s ease,box-shadow .24s ease;
+}
+.cqst-dock-brand{
+  width:36px;height:36px;border-radius:11px;overflow:hidden;display:block;line-height:0;margin-right:.18rem;flex:0 0 auto;
+}
+.cqst-dock-brand img{display:block;width:100%;height:100%;object-fit:cover}
+.cqst-dock-nav{display:flex;align-items:center;gap:.08rem}
+.cqst-dock-nav a{
+  min-height:38px;display:inline-flex;align-items:center;justify-content:center;
+  padding:.2rem .78rem;border-radius:999px;
+  font:700 .72rem/1 var(--cqst-ui);letter-spacing:.01em;
+  position:relative;transition:background .18s ease,color .18s ease,transform .18s var(--ease-out);
+}
+.cqst-dock-nav a[aria-current="page"]{background:var(--shell-fg);color:var(--shell-bg)}
+@media(hover:hover) and (pointer:fine){
+  .cqst-dock-nav a:not([aria-current="page"]):hover{background:color-mix(in srgb,var(--shell-fg) 8%,transparent);transform:translateY(-1px)}
+}
+
+.cqst-mobile-dock{display:none}
+
+html[data-shell-tone="paper"]{--shell-bg:rgba(244,242,236,.93);--shell-fg:#0b0b18;--shell-border:rgba(11,11,24,.14);--shell-shadow:0 10px 34px rgba(11,11,24,.08)}
+html[data-shell-tone="white"]{--shell-bg:rgba(255,255,255,.94);--shell-fg:#0b0b18;--shell-border:rgba(11,11,24,.12);--shell-shadow:0 10px 34px rgba(11,11,24,.08)}
+html[data-shell-tone="night"]{--shell-bg:rgba(11,11,24,.9);--shell-fg:#fff;--shell-border:rgba(255,255,255,.16);--shell-shadow:0 12px 36px rgba(0,0,0,.22)}
+html[data-shell-tone="blue"]{--shell-bg:rgba(0,0,255,.9);--shell-fg:#fff;--shell-border:rgba(255,255,255,.22);--shell-shadow:0 12px 36px rgba(0,0,80,.24)}
+html[data-shell-tone="lime"]{--shell-bg:rgba(128,255,0,.92);--shell-fg:#0b0b18;--shell-border:rgba(11,11,24,.14);--shell-shadow:0 12px 36px rgba(35,70,0,.16)}
+
+.site-footer-v3{background:var(--cqst-night);color:#fff;padding:clamp(3rem,6vw,5rem) var(--edge) calc(clamp(3rem,6vw,5rem) + env(safe-area-inset-bottom))}
+.site-footer-v3-inner{width:min(100%,92rem);margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2.5rem;align-items:end}
+.site-footer-v3-brand{display:block;width:min(10.5rem,44vw);line-height:0}
+.site-footer-v3-brand img{display:block;width:100%;height:auto;filter:brightness(0) invert(1);opacity:.92}
+.site-footer-v3-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.8rem 1.25rem;font:650 .72rem/1.3 var(--cqst-ui)}
+.site-footer-v3-meta{width:min(100%,92rem);margin:2.4rem auto 0;padding-top:1rem;border-top:1px solid rgba(255,255,255,.16);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:rgba(255,255,255,.58);font:500 .66rem/1.4 var(--cqst-ui)}
+
+@media(max-width:720px){
+  body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+  .cqst-dock{display:none}
+  .cqst-mobile-dock{
+    position:fixed;z-index:320;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));
+    display:grid;grid-template-columns:repeat(4,1fr);gap:4px;
+    padding:5px;border:1px solid var(--shell-border);border-radius:18px;
+    background:var(--shell-bg);color:var(--shell-fg);box-shadow:0 14px 40px rgba(11,11,24,.16);
+    backdrop-filter:blur(20px) saturate(1.25);-webkit-backdrop-filter:blur(20px) saturate(1.25);
+    transition:transform .22s var(--ease-out),opacity .18s ease,background .24s ease,color .24s ease,border-color .24s ease;
+  }
+  .cqst-mobile-dock.is-hidden{transform:translateY(calc(100% + 24px));opacity:.2}
+  .cqst-mobile-dock a{
+    min-height:46px;display:grid;place-items:center;padding:.2rem .15rem;border-radius:13px;
+    font:700 .67rem/1 var(--cqst-ui);letter-spacing:.005em;white-space:nowrap;
+  }
+  .cqst-mobile-dock a[aria-current="page"]{background:var(--shell-fg);color:var(--shell-bg)}
+  .site-footer-v3{padding-bottom:calc(7rem + env(safe-area-inset-bottom))}
+  .site-footer-v3-inner{grid-template-columns:1fr;align-items:start}
+  .site-footer-v3-links{justify-content:flex-start;line-height:1.8}
+  .site-footer-v3-meta{flex-direction:column}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .cqst-dock,.cqst-mobile-dock,.cqst-dock-nav a{transition:none!important}
+}
