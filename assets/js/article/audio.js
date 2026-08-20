@@ -2,11 +2,12 @@
    <audio> nativo + interfaz CQST. Sin autoplay.
 
    AUDIO REAL
-   Sube el MP3 a /assets/audio/<ciclo>/ y cambia data-audio-ready="true"
-   en el HTML del artículo. La duración sale de la metadata del archivo.
+   Solo sube el MP3 a la ruta declarada en el <source> del artículo.
+   Este archivo detecta la metadata automáticamente y activa el reproductor.
 */
 (() => {
   "use strict";
+
   const { $, track, showToast, completeVoice, isLab, body } = window.CQST;
 
   const entry = $("#audioEntry");
@@ -21,9 +22,9 @@
   const duration = $("#audioDockDuration");
   const speed = $("#audioSpeed");
 
-  const ready = entry?.dataset.audioReady === "true";
   const speeds = [1, 1.25, 1.5, 1.75, 2];
   let speedIndex = 0;
+  let ready = false;
   const quartiles = new Set();
 
   function fmt(seconds) {
@@ -31,6 +32,13 @@
     const m = Math.floor(seconds / 60);
     const s = Math.floor(seconds % 60).toString().padStart(2, "0");
     return `${m}:${s}`;
+  }
+
+  function setReady(value) {
+    ready = value;
+    entry?.setAttribute("data-audio-ready", value ? "true" : "false");
+    mainButton?.setAttribute("aria-disabled", value ? "false" : "true");
+    if (!value && time) time.textContent = "";
   }
 
   function setState(playing) {
@@ -42,8 +50,8 @@
   }
 
   async function toggle() {
-    if (!ready || !audio) {
-      if (isLab) showToast("Audio sin archivo en este prototipo");
+    if (!audio || !ready) {
+      if (isLab) showToast("El audio se activará al subir el MP3");
       return;
     }
 
@@ -58,12 +66,10 @@
   mainButton?.addEventListener("click", toggle);
   dockPlay?.addEventListener("click", toggle);
 
-  if (!audio || !ready) {
-    if (time) time.textContent = "";
-    return;
-  }
+  if (!audio) return;
 
   audio.addEventListener("loadedmetadata", () => {
+    setReady(true);
     const value = fmt(audio.duration);
     if (time) time.textContent = value;
     if (duration) duration.textContent = value;
@@ -75,15 +81,17 @@
           title: body.dataset.title || document.title,
           artist: body.dataset.authorName || "Rodolfo Raudales",
           album: `Cada quien su tema · ${body.dataset.cycleName || "Empezar"}`,
-          artwork: [{
-            src: "../../assets/brand/apple-touch-icon.png",
-            sizes: "180x180",
-            type: "image/png"
-          }]
+          artwork: [
+            { src: "../../assets/brand/icon-192.png", sizes: "192x192", type: "image/png" },
+            { src: "../../assets/brand/icon-512.png", sizes: "512x512", type: "image/png" }
+          ]
         });
       } catch {}
     }
   });
+
+  audio.addEventListener("error", () => setReady(false));
+  audio.addEventListener("emptied", () => setReady(false));
 
   audio.addEventListener("play", () => {
     setState(true);
@@ -101,8 +109,7 @@
     if (range && document.activeElement !== range) range.value = String(now);
 
     [25, 50, 75].forEach((percent) => {
-      const threshold = percent / 100;
-      if (ratio >= threshold && !quartiles.has(percent)) {
+      if (ratio >= percent / 100 && !quartiles.has(percent)) {
         quartiles.add(percent);
         track("audio_progress", { porcentaje: percent });
       }
@@ -116,10 +123,11 @@
   });
 
   range?.addEventListener("input", () => {
-    audio.currentTime = Number(range.value);
+    if (ready) audio.currentTime = Number(range.value);
   });
 
   speed?.addEventListener("click", () => {
+    if (!ready) return;
     speedIndex = (speedIndex + 1) % speeds.length;
     audio.playbackRate = speeds[speedIndex];
     speed.textContent = `${speeds[speedIndex]}×`;
@@ -138,4 +146,8 @@
       });
     } catch {}
   }
+
+  /* Si el archivo ya existe, preload=metadata disparará loadedmetadata.
+     Si todavía no existe, el error se queda silencioso hasta que el MP3 se suba. */
+  setReady(audio.readyState >= 1);
 })();
