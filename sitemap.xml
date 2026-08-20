@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://cadaquiensutema.com/</loc>
-    <lastmod>2026-08-20</lastmod>
-  </url>
-  <url>
-    <loc>https://cadaquiensutema.com/explorar/</loc>
-    <lastmod>2026-08-20</lastmod>
-  </url>
-  <url>
-    <loc>https://cadaquiensutema.com/revista/</loc>
-    <lastmod>2026-08-20</lastmod>
-  </url>
-  <url>
-    <loc>https://cadaquiensutema.com/empezar/</loc>
-    <lastmod>2026-08-20</lastmod>
-  </url>
-  <url>
-    <loc>https://cadaquiensutema.com/empezar/la-fecha-la-ponemos-despues/</loc>
-    <lastmod>2026-08-20</lastmod>
-  </url>
+  <url><loc>https://cadaquiensutema.com/</loc><lastmod>2026-08-20</lastmod></url>
+  <url><loc>https://cadaquiensutema.com/temas/</loc><lastmod>2026-08-20</lastmod></url>
+  <url><loc>https://cadaquiensutema.com/voces/</loc><lastmod>2026-08-20</lastmod></url>
+  <url><loc>https://cadaquiensutema.com/cqst/</loc><lastmod>2026-08-20</lastmod></url>
+  <url><loc>https://cadaquiensutema.com/empezar/</loc><lastmod>2026-08-20</lastmod></url>
+  <url><loc>https://cadaquiensutema.com/empezar/la-fecha-la-ponemos-despues/</loc><lastmod>2026-08-20</lastmod></url>
 </urlset>
