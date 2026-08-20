@@ -34,6 +34,7 @@
 
 .cycle-page-intro {
   margin: 0 0 .3rem;
+  max-width: 28rem;
   font-size: clamp(1.1rem, 1.4vw, 1.35rem);
   line-height: 1.48;
   color: var(--cqst-muted);
@@ -81,8 +82,19 @@
   box-shadow: inset 0 0 0 3px var(--cqst-paper);
 }
 
+.cycle-page-item.is-placeholder strong {
+  color: var(--cqst-gray);
+  font-weight: 560;
+}
+
+.cycle-page-item.is-placeholder .state {
+  border-color: var(--cqst-gray);
+  opacity: .5;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .cycle-page-item:hover strong { color: var(--cqst-blue); }
+  .cycle-page-item.is-placeholder:hover strong { color: var(--cqst-purple); }
 }
 
 .cycle-page-foot {
