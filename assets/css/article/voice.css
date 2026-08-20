@@ -1,0 +1,150 @@
+/* ==========================================================================
+   CQST — article/voice.css
+   Firma breve de la persona que escribió la pieza.
+   No sustituye una página de perfil. No crea una card pesada.
+   ========================================================================== */
+
+.voice-spot {
+  margin-top: clamp(2.8rem, 6vw, 4.8rem);
+  padding-top: clamp(1.35rem, 3vw, 2rem);
+  border-top: 1px solid var(--cqst-night);
+  display: grid;
+  grid-template-columns: 7.25rem minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: start;
+}
+
+.voice-avatar-wrap {
+  position: relative;
+  width: 7.25rem;
+  aspect-ratio: 1;
+}
+
+.voice-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--cqst-paper-deep);
+  border: 2px solid var(--cqst-blue);
+  color: var(--cqst-blue);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -.04em;
+}
+
+.voice-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Un guiño al favicon. Solo una marca pequeña. */
+.voice-avatar-wrap::after {
+  content: "";
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  right: .2rem;
+  bottom: .45rem;
+  border-radius: 50%;
+  background: var(--cqst-green);
+  box-shadow: 0 0 0 4px var(--cqst-paper);
+}
+
+.voice-label {
+  margin: .05rem 0 .55rem;
+  color: var(--cqst-blue);
+  font-size: .67rem;
+  font-weight: 760;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.voice-name {
+  margin: 0;
+  font-size: clamp(1.35rem, 1vw + 1rem, 1.8rem);
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  font-weight: 680;
+}
+
+.voice-bio {
+  max-width: 37rem;
+  margin: .75rem 0 0;
+  color: var(--cqst-muted);
+  font-size: .86rem;
+  line-height: 1.55;
+}
+
+.voice-socials {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem 1.1rem;
+}
+
+.voice-social {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  font-size: .76rem;
+  font-weight: 720;
+  position: relative;
+}
+
+.voice-social::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: .1rem;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(.22);
+  transform-origin: left;
+  opacity: .45;
+  transition: transform .22s var(--ease-out), opacity .18s ease, color .18s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .voice-social:hover::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  .voice-social[data-tone="purple"]:hover { color: var(--cqst-purple); }
+  .voice-social[data-tone="blue"]:hover { color: var(--cqst-blue); }
+  .voice-social[data-tone="orange"]:hover { color: var(--cqst-orange); }
+}
+
+@media (hover: none) {
+  .voice-social:active::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .voice-spot {
+    grid-template-columns: 5.25rem minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .voice-avatar-wrap {
+    width: 5.25rem;
+  }
+
+  .voice-avatar-wrap::after {
+    width: .8rem;
+    height: .8rem;
+    box-shadow: 0 0 0 3px var(--cqst-paper);
+  }
+
+  .voice-bio {
+    font-size: .82rem;
+  }
+}
