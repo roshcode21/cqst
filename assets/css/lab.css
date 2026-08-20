@@ -1,0 +1,51 @@
+/* CQST — laboratorio. Este archivo desaparece/reemplaza cuando exista la home. */
+body {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1.1rem;
+}
+
+.lab-main { width: min(64rem, 100%); }
+
+.lab-brand {
+  display: block;
+  width: min(28rem, 88vw);
+  line-height: 0;
+}
+
+.lab-brand img { display: block; width: 100%; height: auto; }
+
+.lab-main h1 {
+  margin: clamp(3rem, 7vw, 5rem) 0 0;
+  max-width: 8ch;
+  font-size: clamp(3.4rem, 9vw, 7.5rem);
+  line-height: .86;
+  letter-spacing: -.07em;
+}
+
+.lab-main h1 em { font-style: normal; color: var(--cqst-blue); }
+
+.lab-main p {
+  max-width: 38rem;
+  margin: 2rem 0 3rem;
+  color: var(--cqst-muted);
+  font-size: clamp(1.04rem, 2vw, 1.28rem);
+  line-height: 1.5;
+}
+
+.lab-links { border-top: 1px solid var(--cqst-night); }
+
+.lab-link {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--cqst-rule);
+  font-weight: 720;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lab-link:hover { color: var(--cqst-blue); }
+}
