@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cada quien su tema</title>
+    <link>https://cadaquiensutema.com/</link>
+    <description>Una publicación por ciclos donde una misma idea cambia según quién la cuenta.</description>
+    <language>es-MX</language>
+    <lastBuildDate>Thu, 20 Aug 2026 07:15:00 GMT</lastBuildDate>
+    <atom:link href="https://cadaquiensutema.com/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>La fecha la ponemos después</title>
+      <link>https://cadaquiensutema.com/empezar/la-fecha-la-ponemos-despues/</link>
+      <guid isPermaLink="true">https://cadaquiensutema.com/empezar/la-fecha-la-ponemos-despues/</guid>
+      <pubDate>Wed, 19 Aug 2026 06:00:00 GMT</pubDate>
+      <author>Rodolfo Raudales</author>
+      <category>Empezar</category>
+      <description>Empezar parece claro cuando miramos hacia atrás. Rodolfo Raudales escribe sobre memoria, sesgo retrospectivo y la forma en que elegimos un comienzo.</description>
+    </item>
+  </channel>
+</rss>
