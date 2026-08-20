@@ -40,10 +40,13 @@ dialog { border:0; padding:0; background:transparent; max-width:none; }
 dialog::backdrop { background:rgb(11 11 24 / .38); backdrop-filter:blur(3px); }
 #cycleDialog { width:min(42rem,100vw); min-height:100dvh; margin:0 0 0 auto; }
 .cycle-drawer { min-height:100dvh; background:var(--cqst-paper); padding:max(1rem,env(safe-area-inset-top)) clamp(1.25rem,4vw,2.5rem) max(1.5rem,env(safe-area-inset-bottom)); border-left:1px solid var(--cqst-rule); display:flex; flex-direction:column; }
-.drawer-top { min-height:48px; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-bottom:1rem; border-bottom:1px solid var(--cqst-rule); }
-.drawer-home { width:min(11rem,42vw); line-height:0; }
+.drawer-top { min-height:56px; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-bottom:1rem; border-bottom:1px solid var(--cqst-rule); }
+.drawer-home { width:min(11rem,38vw); line-height:0; flex:0 1 auto; }
 .drawer-home img { width:100%; height:auto; display:block; }
-.drawer-close { width:44px; height:44px; border:1px solid var(--cqst-rule); border-radius:50%; cursor:pointer; font-size:1.2rem; }
+.drawer-top-actions { display:flex; align-items:center; gap:.55rem; flex:none; }
+.drawer-home-button { min-height:42px; padding:0 .9rem; border:1px solid var(--cqst-night); border-radius:999px; display:inline-flex; align-items:center; gap:.38rem; font-size:.74rem; font-weight:740; background:var(--cqst-paper); transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s var(--ease-out); }
+.drawer-close { width:44px; height:44px; border:1px solid var(--cqst-rule); border-radius:50%; cursor:pointer; font-size:1.2rem; transition:border-color .2s ease,color .2s ease,transform .2s var(--ease-out); }
+@media (hover:hover) and (pointer:fine) { .drawer-home-button:hover { background:var(--cqst-blue); color:#fff; border-color:var(--cqst-blue); transform:translateY(-1px); } .drawer-close:hover { border-color:var(--cqst-blue); color:var(--cqst-blue); transform:rotate(4deg); } }
 .drawer-title-row { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-top:clamp(1.8rem,5vw,3.2rem); }
 .drawer-title-row h2 { margin:0; font-size:clamp(3rem,8vw,5.4rem); line-height:.92; letter-spacing:-.06em; }
 .drawer-title-row span { color:var(--cqst-muted); font-size:.75rem; }
@@ -56,7 +59,7 @@ dialog::backdrop { background:rgb(11 11 24 / .38); backdrop-filter:blur(3px); }
 .drawer-item .drawer-state { color:var(--cqst-muted); font-size:.7rem; }
 .drawer-item.current .drawer-state { color:var(--cqst-green); background:var(--cqst-night); padding:.38rem .55rem; border-radius:999px; }
 .drawer-item:hover strong { color:var(--cqst-blue); }
-.drawer-footer { margin-top:auto; padding-top:2rem; display:flex; flex-wrap:wrap; justify-content:space-between; gap:.75rem 1rem; border-top:1px solid var(--cqst-night); }
+.drawer-footer { margin-top:auto; padding-top:2rem; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.75rem 1.25rem; border-top:1px solid var(--cqst-night); }
 .drawer-footer a,.drawer-footer button { min-height:40px; display:inline-flex; align-items:center; font-size:.76rem; font-weight:720; position:relative; cursor:pointer; }
 .drawer-footer a::after,.drawer-footer button::after { content:""; position:absolute; left:0; right:0; bottom:.18rem; height:2px; background:currentColor; transform:scaleX(.2); transform-origin:left; opacity:.3; transition:transform .22s var(--ease-out),opacity .18s ease,color .18s ease; }
 @media (hover:hover) and (pointer:fine) { .drawer-footer a:hover,.drawer-footer button:hover { color:var(--cqst-blue); } .drawer-footer a:hover::after,.drawer-footer button:hover::after { transform:scaleX(1); opacity:1; } }
@@ -64,5 +67,11 @@ dialog::backdrop { background:rgb(11 11 24 / .38); backdrop-filter:blur(3px); }
 @media (max-width:560px) {
   .cycle-navigator { grid-template-columns:1fr; }
   .cycle-preview { min-height:32rem; }
-  .drawer-footer { align-items:flex-start; }
+  .drawer-home { width:min(9rem,42vw); }
+  .drawer-home-button { min-height:40px; padding:0 .75rem; }
+  .drawer-footer { align-items:flex-start; justify-content:flex-start; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .drawer-home-button,.drawer-close { transition:none; }
 }
