@@ -1,0 +1,96 @@
+CADA QUIEN SU TEMA
+ANALÍTICA PARA HUMANOS
+
+Umami guarda muchos datos, pero el equipo no necesita mirar todo.
+Para CQST hay cinco preguntas principales.
+
+1. ¿LA GENTE EMPIEZA A LEER?
+Evento
+Lectura · empezó
+
+2. ¿TERMINA UNA VOZ?
+Evento
+Voz · completada
+Propiedad modo
+lectura o audio
+
+3. ¿QUIERE PROFUNDIZAR?
+Evento
+Notas · abrió una nota
+Propiedad nota
+fresh, memory o hindsight
+
+4. ¿SIGUE DENTRO DEL CICLO?
+Eventos
+Ciclo · eligió voz
+Ciclo · continuó
+Ciclo · abrió página
+
+5. ¿USA EL AUDIO O COMPARTE?
+Eventos
+Audio · empezó
+Audio · progreso
+Audio · terminó
+Compartir · usó
+
+EVENTOS SECUNDARIOS
+
+Ciclo · abrió índice
+Sirve para saber si el control del header se entiende y se usa.
+
+Notas · abrió fuentes
+Sirve para saber si alguien llega al bloque de referencias completas.
+
+Audio · cambió velocidad
+Dato de producto. No es una métrica editorial principal.
+
+Lab · enlace de plantilla
+Solo existe durante pruebas. No debe existir en Producción.
+
+QUÉ MIRAR CADA SEMANA
+
+Lectores
+Personas aproximadas que visitaron CQST.
+
+Voces completadas
+Cuántas personas terminaron una pieza por lectura o por audio.
+
+Continuación de ciclo
+Cuántas personas pasaron de una voz a otra.
+
+Finalización del ciclo
+Cuando estén las tres piezas publicadas mediremos cuántas personas completan Empezar.
+
+Compartidos
+Cuántas veces se usó la acción Compartir.
+
+Audio
+Cuántas personas lo inician y cuántas llegan al final.
+
+NO TOMAR COMO MÉTRICA PRINCIPAL
+
+Pageviews aisladas
+Clicks de laboratorio
+Cambios de velocidad
+Aperturas del menú por sí solas
+
+FUNNEL RECOMENDADO EN UMAMI
+
+Paso 1
+Lectura · empezó
+
+Paso 2
+Voz · completada
+
+Paso 3
+Ciclo · continuó
+
+Más adelante
+Voz · completada de la segunda pieza
+Ciclo · completado
+
+NOTA
+
+Los nombres antiguos como article_start o cycle_preview seguirán apareciendo en el histórico del Lab.
+Desde esta versión los eventos nuevos usan nombres legibles en español.
+Producción empezará limpia con otro Website ID de Umami.
