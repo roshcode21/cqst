@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1044 268" role="img" aria-label="Cada quien su tema" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <!--
+      El master estático original tiene fondo blanco.
+      Este filtro vuelve transparentes los blancos sin alterar la geometría
+      del logo. Así el mismo asset funciona sobre el papel CQST.
+    -->
+    <filter id="cqst-remove-white" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+       -1.333 -1.333 -1.333 0 4
+      "/>
+    </filter>
+  </defs>
+  <image href="logo-static.png" x="0" y="0" width="1044" height="268" filter="url(#cqst-remove-white)"/>
+</svg>
