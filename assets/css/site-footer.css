@@ -1,0 +1,78 @@
+/* ==========================================================================
+   CQST — site-footer.css
+   Footer global. No repite la navegación del ciclo.
+   Sirve como cierre del sitio, no como otra card editorial.
+   ========================================================================== */
+
+.site-footer{
+  margin-top:clamp(3rem,7vw,6rem);
+  padding:clamp(1.4rem,3vw,2.3rem) var(--edge) max(1.4rem,env(safe-area-inset-bottom));
+  border-top:1px solid var(--cqst-rule);
+  background:var(--cqst-paper);
+}
+
+.site-footer-inner{
+  max-width:94rem;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(10rem,16rem) minmax(0,1fr);
+  gap:1.5rem clamp(2rem,5vw,5rem);
+  align-items:end;
+}
+
+.site-footer-brand{display:grid;gap:.7rem;align-content:end}
+.site-footer-logo{display:block;width:min(13rem,100%);line-height:0}
+.site-footer-logo img{display:block;width:100%;height:auto}
+.site-footer-copy{margin:0;color:var(--cqst-muted);font-size:.7rem;line-height:1.45}
+
+.site-footer-nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:.55rem clamp(.9rem,2vw,1.65rem);
+  align-items:center;
+}
+
+.site-footer-link{
+  min-height:38px;
+  display:inline-flex;
+  align-items:center;
+  position:relative;
+  font-size:.74rem;
+  font-weight:690;
+}
+
+.site-footer-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:.25rem;
+  height:2px;
+  background:currentColor;
+  opacity:.28;
+  transform:scaleX(.16);
+  transform-origin:left;
+  transition:transform .22s var(--ease-out),opacity .18s ease,color .18s ease;
+}
+
+.site-footer-link[data-tone="green"]:hover{color:#4aa800}
+.site-footer-link[data-tone="purple"]:hover{color:var(--cqst-purple)}
+.site-footer-link[data-tone="orange"]:hover{color:var(--cqst-orange)}
+.site-footer-link[data-tone="blue"]:hover{color:var(--cqst-blue)}
+
+@media (hover:hover) and (pointer:fine){
+  .site-footer-link:hover::after,.site-footer-link:focus-visible::after{transform:scaleX(1);opacity:1}
+  .site-footer-logo img{transition:transform .22s var(--ease-out)}
+  .site-footer-logo:hover img{transform:translateX(.16rem)}
+}
+
+@media (max-width:720px){
+  .site-footer-inner{grid-template-columns:1fr;align-items:start}
+  .site-footer-logo{width:10.5rem}
+  .site-footer-nav{justify-content:flex-start}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .site-footer-link::after,.site-footer-logo img{transition:none}
+}
