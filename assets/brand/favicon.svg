@@ -1,9 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Cada quien su tema">
-  <rect width="600" height="600" fill="#0000ff"/>
-  <g fill="none" stroke="#fff" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M130 154c-19 53-24 103-15 151L73 360c-8 13-3 28 11 35l33 16-2 26c-1 22 13 40 34 47 18 6 39 1 61-1l2 48c1 28 20 46 48 47h85c22 0 35-10 43-31 11-31 22-62 39-92 24-44 42-92 48-144 8-67-5-120-24-160-10-21-21-38-34-52"/>
-    <ellipse cx="300" cy="242" rx="268" ry="77" transform="rotate(22 300 242)"/>
-    <ellipse cx="300" cy="242" rx="268" ry="77" transform="rotate(-22 300 242)"/>
-    <path d="M300 52c17 0 26 27 42 34 16 7 39-12 49 2 11 15-9 34-13 50-4 17 19 36 7 50-12 15-34-2-51 2-17 4-19 32-37 32s-23-28-40-32c-17-4-39 13-50-2-12-15 10-34 6-50-4-16-24-35-13-50 11-14 34 5 50-2 16-7 33-34 50-34z"/>
-  </g>
+  <rect x="5" y="8" width="588" height="588" fill="#0000FF"/>
+  <circle cx="134.5" cy="149.5" r="108.5" fill="#00FF00"/>
+  <circle cx="134.5" cy="149.5" r="65" fill="#0000FF"/>
+  <circle cx="462" cy="476" r="86.5" fill="#00FF00"/>
+  <circle cx="462" cy="476" r="43.5" fill="#0000FF"/>
+  <circle cx="505.5" cy="323.5" r="21.5" fill="#00FF00"/>
+  <circle cx="156.5" cy="432.5" r="130.5" fill="#FFFFFF"/>
+  <circle cx="156.5" cy="432.5" r="87" fill="#0000FF"/>
+  <circle cx="364" cy="269" r="76" fill="#FFFFFF"/>
+  <circle cx="364" cy="269" r="32.5" fill="#0000FF"/>
+  <circle cx="484" cy="106" r="65" fill="#FFFFFF"/>
+  <circle cx="484" cy="106" r="21.5" fill="#0000FF"/>
+  <circle cx="331.5" cy="116.5" r="32.5" fill="#FFFFFF"/>
 </svg>
