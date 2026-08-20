@@ -9,7 +9,7 @@
   padding-top: clamp(1.35rem, 3vw, 2rem);
   border-top: 1px solid var(--cqst-night);
   display: grid;
-  grid-template-columns: 7.25rem minmax(0, 1fr);
+  grid-template-columns: 7.75rem minmax(0, 1fr);
   gap: clamp(1.25rem, 3vw, 2rem);
   align-items: start;
 }
@@ -18,9 +18,12 @@
   position: relative;
   width: 7.25rem;
   aspect-ratio: 1;
+  margin: .25rem 0 .25rem .2rem;
 }
 
 .voice-avatar {
+  position: relative;
+  z-index: 3;
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -42,17 +45,53 @@
   display: block;
 }
 
-/* Un guiño al favicon. Solo una marca pequeña. */
-.voice-avatar-wrap::after {
-  content: "";
+/*
+  Los círculos derivan del favicon.
+  No significan estado ni notificación. Son una firma visual pequeña.
+*/
+.voice-orbit {
   position: absolute;
-  width: 1rem;
-  height: 1rem;
-  right: .2rem;
-  bottom: .45rem;
+  z-index: 1;
+  display: block;
   border-radius: 50%;
+  pointer-events: none;
+}
+
+.voice-orbit-a {
+  width: 2.15rem;
+  height: 2.15rem;
+  left: -.7rem;
+  top: -.55rem;
+  border: .42rem solid var(--cqst-green);
+  background: var(--cqst-paper);
+}
+
+.voice-orbit-b {
+  width: 1.4rem;
+  height: 1.4rem;
+  right: -.55rem;
+  top: .55rem;
+  border: .34rem solid #fff;
+  background: var(--cqst-blue);
+  box-shadow: 0 0 0 2px var(--cqst-blue);
+}
+
+.voice-orbit-c {
+  width: .86rem;
+  height: .86rem;
+  right: -.36rem;
+  bottom: .35rem;
   background: var(--cqst-green);
-  box-shadow: 0 0 0 4px var(--cqst-paper);
+  box-shadow: 0 0 0 3px var(--cqst-paper);
+}
+
+.voice-orbit-d {
+  width: .64rem;
+  height: .64rem;
+  left: -.28rem;
+  bottom: 1.05rem;
+  background: #fff;
+  box-shadow: 0 0 0 2px var(--cqst-blue);
 }
 
 .voice-label {
@@ -130,7 +169,7 @@
 
 @media (max-width: 560px) {
   .voice-spot {
-    grid-template-columns: 5.25rem minmax(0, 1fr);
+    grid-template-columns: 5.9rem minmax(0, 1fr);
     gap: 1rem;
   }
 
@@ -138,10 +177,30 @@
     width: 5.25rem;
   }
 
-  .voice-avatar-wrap::after {
-    width: .8rem;
-    height: .8rem;
-    box-shadow: 0 0 0 3px var(--cqst-paper);
+  .voice-orbit-a {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-width: .32rem;
+    left: -.45rem;
+    top: -.4rem;
+  }
+
+  .voice-orbit-b {
+    width: 1.05rem;
+    height: 1.05rem;
+    border-width: .25rem;
+    right: -.38rem;
+  }
+
+  .voice-orbit-c {
+    width: .68rem;
+    height: .68rem;
+    right: -.3rem;
+  }
+
+  .voice-orbit-d {
+    width: .52rem;
+    height: .52rem;
   }
 
   .voice-bio {
