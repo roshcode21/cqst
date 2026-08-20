@@ -1,0 +1,46 @@
+/* --------------------------------------------------------------------------
+   CQST — article/audio.css
+   Reproductor persistente + pequeños destellos editoriales.
+   -------------------------------------------------------------------------- */
+
+.audio-dock {
+  position: fixed;
+  z-index: 120;
+  left: 50%;
+  bottom: max(.75rem, env(safe-area-inset-bottom));
+  width: min(46rem, calc(100vw - 1rem));
+  transform: translate(-50%, calc(100% + 2rem));
+  opacity: 0;
+  pointer-events: none;
+  background: var(--cqst-night);
+  color: #fff;
+  border-radius: 1rem;
+  padding: .75rem;
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: .75rem;
+  align-items: center;
+  box-shadow: 0 18px 50px rgb(11 11 24 / .24);
+  transition: transform .36s var(--ease-out), opacity .22s ease;
+}
+.audio-dock.is-open { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+.audio-dock-play { width:44px; height:44px; border-radius:50%; background:var(--cqst-orange); display:grid; place-items:center; cursor:pointer; }
+.audio-dock-title { font-size:.77rem; font-weight:720; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.audio-dock-meta { margin-top:.15rem; color:#aaaabe; font-size:.66rem; }
+.audio-dock-row { margin-top:.42rem; display:grid; grid-template-columns:auto 1fr auto; gap:.5rem; align-items:center; }
+.audio-dock-time { color:#c5c5d2; font-size:.63rem; font-variant-numeric:tabular-nums; }
+.audio-dock-range { width:100%; accent-color:var(--cqst-orange); }
+.audio-speed { min-width:44px; height:44px; color:#fff; cursor:pointer; font-size:.72rem; }
+
+.toast { position:fixed; z-index:200; left:50%; bottom:max(1rem,env(safe-area-inset-bottom)); transform:translate(-50%,1rem); opacity:0; pointer-events:none; background:var(--cqst-night); color:#fff; border-radius:999px; padding:.72rem .95rem; font-size:.72rem; transition:transform .2s ease,opacity .2s ease; }
+.toast.show { transform:translate(-50%,0); opacity:1; }
+
+/* Dos flashes máximos durante la lectura. Inspirados en los anillos del favicon. */
+.register-mark { --register-color:var(--cqst-purple); position:fixed; z-index:30; right:clamp(.35rem,1vw,.75rem); top:52%; width:18px; height:44px; opacity:0; pointer-events:none; transform:translateY(-50%); }
+.register-mark[data-tone="orange"] { --register-color:var(--cqst-orange); }
+.register-mark[data-tone="purple"] { --register-color:var(--cqst-purple); }
+.register-mark::before,.register-mark::after { content:""; position:absolute; left:50%; border:2px solid var(--register-color); border-radius:50%; transform:translateX(-50%); }
+.register-mark::before { top:0; width:12px; height:12px; }
+.register-mark::after { bottom:0; width:5px; height:5px; background:var(--register-color); }
+.register-mark.flash { animation:cqst-register .62s var(--ease-out) both; }
+@keyframes cqst-register { 0%{opacity:0;transform:translateY(-50%) translateX(.7rem)} 28%{opacity:.9;transform:translateY(-50%) translateX(0)} 72%{opacity:.9} 100%{opacity:0;transform:translateY(-50%) translateX(-.15rem)} }
