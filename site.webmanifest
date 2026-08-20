@@ -1,27 +1,37 @@
 {
   "name": "Cada quien su tema",
   "short_name": "CQST",
-  "description": "Cada quien su tema",
+  "description": "Una publicación por ciclos donde una misma idea cambia según quién la cuenta.",
+  "lang": "es-MX",
   "start_url": "./",
   "scope": "./",
-  "display": "browser",
+  "display": "standalone",
   "background_color": "#F4F2EC",
-  "theme_color": "#0000FF",
+  "theme_color": "#F4F2EC",
   "icons": [
     {
       "src": "assets/brand/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "assets/brand/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "assets/brand/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "assets/brand/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/brand/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
