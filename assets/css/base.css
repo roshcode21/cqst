@@ -183,6 +183,11 @@ summary {
   border: 0 !important;
 }
 
+/* Progressive enhancement. Navegaciones del mismo sitio ganan continuidad
+   visual en navegadores que soportan View Transitions. */
+@view-transition { navigation: auto; }
+::view-transition-group(root) { animation-duration: .32s; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
@@ -194,4 +199,6 @@ summary {
     transition-duration: .001ms !important;
     scroll-behavior: auto !important;
   }
+
+  ::view-transition-group(root) { animation-duration: .001ms !important; }
 }
