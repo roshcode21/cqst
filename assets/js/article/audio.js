@@ -46,6 +46,7 @@
       if (isLab) showToast("Audio sin archivo en este prototipo");
       return;
     }
+
     if (audio.paused) {
       try { await audio.play(); }
       catch { showToast("No se pudo iniciar el audio"); }
@@ -88,19 +89,22 @@
     setState(true);
     track("audio_start");
   });
+
   audio.addEventListener("pause", () => setState(false));
 
   audio.addEventListener("timeupdate", () => {
     const total = audio.duration || 0;
     const now = audio.currentTime || 0;
     const ratio = total ? now / total : 0;
+
     if (current) current.textContent = fmt(now);
     if (range && document.activeElement !== range) range.value = String(now);
 
-    [[.25, "audio_25"], [.5, "audio_50"], [.75, "audio_75"]].forEach(([threshold, event]) => {
-      if (ratio >= threshold && !quartiles.has(event)) {
-        quartiles.add(event);
-        track(event);
+    [25, 50, 75].forEach((percent) => {
+      const threshold = percent / 100;
+      if (ratio >= threshold && !quartiles.has(percent)) {
+        quartiles.add(percent);
+        track("audio_progress", { porcentaje: percent });
       }
     });
   });
@@ -111,12 +115,15 @@
     completeVoice("audio");
   });
 
-  range?.addEventListener("input", () => { audio.currentTime = Number(range.value); });
+  range?.addEventListener("input", () => {
+    audio.currentTime = Number(range.value);
+  });
+
   speed?.addEventListener("click", () => {
     speedIndex = (speedIndex + 1) % speeds.length;
     audio.playbackRate = speeds[speedIndex];
     speed.textContent = `${speeds[speedIndex]}×`;
-    track("audio_speed_change", { speed: speeds[speedIndex] });
+    track("audio_speed_change", { velocidad: speeds[speedIndex] });
   });
 
   if ("mediaSession" in navigator) {
