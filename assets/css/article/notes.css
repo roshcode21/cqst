@@ -1,0 +1,23 @@
+/* CQST — article/notes.css */
+.after-article { padding:0 var(--edge) clamp(4rem,8vw,7rem); }
+.after-inner { width:min(100%,var(--reading-measure)); margin-inline:auto; }
+.notes-ledger { border-top:1px solid var(--cqst-night); border-bottom:1px solid var(--cqst-rule); }
+.notes-ledger summary { list-style:none; cursor:pointer; min-height:72px; display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:1rem; }
+.notes-ledger summary::-webkit-details-marker { display:none; }
+.notes-ledger-title { font-size:.73rem; font-weight:760; letter-spacing:.08em; text-transform:uppercase; }
+.notes-ledger-count { color:var(--cqst-purple); font-size:1.55rem; font-weight:800; }
+.notes-ledger-sign { width:1.2rem; color:var(--cqst-purple); font-size:1.15rem; text-align:center; }
+.notes-ledger[open] .notes-ledger-sign::before { content:"−"; }
+.notes-ledger:not([open]) .notes-ledger-sign::before { content:"+"; }
+.notes-list { margin:0; padding:.25rem 0 1.6rem; list-style:none; counter-reset:cqst-note; }
+.notes-list li { counter-increment:cqst-note; display:grid; grid-template-columns:2.4rem 1fr; gap:.8rem; padding:1.05rem 0; border-top:1px solid color-mix(in srgb,var(--cqst-purple) 20%,var(--cqst-rule)); }
+.notes-list li::before { content:counter(cqst-note,decimal-leading-zero); color:var(--cqst-purple); font-size:1.28rem; font-weight:800; letter-spacing:-.03em; }
+.note-body h3 { margin:.05rem 0 .48rem; font-size:.98rem; line-height:1.15; }
+.note-body p,.note-body cite { font-size:.77rem; line-height:1.5; color:var(--cqst-muted); }
+.note-body p { margin:0 0 .65rem; }
+.note-body cite { font-style:normal; }
+.note-body a:hover { color:var(--cqst-purple); }
+.article-tools { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-top:1rem; }
+.article-tools-label { color:var(--cqst-muted); font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; }
+.share-button { min-height:44px; cursor:pointer; font-size:.78rem; font-weight:740; }
+.share-button:hover { color:var(--cqst-blue); }
