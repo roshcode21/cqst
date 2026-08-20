@@ -66,6 +66,46 @@
     track, showToast, completeVoice
   };
 
+  /* CIERRE V1 DE MARCA Y SOCIALES --------------------------------------- */
+  const headerWordmark = $(".header-logo img");
+  if (headerWordmark) {
+    headerWordmark.src = "../../assets/brand/logo-article.svg?v=final3";
+    headerWordmark.width = 2048;
+    headerWordmark.height = 519;
+  }
+
+  $$('.voice-social[href*="threads.com"]').forEach((link) => link.remove());
+
+  const facebookLink = $$(".site-footer-link").find((link) => /facebook/i.test(link.textContent));
+  if (facebookLink) {
+    facebookLink.href = "https://www.facebook.com/cadaquiensutema";
+    facebookLink.target = "_blank";
+    facebookLink.rel = "me noopener";
+    facebookLink.removeAttribute("data-stub");
+  }
+
+  /* Mantener los mismos datos también en JSON-LD renderizado. */
+  $$('script[type="application/ld+json"]').forEach((script) => {
+    try {
+      const data = JSON.parse(script.textContent);
+      const graph = Array.isArray(data?.["@graph"]) ? data["@graph"] : [];
+
+      graph.forEach((node) => {
+        if (node?.["@type"] === "Person" && Array.isArray(node.sameAs)) {
+          node.sameAs = node.sameAs.filter((url) => !/threads\.com/i.test(url));
+        }
+        if (node?.["@type"] === "Organization") {
+          const sameAs = Array.isArray(node.sameAs) ? node.sameAs : [];
+          const facebook = "https://www.facebook.com/cadaquiensutema";
+          if (!sameAs.includes(facebook)) sameAs.push(facebook);
+          node.sameAs = sameAs;
+        }
+      });
+
+      script.textContent = JSON.stringify(data);
+    } catch {}
+  });
+
   /* LAB ------------------------------------------------------------------ */
   $$('[data-stub]').forEach((element) => {
     element.addEventListener("click", (event) => {
