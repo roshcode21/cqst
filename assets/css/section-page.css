@@ -1,0 +1,75 @@
+/* ==========================================================================
+   CQST — section-page.css
+   Explorar + La revista.
+   ========================================================================== */
+
+.section-page { background:var(--cqst-paper);color:var(--cqst-night); }
+.section-header {
+  position:sticky;top:0;z-index:80;
+  min-height:4.4rem;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;
+  padding:.6rem var(--edge);
+  background:color-mix(in srgb,var(--cqst-paper) 94%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--cqst-rule);
+}
+.section-brand { width:clamp(9.4rem,12vw,11.8rem);line-height:0; }
+.section-brand img { display:block;width:100%;height:auto; }
+.section-nav { grid-column:3;display:flex;align-items:center;gap:clamp(.9rem,2vw,1.8rem);font-size:.74rem;font-weight:760; }
+.section-nav a { min-height:44px;display:inline-flex;align-items:center;position:relative; }
+.section-nav a::after { content:"";position:absolute;left:0;right:0;bottom:.38rem;height:1px;background:currentColor;transform:scaleX(.2);transform-origin:left;opacity:.35;transition:transform .22s var(--ease-out),opacity .18s ease; }
+@media(hover:hover) and (pointer:fine){ .section-nav a:hover::after{transform:scaleX(1);opacity:1;} }
+
+.section-main { width:min(100%,92rem);margin-inline:auto;padding:clamp(4.5rem,9vw,8rem) var(--edge) clamp(7rem,11vw,11rem); }
+.section-kicker { margin:0 0 1rem;color:var(--cqst-blue);font-size:.66rem;font-weight:820;letter-spacing:.11em;text-transform:uppercase; }
+.section-title { margin:0;max-width:12ch;font-size:clamp(4.2rem,10vw,10rem);line-height:.84;letter-spacing:-.07em;font-weight:820; }
+.section-lead { width:min(100%,44rem);margin:clamp(2.3rem,5vw,4.2rem) 0 clamp(5rem,8vw,7rem) auto;font-size:clamp(1.25rem,1.6vw,1.8rem);line-height:1.42;letter-spacing:-.025em; }
+
+/* EXPLORAR */
+.catalog-head { display:flex;justify-content:space-between;gap:1rem;padding-bottom:.8rem;border-bottom:1px solid var(--cqst-night);font-size:.66rem;font-weight:820;letter-spacing:.09em;text-transform:uppercase; }
+.catalog-cycle { border-bottom:1px solid var(--cqst-night); }
+.catalog-cycle-head { display:grid;grid-template-columns:4rem minmax(0,1fr) auto;gap:1.2rem;align-items:end;padding:clamp(1.5rem,3vw,2.5rem) 0; }
+.catalog-no { color:var(--cqst-blue);font-size:.68rem;font-weight:820; }
+.catalog-name { margin:0;font-size:clamp(3.2rem,7vw,7rem);line-height:.9;letter-spacing:-.06em;font-weight:800; }
+.catalog-meta { color:var(--cqst-muted);font-size:.76rem;text-align:right; }
+.catalog-pieces { display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--cqst-rule); }
+.catalog-piece { min-height:16rem;padding:1.4rem;border-right:1px solid var(--cqst-rule);display:flex;flex-direction:column; }
+.catalog-piece:last-child { border-right:0; }
+.catalog-piece small { color:var(--cqst-blue);font-size:.64rem;font-weight:820;letter-spacing:.08em;text-transform:uppercase; }
+.catalog-piece h2 { margin:2rem 0 .8rem;font-size:clamp(1.6rem,2.3vw,2.6rem);line-height:.98;letter-spacing:-.04em; }
+.catalog-piece p { margin:0;color:var(--cqst-muted);font-size:.88rem;line-height:1.5; }
+.catalog-piece footer { margin-top:auto;padding-top:1.4rem;font-size:.7rem;display:flex;justify-content:space-between;gap:1rem; }
+.catalog-piece.is-placeholder { opacity:.6; }
+.catalog-note { margin:2rem 0 0;color:var(--cqst-muted);font-size:.82rem;line-height:1.5; }
+
+/* LA REVISTA */
+.editorial-grid { display:grid;grid-template-columns:minmax(0,.35fr) minmax(0,1fr);gap:clamp(2rem,7vw,8rem);border-top:1px solid var(--cqst-night);padding:clamp(3rem,6vw,5rem) 0; }
+.editorial-grid:last-of-type { border-bottom:1px solid var(--cqst-night); }
+.editorial-label { color:var(--cqst-blue);font-size:.66rem;font-weight:820;letter-spacing:.1em;text-transform:uppercase; }
+.editorial-copy h2 { margin:0 0 1rem;font-size:clamp(2.4rem,5vw,5.4rem);line-height:.94;letter-spacing:-.055em;font-weight:790;max-width:14ch; }
+.editorial-copy p { width:min(100%,42rem);margin:0 0 1.15rem;font-size:clamp(1rem,.45vw + .92rem,1.2rem);line-height:1.6;color:var(--cqst-muted); }
+.editorial-copy strong { color:var(--cqst-night); }
+.editorial-quote { margin:clamp(2rem,4vw,3.5rem) 0;font-size:clamp(2.1rem,4vw,4.4rem);line-height:.98;letter-spacing:-.045em;font-weight:760;color:var(--cqst-night);max-width:15ch; }
+.editorial-link { display:inline-flex;align-items:center;gap:.45rem;margin-top:.5rem;color:var(--cqst-blue);font-size:.76rem;font-weight:760; }
+.symbol-orbit { width:min(22rem,70vw);aspect-ratio:1;margin:2.5rem 0 0;position:relative;border:2px solid var(--cqst-blue);border-radius:50%; }
+.symbol-orbit::before,.symbol-orbit::after { content:"";position:absolute;border-radius:50%; }
+.symbol-orbit::before { width:2.2rem;height:2.2rem;border:.45rem solid var(--cqst-green);left:-1rem;top:1.2rem;background:var(--cqst-paper); }
+.symbol-orbit::after { width:1rem;height:1rem;background:var(--cqst-blue);right:-.45rem;top:28%;box-shadow:0 0 0 5px var(--cqst-paper); }
+.symbol-rr { position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(2.5rem,7vw,5rem);font-weight:820;color:var(--cqst-blue); }
+.contact-panel { margin-top:clamp(5rem,8vw,7rem);padding:clamp(2.2rem,5vw,4rem);background:var(--cqst-blue);color:#fff;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:end; }
+.contact-panel h2 { margin:0;max-width:12ch;font-size:clamp(2.8rem,6vw,6rem);line-height:.9;letter-spacing:-.06em; }
+.contact-panel a { color:var(--cqst-green);font-size:clamp(1rem,1.6vw,1.35rem);font-weight:760; }
+
+/* FOOTER */
+.section-footer { background:var(--cqst-night);color:#fff;padding:3rem var(--edge); }
+.section-footer-inner { width:min(100%,92rem);margin:auto;display:flex;justify-content:space-between;gap:2rem;align-items:flex-end; }
+.section-footer-logo { width:min(11rem,45vw);line-height:0; }
+.section-footer-logo img { width:100%;height:auto;display:block;filter:brightness(0) invert(1); }
+.section-footer-links { display:flex;flex-wrap:wrap;gap:.8rem 1.4rem;font-size:.72rem; }
+
+@media(max-width:760px){
+  .section-header{padding-inline:1rem;}.section-brand{width:8.7rem;}.section-nav{gap:.8rem;font-size:.68rem;}.section-nav .hide-mobile{display:none;}
+  .section-main{padding-left:1rem;padding-right:1rem;}.section-title{font-size:clamp(4rem,20vw,7rem);}.section-lead{margin-left:0;}
+  .catalog-cycle-head{grid-template-columns:2.4rem 1fr;}.catalog-meta{grid-column:2;text-align:left;}.catalog-pieces{grid-template-columns:1fr;}.catalog-piece{min-height:0;border-right:0;border-bottom:1px solid var(--cqst-rule);padding:1.4rem 0;}.catalog-piece:last-child{border-bottom:0;}
+  .editorial-grid{grid-template-columns:1fr;gap:1.2rem;}.editorial-copy h2{font-size:clamp(2.8rem,13vw,4.8rem);}.contact-panel{grid-template-columns:1fr;}.section-footer-inner{align-items:flex-start;flex-direction:column;}
+}
