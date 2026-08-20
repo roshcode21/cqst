@@ -1,43 +1,72 @@
 # CQST · mapa del sitio
 
-La navegación global y la navegación de lectura no son lo mismo.
+La arquitectura confirmada es más pequeña de lo que parece.
+No inventamos secciones globales antes de diseñar la home.
 
-## Navegación global
+## Confirmado
 
 - Inicio `/`
-- Ciclos `/ciclos/`
-- Archivo `/archivo/`
-- ¿Y quién pregunta? `/quien-pregunta/`
+- cada ciclo `/<ciclo>/`
+- cada pieza `/<ciclo>/<slug>/`
+- privacidad `/privacidad/`
+- RSS `/feed.xml`
+- sitemap `/sitemap.xml`
 
-No usamos About us, Artículos o Contacto como secciones genéricas.
-
-## Ciclos
-
-Cada ciclo tiene su propia URL.
+Ejemplo actual
 
 - Empezar `/empezar/`
-- Dinero `/dinero/` cuando exista
+- La fecha la ponemos después `/empezar/la-fecha-la-ponemos-despues/`
 
-La página del ciclo funciona como índice editorial de sus voces.
+## Todavía no se convierte en navegación global
 
-## Artículos
+No damos por hecho que CQST necesite botones llamados
 
-Cada pieza vive dentro de su ciclo.
+- Artículos
+- Archivo
+- Ciclos
+- About us
+- Contacto
 
-Ejemplo
+La home definirá qué accesos globales merecen existir.
 
-`/empezar/digamos-que-empieza-aqui/`
+## Menú dentro de un artículo
 
-En una página de artículo el header prioriza tres cosas.
+El drawer del artículo es LOCAL al ciclo.
+No intenta ser el hamburger completo del sitio.
 
-1. La marca vuelve a Inicio
-2. La barra muestra progreso de lectura
-3. El control Ciclo / Empezar abre el índice del ciclo
+Debe ofrecer
 
-La navegación global aparece dentro de ese mismo panel para no añadir otro hamburger que compita con la lectura.
+1. logo de CQST que vuelve a Inicio
+2. nombre del ciclo
+3. las voces y piezas del ciclo
+4. Ver Empezar
+5. Compartir esta pieza
+
+Eso mantiene orientación sin meter navegación global que no pertenece al acto de leer.
+
+## Navegador al final del artículo
+
+Es distinto al drawer.
+
+Su trabajo es mover al lector hacia la siguiente voz sin sacarlo del ciclo. Muestra las tres piezas y un preview de la pieza seleccionada.
+
+## Footer global
+
+El footer no repite el ciclo.
+
+Actualmente contiene
+
+- marca
+- volver arriba
+- RSS
+- Instagram
+- TikTok
+- Privacidad
+
+Podrá evolucionar cuando exista la home, pero no debe convertirse en un cementerio de links.
 
 ## Voces
 
-No lanzamos páginas de perfil individuales por defecto. Cada artículo incluye La voz con foto, bio corta y redes relevantes.
+No lanzamos páginas de perfil individuales por defecto. Cada artículo incluye La voz con foto, bio breve y redes relevantes.
 
 Si más adelante una persona acumula varias piezas, una URL de voz puede tener sentido como archivo editorial de sus textos.
