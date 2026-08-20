@@ -1,7 +1,4 @@
-/* ==========================================================================
-   CQST — home.js
-   Home V0.2
-   ========================================================================== */
+/* CQST V3 · home.js */
 (() => {
   "use strict";
 
@@ -10,16 +7,19 @@
 
   const $ = (s, root = document) => root.querySelector(s);
   const $$ = (s, root = document) => [...root.querySelectorAll(s)];
-  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const isLab = document.body.dataset.lab === "true";
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const finePointer = matchMedia("(hover:hover) and (pointer:fine)");
+  const saveData = navigator.connection?.saveData === true;
 
   const track = (name, data = {}) => {
     console.debug("[CQST]", name, data);
     if (window.umami?.track) window.umami.track(name, data);
   };
 
-  /* KINETIC --------------------------------------------------------------- */
+  /* LOGO CINÉTICO --------------------------------------------------------- */
   const kinetic = $("#kineticLogo");
+  const stage = $("#kineticStage");
   const frames = [
     "assets/brand/kinetic/Logo.png",
     "assets/brand/kinetic/2.png",
@@ -31,148 +31,127 @@
     "assets/brand/kinetic/8.png",
     "assets/brand/kinetic/9.png"
   ];
-  frames.forEach((src) => { const img = new Image(); img.decoding = "async"; img.src = src; });
-
+  const FRAME_MS = 255;
   let frame = 0;
-  let kineticTimer = null;
-  const storedMotion = localStorage.getItem("cqst:motion");
-  let motionEnabled = storedMotion === null ? !reducedMotion.matches : storedMotion === "on";
-  const FRAME_MS = 265;
+  let timer = null;
+  let held = false;
+  let heroVisible = true;
 
-  function setFrame(index) {
-    if (!kinetic) return;
-    frame = (index + frames.length) % frames.length;
-    kinetic.src = frames[frame];
-  }
-  function stopKinetic() {
-    clearInterval(kineticTimer);
-    kineticTimer = null;
-  }
-  function startKinetic() {
-    stopKinetic();
-    if (!kinetic || !motionEnabled || document.hidden) return;
-    kineticTimer = setInterval(() => setFrame(frame + 1), FRAME_MS);
-  }
-  function syncMotionUI() {
-    const toggle = $("#motionToggle");
-    if (!toggle) return;
-    toggle.setAttribute("aria-pressed", String(motionEnabled));
-    const state = $("#motionState", toggle);
-    if (state) state.textContent = motionEnabled ? "encendido" : "detenido";
-  }
-  function setMotion(value) {
-    motionEnabled = Boolean(value);
-    localStorage.setItem("cqst:motion", motionEnabled ? "on" : "off");
-    syncMotionUI();
-    motionEnabled ? startKinetic() : stopKinetic();
-    track("Home · cambió movimiento", { estado: motionEnabled ? "encendido" : "detenido" });
-  }
-  $("#motionToggle")?.addEventListener("click", () => setMotion(!motionEnabled));
-  reducedMotion.addEventListener?.("change", () => {
-    if (storedMotion === null) setMotion(!reducedMotion.matches);
+  frames.slice(1).forEach((src) => {
+    const image = new Image();
+    image.decoding = "async";
+    image.src = src;
   });
-  document.addEventListener("visibilitychange", () => document.hidden ? stopKinetic() : startKinetic());
-  syncMotionUI();
-  startKinetic();
 
-  /* MENU ------------------------------------------------------------------ */
-  const menu = $("#homeMenu");
-  const menuButton = $("#menuButton");
-  function openMenu() {
-    if (!menu) return;
-    menu.showModal();
-    menuButton?.setAttribute("aria-expanded", "true");
-    track("Home · abrió menú");
+  function canRun() {
+    return kinetic && heroVisible && !held && !document.hidden && !reducedMotion.matches && !saveData;
   }
-  function closeMenu() {
-    if (!menu?.open) return;
-    menu.close();
-    menuButton?.setAttribute("aria-expanded", "false");
+
+  function stop() {
+    clearInterval(timer);
+    timer = null;
   }
-  menuButton?.addEventListener("click", openMenu);
-  $("#menuClose")?.addEventListener("click", closeMenu);
-  menu?.addEventListener("click", (event) => { if (event.target === menu) closeMenu(); });
-  $$("a", menu || document.createElement("div")).forEach((a) => a.addEventListener("click", closeMenu));
 
-  /* HEADER + HILO --------------------------------------------------------- */
-  const header = $("#homeHeader");
-  const hero = $("#homeHero");
-  function updateChrome() {
-    if (!header || !hero) return;
-    const heroRect = hero.getBoundingClientRect();
-    header.classList.toggle("is-branded", heroRect.bottom < innerHeight * .64);
-
-    const x = Math.min(innerWidth - 10, Math.max(10, innerWidth / 2));
-    const y = Math.min(innerHeight - 10, (header.getBoundingClientRect().bottom || 72) + 4);
-    const toneElement = document.elementsFromPoint(x, y).find((el) => el instanceof Element && el.closest?.("[data-header-tone]"));
-    const tone = toneElement?.closest?.("[data-header-tone]")?.dataset.headerTone || "light";
-    header.classList.toggle("is-inverse", tone === "dark");
-
-    const total = Math.max(1, heroRect.height - innerHeight * .25);
-    const travelled = Math.max(0, Math.min(total, -heroRect.top));
-    hero.style.setProperty("--hero-line", String(.22 + (travelled / total) * .78));
+  function start() {
+    stop();
+    if (!canRun()) return;
+    timer = setInterval(() => {
+      frame = (frame + 1) % frames.length;
+      kinetic.src = frames[frame];
+    }, FRAME_MS);
   }
-  let raf = false;
-  function scheduleChrome() {
-    if (raf) return;
-    raf = true;
-    requestAnimationFrame(() => { updateChrome(); raf = false; });
-  }
-  addEventListener("scroll", scheduleChrome, { passive:true });
-  addEventListener("resize", scheduleChrome);
-  updateChrome();
 
-  /* REVEALS --------------------------------------------------------------- */
-  if ("IntersectionObserver" in window && !reducedMotion.matches) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      });
-    }, { threshold:.12 });
-    $$('[data-reveal]').forEach((el) => observer.observe(el));
+  function setHeld(value) {
+    held = value;
+    stage?.classList.toggle("is-held", held);
+    if (held) stop(); else start();
+  }
+
+  if (finePointer.matches) {
+    stage?.addEventListener("pointerenter", () => setHeld(true));
+    stage?.addEventListener("pointerleave", () => setHeld(false));
   } else {
-    $$('[data-reveal]').forEach((el) => el.classList.add("is-visible"));
+    stage?.addEventListener("click", () => setHeld(!held));
   }
 
-  /* ESTADO DE VOCES ------------------------------------------------------- */
-  const completionKeys = {
-    rodolfo: "cqst:voice:empezar:la-fecha-la-ponemos-despues"
-  };
-  Object.entries(completionKeys).forEach(([voice,key]) => {
-    if (localStorage.getItem(key)) $(`.home-voice[data-voice="${voice}"]`)?.classList.add("is-read");
+  if (stage && "IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      heroVisible = Boolean(entry?.isIntersecting);
+      if (heroVisible) start(); else stop();
+    }, { threshold: .08 }).observe(stage);
+  }
+
+  document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
+  reducedMotion.addEventListener?.("change", () => reducedMotion.matches ? stop() : start());
+  start();
+
+  /* VOCES LEÍDAS --------------------------------------------------------- */
+  const completionKey = "cqst:voice:empezar:la-fecha-la-ponemos-despues";
+  if (localStorage.getItem(completionKey)) {
+    $(".voice-sheet[data-voice='rodolfo']")?.classList.add("is-read");
+  }
+
+  /* DECK MÓVIL ----------------------------------------------------------- */
+  const deck = $("#voiceDeck");
+  const cards = $$(".voice-sheet", deck || document);
+  const dots = $$(".voice-dot");
+
+  function activeCardIndex() {
+    if (!deck || !cards.length) return 0;
+    const target = deck.scrollLeft + deck.clientWidth * .42;
+    let index = 0;
+    let best = Infinity;
+    cards.forEach((card, i) => {
+      const center = card.offsetLeft + card.offsetWidth / 2;
+      const d = Math.abs(center - target);
+      if (d < best) { best = d; index = i; }
+    });
+    return index;
+  }
+
+  let deckRAF = false;
+  deck?.addEventListener("scroll", () => {
+    if (deckRAF) return;
+    deckRAF = true;
+    requestAnimationFrame(() => {
+      const active = activeCardIndex();
+      dots.forEach((dot, i) => dot.classList.toggle("is-active", i === active));
+      deckRAF = false;
+    });
+  }, { passive: true });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      cards[index]?.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", inline: "start", block: "nearest" });
+    });
   });
 
-  /* SUSCRIPCIÓN LAB ------------------------------------------------------- */
-  const signup = $("#signup");
-  const signupForm = $("#signupForm");
-  signupForm?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    if (!signupForm.checkValidity()) { signupForm.reportValidity(); return; }
-    track("Home · intención de suscripción");
-    if (isLab) {
-      showToast("Formulario de laboratorio · el correo todavía no se envió");
-      signup?.classList.add("is-success");
-      return;
-    }
-  });
-
-  /* TOAST ----------------------------------------------------------------- */
-  const toast = $("#homeToast");
+  /* FORMULARIO DE LAB ---------------------------------------------------- */
+  const signupPanel = $("#signupPanel");
+  const signupForm = $("#signupFormV3");
+  const toast = $("#homeToastV3");
   let toastTimer;
+
   function showToast(message) {
     if (!toast) return;
     toast.textContent = message;
     toast.classList.add("show");
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 1900);
   }
+
+  signupForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!signupForm.reportValidity()) return;
+    signupPanel?.classList.add("is-success");
+    track("Suscripción · intención", { origen: "portada" });
+    if (isLab) showToast("Demo de formulario · todavía no guarda el correo");
+  });
 
   $$('[data-home-stub]').forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
-      showToast("Esta voz todavía no está publicada");
+      showToast("Esta pieza todavía no está publicada");
     });
   });
 })();
