@@ -2,8 +2,7 @@
    CQST — article/core.js
    Estado común del artículo.
 
-   Aquí viven las cosas que afectan a toda la pieza
-   progreso, Umami, compartir y navegación del drawer.
+   Aquí viven progreso, Umami, compartir y navegación del drawer.
    ========================================================================== */
 (() => {
   "use strict";
@@ -19,11 +18,6 @@
   const isLab = body.dataset.lab === "true";
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  /*
-    NOMBRES QUE VERÁS EN UMAMI
-    Los archivos pueden seguir usando claves cortas y estables.
-    Umami recibe nombres legibles para cualquier persona del equipo.
-  */
   const EVENT_LABELS = {
     article_start: "Lectura · empezó",
     voice_complete: "Voz · completada",
@@ -43,12 +37,7 @@
 
   function track(name, data = {}) {
     const eventName = EVENT_LABELS[name] || name;
-    const payload = {
-      articulo: articleId,
-      ciclo: cycleId,
-      ...data
-    };
-
+    const payload = { articulo: articleId, ciclo: cycleId, ...data };
     console.debug("[CQST]", eventName, payload);
     if (window.umami?.track) window.umami.track(eventName, payload);
   }
@@ -67,7 +56,6 @@
   function completeVoice(method) {
     const key = `cqst:voice:${cycleId}:${articleId}`;
     if (localStorage.getItem(key)) return;
-
     const modo = method === "audio" ? "audio" : "lectura";
     localStorage.setItem(key, JSON.stringify({ modo, completedAt: new Date().toISOString() }));
     track("voice_complete", { modo });
@@ -78,9 +66,7 @@
     track, showToast, completeVoice
   };
 
-  /* LAB
-     Los destinos futuros ya tienen su lugar en la interfaz.
-     data-stub impide que href="#" mueva la página. */
+  /* LAB ------------------------------------------------------------------ */
   $$('[data-stub]').forEach((element) => {
     element.addEventListener("click", (event) => {
       if (!isLab || !element.hasAttribute("data-stub")) return;
@@ -92,8 +78,7 @@
     });
   });
 
-  /* TIEMPO DE LECTURA
-     Solo deck + cuerpo. Notas, bio, botones y navegación no cuentan. */
+  /* TIEMPO DE LECTURA ---------------------------------------------------- */
   const READING_WPM = 220;
 
   function visibleText(node) {
@@ -112,11 +97,7 @@
   const minutes = Math.max(1, Math.ceil(words / READING_WPM));
   if ($("#readTime")) $("#readTime").textContent = `${minutes} min de lectura`;
 
-  /* PROGRESO
-     La línea representa solamente el texto.
-     Los dos círculos son hitos de respiración editorial.
-     No son capítulos ni botones. Ayudan a percibir el texto como tres tramos
-     y conservan orientación durante scroll largo sin añadir encabezados. */
+  /* PROGRESO ------------------------------------------------------------- */
   const progressFill = $("#readingProgressFill");
   const readStart = $("#readStart");
   const readEnd = $("#readEnd");
@@ -190,38 +171,12 @@
     });
   }
 
-  /* DRAWER DEL CICLO
-     En una página de lectura la navegación principal es LOCAL al ciclo.
-     La navegación global de CQST aparece arriba del mismo drawer.
-     Así no metemos dos menús compitiendo en el header. */
+  /* DRAWER DEL CICLO -----------------------------------------------------
+     El drawer es local al ciclo. No intenta sustituir el menú global del sitio.
+     La marca lleva a Inicio y el drawer permite volver al ciclo o compartir. */
   const cycleDialog = $("#cycleDialog");
   const cycleButton = $("#cycleMenuButton");
   const caret = $("#cycleMenuCaret");
-  const drawer = $(".cycle-drawer");
-
-  if (drawer && !$(".drawer-site-nav", drawer)) {
-    const siteNav = document.createElement("nav");
-    siteNav.className = "drawer-site-nav";
-    siteNav.setAttribute("aria-label", "Navegación de Cada quien su tema");
-    siteNav.innerHTML = `
-      <a href="../../">Inicio</a>
-      <a href="#" data-stub>Ciclos</a>
-      <a href="#" data-stub>Archivo</a>
-      <a href="#" data-stub>¿Y quién pregunta?</a>
-    `;
-
-    const titleRow = $(".drawer-title-row", drawer);
-    drawer.insertBefore(siteNav, titleRow || null);
-
-    siteNav.querySelectorAll('[data-stub]').forEach((element) => {
-      element.addEventListener("click", (event) => {
-        if (!isLab) return;
-        event.preventDefault();
-        showToast("Enlace de plantilla");
-        track("lab_stub_click", { elemento: element.textContent.trim() });
-      });
-    });
-  }
 
   function openCycle() {
     if (!cycleDialog) return;
@@ -244,20 +199,19 @@
     if (event.target === cycleDialog) closeCycle();
   });
 
-  /* SHARE
-     El navegador abre la hoja nativa cuando puede.
-     Los previews visuales dependen de Open Graph del <head>. */
-  $("#shareButton")?.addEventListener("click", async () => {
+  /* SHARE ---------------------------------------------------------------- */
+  async function shareArticle(source = "articulo") {
+    const canonical = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
     const data = {
       title: body.dataset.title || document.title,
       text: document.querySelector('meta[name="description"]')?.content || "",
-      url: window.location.href
+      url: isLab ? window.location.href : canonical
     };
 
     if (navigator.share) {
       try {
         await navigator.share(data);
-        track("article_share", { metodo: "nativo" });
+        track("article_share", { metodo: "nativo", desde: source });
         return;
       } catch (error) {
         if (error?.name === "AbortError") return;
@@ -265,11 +219,17 @@
     }
 
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(data.url);
       showToast("Enlace copiado");
-      track("article_share", { metodo: "copiar" });
+      track("article_share", { metodo: "copiar", desde: source });
     } catch {
       showToast("Copia el enlace desde tu navegador");
     }
+  }
+
+  $("#shareButton")?.addEventListener("click", () => shareArticle("esta_pieza"));
+  $("#drawerShare")?.addEventListener("click", async () => {
+    closeCycle();
+    await shareArticle("menu_ciclo");
   });
 })();
