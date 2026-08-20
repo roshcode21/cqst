@@ -1,7 +1,7 @@
 CADA QUIEN SU TEMA — AUDIO
 
 Convención
-assets/audio/<ciclo>/<autor>-<slug-del-articulo>.mp3
+assets/audio/<ciclo>/<autor>-<slug-o-identificador>.mp3
 
 Este artículo
 assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3
@@ -11,7 +11,7 @@ Cómo conectarlo
 2. Copia ahí:
    rodolfo-la-fecha-la-ponemos-despues.mp3
 3. Abre:
-   /empezar/la-fecha-la-ponemos-despues/index.html
+   /empezar/digamos-que-empieza-aqui/index.html
 4. Busca:
    data-audio-ready="false"
 5. Cámbialo por:
