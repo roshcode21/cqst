@@ -30,7 +30,7 @@
     cycle_panel_open: "Ciclo · abrió índice",
     cycle_preview_select: "Ciclo · eligió voz",
     cycle_continue: "Ciclo · continuó",
-    cycle_page_open: "Ciclo · abrió página",
+    cycle_page_open: "Ciclo · abrió índice completo",
     note_open: "Notas · abrió una nota",
     notes_ledger_open: "Notas · abrió fuentes",
     article_share: "Compartir · usó",
