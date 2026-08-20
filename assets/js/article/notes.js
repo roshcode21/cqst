@@ -80,7 +80,8 @@
     });
 
     button.addEventListener("click", () => {
-      track("note_open", { note: id });
+      const note = NOTES[id];
+      track("note_open", { nota: note?.title || id });
 
       if (!wide()) {
         const wasOpen = button.getAttribute("aria-expanded") === "true";
