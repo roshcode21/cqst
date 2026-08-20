@@ -63,7 +63,6 @@
   $$(".cycle-entry[data-preview-title]").forEach((entry) => {
     entry.addEventListener("mouseenter", () => {
       if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
-        /* Hover cambia contenido sin View Transition para evitar parpadeo. */
         render(entry, { animate: false });
       }
     });
@@ -76,7 +75,7 @@
       if (entry.classList.contains("current") && !entry.hasAttribute("data-stub")) return;
       event.preventDefault();
       render(entry, { animate: true });
-      track("cycle_preview_select", { target: entry.dataset.previewAuthor || "voice" });
+      track("cycle_preview_select", { voz: entry.dataset.previewAuthor || "voz" });
     });
   });
 
@@ -89,8 +88,8 @@
       }
 
       track("cycle_continue", {
-        target: preview.author?.textContent || "next",
-        mode: link === preview.listen ? "audio" : "read"
+        voz: preview.author?.textContent || "siguiente",
+        modo: link === preview.listen ? "audio" : "lectura"
       });
     });
   });
@@ -121,6 +120,6 @@
   }
 
   $("#cyclePageLink")?.addEventListener("click", () => {
-    track("cycle_page_open", { source: "article_footer" });
+    track("cycle_page_open", { desde: "final_del_articulo" });
   });
 })();
