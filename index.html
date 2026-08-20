@@ -5,33 +5,186 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#F4F2EC">
-  <title>Cada quien su tema · laboratorio</title>
-  <meta name="description" content="Laboratorio de Cada quien su tema.">
+  <meta name="color-scheme" content="light">
+
+  <title>Cada quien su tema</title>
+  <meta name="description" content="Una publicación por ciclos. Reunimos voces distintas alrededor de una misma pregunta, experiencia o idea.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="Cada quien su tema">
+  <meta property="og:title" content="Cada quien su tema">
+  <meta property="og:description" content="Una publicación por ciclos. Reunimos voces distintas alrededor de una misma pregunta, experiencia o idea.">
+  <meta property="og:url" content="https://cadaquiensutema.com/">
+  <meta property="og:image" content="https://roshcode21.github.io/cqst/assets/brand/share-empezar-1200x630.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Cada quien su tema">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cada quien su tema">
+  <meta name="twitter:description" content="Una publicación por ciclos. Reunimos voces distintas alrededor de una misma pregunta, experiencia o idea.">
+  <meta name="twitter:image" content="https://roshcode21.github.io/cqst/assets/brand/share-empezar-1200x630.png">
 
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any">
   <link rel="icon" href="assets/brand/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="assets/brand/favicon-48.png" type="image/png" sizes="48x48">
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="site.webmanifest">
+  <link rel="alternate" type="application/rss+xml" title="Cada quien su tema" href="feed.xml">
 
   <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/lab.css">
+  <link rel="stylesheet" href="assets/css/home.css">
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="9dfccd0b-94a4-437c-b156-fc464b1b226d"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://cadaquiensutema.com/#website",
+        "url": "https://cadaquiensutema.com/",
+        "name": "Cada quien su tema",
+        "inLanguage": "es-MX"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://cadaquiensutema.com/#organization",
+        "name": "Cada quien su tema",
+        "url": "https://cadaquiensutema.com/",
+        "email": "hola@cadaquiensutema.com",
+        "logo": "https://cadaquiensutema.com/assets/brand/icon-512.png",
+        "sameAs": [
+          "https://www.instagram.com/cadaquiensutema/",
+          "https://www.tiktok.com/@cada.quien.su.tema",
+          "https://www.facebook.com/cadaquiensutema"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
-<body>
-  <main class="lab-page">
-    <img class="lab-symbol" src="assets/brand/favicon-master-600.png" alt="" width="600" height="600">
-    <h1>Laboratorio de <em>CQST.</em></h1>
-    <p>La raíz sigue reservada para la home. Por ahora aquí probamos el sistema de lectura antes de diseñar la portada.</p>
-    <a class="lab-link" href="empezar/la-fecha-la-ponemos-despues/">
-      <span>Abrir la plantilla de artículo · Empezar</span>
-      <span aria-hidden="true">→</span>
+
+<body class="home-page" data-lab="true">
+  <a class="skip-link" href="#empezar">Ir al ciclo actual</a>
+
+  <header class="home-header" id="homeHeader" aria-label="Navegación principal">
+    <a class="home-mark" href="./" aria-label="Cada quien su tema, inicio">
+      <img src="assets/brand/favicon-master-600.png" alt="" width="600" height="600">
     </a>
-    <a class="lab-link lab-link-secondary" href="empezar/">
-      <span>Ver el esqueleto del ciclo · Empezar</span>
-      <span aria-hidden="true">→</span>
-    </a>
+
+    <nav class="home-nav" aria-label="Cada quien su tema">
+      <a class="home-nav-current" href="#empezar">Empezar</a>
+      <a class="home-nav-explore" href="#" data-home-stub>Explorar <span aria-hidden="true">+</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 01 / PORTADA VIVA -->
+    <section class="home-hero" id="homeHero" aria-labelledby="homeTitle">
+      <div class="home-hero-inner">
+        <h1 class="sr-only" id="homeTitle">Cada quien su tema</h1>
+
+        <div class="kinetic-stage" aria-label="Logotipo animado de Cada quien su tema">
+          <img
+            class="kinetic-logo"
+            id="kineticLogo"
+            src="assets/brand/kinetic/Logo.png"
+            alt=""
+            width="2048"
+            height="659"
+            fetchpriority="high">
+
+          <button
+            class="kinetic-control"
+            id="kineticControl"
+            type="button"
+            aria-pressed="false"
+            aria-label="Pausar animación del logo">Ⅱ</button>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="hero-line" aria-hidden="true"></div>
+
+          <p class="hero-copy">Ponemos algo en común. Cada voz lo mueve de lugar.</p>
+
+          <a class="hero-now" href="#empezar">
+            <span class="hero-now-label">Ahora</span>
+            <strong>Empezar</strong>
+            <small>3 voces ↓</small>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 / CICLO ACTUAL -->
+    <section class="home-current" id="empezar" aria-labelledby="currentTitle">
+      <div class="current-inner">
+        <div class="current-kicker">
+          <span>Ahora</span>
+          <span>3 voces</span>
+        </div>
+
+        <h2 class="current-title" id="currentTitle">Empezar</h2>
+        <p class="current-intro">El principio cambia según quién lo cuenta.</p>
+
+        <div class="voice-list" aria-label="Voces del ciclo Empezar">
+          <a
+            class="home-voice"
+            data-voice="rodolfo"
+            data-tone="green"
+            href="empezar/la-fecha-la-ponemos-despues/">
+            <h3 class="home-voice-title">La fecha la ponemos después</h3>
+            <p class="home-voice-preview">Hay comienzos que elegimos y otros que solo aprendemos a reconocer cuando ya pasaron.</p>
+            <div class="home-voice-meta">
+              <span class="home-voice-author">Rodolfo Raudales</span>
+              <span class="home-voice-time">3 min de lectura</span>
+              <span class="home-voice-status">leído</span>
+              <span class="home-voice-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a
+            class="home-voice"
+            data-voice="marivi"
+            data-tone="orange"
+            href="#"
+            data-home-stub>
+            <h3 class="home-voice-title">No fue ese día</h3>
+            <p class="home-voice-preview">Durante años pensé que podía señalar el momento exacto. Después empecé a sospechar que lo había elegido por comodidad.</p>
+            <div class="home-voice-meta">
+              <span class="home-voice-author">Mariví Cerisola</span>
+              <span class="home-voice-time">4 min de lectura</span>
+              <span class="home-voice-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a
+            class="home-voice is-placeholder"
+            data-voice="mel"
+            data-tone="purple"
+            href="#"
+            data-home-stub>
+            <h3 class="home-voice-title">[tu título aquí]</h3>
+            <p class="home-voice-preview">[aquí irá un fragmento breve de tu texto]</p>
+            <div class="home-voice-meta">
+              <span class="home-voice-author">Mel Castán</span>
+              <span class="home-voice-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="current-footer">
+          <a class="current-all" href="empezar/">Ver Empezar <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <div class="lab-toast" id="homeToast" role="status" aria-live="polite"></div>
+
+  <script defer src="assets/js/home.js"></script>
 </body>
 </html>
