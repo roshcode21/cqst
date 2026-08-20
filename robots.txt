@@ -1,0 +1,11 @@
+# Cada quien su tema
+# Política de rastreo preparada para cadaquiensutema.com
+
+User-agent: *
+Allow: /
+
+# ChatGPT Search puede descubrir, resumir y citar contenido público.
+User-agent: OAI-SearchBot
+Allow: /
+
+Sitemap: https://cadaquiensutema.com/sitemap.xml
