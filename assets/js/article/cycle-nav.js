@@ -16,55 +16,66 @@
     listen: $("#previewAudioLink")
   };
 
-  function render(entry) {
-    if (!entry || !preview.title) return;
+  let activeEntry = $(".cycle-entry.recommended");
+  let transitionRunning = false;
 
+  function applyEntry(entry) {
     const title = entry.dataset.previewTitle || "";
     const excerpt = entry.dataset.previewExcerpt || "";
     const placeholder = entry.dataset.previewPlaceholder === "true";
 
-    const update = () => {
-      preview.title.textContent = title;
-      preview.excerpt.textContent = excerpt;
-      preview.author.textContent = entry.dataset.previewAuthor || "";
-      preview.time.textContent = entry.dataset.previewTime || "";
-      preview.audio.textContent = entry.dataset.previewAudio || "";
-      preview.read.href = entry.dataset.previewHref || "#";
-      preview.listen.href = entry.dataset.previewAudioHref || "#";
+    preview.title.textContent = title;
+    preview.excerpt.textContent = excerpt;
+    preview.author.textContent = entry.dataset.previewAuthor || "";
+    preview.time.textContent = entry.dataset.previewTime || "";
+    preview.audio.textContent = entry.dataset.previewAudio || "";
+    preview.read.href = entry.dataset.previewHref || "#";
+    preview.listen.href = entry.dataset.previewAudioHref || "#";
 
-      preview.panel?.classList.toggle("is-placeholder", placeholder);
-      preview.title.classList.toggle("is-placeholder", placeholder);
-      preview.excerpt.classList.toggle("is-empty", !excerpt);
+    preview.panel?.classList.toggle("is-placeholder", placeholder);
+    preview.title.classList.toggle("is-placeholder", placeholder);
+    preview.excerpt.classList.toggle("is-empty", !excerpt);
 
-      const stub = entry.dataset.previewStub === "true";
-      preview.read.toggleAttribute("data-stub", stub);
-      preview.listen.toggleAttribute("data-stub", stub);
-    };
-
-    if (document.startViewTransition && !reducedMotion.matches) {
-      document.startViewTransition(update);
-    } else {
-      update();
-    }
+    const stub = entry.dataset.previewStub === "true";
+    preview.read.toggleAttribute("data-stub", stub);
+    preview.listen.toggleAttribute("data-stub", stub);
 
     $$(".cycle-entry").forEach((item) => {
       item.classList.toggle("recommended", item === entry);
     });
+
+    activeEntry = entry;
+  }
+
+  function render(entry, { animate = false } = {}) {
+    if (!entry || !preview.title || entry === activeEntry || transitionRunning) return;
+
+    if (animate && document.startViewTransition && !reducedMotion.matches) {
+      transitionRunning = true;
+      const transition = document.startViewTransition(() => applyEntry(entry));
+      transition.finished.finally(() => { transitionRunning = false; });
+      return;
+    }
+
+    applyEntry(entry);
   }
 
   $$(".cycle-entry[data-preview-title]").forEach((entry) => {
     entry.addEventListener("mouseenter", () => {
-      if (matchMedia("(hover: hover) and (pointer: fine)").matches) render(entry);
+      if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        /* Hover cambia contenido sin View Transition para evitar parpadeo. */
+        render(entry, { animate: false });
+      }
     });
 
-    entry.addEventListener("focus", () => render(entry));
+    entry.addEventListener("focus", () => render(entry, { animate: false }));
 
     /* En touch, el primer tap selecciona el preview. Los CTA del panel navegan. */
     entry.addEventListener("click", (event) => {
       if (!matchMedia("(hover: none)").matches) return;
       if (entry.classList.contains("current") && !entry.hasAttribute("data-stub")) return;
       event.preventDefault();
-      render(entry);
+      render(entry, { animate: true });
       track("cycle_preview_select", { target: entry.dataset.previewAuthor || "voice" });
     });
   });
