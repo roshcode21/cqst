@@ -1,72 +1,83 @@
-# CQST · mapa del sitio
+# CQST · mapa del sitio V3
 
-La arquitectura confirmada es más pequeña de lo que parece.
-No inventamos secciones globales antes de diseñar la home.
+## Navegación global
 
-## Confirmado
+La arquitectura pública de CQST tiene cuatro entradas estables.
 
-- Inicio `/`
-- cada ciclo `/<ciclo>/`
+- Portada `/`
+- Temas `/temas/`
+- Voces `/voces/`
+- CQST `/cqst/`
+
+La navegación no cambia cuando cambia el ciclo actual.
+
+## Contenido
+
+Cada ciclo conserva su propia URL.
+
+- Empezar `/empezar/`
 - cada pieza `/<ciclo>/<slug>/`
-- privacidad `/privacidad/`
-- RSS `/feed.xml`
-- sitemap `/sitemap.xml`
 
 Ejemplo actual
 
-- Empezar `/empezar/`
-- La fecha la ponemos después `/empezar/la-fecha-la-ponemos-despues/`
+- `/empezar/la-fecha-la-ponemos-despues/`
 
-## Todavía no se convierte en navegación global
+## Temas
 
-No damos por hecho que CQST necesite botones llamados
+`/temas/` es la memoria por ciclos.
 
-- Artículos
-- Archivo
-- Ciclos
-- About us
-- Contacto
+La portada solo pone en primer plano el ciclo actual. Cuando llegue Dinero, Empezar pasa a Temas sin desaparecer.
 
-La home definirá qué accesos globales merecen existir.
-
-## Menú dentro de un artículo
-
-El drawer del artículo es LOCAL al ciclo.
-No intenta ser el hamburger completo del sitio.
-
-Debe ofrecer
-
-1. logo de CQST que vuelve a Inicio
-2. nombre del ciclo
-3. las voces y piezas del ciclo
-4. Ver Empezar
-5. Compartir esta pieza
-
-Eso mantiene orientación sin meter navegación global que no pertenece al acto de leer.
-
-## Navegador al final del artículo
-
-Es distinto al drawer.
-
-Su trabajo es mover al lector hacia la siguiente voz sin sacarlo del ciclo. Muestra las tres piezas y un preview de la pieza seleccionada.
-
-## Footer global
-
-El footer no repite el ciclo.
-
-Actualmente contiene
-
-- marca
-- volver arriba
-- RSS
-- Instagram
-- TikTok
-- Privacidad
-
-Podrá evolucionar cuando exista la home, pero no debe convertirse en un cementerio de links.
+No numeramos los ciclos en la interfaz.
+No añadimos filtros hasta que el volumen los haga útiles.
 
 ## Voces
 
-No lanzamos páginas de perfil individuales por defecto. Cada artículo incluye La voz con foto, bio breve y redes relevantes.
+`/voces/` permite recorrer CQST por personas.
 
-Si más adelante una persona acumula varias piezas, una URL de voz puede tener sentido como archivo editorial de sus textos.
+Al lanzamiento funciona como índice de participantes y piezas. Si una voz acumula varias publicaciones, puede crecer más adelante hacia una URL propia sin cambiar la arquitectura global.
+
+## CQST
+
+`/cqst/` concentra la explicación editorial del proyecto.
+
+Su entrada es `… ¿y quién pregunta?` y contiene
+
+- cómo funcionan los ciclos
+- cómo se eligen las voces
+- Homo narrans
+- el símbolo
+- quién edita esta primera etapa
+- contacto
+- propuesta de temas
+
+No usamos About us, Nosotros ni una página de Contacto separada.
+
+## Rutas antiguas del laboratorio
+
+- `/explorar/` redirige a `/temas/`
+- `/revista/` redirige a `/cqst/`
+
+No deben aparecer en sitemap ni navegación.
+
+## Navegación por dispositivo
+
+Desktop usa un dock flotante con Portada, Temas, Voces y CQST.
+Mobile usa navegación inferior con los mismos cuatro destinos.
+
+El shell cambia de superficie según el contenido por el que pasa. El artículo conserva su propia interfaz de lectura y no adopta este dock.
+
+## Artículos
+
+La plantilla de artículo queda independiente.
+
+El drawer del artículo sigue siendo local al ciclo. Su trabajo es orientar dentro de la lectura y mover entre voces, no reproducir la navegación global completa.
+
+## Infraestructura
+
+- privacidad `/privacidad/`
+- RSS `/feed.xml`
+- sitemap `/sitemap.xml`
+- robots `/robots.txt`
+
+Estas utilidades viven fuera de la navegación primaria y aparecen donde aportan contexto, normalmente en footer.
