@@ -1,40 +1,37 @@
 <!doctype html>
-<html lang="es" class="no-js">
+<html lang="es" class="no-js" data-shell-tone="paper">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,max-image-preview:large">
   <meta name="theme-color" content="#F4F2EC">
   <meta name="color-scheme" content="light">
 
   <title>Cada quien su tema</title>
-  <meta name="description" content="Una publicación por ciclos. El mismo tema no le pasa igual a todos.">
+  <meta name="description" content="Cada quien su tema publica ciclos con varias voces alrededor de una misma idea, experiencia o pregunta.">
   <link rel="canonical" href="https://cadaquiensutema.com/">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
   <meta property="og:site_name" content="Cada quien su tema">
   <meta property="og:title" content="Cada quien su tema">
-  <meta property="og:description" content="Una publicación por ciclos. El mismo tema no le pasa igual a todos.">
+  <meta property="og:description" content="Ciclos, textos y voces alrededor de un mismo tema.">
   <meta property="og:url" content="https://cadaquiensutema.com/">
   <meta property="og:image" content="https://roshcode21.github.io/cqst/assets/brand/share-empezar-1200x630.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Cada quien su tema">
-
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cada quien su tema">
-  <meta name="twitter:description" content="Una publicación por ciclos. El mismo tema no le pasa igual a todos.">
-  <meta name="twitter:image" content="https://roshcode21.github.io/cqst/assets/brand/share-empezar-1200x630.png">
 
   <link rel="icon" href="assets/brand/favicon.ico" sizes="any">
-  <link rel="icon" href="assets/brand/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="assets/brand/favicon-48.png" type="image/png" sizes="48x48">
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="site.webmanifest">
   <link rel="alternate" type="application/rss+xml" title="Cada quien su tema" href="feed.xml">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/shell.css">
   <link rel="stylesheet" href="assets/css/home.css">
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="9dfccd0b-94a4-437c-b156-fc464b1b226d"></script>
@@ -48,7 +45,7 @@
         "@id":"https://cadaquiensutema.com/#website",
         "url":"https://cadaquiensutema.com/",
         "name":"Cada quien su tema",
-        "description":"Una publicación por ciclos. El mismo tema no le pasa igual a todos.",
+        "description":"Publicación en español organizada por ciclos y voces.",
         "inLanguage":"es-MX"
       },
       {
@@ -63,276 +60,179 @@
           "https://www.tiktok.com/@cada.quien.su.tema",
           "https://www.facebook.com/cadaquiensutema"
         ]
-      },
-      {
-        "@type":"CollectionPage",
-        "@id":"https://cadaquiensutema.com/empezar/#cycle",
-        "url":"https://cadaquiensutema.com/empezar/",
-        "name":"Empezar",
-        "isPartOf":{"@id":"https://cadaquiensutema.com/#website"}
       }
     ]
   }
   </script>
 </head>
-
 <body class="home-page" data-lab="true">
-  <a class="skip-link" href="#empezar">Ir al ciclo actual</a>
+  <a class="skip-link" href="#ciclo-actual">Ir al ciclo actual</a>
 
-  <header class="home-header" id="homeHeader" aria-label="Navegación principal">
-    <a class="header-brand" href="./" aria-label="Cada quien su tema, inicio">
-      <img src="assets/brand/logo-article.svg?v=4" alt="Cada quien su tema">
-    </a>
-    <a class="header-favicon" href="./" aria-label="Cada quien su tema, inicio">
+  <nav class="cqst-dock" aria-label="Navegación principal">
+    <a class="cqst-dock-brand" href="./" aria-label="Cada quien su tema, portada">
       <img src="assets/brand/favicon-master-600.png" alt="" width="600" height="600">
     </a>
+    <div class="cqst-dock-nav">
+      <a href="./" aria-current="page">Portada</a>
+      <a href="temas/">Temas</a>
+      <a href="voces/">Voces</a>
+      <a href="cqst/">CQST</a>
+    </div>
+  </nav>
 
-    <nav class="home-nav" aria-label="Cada quien su tema">
-      <a href="#empezar"><span class="nav-live-dot" aria-hidden="true"></span><span class="home-nav-current-text">Empezar</span></a>
-      <a class="home-nav-link-explore" href="explorar/">Explorar</a>
-      <button id="menuButton" type="button" aria-haspopup="dialog" aria-controls="homeMenu" aria-expanded="false">Menú <span aria-hidden="true">+</span></button>
-    </nav>
-  </header>
+  <nav class="cqst-mobile-dock" aria-label="Navegación principal móvil">
+    <a href="./" aria-current="page">Portada</a>
+    <a href="temas/">Temas</a>
+    <a href="voces/">Voces</a>
+    <a href="cqst/">CQST</a>
+  </nav>
 
   <main>
-    <!-- 01 · PORTADA VIVA -->
-    <section class="home-hero" id="homeHero" data-header-tone="light" aria-labelledby="homeTitle">
-      <div class="home-hero-inner">
+    <section class="home-v3-hero" data-shell-tone="paper" aria-labelledby="homeTitle">
+      <div class="home-v3-hero-inner">
         <h1 class="sr-only" id="homeTitle">Cada quien su tema</h1>
 
-        <div class="kinetic-stage" aria-label="Logotipo cinético de Cada quien su tema">
-          <img class="kinetic-logo" id="kineticLogo" src="assets/brand/kinetic/Logo.png" alt="" width="2048" height="659" fetchpriority="high">
+        <div class="kinetic-stage-v3" id="kineticStage" aria-label="Logotipo cinético de Cada quien su tema. En escritorio se detiene al pasar el cursor. En pantalla táctil se detiene al tocarlo.">
+          <img class="kinetic-logo-v3" id="kineticLogo" src="assets/brand/kinetic/Logo.png" alt="Cada quien su tema" width="2048" height="659" fetchpriority="high">
         </div>
 
-        <div class="hero-statement" data-reveal>
-          <p class="hero-tagline">El mismo tema no le pasa igual a todos.</p>
-          <p class="hero-explain">Cada quien su tema es una publicación por ciclos. Partimos de algo en común y lo dejamos pasar por voces distintas. De una voz a otra, el tema cambia de forma.</p>
+        <div class="hero-v3-bottom">
+          <p class="hero-v3-copy">Cada ciclo parte de un tema. Reunimos personas distintas y les pedimos que escriban sin acordar una respuesta.</p>
+          <a class="hero-current-link" href="#ciclo-actual">
+            <small>En curso</small>
+            <strong>Empezar</strong>
+            <span>3 voces ↓</span>
+          </a>
         </div>
-
-        <div class="hero-thread" aria-hidden="true"></div>
-
-        <a class="cycle-door" href="#empezar" data-reveal>
-          <span class="cycle-door-kicker">Ahora</span>
-          <strong class="cycle-door-title">Empezar</strong>
-          <span class="cycle-door-count">3 voces</span>
-          <span class="cycle-door-cta">Entrar al ciclo <span class="arrow" aria-hidden="true">→</span></span>
-        </a>
       </div>
     </section>
 
-    <!-- 02 · CICLO ACTUAL -->
-    <section class="home-current" id="empezar" data-header-tone="dark" aria-labelledby="currentTitle">
-      <div class="current-inner">
-        <div class="current-head" data-reveal>
+    <section class="home-v3-current" id="ciclo-actual" data-shell-tone="paper" aria-labelledby="currentTitle">
+      <div class="current-v3-inner">
+        <div class="current-v3-head">
           <div>
-            <p class="current-kicker">Ciclo 01 · ahora</p>
-            <h2 class="current-title" id="currentTitle">Empezar</h2>
+            <p class="current-v3-kicker">En curso</p>
+            <h2 class="current-v3-title" id="currentTitle">Empezar</h2>
           </div>
-          <div class="current-side">
-            <strong>3 voces</strong>
-            <p class="current-intro">El principio cambia según quién lo cuenta.</p>
-          </div>
-        </div>
-
-        <div class="voice-grid" aria-label="Voces del ciclo Empezar" data-reveal>
-          <a class="home-voice" data-voice="rodolfo" data-tone="green" href="empezar/la-fecha-la-ponemos-despues/">
-            <span class="voice-number">01</span>
-            <h3 class="home-voice-title">La fecha la ponemos después</h3>
-            <p class="home-voice-preview">Hay comienzos que elegimos y otros que solo aprendemos a reconocer cuando ya pasaron.</p>
-            <span class="home-voice-status">leído</span>
-            <div class="home-voice-meta">
-              <span class="home-voice-author">Rodolfo Raudales</span>
-              <span class="home-voice-time">3 min de lectura</span>
-              <span class="home-voice-arrow" aria-hidden="true">→</span>
-            </div>
-          </a>
-
-          <a class="home-voice" data-voice="marivi" data-tone="orange" href="#" data-home-stub>
-            <span class="voice-number">02</span>
-            <h3 class="home-voice-title">No fue ese día</h3>
-            <p class="home-voice-preview">Durante años pensé que podía señalar el momento exacto. Después empecé a sospechar que lo había elegido por comodidad.</p>
-            <div class="home-voice-meta">
-              <span class="home-voice-author">Mariví Cerisola</span>
-              <span class="home-voice-time">4 min de lectura</span>
-              <span class="home-voice-arrow" aria-hidden="true">→</span>
-            </div>
-          </a>
-
-          <a class="home-voice is-placeholder" data-voice="mel" data-tone="purple" href="#" data-home-stub>
-            <span class="voice-number">03</span>
-            <h3 class="home-voice-title">[tu título aquí]</h3>
-            <p class="home-voice-preview">[aquí irá un fragmento breve de tu texto]</p>
-            <div class="home-voice-meta">
-              <span class="home-voice-author">Mel Castán</span>
-              <span class="home-voice-time"></span>
-              <span class="home-voice-arrow" aria-hidden="true">→</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="current-footer" data-reveal>
-          <span class="current-footer-note">Tres entradas. Ninguna tiene que llegar al mismo sitio.</span>
-          <a class="current-all" href="empezar/">Ver el ciclo completo <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 · LA REVISTA -->
-    <section class="home-about" data-header-tone="light" aria-labelledby="aboutTitle">
-      <div class="about-inner">
-        <p class="section-kicker" data-reveal>La revista</p>
-        <h2 class="about-title" id="aboutTitle" data-reveal>Un tema entra. Las voces hacen el resto.</h2>
-        <p class="about-lead" data-reveal>Cada ciclo empieza con algo que vale la pena mirar más de una vez. Una idea, una pregunta, una experiencia. Invitamos personas con recorridos distintos y les damos espacio para entrar por donde les haga sentido.</p>
-
-        <div class="about-steps" data-reveal>
-          <article class="about-step">
-            <span>01</span>
-            <h3>Abrimos</h3>
-            <p>Elegimos un tema suficientemente amplio para no agotarse en una sola respuesta.</p>
-          </article>
-          <article class="about-step">
-            <span>02</span>
-            <h3>Invitamos</h3>
-            <p>Personas, no posturas. El recorrido importa más que representar una casilla.</p>
-          </article>
-          <article class="about-step">
-            <span>03</span>
-            <h3>Publicamos</h3>
-            <p>Cada voz completa, con su tono, sus dudas y su propia manera de llegar.</p>
-          </article>
-        </div>
-
-        <div class="about-link" data-reveal>
-          <a href="revista/">Entrar a La revista <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 · HOMO NARRANS -->
-    <section class="narrans" data-header-tone="dark" aria-labelledby="narransTitle">
-      <div class="narrans-inner">
-        <p class="narrans-kicker" data-reveal>Homo narrans</p>
-        <div class="narrans-main">
-          <blockquote id="narransTitle" data-reveal>Contamos para acomodar lo que nos pasa. Escuchamos para descubrir que alguien más lo acomodó distinto.</blockquote>
-          <p data-reveal><em>Homo narrans</em> nombra una idea sencilla y enorme. Contar historias no es un adorno de la vida humana. Es una de las maneras en que la hacemos comprensible y compartible. CQST vive justo en ese cruce, cuando una experiencia cambia al pasar de una voz a otra.</p>
-          <a href="https://www.pennpress.org/9780812221077/homo-narrans/" target="_blank" rel="noopener" data-reveal>John D. Niles · Homo Narrans ↗</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 · EXPLORAR -->
-    <section class="home-explore" data-header-tone="light" aria-labelledby="exploreTitle">
-      <div class="explore-inner">
-        <div class="explore-head">
           <div>
-            <p class="section-kicker" data-reveal>Memoria</p>
-            <h2 class="explore-title" id="exploreTitle" data-reveal>Lo nuevo ocupa la portada. Lo anterior no desaparece.</h2>
+            <p class="current-v3-intro">El principio cambia según quién lo cuenta.</p>
+            <span class="current-v3-meta">3 voces</span>
           </div>
-          <p class="explore-copy" data-reveal>Los ciclos se quedan completos. Cuando llegue el siguiente, Empezar dejará de ser “ahora”, pero seguirá aquí para volver a entrar desde cualquiera de sus voces.</p>
         </div>
 
-        <div class="cycle-memory" data-reveal>
-          <a class="memory-row" href="empezar/">
-            <span class="memory-no">01</span>
-            <strong class="memory-name">Empezar</strong>
-            <span class="memory-meta">3 voces · agosto 2026</span>
-            <span class="memory-arrow" aria-hidden="true">→</span>
+        <div class="voice-deck" id="voiceDeck" aria-label="Voces de Empezar">
+          <a class="voice-sheet" data-voice="rodolfo" data-tone="green" href="empezar/la-fecha-la-ponemos-despues/">
+            <div class="voice-sheet-kicker"><span>Rodolfo Raudales</span><span class="voice-sheet-status">leído</span></div>
+            <h3>La fecha la ponemos después</h3>
+            <p class="voice-sheet-preview">Hay comienzos que elegimos y otros que solo aprendemos a reconocer cuando ya pasaron.</p>
+            <div class="voice-sheet-footer">
+              <span class="voice-sheet-author">Rodolfo Raudales</span>
+              <span class="voice-sheet-time">3 min de lectura</span>
+              <span class="voice-sheet-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a class="voice-sheet" data-voice="marivi" data-tone="orange" href="#" data-home-stub>
+            <div class="voice-sheet-kicker"><span>Mariví Cerisola</span></div>
+            <h3>No fue ese día</h3>
+            <p class="voice-sheet-preview">Durante años pensé que podía señalar el momento exacto. Después empecé a sospechar que lo había elegido por comodidad.</p>
+            <div class="voice-sheet-footer">
+              <span class="voice-sheet-author">Mariví Cerisola</span>
+              <span class="voice-sheet-time">4 min de lectura</span>
+              <span class="voice-sheet-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a class="voice-sheet is-placeholder" data-voice="mel" data-tone="purple" href="#" data-home-stub>
+            <div class="voice-sheet-kicker"><span>Mel Castán</span></div>
+            <h3>[tu título aquí]</h3>
+            <p class="voice-sheet-preview">[aquí irá un fragmento breve de tu texto]</p>
+            <div class="voice-sheet-footer">
+              <span class="voice-sheet-author">Mel Castán</span>
+              <span class="voice-sheet-time"></span>
+              <span class="voice-sheet-arrow" aria-hidden="true">→</span>
+            </div>
           </a>
         </div>
-        <div class="explore-footer" data-reveal>
-          <a href="explorar/">Explorar todo <span class="arrow" aria-hidden="true">→</span></a>
+
+        <div class="voice-dots" aria-label="Moverse entre voces">
+          <button class="voice-dot is-active" type="button" aria-label="Ver a Rodolfo Raudales"></button>
+          <button class="voice-dot" type="button" aria-label="Ver a Mariví Cerisola"></button>
+          <button class="voice-dot" type="button" aria-label="Ver a Mel Castán"></button>
+        </div>
+
+        <div class="current-v3-foot">
+          <span>Texto y audio viven en cada pieza cuando están disponibles.</span>
+          <a href="empezar/">Abrir Empezar →</a>
         </div>
       </div>
     </section>
 
-    <!-- 06 · SUSCRIPCIÓN -->
-    <section class="home-signup" id="signup" data-header-tone="light" aria-labelledby="signupTitle">
-      <div class="signup-inner">
-        <p class="signup-kicker" data-reveal>El siguiente</p>
-        <h2 class="signup-title" id="signupTitle" data-reveal>Que el siguiente tema te encuentre.</h2>
-        <p class="signup-copy" data-reveal>Déjanos tu correo. Cuando abramos un ciclo nuevo, te mandamos el enlace. Solo entonces.</p>
+    <section class="home-v3-brief" data-shell-tone="paper" aria-labelledby="briefTitle">
+      <div class="brief-v3-inner">
+        <div>
+          <p class="brief-v3-label">CQST</p>
+          <h2 class="brief-v3-title" id="briefTitle">Elegimos un tema y buscamos a quién invitar.</h2>
+        </div>
+        <div class="brief-v3-copy">
+          <p>Cada persona escribe por su cuenta. Puede entrar desde algo que vivió, desde su trabajo, desde una pregunta o desde algo que todavía no termina de entender.</p>
+          <p>Los textos aparecen juntos porque nos interesa lo que pasa al leer uno después del otro.</p>
+          <a href="cqst/">Seguir con CQST →</a>
+        </div>
+      </div>
+    </section>
 
-        <form class="signup-form" id="signupForm" data-reveal>
-          <label class="sr-only" for="signupEmail">Tu correo</label>
-          <input id="signupEmail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="tu@email.com" required>
-          <button type="submit">Quiero el siguiente →</button>
-        </form>
-        <p class="signup-note" data-reveal>Sin resúmenes por compromiso. Sin rellenar el silencio.</p>
-        <p class="signup-success" role="status">Listo. Ya sabe dónde encontrarte.</p>
+    <section class="home-v3-actions" data-shell-tone="paper" aria-label="Volver o participar">
+      <div class="actions-v3-inner">
+        <article class="action-panel" id="signupPanel">
+          <p class="action-kicker">Para volver</p>
+          <h2>¿Te quedas para el siguiente?</h2>
+          <p>Te escribimos cuando abra un ciclo nuevo.</p>
+          <form class="signup-v3-form" id="signupFormV3">
+            <label class="sr-only" for="signupEmailV3">Tu correo</label>
+            <input id="signupEmailV3" name="email" type="email" autocomplete="email" inputmode="email" placeholder="tu@email.com" required>
+            <button type="submit">Avísame →</button>
+          </form>
+          <p class="action-note">Un correo por ciclo.</p>
+          <p class="signup-v3-success" role="status">Nos vemos en el siguiente.</p>
+        </article>
+
+        <article class="action-panel topic">
+          <p class="action-kicker">Para traer algo</p>
+          <h2>¿Qué tema pondrías sobre la mesa?</h2>
+          <p>Escríbenos. No hace falta armar un pitch. Si hay algo que seguir, conversamos.</p>
+          <a class="topic-cta" href="mailto:hola@cadaquiensutema.com?subject=Tengo%20un%20tema%20para%20CQST">
+            <span>Mandar una idea</span><span aria-hidden="true">→</span>
+          </a>
+        </article>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="home-footer" data-header-tone="dark">
-    <div class="footer-inner">
-      <div>
-        <a class="footer-logo" href="./" aria-label="Cada quien su tema, inicio">
-          <img src="assets/brand/logo-static.png" alt="Cada quien su tema" width="2048" height="519" loading="lazy">
-        </a>
-        <p class="footer-contact"><a href="mailto:hola@cadaquiensutema.com">hola@cadaquiensutema.com</a></p>
-      </div>
-
-      <div class="footer-navs">
-        <nav class="footer-nav" aria-label="Contenido">
-          <strong>Leer</strong>
-          <a href="empezar/">Empezar</a>
-          <a href="explorar/">Explorar</a>
-          <a href="revista/">La revista</a>
-        </nav>
-        <nav class="footer-nav" aria-label="Redes">
-          <strong>Seguir</strong>
-          <a href="https://www.instagram.com/cadaquiensutema/" target="_blank" rel="me noopener">Instagram ↗</a>
-          <a href="https://www.tiktok.com/@cada.quien.su.tema" target="_blank" rel="me noopener">TikTok ↗</a>
-          <a href="https://www.facebook.com/cadaquiensutema" target="_blank" rel="me noopener">Facebook ↗</a>
-        </nav>
-        <nav class="footer-nav" aria-label="Utilidades">
-          <strong>Sitio</strong>
-          <a href="feed.xml">RSS</a>
-          <a href="privacidad/">Privacidad</a>
-          <a href="#homeHero">Arriba ↑</a>
-        </nav>
-      </div>
+  <footer class="site-footer-v3" data-shell-tone="night">
+    <div class="site-footer-v3-inner">
+      <a class="site-footer-v3-brand" href="./" aria-label="Cada quien su tema, portada">
+        <img src="assets/brand/logo-static.png" alt="Cada quien su tema" width="2048" height="519" loading="lazy">
+      </a>
+      <nav class="site-footer-v3-links" aria-label="Footer">
+        <a href="temas/">Temas</a>
+        <a href="voces/">Voces</a>
+        <a href="cqst/">CQST</a>
+        <a href="mailto:hola@cadaquiensutema.com">hola@cadaquiensutema.com</a>
+        <a href="https://www.instagram.com/cadaquiensutema/" target="_blank" rel="me noopener">Instagram ↗</a>
+        <a href="https://www.tiktok.com/@cada.quien.su.tema" target="_blank" rel="me noopener">TikTok ↗</a>
+        <a href="https://www.facebook.com/cadaquiensutema" target="_blank" rel="me noopener">Facebook ↗</a>
+      </nav>
     </div>
-    <div class="footer-bottom">
+    <div class="site-footer-v3-meta">
       <span>© 2026 Cada quien su tema</span>
-      <span>El mismo tema no le pasa igual a todos.</span>
+      <span><a href="feed.xml">RSS</a> · <a href="privacidad/">Privacidad</a></span>
     </div>
   </footer>
 
-  <!-- MENÚ GLOBAL -->
-  <dialog id="homeMenu" aria-label="Menú de Cada quien su tema">
-    <div class="menu-panel">
-      <div class="menu-head">
-        <a class="menu-logo" href="./" aria-label="Cada quien su tema, inicio">
-          <img src="assets/brand/logo-static.png" alt="Cada quien su tema" width="2048" height="519">
-        </a>
-        <button class="menu-close" id="menuClose" type="button">Cerrar ×</button>
-      </div>
+  <div class="lab-toast-v3" id="homeToastV3" role="status" aria-live="polite"></div>
 
-      <nav class="menu-main" aria-label="Navegación global">
-        <a href="empezar/"><small>Ahora · 3 voces</small>Empezar</a>
-        <a href="explorar/"><small>Todos los ciclos</small>Explorar</a>
-        <a href="revista/"><small>Qué hacemos y cómo funciona</small>La revista</a>
-      </nav>
-
-      <div class="menu-foot">
-        <div class="menu-contact">
-          <a href="mailto:hola@cadaquiensutema.com">hola@cadaquiensutema.com</a>
-          <div class="menu-socials">
-            <a href="https://www.instagram.com/cadaquiensutema/" target="_blank" rel="me noopener">Instagram ↗</a>
-            <a href="https://www.tiktok.com/@cada.quien.su.tema" target="_blank" rel="me noopener">TikTok ↗</a>
-            <a href="https://www.facebook.com/cadaquiensutema" target="_blank" rel="me noopener">Facebook ↗</a>
-          </div>
-        </div>
-        <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="true">
-          Movimiento <strong id="motionState">encendido</strong>
-        </button>
-      </div>
-    </div>
-  </dialog>
-
-  <div class="lab-toast" id="homeToast" role="status" aria-live="polite"></div>
+  <script defer src="assets/js/shell.js"></script>
   <script defer src="assets/js/home.js"></script>
 </body>
 </html>
