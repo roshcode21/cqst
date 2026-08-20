@@ -10,15 +10,11 @@
 /* HEADER DE LECTURA -------------------------------------------------------- */
 .reading-header{position:fixed;inset:0 0 auto;z-index:80;min-height:var(--header-h);display:grid;grid-template-columns:auto minmax(4rem,1fr) auto;align-items:center;gap:clamp(.85rem,2vw,1.6rem);padding:max(.55rem,env(safe-area-inset-top)) var(--edge) .55rem;background:color-mix(in srgb,var(--cqst-paper) 94%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid color-mix(in srgb,var(--cqst-rule) 70%,transparent)}
 
-/*
-  Header de artículo
-  Usa el artwork aprobado SIN tagline. Está aislado en logo-article.svg para
-  que menú y footer puedan usar otras variantes sin volver a mezclar roles.
-*/
-.header-logo{display:block;width:clamp(11.75rem,15.5vw,14.75rem);line-height:0;position:relative}
-.header-logo img{display:block;width:100%;height:auto;content:url("../../brand/logo-article.svg");transform-origin:left center}
+/* Header de artículo. Wordmark aprobado, sin tagline. */
+.header-logo{display:block;width:clamp(11.75rem,15.5vw,14.75rem);height:3.45rem;line-height:0;background:url("../../brand/logo-article.svg?v=final3") left center/contain no-repeat;transition:transform .24s var(--ease-out),filter .24s ease}
+.header-logo img{display:block;width:100%;height:100%;opacity:0;pointer-events:none}
 .header-logo-mobile{display:none;width:36px;height:36px;line-height:0}.header-logo-mobile img{width:100%;height:100%;display:block}
-@media(hover:hover) and (pointer:fine){.header-logo img{transition:transform .24s var(--ease-out),filter .24s ease}.header-logo:hover img{transform:translateX(.18rem);filter:saturate(1.08)}}
+@media(hover:hover) and (pointer:fine){.header-logo:hover{transform:translateX(.18rem);filter:saturate(1.08)}}
 
 /*
   PROGRESO
