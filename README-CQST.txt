@@ -1,241 +1,220 @@
 CADA QUIEN SU TEMA
-LABORATORIO EDITABLE
+LABORATORIO EDITABLE · V3
 
 Sin frameworks, npm ni build step.
 Todo se puede editar con Bloc de notas, VS Code o cualquier editor de texto.
 
-DOCUMENTOS ÚTILES
+ARQUITECTURA GLOBAL
 
-/docs/site-map.md
-Mapa actual del sitio y relación entre navegación global, ciclo y artículo.
+/                  Portada
+/temas/            todos los ciclos
+/voces/            participantes y piezas
+/cqst/              qué es CQST, ciclos, voces, Homo narrans, símbolo y contacto
+/empezar/           ciclo Empezar
+/empezar/la-fecha-la-ponemos-despues/   artículo V1 cerrado
+/privacidad/        privacidad
+/feed.xml           RSS
+/sitemap.xml        sitemap
+/robots.txt         robots
 
-/docs/analytics.md
-Qué significan los eventos de Umami y qué mirar realmente.
+RUTAS ANTIGUAS DE LAB
 
-/docs/SEO-AEO-GEO.md
-Estrategia de descubrimiento, Search, IA generativa, robots, sitemap, RSS y checklist de lanzamiento.
+/explorar/ redirige a /temas/
+/revista/ redirige a /cqst/
+/empezar/digamos-que-empieza-aqui/ redirige al slug final del artículo
 
-ESTRUCTURA PRINCIPAL
+NAVEGACIÓN V3
 
-/index.html
-Laboratorio. Más adelante será la home real.
+Desktop usa un dock flotante con
+Portada · Temas · Voces · CQST
 
-/empezar/index.html
-Índice del ciclo Empezar.
+Mobile usa navegación inferior con los mismos cuatro destinos.
+No comprimimos el layout desktop para móvil. Las voces del ciclo actual se vuelven un deck horizontal con scroll snap.
 
-/empezar/la-fecha-la-ponemos-despues/index.html
-Artículo V1 de Rodolfo.
-Aquí viven contenido, metadata, notas, bio, audio y navegación de la pieza.
+El shell adapta su contraste según data-shell-tone en cada superficie.
 
-/empezar/digamos-que-empieza-aqui/index.html
-Ruta vieja de laboratorio. Redirige a la URL final del artículo.
+El artículo NO adopta este shell. Su interfaz de lectura se mantiene independiente.
 
-/privacidad/index.html
-Base de privacidad para producción. Revisar antes del lanzamiento público.
+HOME V3
 
-/robots.txt
-Política de rastreo. Permite OAI-SearchBot y apunta al sitemap.
+1. kinetic logo
+2. explicación mínima y factual
+3. ciclo actual
+4. explicación breve de CQST
+5. dos acciones finales
+   - volver en el siguiente ciclo
+   - proponer un tema
+6. footer
 
-/sitemap.xml
-Inventario de URLs canónicas indexables. Actualizar cuando se publique contenido.
+No usamos un hero fotográfico como sistema.
+Las fotografías pertenecen a las voces cuando existan.
 
-/feed.xml
-RSS de CQST. Añadir cada pieza cuando se publica.
+KINETIC
 
-/site.webmanifest
-Manifest con iconos normales y maskable.
+Masters en
+/assets/brand/kinetic/
 
-ASSETS
+Logo.png
+2.png
+3.png
+4.png
+5.png
+6.png
+7.png
+8.png
+9.png
+
+El loop mantiene velocidad constante.
+Desktop se detiene mientras el cursor está sobre el logo.
+Touch alterna pausa y reproducción al tocar.
+prefers-reduced-motion muestra un estado estático.
+
+TIPOGRAFÍA
+
+Grift sigue siendo la tipografía oficial de identidad y UI.
+Los WOFF2 con licencia web irán en /assets/fonts/.
+
+V3 introduce Newsreader para lectura editorial en home e interiores.
+El artículo V1 no cambia de tipografía en esta etapa.
+
+PALETA
+
+--cqst-blue      marca y navegación
+--cqst-green     vivo, leído, confirmado
+--cqst-orange    audio y escucha
+--cqst-purple    contexto, ideas laterales y algunas acciones editoriales
+--cqst-yellow    foco y aparición excepcional
+--cqst-paper     fondo editorial
+#FFFFFF          hojas y superficies de voz
+--cqst-night     profundidad y footer
+
+Los neones funcionan como acciones y estados. No hace falta convertir cada color en una sección de pantalla completa.
+
+ASSETS PRINCIPALES
 
 /assets/brand/
-Identidad web.
-logo-static.png es el lockup estático completo con tagline.
+identidad, logo, favicons y social previews
 
-ROLES DEL LOGO EN ARTÍCULO
-Header desktop
-Muestra solamente el wordmark sin tagline mediante una ventana CSS sobre logo-static.png.
+/assets/css/shell.css
+navegación global V3 y footer
 
-Header móvil
-Usa favicon-master-600.png por espacio y legibilidad.
+/assets/js/shell.js
+contraste adaptativo del dock y comportamiento mobile
 
-Menú del ciclo
-Usa logo-static.png completo con tagline y a color.
+/assets/css/home.css
+Portada V3
 
-Footer global
-Usa logo-static.png completo con tagline, pequeño y monocromático mediante CSS.
+/assets/js/home.js
+kinetic, estado de lectura, deck móvil y formulario lab
 
-Favicons
-favicon.ico, favicon-32.png y favicon-48.png sirven al navegador.
-apple-touch-icon.png sirve a superficies Apple.
-icon-192.png e icon-512.png son iconos generales.
-icon-maskable-192.png e icon-maskable-512.png son para instalación PWA.
-favicon-master-600.png es el master aprobado.
-share-empezar-1200x630.png es el preview social provisional del ciclo.
-
-No usar favicon.svg.
-No usar logo-static.svg.
-
-/assets/css/base.css
-Paleta, tipografía base, selección de texto, links, focus y tokens.
-
-/assets/css/article/layout.css
-Header, hero, metadata, audio de entrada, columna de lectura y landmarks de progreso.
-
-/assets/css/article/notes.css
-Notas al margen y referencias.
-
-/assets/css/article/voice.css
-Bloque La voz con avatar, bio, foto futura y redes.
-
-/assets/css/article/cycle-nav.css
-Navegador final y drawer local del ciclo.
-
-/assets/css/article/audio.css
-Reproductor persistente y microinteracciones de audio.
-
-/assets/css/article/responsive.css
-Tablet, móvil y pantallas estrechas.
-
-/assets/css/site-footer.css
-Footer global. No repite la navegación del ciclo.
-
-/assets/js/article/core.js
-Estado común, Umami, tiempo de lectura, progreso, compartir y drawer.
-
-/assets/js/article/notes.js
-Notas al margen y notas inline.
-
-/assets/js/article/audio.js
-Reproducción, timeline, velocidad, Media Session y detección automática del MP3.
-
-/assets/js/article/cycle-nav.js
-Preview dinámico del resto del ciclo.
+/assets/css/interior.css
+Temas, Voces, CQST y ciclo
 
 /assets/voices/
-Fotos cuadradas de las personas.
-Recomendado 500 x 500 px o más.
-CSS hace el recorte circular.
-
-Foto prevista para este artículo
-/assets/voices/rodolfo.jpg
-
-Mientras no exista se muestran las iniciales RR.
-Cuando se suba con ese nombre aparece automáticamente.
+fotos de participantes
 
 /assets/audio/<ciclo>/
-Audios organizados por ciclo.
+audios por ciclo
 
-GRIFT
+ARTÍCULO V1
 
-No guardamos ni distribuimos la tipografía en el repositorio por defecto.
-En base.css están previstos los bloques @font-face.
-Cuando tengas los WOFF2 con licencia web colócalos en /assets/fonts/.
+No modificar su estructura desde V3.
 
-COPY VISIBLE DE CQST
+Foto prevista
+/assets/voices/rodolfo.jpg
 
-Evitar guion largo como recurso de redacción.
-Evitar dos puntos como muletilla estilística.
-Usar comas con moderación.
-No escribir microcopy que explique obviedades.
-No usar “próximamente”.
-Los placeholders de Lab deben verse deliberadamente provisionales.
-Las referencias académicas conservan la puntuación que necesiten.
-
-BIO DE LA VOZ
-
-Primera persona.
-Aproximadamente 20 a 30 palabras.
-No currículum.
-No cargos como sustituto de personalidad.
-Debe dejar claro desde dónde habla la persona y cómo mira.
-
-Bio actual de Rodolfo
-Diseño, escribo y estudio arquitectura. El trabajo me llevó también a la estrategia y la tecnología. Casi nunca me basta la primera explicación.
-
-AUDIO DEL ARTÍCULO ACTUAL
-
-Ruta exacta
+Audio previsto
 /assets/audio/empezar/rodolfo-la-fecha-la-ponemos-despues.mp3
 
-Para activarlo
-1. crea la carpeta empezar dentro de assets/audio si hace falta
-2. sube el MP3 con ese nombre exacto
-3. nada más
+Cuando el MP3 exista, audio.js lo detecta automáticamente.
 
-El HTML ya tiene el source.
-audio.js detecta automáticamente la metadata, duración y disponibilidad.
-No hay que cambiar data-audio-ready ni descomentar código.
+COPY CQST
 
-IMPORTANTE PARA SEO
-Mientras el MP3 no exista no declaramos og:audio ni AudioObject.
-Eso evita structured data que apunte a un recurso inexistente.
-Cuando se suba el audio se añade esa metadata en la pasada de publicación.
+Evitar guion largo como muletilla.
+Evitar dos puntos como recurso repetitivo.
+Evitar frases plantilla y oposiciones del tipo “no X, sino Y” como fórmula de copy.
+No escribir microcopy que explique obviedades.
+No usar “próximamente”.
+No numerar ciclos ni voces en la interfaz pública.
+No usar About us, Archivo, Artículos o Contacto como navegación principal.
 
-FOOTER GLOBAL
+TEMAS
 
-Redes principales visibles
-Instagram
-TikTok
-Facebook reservado como data-stub hasta tener la URL real
+La portada solo pone un ciclo en primer plano.
+Cuando llegue Dinero, Empezar baja a /temas/ y se conserva completo.
+No añadimos filtros hasta que el volumen los haga útiles.
 
-Utilidades secundarias
-Arriba
-RSS
-Privacidad
+VOCES
 
-RSS existe aunque sea una función de nicho.
-El enlace visible queda deliberadamente en segundo nivel.
-El feed también se descubre desde rel=alternate en el head.
+/voces/ permite recorrer el proyecto por personas.
+No hace falta abrir perfiles individuales desde el primer día.
+Cuando una persona acumule varias piezas, la arquitectura permite crecer a una URL propia.
 
-LINKS DE LABORATORIO
+CQST
 
-Durante diseño aceptamos href="#" solo si además lleva data-stub.
-Antes del lanzamiento no debe quedar ningún data-stub.
+/cqst/ abre con
+… ¿y quién pregunta?
 
-SHARE
+Ahí viven
+cómo funcionan los ciclos
+cómo elegimos voces
+Homo narrans
+el símbolo
+quién edita esta primera etapa
+contacto
+propuesta de temas
 
-El botón usa la hoja nativa del dispositivo cuando está disponible.
-La apariencia del preview no la controla navigator.share.
-La controlan title, description, Open Graph, favicon, imagen social y apple-touch-icon del head.
+Correo público
+hola@cadaquiensutema.com
 
-La imagen social actual es provisional.
-Antes de lanzamiento cada pieza debe tener una imagen 1200 x 630 representativa de esa pieza.
+Propuesta de tema
+mailto con asunto
+Tengo un tema para CQST
+
+NEWSLETTER
+
+Copy V3
+¿Te quedas para el siguiente?
+Te escribimos cuando abra un ciclo nuevo.
+Un correo por ciclo.
+
+CTA
+Avísame →
+
+En laboratorio el formulario no guarda correos todavía.
+Antes de producción conectar un proveedor real.
 
 SEO, AEO Y GEO
 
-No perseguimos trucos de AEO o GEO.
-La base es contenido original, HTML rastreable, URLs canónicas, enlaces internos claros, fuentes cuando aplican y una experiencia excelente para personas.
+Home
+WebSite + Organization
 
-El artículo V1 ya prepara
-canonical
-Open Graph
-Twitter Card
-Article JSON-LD
-Person
-Organization
-BreadcrumbList
-citation
-RSS autodiscovery
-favicon estable
-robots directives
+Temas
+CollectionPage + ItemList
 
+Voces
+CollectionPage + Person
+
+CQST
+AboutPage + Organization
+
+Ciclo
+CollectionPage
+
+Artículo
+Article + Person + Organization + BreadcrumbList + citation
+
+Mantener canonical, sitemap, RSS, robots y enlaces internos claros.
 Mientras el sitio siga en github.io, las páginas editoriales continúan con noindex.
 
-ANTES DE LANZAR CADAQUIENSUTEMA.COM
+ANTES DE PRODUCCIÓN
 
-Conectar dominio y HTTPS.
-Cambiar noindex por index en home, ciclos y artículos públicos.
-Cambiar hosts github.io usados temporalmente en imágenes Open Graph al dominio real.
-Eliminar todos los data-stub.
-Confirmar title, description, canonical, autor y fecha.
-Subir imágenes sociales por artículo.
-Subir MP3 disponibles y añadir og:audio + AudioObject donde realmente existan.
-Añadir fotos reales de La voz.
+Conectar cadaquiensutema.com y HTTPS.
+Quitar noindex solo en URLs públicas definitivas.
+Cambiar imágenes Open Graph temporales de github.io al dominio real.
+Eliminar data-stub.
+Conectar formulario de suscripción.
 Añadir Grift WOFF2 con licencia web.
 Crear Website ID de Umami para Producción.
-Añadir la home final a sitemap.xml.
-Enviar sitemap.xml a Google Search Console y Bing Webmaster Tools.
-Probar Share en iPhone, Android y desktop.
-Probar 320 CSS px y zoom 200%.
-Probar Reduce Motion.
-Probar teclado y focus.
+Revisar sitemap y feed.
+Probar iPhone, Android, desktop, 320 CSS px, zoom 200%, teclado, Reduce Motion y Share.
