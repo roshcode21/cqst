@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,max-image-preview:large">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+  <title>CQST V4 · laboratorio</title>
+  <meta name="description" content="Prototipo V4 de la portada de Cada quien su tema.">
+
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/brand/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png" sizes="180x180">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/v4.css">
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="9dfccd0b-94a4-437c-b156-fc464b1b226d"></script>
+</head>
+<body class="v4-page" data-lab="true">
+  <a class="skip-link" href="#actual">Ir al ciclo actual</a>
+
+  <header class="v4-nav-shell" id="v4Nav" data-tone="light">
+    <div class="v4-nav-glow" aria-hidden="true"></div>
+    <a class="v4-nav-symbol" href="#portada" aria-label="Cada quien su tema, portada">
+      <img src="../assets/brand/simbolo.png" alt="">
+    </a>
+    <nav class="v4-nav-desktop" aria-label="Navegación principal">
+      <a href="#ciclos">Ciclos</a>
+      <a href="#por-dentro">Por dentro</a>
+      <a class="v4-nav-action" href="#proponer">Proponer</a>
+    </nav>
+  </header>
+
+  <nav class="v4-mobile-nav" id="v4MobileNav" aria-label="Navegación principal móvil" data-tone="light">
+    <div class="v4-mobile-glow" aria-hidden="true"></div>
+    <a href="#portada" data-mobile-nav="portada" aria-current="page">Portada</a>
+    <a href="#ciclos" data-mobile-nav="ciclos">Ciclos</a>
+    <a href="#por-dentro" data-mobile-nav="por-dentro">Por dentro</a>
+    <a href="#proponer" data-mobile-nav="proponer">Proponer</a>
+  </nav>
+
+  <main>
+    <section class="v4-hero" id="portada" data-nav-tone="light" aria-labelledby="v4Title">
+      <div class="v4-spectrum" aria-hidden="true"></div>
+      <div class="v4-hero-grid">
+        <div class="v4-brand-block">
+          <h1 class="sr-only" id="v4Title">Cada quien su tema</h1>
+          <button class="v4-kinetic" id="v4Kinetic" type="button" aria-pressed="false" aria-label="Pausar logotipo cinético">
+            <img id="v4KineticImage" src="../assets/brand/kinetic/Logo.png" width="2048" height="659" alt="Cada quien su tema">
+          </button>
+          <p class="v4-deck">Cada ciclo de CQST parte de un tema compartido. Lo escriben personas distintas, cada una desde su propia relación con él, y las piezas se publican juntas para leerse en compañía.</p>
+          <div class="v4-brand-rule" aria-hidden="true"><span></span><i></i></div>
+        </div>
+
+        <section class="v4-current" id="actual" aria-labelledby="currentCycleTitle">
+          <div class="v4-current-head">
+            <p>En curso</p>
+            <h2 id="currentCycleTitle">Empezar</h2>
+            <a href="../empezar/">Ver el ciclo <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="v4-current-list" aria-label="Piezas de Empezar">
+            <a class="v4-current-piece is-read" href="../empezar/la-fecha-la-ponemos-despues/" data-track-article="rodolfo">
+              <span class="v4-piece-state" aria-label="Leído"></span>
+              <div class="v4-piece-main">
+                <h3>La fecha la ponemos después</h3>
+                <p>Hay comienzos que elegimos y otros que solo aprendemos a reconocer cuando ya pasaron.</p>
+              </div>
+              <div class="v4-piece-meta"><span>Rodolfo Raudales</span><span>3 min</span></div>
+            </a>
+
+            <a class="v4-current-piece" href="#" data-placeholder>
+              <span class="v4-piece-state" aria-hidden="true"></span>
+              <div class="v4-piece-main">
+                <h3>No fue ese día</h3>
+                <p>Durante años pensé que podía señalar el momento exacto. Después empecé a sospechar que lo había elegido por comodidad.</p>
+              </div>
+              <div class="v4-piece-meta"><span>Mariví Cerisola</span><span>4 min</span></div>
+            </a>
+
+            <a class="v4-current-piece is-placeholder" href="#" data-placeholder>
+              <span class="v4-piece-state" aria-hidden="true"></span>
+              <div class="v4-piece-main">
+                <h3>[tu título aquí]</h3>
+                <p>[aquí irá un fragmento breve de tu texto]</p>
+              </div>
+              <div class="v4-piece-meta"><span>Mel Castán</span><span></span></div>
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <a class="v4-scroll-cue" href="#ciclos"><span>Siguiente ciclo</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <section class="v4-cycles" id="ciclos" data-nav-tone="light" aria-labelledby="moneyTitle">
+      <div class="v4-section-grid">
+        <header class="v4-cycle-intro">
+          <p class="v4-kicker">Siguiente ciclo</p>
+          <h2 id="moneyTitle">Dinero</h2>
+          <p class="v4-cycle-note">El espacio ya existe. Las cuatro piezas entrarán aquí cuando existan de verdad.</p>
+        </header>
+
+        <div class="v4-money-list" aria-label="Espacios del ciclo Dinero">
+          <article class="v4-money-slot"><span></span><h3>[título de la pieza]</h3><p>[aquí entrará un fragmento cuando exista]</p><footer>voz por confirmar</footer></article>
+          <article class="v4-money-slot"><span></span><h3>[título de la pieza]</h3><p>[aquí entrará un fragmento cuando exista]</p><footer>voz por confirmar</footer></article>
+          <article class="v4-money-slot"><span></span><h3>[título de la pieza]</h3><p>[aquí entrará un fragmento cuando exista]</p><footer>voz por confirmar</footer></article>
+          <article class="v4-money-slot"><span></span><h3>[título de la pieza]</h3><p>[aquí entrará un fragmento cuando exista]</p><footer>voz por confirmar</footer></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="v4-inside" id="por-dentro" data-nav-tone="dark" aria-labelledby="insideTitle">
+      <div class="v4-inside-aurora" aria-hidden="true"></div>
+      <div class="v4-inside-grid">
+        <header class="v4-inside-head">
+          <p class="v4-kicker">Por dentro</p>
+          <h2 id="insideTitle">… ¿y quién pregunta?</h2>
+          <p>Hay temas que cambian por completo según quién los cuenta. CQST nació para reunir esas diferencias sin convertirlas en debate ni obligarlas a encajar. Cada ciclo propone un tema y deja que varias voces lo recorran a su manera. Después las piezas aparecen juntas, para que el lector encuentre también sus propios cruces.</p>
+        </header>
+
+        <div class="v4-inside-notes">
+          <article class="v4-note">
+            <p class="v4-note-label">Los ciclos</p>
+            <h3>Una misma puerta no lleva a todos al mismo lugar.</h3>
+            <p>Alrededor de cada tema se van sumando personas con historias, oficios, preguntas y maneras de mirar que no tienen por qué coincidir. A cada una le proponemos el mismo punto de partida y después dejamos que encuentre su propia forma de entrar. Cuando las piezas llegan, la edición cuida el conjunto sin borrar las diferencias.</p>
+          </article>
+
+          <article class="v4-note v4-note-narrans">
+            <p class="v4-note-label">Homo narrans</p>
+            <h3>Contar también es decidir qué se conecta con qué.</h3>
+            <p>Hay una expresión que se quedó cerca mientras imaginábamos CQST, <em>Homo narrans</em>. John D. Niles la usa para pensar al ser humano desde su impulso de contar y compartir relatos. Nos interesa porque una historia nunca llega sola. Trae memoria, lenguaje, contexto y la forma particular en que alguien decidió unir los hechos. Por eso un mismo tema puede abrir caminos tan distintos sin dejar de ser el mismo.</p>
+            <a href="https://www.pennpress.org/9780812221077/homo-narrans/" target="_blank" rel="noopener">John D. Niles · Homo Narrans ↗</a>
+          </article>
+
+          <article class="v4-note v4-note-symbol">
+            <div class="v4-symbol-wrap"><img src="../assets/brand/simbolo.png" alt="Símbolo de Cada quien su tema"></div>
+            <div>
+              <p class="v4-note-label">El símbolo</p>
+              <h3>Algo vuelve hasta que encuentra forma.</h3>
+              <p>El símbolo nació de la misma intuición. Una cabeza de perfil, dos trayectorias que se cruzan y un destello arriba. Más que un código cerrado, nos recuerda ese momento en que algo ocupa la cabeza, vuelve, se mezcla con otras cosas y finalmente encuentra una forma de salir. Esa lectura puede cambiar también. Nos gusta que lo haga.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="v4-actions" id="proponer" data-nav-tone="light" aria-label="Participar y suscribirse">
+      <div class="v4-actions-grid">
+        <article class="v4-propose">
+          <div class="v4-propose-echo" id="topicEcho" aria-hidden="true">tu tema</div>
+          <div class="v4-action-content">
+            <p class="v4-kicker">Poner algo en circulación</p>
+            <h2>Hay temas que empiezan antes de llegar a CQST.</h2>
+            <p>A veces aparecen en una conversación, en algo que no deja de molestarte, en una pregunta que vuelve o en una idea que todavía no sabes cómo nombrar. Si tienes una de ésas, cuéntanos. No hace falta convertirla en pitch. Queremos saber por qué sigue ahí.</p>
+            <form class="v4-topic-form" id="topicForm">
+              <label for="topicInput">Cuéntanos el tema en una frase</label>
+              <textarea id="topicInput" name="tema" rows="3" maxlength="240" placeholder="Ese tema que no te suelta…" required></textarea>
+              <button type="submit">Ponerlo en circulación <span aria-hidden="true">→</span></button>
+            </form>
+          </div>
+        </article>
+
+        <article class="v4-newsletter" id="newsletter">
+          <div class="v4-newsletter-light" aria-hidden="true"></div>
+          <div class="v4-newsletter-glass">
+            <p class="v4-kicker">Volver</p>
+            <h2>El próximo ciclo te lo mandamos nosotros.</h2>
+            <p>Déjanos tu correo. Cuando haya un tema nuevo y las primeras voces estén listas, te mandamos la entrada al ciclo. Nada de inventar frecuencia para llenar la bandeja.</p>
+            <form class="v4-newsletter-form" id="newsletterForm">
+              <label class="sr-only" for="newsletterEmail">Tu correo</label>
+              <input id="newsletterEmail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="tu@email.com" required>
+              <button type="submit">Mándamelo →</button>
+            </form>
+            <small>Un correo cuando haya ciclo nuevo.</small>
+            <p class="v4-form-status" id="newsletterStatus" role="status" aria-live="polite"></p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="v4-footer" data-nav-tone="dark">
+    <div class="v4-footer-main">
+      <a class="v4-footer-logo" href="#portada" aria-label="Cada quien su tema, volver arriba"><img src="../assets/brand/logo-static.png" alt="Cada quien su tema"></a>
+      <nav aria-label="Footer principal"><a href="#ciclos">Ciclos</a><a href="#por-dentro">Por dentro</a><a href="../voces/">Voces</a><a href="mailto:hola@cadaquiensutema.com">hola@cadaquiensutema.com</a></nav>
+      <nav aria-label="Redes"><a href="https://www.instagram.com/cadaquiensutema/" target="_blank" rel="me noopener">Instagram ↗</a><a href="https://www.tiktok.com/@cada.quien.su.tema" target="_blank" rel="me noopener">TikTok ↗</a><a href="https://www.facebook.com/cadaquiensutema" target="_blank" rel="me noopener">Facebook ↗</a></nav>
+    </div>
+    <div class="v4-footer-meta"><span>© 2026 Cada quien su tema</span><span><a href="../feed.xml">RSS</a> · <a href="../privacidad/">Privacidad</a></span><span>V4 · laboratorio</span></div>
+  </footer>
+
+  <div class="v4-toast" id="v4Toast" role="status" aria-live="polite"></div>
+  <script defer src="../assets/js/v4.js"></script>
+</body>
+</html>
