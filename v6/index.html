@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,max-image-preview:large">
+  <meta name="theme-color" content="#ffffff">
+  <title>CQST V6 · laboratorio visual</title>
+  <meta name="description" content="Prototipo visual V6 de Cada quien su tema.">
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/brand/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png" sizes="180x180">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/v6.css">
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="9dfccd0b-94a4-437c-b156-fc464b1b226d"></script>
+</head>
+<body class="v6-page" data-lab="true">
+  <a class="skip-link" href="#leer">Ir a leer</a>
+
+  <header class="v6-nav" id="v6Nav" data-tone="light">
+    <span class="v6-nav-spectrum" aria-hidden="true"></span>
+    <a class="v6-nav-symbol" href="#portada" aria-label="Cada quien su tema, portada">
+      <span class="v6-nav-orbit" aria-hidden="true"><i></i></span>
+      <img src="../assets/brand/simbolo.png" alt="">
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#leer">Leer</a>
+      <a href="#adentro">Sobre CQST</a>
+      <a class="v6-nav-accent" href="#participa">Participar</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="v6-hero" id="portada" data-nav-tone="light" aria-labelledby="v6Title">
+      <div class="v6-hero-mesh" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="v6-grid-field" aria-hidden="true"></div>
+      <div class="v6-hero-symbol" aria-hidden="true"><img src="../assets/brand/simbolo.png" alt=""></div>
+
+      <div class="v6-hero-stage">
+        <div class="v6-brand-stage">
+          <p class="v6-micro">PUBLICACIÓN POR CICLOS · EN ESPAÑOL</p>
+          <h1 class="sr-only" id="v6Title">Cada quien su tema</h1>
+          <button class="v6-kinetic" id="v6Kinetic" type="button" aria-pressed="false" aria-label="Pausar logotipo cinético">
+            <img id="v6KineticImage" src="../assets/brand/kinetic/Logo.png" width="2048" height="659" alt="Cada quien su tema">
+          </button>
+
+          <div class="v6-orbit-system" aria-hidden="true">
+            <span class="v6-orbit v6-orbit-a"><i></i></span>
+            <span class="v6-orbit v6-orbit-b"><i></i></span>
+            <span class="v6-spark"></span>
+          </div>
+        </div>
+
+        <div class="v6-cycle-console" id="v6CycleConsole">
+          <div class="v6-cycle-tabs" role="tablist" aria-label="Ciclos destacados">
+            <button role="tab" aria-selected="true" aria-controls="panel-empezar" id="tab-empezar" data-cycle="empezar">Empezar</button>
+            <button role="tab" aria-selected="false" aria-controls="panel-dinero" id="tab-dinero" data-cycle="dinero">Dinero</button>
+          </div>
+
+          <div class="v6-cycle-panel is-active" role="tabpanel" id="panel-empezar" aria-labelledby="tab-empezar" data-panel="empezar">
+            <div class="v6-cycle-name"><span>Empezar</span></div>
+            <div class="v6-story-rail">
+              <a class="v6-story-row is-read" href="../empezar/la-fecha-la-ponemos-despues/">
+                <span class="v6-dot"></span>
+                <strong>La fecha la ponemos después</strong>
+                <small>Rodolfo Raudales · 3 min</small>
+                <b>↗</b>
+              </a>
+              <a class="v6-story-row" href="#" data-placeholder>
+                <span class="v6-dot"></span>
+                <strong>No fue ese día</strong>
+                <small>Mariví Cerisola · 4 min</small>
+                <b>↗</b>
+              </a>
+              <a class="v6-story-row is-placeholder" href="#" data-placeholder>
+                <span class="v6-dot"></span>
+                <strong>[tu título aquí]</strong>
+                <small>Mel Castán</small>
+                <b>↗</b>
+              </a>
+            </div>
+            <a class="v6-cycle-open" href="../empezar/">Entrar a Empezar <span>→</span></a>
+          </div>
+
+          <div class="v6-cycle-panel" role="tabpanel" id="panel-dinero" aria-labelledby="tab-dinero" data-panel="dinero" hidden>
+            <div class="v6-cycle-name"><span>Dinero</span></div>
+            <p class="v6-money-line">Lo que alcanza, lo que falta y todo lo que cambia alrededor.</p>
+            <div class="v6-money-blades" aria-label="Cuatro espacios de voz para Dinero">
+              <div class="v6-money-blade"><i></i></div>
+              <div class="v6-money-blade"><i></i></div>
+              <div class="v6-money-blade"><i></i></div>
+              <div class="v6-money-blade"><i></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="v6-hero-ticker" aria-hidden="true">
+        <div><span>EMPEZAR</span><span>DINERO</span><span>EMPEZAR</span><span>DINERO</span><span>EMPEZAR</span><span>DINERO</span></div>
+      </div>
+    </section>
+
+    <section class="v6-atlas" id="leer" data-nav-tone="light" aria-labelledby="atlasTitle">
+      <div class="v6-atlas-head">
+        <div><p class="v6-kicker">Ciclos</p><h2 id="atlasTitle">Leer por tema</h2></div>
+        <a href="../temas/">Ver índice completo ↗</a>
+      </div>
+
+      <div class="v6-atlas-layout">
+        <div class="v6-atlas-tabs" role="tablist" aria-label="Elegir ciclo">
+          <button role="tab" aria-selected="true" data-atlas="empezar"><span>Empezar</span><small>3 voces</small></button>
+          <button role="tab" aria-selected="false" data-atlas="dinero"><span>Dinero</span><small>4 voces</small></button>
+        </div>
+
+        <div class="v6-atlas-view">
+          <article class="v6-atlas-panel is-active" data-atlas-panel="empezar">
+            <div class="v6-atlas-art v6-atlas-art-empezar" aria-hidden="true"><span></span><i></i><b></b></div>
+            <div class="v6-atlas-copy">
+              <h3>Empezar</h3>
+              <p>El principio cambia según quién lo cuenta.</p>
+              <div class="v6-mini-index">
+                <a href="../empezar/la-fecha-la-ponemos-despues/">La fecha la ponemos después <span>Rodolfo Raudales</span></a>
+                <a href="#" data-placeholder>No fue ese día <span>Mariví Cerisola</span></a>
+                <a href="#" data-placeholder>[tu título aquí] <span>Mel Castán</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="v6-atlas-panel" data-atlas-panel="dinero" hidden>
+            <div class="v6-atlas-art v6-atlas-art-dinero" aria-hidden="true">
+              <span class="v6-money-ribbon r1"></span><span class="v6-money-ribbon r2"></span><span class="v6-money-ribbon r3"></span><span class="v6-money-ribbon r4"></span>
+            </div>
+            <div class="v6-atlas-copy">
+              <h3>Dinero</h3>
+              <p>Lo que alcanza, lo que falta y todo lo que cambia alrededor.</p>
+              <div class="v6-open-slots" aria-label="Cuatro espacios editoriales reservados"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="v6-inside" id="adentro" data-nav-tone="dark" aria-labelledby="insideTitle">
+      <div class="v6-inside-spectrum" aria-hidden="true"></div>
+      <div class="v6-inside-head">
+        <p class="v6-kicker">Sobre CQST</p>
+        <h2 id="insideTitle">… ¿y quién pregunta?</h2>
+      </div>
+
+      <div class="v6-inside-panels">
+        <article class="v6-inside-card v6-inside-card-main">
+          <span class="v6-card-index">A</span>
+          <h3>Una misma pregunta cambia cuando cambia quién la cuenta.</h3>
+          <p>CQST reúne piezas alrededor de un tema y deja que sus diferencias permanezcan visibles.</p>
+        </article>
+
+        <article class="v6-inside-card v6-inside-card-narrans">
+          <span class="v6-card-index">B</span>
+          <p class="v6-card-label">Homo narrans</p>
+          <h3>Contar también es una forma de pensar.</h3>
+          <p>La idea de <em>Homo narrans</em> nos acompaña porque pone el relato en el centro de cómo recordamos, entendemos y compartimos experiencia.</p>
+          <a href="https://www.pennpress.org/9780812221077/homo-narrans/" target="_blank" rel="noopener">John D. Niles ↗</a>
+        </article>
+
+        <article class="v6-inside-card v6-inside-card-symbol">
+          <span class="v6-symbol-ghost" aria-hidden="true"><img src="../assets/brand/simbolo.png" alt=""></span>
+          <span class="v6-card-index">C</span>
+          <p class="v6-card-label">El símbolo</p>
+          <h3>Algo que insiste hasta encontrar forma.</h3>
+          <p>Una cabeza, dos trayectorias y un destello. Preferimos que siga funcionando como imagen antes que convertirlo en una definición cerrada.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="v6-participate" id="participa" data-nav-tone="light" aria-label="Participar en CQST">
+      <div class="v6-participate-bg" aria-hidden="true"></div>
+      <div class="v6-participate-grid">
+        <article class="v6-topic-card">
+          <div class="v6-topic-echo" id="v6TopicEcho" aria-hidden="true">tu tema</div>
+          <div class="v6-glass-panel">
+            <p class="v6-kicker">Traer un tema</p>
+            <h2>¿Qué sigues poniendo sobre la mesa?</h2>
+            <p>Escríbelo como venga. Si hay algo ahí, seguimos la conversación por correo.</p>
+            <form id="v6TopicForm">
+              <label for="v6TopicInput">Tu tema</label>
+              <textarea id="v6TopicInput" maxlength="260" rows="3" placeholder="Una frase basta…" required></textarea>
+              <button type="submit">Mandarlo a CQST ↗</button>
+            </form>
+          </div>
+        </article>
+
+        <article class="v6-news-card">
+          <span class="v6-news-orbit" aria-hidden="true"></span>
+          <div class="v6-glass-panel">
+            <p class="v6-kicker">Recibir el siguiente</p>
+            <h2>Cuando abra otro ciclo, que no te agarre lejos.</h2>
+            <p>Un correo cuando haya algo nuevo que abrir.</p>
+            <form id="v6NewsletterForm">
+              <label class="sr-only" for="v6Email">Tu correo</label>
+              <input id="v6Email" type="email" autocomplete="email" inputmode="email" placeholder="tu@email.com" required>
+              <button type="submit">Avísame →</button>
+            </form>
+            <p class="v6-status" id="v6Status" role="status" aria-live="polite"></p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="v6-footer" data-nav-tone="dark">
+    <a class="v6-footer-brand" href="#portada"><img src="../assets/brand/logo-static.png" alt="Cada quien su tema"></a>
+    <div class="v6-footer-links">
+      <a href="#leer">Ciclos</a><a href="#adentro">Sobre CQST</a><a href="mailto:hola@cadaquiensutema.com">hola@cadaquiensutema.com</a>
+      <a href="https://www.instagram.com/cadaquiensutema/" target="_blank" rel="me noopener">Instagram ↗</a><a href="https://www.tiktok.com/@cada.quien.su.tema" target="_blank" rel="me noopener">TikTok ↗</a><a href="https://www.facebook.com/cadaquiensutema" target="_blank" rel="me noopener">Facebook ↗</a>
+    </div>
+    <div class="v6-footer-meta"><span>© 2026</span><span><a href="../feed.xml">RSS</a> · <a href="../privacidad/">Privacidad</a></span><span>V6 · laboratorio</span></div>
+  </footer>
+
+  <div class="v6-toast" id="v6Toast" role="status" aria-live="polite"></div>
+  <script defer src="../assets/js/v6.js"></script>
+</body>
+</html>
