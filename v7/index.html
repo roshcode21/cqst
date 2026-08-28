@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,max-image-preview:large">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+  <title>CQST V7 · laboratorio visual</title>
+  <meta name="description" content="Prototipo visual V7 de la portada de Cada quien su tema.">
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/brand/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png" sizes="180x180">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/v7.css">
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="9dfccd0b-94a4-437c-b156-fc464b1b226d"></script>
+</head>
+<body class="v7-page" data-lab="true">
+  <a class="skip-link" href="#leer">Ir a leer por tema</a>
+
+  <header class="v7-dock" id="v7Dock" data-tone="light">
+    <span class="v7-dock-bloom" aria-hidden="true"></span>
+    <a class="v7-dock-symbol" href="#portada" aria-label="Cada quien su tema, portada">
+      <span class="v7-dock-orbit" aria-hidden="true"><i></i></span>
+      <img src="../assets/brand/simbolo.png" alt="">
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#leer">Leer</a>
+      <a href="#cqst">CQST</a>
+      <a href="#participar">Participar</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="v7-hero" id="portada" data-orbit-scene="hero" data-nav-tone="light" aria-labelledby="v7Title">
+      <div class="v7-pixel-bloom v7-pixel-bloom-a" aria-hidden="true"></div>
+      <div class="v7-pixel-bloom v7-pixel-bloom-b" aria-hidden="true"></div>
+      <div class="v7-hero-grid">
+        <div class="v7-brand-scene">
+          <h1 class="sr-only" id="v7Title">Cada quien su tema</h1>
+          <button class="v7-kinetic" id="v7Kinetic" type="button" aria-pressed="false" aria-label="Pausar logotipo cinético">
+            <img id="v7KineticImage" src="../assets/brand/kinetic/Logo.png" width="2048" height="659" alt="Cada quien su tema">
+          </button>
+          <span class="v7-spark v7-spark-a" aria-hidden="true">✦</span>
+          <span class="v7-spark v7-spark-b" aria-hidden="true">✣</span>
+          <span class="v7-pixel-star" aria-hidden="true">✦</span>
+        </div>
+
+        <section class="v7-cycle-window" id="heroCycle" aria-label="Ciclo destacado">
+          <div class="v7-cycle-tabs" role="tablist" aria-label="Cambiar ciclo destacado">
+            <button type="button" role="tab" aria-selected="true" data-cycle-tab="empezar">Empezar</button>
+            <button type="button" role="tab" aria-selected="false" data-cycle-tab="dinero">Dinero</button>
+          </div>
+          <div class="v7-cycle-view is-active" data-cycle-view="empezar">
+            <div class="v7-cycle-title-row">
+              <h2>Empezar</h2>
+              <a href="../empezar/">Entrar ↗</a>
+            </div>
+            <p class="v7-cycle-line">El principio cambia según quién lo cuenta.</p>
+            <div class="v7-hero-stories">
+              <a href="../empezar/la-fecha-la-ponemos-despues/" class="is-read" data-track="article-rodolfo"><i></i><strong>La fecha la ponemos después</strong><span>Rodolfo Raudales · 3 min</span><b>↗</b></a>
+              <a href="#" data-placeholder><i></i><strong>No fue ese día</strong><span>Mariví Cerisola · 4 min</span><b>↗</b></a>
+              <a href="#" data-placeholder class="is-placeholder"><i></i><strong>[tu título aquí]</strong><span>Mel Castán</span><b>↗</b></a>
+            </div>
+          </div>
+          <div class="v7-cycle-view" data-cycle-view="dinero" hidden>
+            <div class="v7-cycle-title-row"><h2>Dinero</h2><span class="v7-matrixel">4 VOCES</span></div>
+            <p class="v7-cycle-line">Valor, poder, miedo, deseo, deuda, calma. El tema cambia antes de que empiecen las piezas.</p>
+            <div class="v7-money-slots" aria-label="Cuatro voces de Dinero">
+              <span><i></i><b>voz</b></span><span><i></i><b>voz</b></span><span><i></i><b>voz</b></span><span><i></i><b>voz</b></span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="v7-orbit-system" id="orbitSystem" aria-hidden="true">
+        <span class="v7-orbit orbit-a"><i></i></span>
+        <span class="v7-orbit orbit-b"><i></i></span>
+        <span class="v7-orbit orbit-c"><i></i></span>
+      </div>
+    </section>
+
+    <section class="v7-reader" id="leer" data-orbit-scene="reader" data-nav-tone="light" aria-labelledby="readerTitle">
+      <div class="v7-reader-heading">
+        <span class="v7-reader-glyph" aria-hidden="true">✣</span>
+        <div><h2 id="readerTitle">leer × tema</h2><p>una cosa lleva a otra</p></div>
+      </div>
+
+      <div class="v7-reader-shell">
+        <span class="v7-shell-bloom" aria-hidden="true"></span>
+        <nav class="v7-cycle-rail" aria-label="Ciclos disponibles">
+          <button class="is-active" type="button" data-reader-tab="empezar"><strong>Empezar</strong><span>3 voces</span></button>
+          <button type="button" data-reader-tab="dinero"><strong>Dinero</strong><span>4 voces</span></button>
+        </nav>
+        <div class="v7-reader-stage">
+          <article class="v7-reader-panel is-active" data-reader-panel="empezar">
+            <div><h3>Empezar</h3><p>El principio cambia según quién lo cuenta.</p></div>
+            <ul>
+              <li><a href="../empezar/la-fecha-la-ponemos-despues/"><span>La fecha la ponemos después</span><small>Rodolfo Raudales</small></a></li>
+              <li><span>No fue ese día</span><small>Mariví Cerisola</small></li>
+              <li class="is-placeholder"><span>[tu título aquí]</span><small>Mel Castán</small></li>
+            </ul>
+          </article>
+          <article class="v7-reader-panel" data-reader-panel="dinero" hidden>
+            <div><h3>Dinero</h3><p>Cuatro voces, cuatro relaciones distintas con la misma palabra.</p></div>
+            <div class="v7-reader-money"><span></span><span></span><span></span><span></span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="v7-etc" id="etcetera" data-orbit-scene="etc" data-nav-tone="dark" aria-labelledby="etcTitle">
+      <div class="v7-etc-mark"><span aria-hidden="true">◒</span><div><h2 id="etcTitle">etcétera</h2><p>páginas sueltas</p></div></div>
+      <div class="v7-etc-grid" id="etcGrid">
+        <a href="../empezar/la-fecha-la-ponemos-despues/" class="v7-etc-card">
+          <div class="v7-etc-thumb thumb-a"><span>…</span></div>
+          <div><h3>La fecha la ponemos después</h3><p>Rodolfo Raudales · Empezar</p></div>
+        </a>
+        <article class="v7-etc-card is-stub">
+          <div class="v7-etc-thumb thumb-b"><span>?</span></div>
+          <div><h3>No fue ese día</h3><p>Mariví Cerisola · Empezar</p></div>
+        </article>
+        <article class="v7-etc-card is-stub">
+          <div class="v7-etc-thumb thumb-c"><span>✦</span></div>
+          <div><h3>[tu título aquí]</h3><p>Mel Castán · Empezar</p></div>
+        </article>
+      </div>
+      <span class="v7-etc-planet" aria-hidden="true"><i></i></span>
+    </section>
+
+    <div class="v7-chevron-band" aria-hidden="true"><span>&gt;&gt;&gt;&gt;&lt;&lt;&lt;&lt;</span><i></i></div>
+
+    <section class="v7-about" id="cqst" data-orbit-scene="about" data-nav-tone="light" aria-labelledby="aboutTitle">
+      <div class="v7-about-heading"><span>✦</span><div><h2 id="aboutTitle">… ¿y quién pregunta?</h2><p>todo pregunta viene de algún lado</p></div></div>
+      <div class="v7-about-grid">
+        <article class="v7-about-card v7-about-cqst">
+          <div class="v7-mini-circles" aria-hidden="true"><i></i><i></i><i></i></div>
+          <h3>CQST</h3>
+          <p>Un tema cambia cuando cambia quien lo cuenta. Las piezas se encuentran en un ciclo y el lector hace el resto.</p>
+          <a href="../cqst/">Conoce CQST →</a>
+        </article>
+        <article class="v7-about-card v7-about-narrans">
+          <h3 class="v7-matrixel">HOMO<br>NARRANS</h3>
+          <p>Contar también es una forma de pensar. La idea acompaña a CQST porque cada relato organiza el mundo desde un lugar distinto.</p>
+        </article>
+        <article class="v7-about-card v7-about-symbol">
+          <img src="../assets/brand/simbolo.png" alt="Símbolo de Cada quien su tema">
+          <p>Una idea rara vez llega sola. Da vueltas, se cruza con otras cosas y a veces encuentra forma.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="v7-chevron-band v7-chevron-band-2" aria-hidden="true"><span>&gt;&gt;&gt;&gt;&lt;&lt;&lt;&lt;</span><i></i></div>
+
+    <section class="v7-participate" id="participar" data-orbit-scene="participate" data-nav-tone="dark" aria-label="Suscribirse y proponer un tema">
+      <div class="v7-participate-bloom" aria-hidden="true"></div>
+      <article class="v7-signup">
+        <span class="v7-flower" aria-hidden="true">✣</span>
+        <h2>Un correo cuando haya algo que decir.</h2>
+        <p>Ciclos, piezas y voces nuevas. Sin calendario por cumplir.</p>
+        <form id="v7NewsletterForm">
+          <label class="sr-only" for="v7Email">Tu correo</label>
+          <input id="v7Email" type="email" autocomplete="email" placeholder="tu correo @" required>
+          <button type="submit">Recibir CQST →</button>
+        </form>
+        <p class="v7-form-status" id="v7NewsletterStatus" role="status" aria-live="polite"></p>
+      </article>
+
+      <article class="v7-propose">
+        <span class="v7-flower" aria-hidden="true">✣</span>
+        <h2>Este espacio acepta temas.</h2>
+        <p>Preguntas, ideas, contradicciones, asuntos pendientes. Algo que quieras ver pensado desde más de un lugar.</p>
+        <form id="v7TopicForm">
+          <label class="sr-only" for="v7Topic">Tu tema</label>
+          <textarea id="v7Topic" rows="3" maxlength="260" placeholder="¿Qué tema te anda rondando?" required></textarea>
+          <button type="submit">Proponer un tema →</button>
+        </form>
+      </article>
+      <span class="v7-participate-planet" aria-hidden="true"><i></i></span>
+    </section>
+  </main>
+
+  <footer class="v7-footer" data-nav-tone="dark">
+    <a class="v7-footer-logo" href="#portada"><img src="../assets/brand/logo-static.png" alt="Cada quien su tema"></a>
+    <div class="v7-footer-links"><a href="#leer">Ciclos</a><a href="#cqst">Sobre CQST</a><a href="mailto:hola@cadaquiensutema.com">hola@cadaquiensutema.com</a><a href="https://www.instagram.com/cadaquiensutema/" target="_blank" rel="me noopener">Instagram ↗</a><a href="https://www.tiktok.com/@cada.quien.su.tema" target="_blank" rel="me noopener">TikTok ↗</a><a href="https://www.facebook.com/cadaquiensutema" target="_blank" rel="me noopener">Facebook ↗</a></div>
+    <div class="v7-footer-meta"><span>© 2026</span><span><a href="../feed.xml">RSS</a> · <a href="../privacidad/">Privacidad</a></span><span>V7 · laboratorio</span></div>
+  </footer>
+
+  <div class="v7-toast" id="v7Toast" role="status" aria-live="polite"></div>
+  <script defer src="../assets/js/v7.js"></script>
+</body>
+</html>
