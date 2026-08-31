@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,max-image-preview:large">
+  <meta name="theme-color" content="#ffffff">
+  <title>CQST V8 · laboratorio</title>
+  <meta name="description" content="Laboratorio V8 de la portada de Cada quien su tema.">
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/v8.css">
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="9dfccd0b-94a4-437c-b156-fc464b1b226d"></script>
+</head>
+<body class="v8" data-lab="true">
+  <a class="skip-link" href="#leer">Ir a leer por tema</a>
+
+  <header class="v8-dock" id="v8Dock" data-tone="light">
+    <span class="v8-dock-pixels" aria-hidden="true"></span>
+    <a class="v8-dock-symbol" href="#portada" aria-label="Volver a portada">
+      <img src="../assets/brand/simbolo.png" alt="">
+      <span class="v8-mini-orbit" aria-hidden="true"><i></i></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#leer">Leer</a>
+      <a href="#cqst">CQST</a>
+      <a href="#participar">Participar</a>
+    </nav>
+  </header>
+
+  <div class="v8-orbit-layer" id="v8OrbitLayer" aria-hidden="true">
+    <div class="v8-orbit v8-orbit-a"><i></i></div>
+    <div class="v8-orbit v8-orbit-b"><i></i></div>
+    <div class="v8-orbit v8-orbit-c"><i></i></div>
+  </div>
+
+  <main>
+    <section class="v8-hero" id="portada" data-scene="hero" data-tone="light">
+      <div class="v8-pixel-field v8-pixel-field-hero" aria-hidden="true"></div>
+      <div class="v8-hero-inner">
+        <div class="v8-brand-stage">
+          <h1 class="sr-only">Cada quien su tema</h1>
+          <button class="v8-kinetic" id="v8Kinetic" type="button" aria-label="Pausar logotipo cinético" aria-pressed="false">
+            <img id="v8KineticImage" src="../assets/brand/kinetic/Logo.png" width="2048" height="659" alt="Cada quien su tema">
+          </button>
+          <span class="v8-mark v8-mark-star" aria-hidden="true">✦</span>
+          <span class="v8-mark v8-mark-cross" aria-hidden="true">✣</span>
+        </div>
+
+        <section class="v8-feature" aria-label="Ciclo destacado">
+          <div class="v8-cycle-strip" id="heroCycleStrip" role="tablist" aria-label="Ciclos">
+            <button role="tab" aria-selected="true" data-cycle="empezar">Empezar</button>
+            <button role="tab" aria-selected="false" data-cycle="dinero">Dinero</button>
+            <button role="tab" aria-selected="false" data-cycle="casa">Casa</button>
+            <button role="tab" aria-selected="false" data-cycle="cuerpo">Cuerpo</button>
+            <button role="tab" aria-selected="false" data-cycle="tiempo">Tiempo</button>
+            <button role="tab" aria-selected="false" data-cycle="deseo">Deseo</button>
+          </div>
+          <div class="v8-feature-main">
+            <div class="v8-feature-title"><h2 id="heroCycleTitle">Empezar</h2><a id="heroCycleLink" href="../empezar/">Entrar ↗</a></div>
+            <p id="heroCycleDeck">El principio cambia según quién lo cuenta.</p>
+            <div class="v8-feature-stories" id="heroStories"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="v8-reader" id="leer" data-scene="reader" data-tone="light">
+      <div class="v8-reader-title">
+        <span class="v8-reader-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <div><h2>leer × tema</h2><p class="v8-matrix">UNA COSA LLEVA A OTRA</p></div>
+      </div>
+
+      <div class="v8-reader-frame">
+        <span class="v8-reader-exclude" aria-hidden="true"></span>
+        <nav class="v8-reader-rail" id="readerRail" aria-label="Índice de ciclos">
+          <button class="is-active" data-cycle="empezar"><strong>Empezar</strong><small>3 voces</small></button>
+          <button data-cycle="dinero"><strong>Dinero</strong><small>4 voces</small></button>
+          <button data-cycle="casa"><strong>Casa</strong><small>4 voces</small></button>
+          <button data-cycle="cuerpo"><strong>Cuerpo</strong><small>3 voces</small></button>
+          <button data-cycle="tiempo"><strong>Tiempo</strong><small>4 voces</small></button>
+          <button data-cycle="deseo"><strong>Deseo</strong><small>3 voces</small></button>
+          <button data-cycle="duelo"><strong>Duelo</strong><small>4 voces</small></button>
+          <button data-cycle="fe"><strong>Fe</strong><small>3 voces</small></button>
+        </nav>
+        <article class="v8-reader-stage" id="readerStage" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <section class="v8-etc" id="etcetera" data-scene="etc" data-tone="dark">
+      <div class="v8-etc-head">
+        <div class="v8-etc-logo"><span class="v8-etc-swoop" aria-hidden="true"></span><h2>etcétera</h2></div>
+        <p>páginas sueltas</p>
+      </div>
+      <div class="v8-etc-grid">
+        <a class="v8-etc-card" href="../empezar/la-fecha-la-ponemos-despues/">
+          <div class="v8-etc-image v8-etc-image-a" role="img" aria-label="Imagen de una pieza recomendada"></div>
+          <div class="v8-etc-caption"><h3>La fecha la ponemos después</h3><p>Rodolfo Raudales · Empezar</p></div>
+        </a>
+        <article class="v8-etc-card">
+          <div class="v8-etc-image v8-etc-image-b" role="img" aria-label="Imagen de una pieza recomendada"></div>
+          <div class="v8-etc-caption"><h3>No fue ese día</h3><p>Mariví Cerisola · Empezar</p></div>
+        </article>
+        <article class="v8-etc-card">
+          <div class="v8-etc-image v8-etc-image-c" role="img" aria-label="Imagen de una pieza recomendada"></div>
+          <div class="v8-etc-caption"><h3>[tu título aquí]</h3><p>Mel Castán · Empezar</p></div>
+        </article>
+      </div>
+    </section>
+
+    <div class="v8-chevron" aria-hidden="true">
+      <div class="v8-chev-group v8-chev-left"><i></i><i></i><i></i><i></i></div>
+      <div class="v8-chev-group v8-chev-right"><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <section class="v8-about" id="cqst" data-scene="about" data-tone="acid">
+      <div class="v8-pixel-field v8-pixel-field-about" aria-hidden="true"></div>
+      <header class="v8-about-head"><span aria-hidden="true">✦</span><div><h2>… ¿y quién pregunta?</h2><p>toda pregunta viene de algún lado</p></div></header>
+      <div class="v8-about-bento">
+        <article class="v8-about-card v8-about-main">
+          <span class="v8-favicon-orbit" aria-hidden="true"><img src="../assets/brand/favicon-master-600.png" alt=""></span>
+          <h3>CQST</h3>
+          <p>Un tema cambia cuando cambia quien lo cuenta. CQST reúne esas piezas por ciclos para que convivan y se contradigan sin tener que llegar a la misma conclusión.</p>
+          <a class="v8-cta" href="../cqst/">Conoce CQST <span>↗</span></a>
+        </article>
+        <article class="v8-about-card v8-about-narrans">
+          <h3 class="v8-matrix">HOMO<br>NARRANS</h3>
+          <p>Contar también es una forma de pensar. Recordamos, ordenamos y transmitimos el mundo convirtiéndolo en relato.</p>
+        </article>
+        <article class="v8-about-card v8-about-voices">
+          <img src="../assets/brand/simbolo.png" alt="Símbolo de Voces CQST">
+          <div><h3>Voces CQST</h3><p>La cabeza y las órbitas pertenecen a las voces de CQST. Ideas que entran, se cruzan, dan vueltas y terminan encontrando una forma propia.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <div class="v8-chevron v8-chevron-two" aria-hidden="true">
+      <div class="v8-chev-group v8-chev-left"><i></i><i></i><i></i><i></i></div>
+      <div class="v8-chev-group v8-chev-right"><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <section class="v8-participate" id="participar" data-scene="participate" data-tone="dark">
+      <div class="v8-pixel-field v8-pixel-field-participate" aria-hidden="true"></div>
+      <article class="v8-panel v8-newsletter">
+        <span class="v8-panel-mark" aria-hidden="true">✣</span>
+        <h2>Un correo cuando haya algo que decir.</h2>
+        <p>Nuevos ciclos, artículos y voces. Sin rellenar el calendario.</p>
+        <form id="v8NewsletterForm"><label class="sr-only" for="v8Email">Tu correo</label><input id="v8Email" type="email" autocomplete="email" placeholder="tu correo @" required><button>Recibir CQST →</button></form>
+        <p class="v8-form-status" id="v8NewsletterStatus" aria-live="polite"></p>
+      </article>
+      <article class="v8-panel v8-propose">
+        <span class="v8-panel-mark" aria-hidden="true">✣</span>
+        <h2>Este espacio acepta temas.</h2>
+        <p>Preguntas, ideas, contradicciones, asuntos pendientes. Lo que pueda abrir una conversación que todavía no existe.</p>
+        <form id="v8TopicForm"><label class="sr-only" for="v8Topic">Tu tema</label><textarea id="v8Topic" maxlength="260" rows="3" placeholder="¿Qué tema te anda rondando?" required></textarea><button>Proponer un tema →</button></form>
+      </article>
+    </section>
+  </main>
+
+  <footer class="v8-footer" data-tone="dark">
+    <a class="v8-footer-logo" href="#portada"><img src="../assets/brand/logo-static.png" alt="Cada quien su tema"></a>
+    <div class="v8-footer-row"><nav><a href="#leer">Ciclos</a><a href="../cqst/">Sobre CQST</a><a href="https://www.instagram.com/cadaquiensutema/" target="_blank" rel="me noopener">Instagram ↗</a><a href="https://www.tiktok.com/@cada.quien.su.tema" target="_blank" rel="me noopener">TikTok ↗</a><a href="https://www.facebook.com/cadaquiensutema" target="_blank" rel="me noopener">Facebook ↗</a></nav><a href="mailto:hola@cadaquiensutema.com">hola@cadaquiensutema.com</a></div>
+    <div class="v8-footer-meta"><span>© 2026</span><span><a href="../feed.xml">RSS</a> · <a href="../privacidad/">Privacidad</a></span><span>V8 · laboratorio</span></div>
+    <a class="v8-last-pixel" href="mailto:hola@cadaquiensutema.com">hola@cadaquiensutema.com</a>
+  </footer>
+
+  <div class="v8-toast" id="v8Toast" role="status" aria-live="polite"></div>
+  <script defer src="../assets/js/v8.js"></script>
+</body>
+</html>
