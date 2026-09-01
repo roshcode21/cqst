@@ -1,0 +1,129 @@
+/* CQST V13 — polish pass over V12 */
+.v13{
+  --v13-blue:#1018ff;
+  --v13-green:#85ff00;
+  --v13-orange:#ff7a00;
+  --v13-violet:#7b38ff;
+  --v13-pink:#ff3bc7;
+  --v13-night:#070812;
+}
+
+/* Backgrounds are structural, not JS-dependent. Keep the supplied art visible at all times. */
+.v13 .v11-reader{
+  background-color:#080812!important;
+  background-image:linear-gradient(180deg,rgba(5,5,14,.18),rgba(5,5,14,.06) 46%,rgba(5,5,14,.18)),url("../bg2.png")!important;
+  background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;
+}
+.v13 .v11-etc{
+  background-color:#f7f2e9!important;
+  background-image:linear-gradient(180deg,rgba(255,250,239,.08),rgba(255,255,255,0)),url("../bg3.png")!important;
+  background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;
+}
+.v13 .v11-about{
+  background-color:#76ff00!important;
+  background-image:linear-gradient(180deg,rgba(197,255,126,.03),rgba(121,255,0,.02)),url("../bg4.png")!important;
+  background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;
+}
+.v13 .v11-participate{
+  background-color:#1b0875!important;
+  background-image:linear-gradient(180deg,rgba(18,4,85,.07),rgba(19,5,75,.13)),url("../bg5.png")!important;
+  background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;
+}
+.v13 .v11-reader::before,.v13 .v11-etc::before,.v13 .v11-about::before,.v13 .v11-participate::before{opacity:.45}
+
+/* Orbit system: still atmospheric, now safely behind content. */
+.v13 .v11-orbit-layer{z-index:10!important;opacity:.64!important;mix-blend-mode:difference;pointer-events:none}
+.v13 .v11-section-shell,.v13 .v11-hero-grid,.v13 .v11-participate-wrap{position:relative;z-index:24}
+.v13 .orbit-line{opacity:.55!important;stroke-width:1.05!important}
+.v13 .orbit-dot{filter:drop-shadow(0 0 4px rgba(128,255,0,.65))}
+
+/* Reader: reduce the desktop jukebox mass so it behaves like an editorial object. */
+.v13 .v11-jukebox{width:min(100%,1260px);height:500px;margin-inline:auto}
+.v13 .v11-reader-preview{padding:44px 48px}
+.v13 .v11-reader-preview h3{font-size:clamp(58px,5.5vw,82px)}
+
+/* Etcetera: clearer interaction and no disappearing icon. */
+.v13 .v11-etc-card{border:1px solid rgba(24,18,58,.18)!important}
+.v13 .v11-etc-card:hover,.v13 .v11-etc-card:focus-visible{
+  border-color:var(--v13-green)!important;
+  box-shadow:0 22px 46px rgba(27,23,70,.17),0 0 0 2px rgba(133,255,0,.82),0 0 22px rgba(133,255,0,.24)!important;
+}
+.v13 .v11-etc-card:hover .v11-etc-copy h3,.v13 .v11-etc-card:focus-visible .v11-etc-copy h3{color:#c997ff!important}
+.v13 .v11-etc .dark-head>img{mix-blend-mode:normal!important;filter:brightness(0) saturate(100%) invert(28%) sepia(98%) saturate(4346%) hue-rotate(250deg) brightness(102%) contrast(102%)!important;opacity:1!important}
+.v13 .v11-etc-image img{display:block;background:#191925}
+
+/* YQP: compact the cards and make the section mark intentionally acid-violet. */
+.v13 .v11-about-head>img{mix-blend-mode:normal!important;filter:brightness(0) saturate(100%) invert(28%) sepia(98%) saturate(4346%) hue-rotate(250deg) brightness(102%) contrast(102%)!important;opacity:1!important}
+.v13 .v11-about-head{color:var(--v13-violet)!important;margin-bottom:30px!important}
+.v13 .v11-about-grid{gap:18px!important;align-items:stretch}
+.v13 .v11-about-card{min-height:430px!important}
+.v13 .about-cqst{padding:26px!important}
+.v13 .about-cqst h3{font-size:clamp(31px,2.75vw,43px)!important;line-height:.96!important;margin:54px 0 16px!important;max-width:88%}
+.v13 .about-cqst .v11-card-body{max-width:90%}
+.v13 .about-narrans{padding:24px 26px 26px!important}
+.v13 .about-narrans .narrans-word{font-size:clamp(48px,4.65vw,68px)!important;line-height:.74!important;margin-bottom:30px!important}
+.v13 .about-narrans h4{font-size:clamp(26px,2.35vw,36px)!important;line-height:.98!important;margin-bottom:14px!important}
+.v13 .about-voices{padding:24px 26px 26px!important}
+.v13 .v11-voices-art{min-height:150px!important;margin:0 auto 6px!important}
+.v13 .v11-voices-art img{width:min(64%,220px)!important;max-height:180px!important}
+.v13 .about-voices h3{font-size:clamp(30px,2.8vw,43px)!important;margin:4px 0 14px!important}
+.v13 .v11-card-body{font-size:14px!important;line-height:1.46!important}
+.v13 .v12-article-glyph{top:24px!important;right:24px!important;width:64px!important;height:64px!important;border-radius:16px!important}
+
+/* Participate: make the overlap unmistakable on desktop and controlled on mobile. */
+.v13 .v11-participate{min-height:760px;padding-top:86px!important;padding-bottom:105px!important}
+.v13 .v11-participate-wrap{width:min(100%,1180px)!important;height:590px!important}
+.v13 .v11-newsletter{left:0!important;top:0!important;width:66%!important;min-height:455px!important;padding:32px 31% 32px 34px!important}
+.v13 .v11-propose{right:0!important;top:155px!important;bottom:auto!important;width:58%!important;min-height:405px!important;padding:32px 36px!important;z-index:3!important}
+
+/* Remove the doubled right-hand Last Pixel artifact introduced by V11 + V12 layering. */
+.v13 .v11-last-pixel::before{content:none!important;display:none!important}
+.v13 .v11-last-pixel span{right:0!important;bottom:0!important;width:46px!important;height:22px!important;opacity:1!important}
+
+@media (max-width:1020px){
+  .v13 .v11-jukebox{width:min(100%,920px);height:500px}
+  .v13 .v11-participate-wrap{width:min(100%,940px)!important}
+  .v13 .v11-newsletter{width:68%!important;padding-right:29%!important}
+  .v13 .v11-propose{width:62%!important;top:165px!important}
+}
+
+@media (max-width:720px){
+  /* V11 shrank rx more than ry, turning the ellipses almost circular on tall phones.
+     Widen the whole orbit field, then inverse-scale the dots so they remain round. */
+  .v13 .v11-orbit-layer{width:92vw!important;left:4vw!important;opacity:.44!important;transform:scaleX(1.42);transform-origin:50% 50%}
+  .v13 .orbit-dot{transform:scaleX(.704);transform-box:fill-box;transform-origin:center}
+  .v13 .orbit-line{opacity:.47!important}
+
+  .v13 .v11-reader{background-position:52% center!important}
+  .v13 .v11-etc{background-position:48% center!important}
+  .v13 .v11-about{background-position:50% center!important}
+  .v13 .v11-participate{background-position:50% center!important}
+
+  .v13 .v11-jukebox{width:100%;height:auto;margin:0}
+  .v13 .v11-reader-preview{padding:32px 20px}
+
+  .v13 .v11-about-head{margin-bottom:24px!important}
+  .v13 .v11-about-grid{gap:12px!important;padding-right:9vw!important}
+  .v13 .v11-about-card{flex-basis:82vw!important;min-height:410px!important}
+  .v13 .about-cqst,.v13 .about-narrans,.v13 .about-voices{padding:22px!important}
+  .v13 .about-cqst h3{font-size:35px!important;margin-top:48px!important}
+  .v13 .about-narrans .narrans-word{font-size:50px!important;margin-bottom:26px!important}
+  .v13 .about-narrans h4{font-size:29px!important}
+  .v13 .v11-voices-art{min-height:138px!important}
+  .v13 .v11-voices-art img{width:min(60%,190px)!important;max-height:160px!important}
+  .v13 .about-voices h3{font-size:34px!important}
+
+  .v13 .v11-participate{min-height:0!important;padding-top:62px!important;padding-bottom:86px!important}
+  .v13 .v11-participate-wrap{height:auto!important;width:100%!important}
+  .v13 .v11-newsletter{position:relative!important;left:auto!important;right:auto!important;top:auto!important;width:100%!important;min-height:0!important;padding:26px!important;z-index:1!important}
+  .v13 .v11-propose{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:94%!important;min-height:0!important;margin-top:-34px!important;margin-left:6%!important;padding:26px!important;z-index:3!important}
+  .v13 .v11-email-row{position:relative;z-index:4}
+
+  .v13 .v11-last-pixel span{width:40px!important;height:20px!important}
+}
+
+@media (max-width:420px){
+  .v13 .v11-orbit-layer{width:90vw!important;left:5vw!important;transform:scaleX(1.52);opacity:.40!important}
+  .v13 .orbit-dot{transform:scaleX(.658)}
+  .v13 .v11-about-card{flex-basis:84vw!important;min-height:400px!important}
+}
