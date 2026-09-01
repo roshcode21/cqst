@@ -1,0 +1,143 @@
+/* CQST V14 — contrast, spacing and composition pass over V13 */
+.v14{
+  --v14-ink:#0b0b16;
+  --v14-violet:#2f006f;
+  --v14-violet-acid:#6f22ff;
+  --v14-green:#85ff00;
+  --v14-orange:#ff7a00;
+}
+
+/* NAV — fewer glitch pixels, quieter/tinted shadow, cleaner hover */
+.v14 .v11-dock{
+  box-shadow:0 9px 22px rgba(57,42,105,.10),inset 0 1px 0 rgba(255,255,255,.88)!important;
+}
+.v14 .v11-dock[data-tone="dark"]{
+  box-shadow:0 10px 26px rgba(21,6,54,.28),0 0 12px rgba(123,56,255,.08)!important;
+}
+.v14 .v11-glitch{
+  width:4px!important;height:4px!important;opacity:.88!important;
+  box-shadow:5px 0 var(--green),10px 0 var(--blue),10px 5px var(--purple),-5px 5px var(--orange),0 10px var(--pink)!important;
+}
+.v14 .v11-dock nav a{
+  background:transparent!important;color:inherit!important;box-shadow:none!important;text-shadow:none!important;transform:none!important;
+}
+.v14 .v11-dock nav a::after{
+  left:28%!important;right:28%!important;bottom:8px!important;height:2px!important;box-shadow:none!important;
+}
+.v14 .v11-dock nav a:hover,.v14 .v11-dock nav a:focus-visible{
+  background:transparent!important;color:inherit!important;box-shadow:none!important;text-shadow:none!important;transform:none!important;
+}
+.v14 .v11-dock nav a:nth-child(1):hover::after,.v14 .v11-dock nav a:nth-child(1):focus-visible::after{box-shadow:0 0 5px rgba(16,24,255,.22)!important}
+.v14 .v11-dock nav a:nth-child(2):hover::after,.v14 .v11-dock nav a:nth-child(2):focus-visible::after{box-shadow:0 0 5px rgba(255,122,0,.22)!important}
+.v14 .v11-dock nav a:nth-child(3):hover::after,.v14 .v11-dock nav a:nth-child(3):focus-visible::after{box-shadow:0 0 5px rgba(133,255,0,.20)!important}
+
+/* LEER × TEMA — give every textual layer a deliberate amount of air */
+.v14 .v11-reader{padding-top:88px!important;padding-bottom:112px!important}
+.v14 .v11-reader .v11-section-head{margin-bottom:34px!important}
+.v14 .v11-jukebox{
+  width:min(100%,1240px)!important;height:518px!important;grid-template-columns:286px minmax(0,1fr)!important;margin-inline:auto!important;
+}
+.v14 .v11-cycle-rail{padding:16px 14px!important}
+.v14 .v11-cycle-rail button{
+  min-height:68px!important;padding:12px 16px!important;margin-bottom:5px!important;
+  display:grid!important;grid-template-columns:1fr!important;gap:5px!important;align-content:center!important;align-items:start!important;
+  border-radius:15px!important;
+}
+.v14 .v11-cycle-rail button strong{font-size:18px!important;line-height:1!important;letter-spacing:-.035em!important}
+.v14 .v11-cycle-rail button small{font-size:10px!important;line-height:1.15!important;margin:0!important;color:#aaa6b4!important}
+.v14 .v11-cycle-rail button.active small{color:#522000!important}
+.v14 .v11-reader-preview{padding:50px 54px!important}
+.v14 .v11-reader-preview .count{margin:0 0 13px!important}
+.v14 .v11-reader-preview h3{margin:0!important}
+.v14 .v11-reader-preview .deck{margin:18px 0 34px!important;max-width:650px!important;line-height:1.42!important}
+.v14 .v11-reader-preview li{padding:16px 0!important;gap:24px!important}
+.v14 .v11-reader-preview li strong{font-size:15px!important;line-height:1.25!important}
+.v14 .v11-reader-preview li span{font-size:10.5px!important}
+.v14 .v11-reader-cta{margin-top:22px!important}
+
+/* YQP — keep violet as identity, but deepen it enough to survive the acid background */
+.v14 .v11-about-head{
+  color:var(--v14-violet)!important;margin-bottom:32px!important;gap:12px!important;align-items:center!important;
+}
+.v14 .v11-about-head>img{
+  filter:brightness(0) saturate(100%) invert(12%) sepia(100%) saturate(4775%) hue-rotate(263deg) brightness(70%) contrast(125%)!important;
+  mix-blend-mode:normal!important;opacity:1!important;
+}
+.v14 .v11-about-head h2{
+  color:var(--v14-violet)!important;text-shadow:0 1px 0 rgba(255,255,255,.22)!important;
+}
+.v14 .v11-about-head p{color:#35106e!important;opacity:.92!important}
+.v14 .v11-about-head>div{
+  position:relative;padding:7px 10px 7px 12px;border-radius:18px;
+  background:linear-gradient(90deg,rgba(255,247,221,.16),rgba(255,247,221,.03) 72%,transparent);
+  backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px);
+}
+.v14 .v11-about-grid{gap:18px!important}
+.v14 .v11-about-card{min-height:420px!important}
+.v14 .about-cqst,.v14 .about-narrans,.v14 .about-voices{padding:24px 26px 25px!important}
+.v14 .about-cqst h3{font-size:clamp(30px,2.65vw,42px)!important;margin:50px 0 15px!important;line-height:.98!important}
+.v14 .about-narrans .narrans-word{font-size:clamp(46px,4.35vw,64px)!important;margin-bottom:28px!important;line-height:.76!important}
+.v14 .about-narrans h4{font-size:clamp(25px,2.2vw,34px)!important;margin-bottom:13px!important}
+.v14 .v11-voices-art{min-height:145px!important;margin:0 auto 4px!important}
+.v14 .v11-voices-art img{width:min(61%,210px)!important;max-height:172px!important}
+.v14 .about-voices h3{font-size:clamp(29px,2.6vw,40px)!important;margin:2px 0 13px!important}
+
+/* PARTICIPAR — robust desktop overlap built with grid instead of fragile absolute offsets */
+.v14 .v11-participate{min-height:790px!important;padding-top:86px!important;padding-bottom:118px!important}
+.v14 .v11-participate-wrap{
+  width:min(100%,1260px)!important;height:650px!important;margin:auto!important;
+  display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;grid-template-rows:1fr!important;align-items:start!important;
+}
+.v14 .v11-newsletter{
+  position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;
+  grid-column:1 / 8!important;grid-row:1!important;width:auto!important;min-height:455px!important;
+  padding:32px 30% 32px 34px!important;z-index:1!important;
+}
+.v14 .v11-propose{
+  position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;
+  grid-column:6 / 13!important;grid-row:1!important;width:auto!important;min-height:405px!important;
+  margin-top:255px!important;padding:32px 36px!important;z-index:3!important;
+}
+.v14 .v11-propose-copy{margin:25px 0 34px!important;max-width:510px!important}
+
+@media (max-width:1020px){
+  .v14 .v11-jukebox{width:min(100%,940px)!important;grid-template-columns:255px minmax(0,1fr)!important}
+  .v14 .v11-cycle-rail button{padding:11px 14px!important}
+  .v14 .v11-reader-preview{padding:46px 42px!important}
+  .v14 .v11-participate-wrap{width:min(100%,960px)!important}
+  .v14 .v11-newsletter{grid-column:1 / 9!important;padding-right:27%!important}
+  .v14 .v11-propose{grid-column:6 / 13!important;margin-top:270px!important}
+}
+
+@media (max-width:720px){
+  .v14 .v11-glitch{box-shadow:5px 0 var(--green),10px 0 var(--blue),10px 5px var(--purple),-5px 5px var(--orange)!important}
+  .v14 .v11-dock nav a::after{left:30%!important;right:30%!important}
+
+  .v14 .v11-reader{padding-top:64px!important;padding-bottom:78px!important}
+  .v14 .v11-reader .v11-section-head{margin-bottom:24px!important}
+  .v14 .v11-jukebox{width:100%!important;height:auto!important;display:block!important;margin:0!important}
+  .v14 .v11-cycle-rail{padding:10px!important;gap:7px!important}
+  .v14 .v11-cycle-rail button{
+    min-height:44px!important;width:auto!important;padding:0 15px!important;margin:0!important;display:grid!important;grid-template-columns:1fr!important;gap:0!important;align-content:center!important;
+  }
+  .v14 .v11-cycle-rail button strong{font-size:14px!important}
+  .v14 .v11-cycle-rail button small{display:none!important}
+  .v14 .v11-reader-preview{padding:34px 20px!important}
+  .v14 .v11-reader-preview .deck{margin:14px 0 28px!important}
+
+  .v14 .v11-about-head{justify-content:flex-start!important;text-align:left!important;margin-bottom:24px!important}
+  .v14 .v11-about-head>div{padding:6px 8px 6px 9px;background:linear-gradient(90deg,rgba(255,247,221,.15),transparent)!important}
+  .v14 .v11-about-head h2{font-size:clamp(38px,11.6vw,50px)!important;line-height:.9!important}
+  .v14 .v11-about-head p{font-size:10px!important;margin-top:6px!important}
+  .v14 .v11-about-card{min-height:400px!important}
+  .v14 .about-cqst,.v14 .about-narrans,.v14 .about-voices{padding:22px!important}
+
+  .v14 .v11-participate{min-height:0!important;padding-top:62px!important;padding-bottom:88px!important}
+  .v14 .v11-participate-wrap{height:auto!important;width:100%!important;display:block!important}
+  .v14 .v11-newsletter{
+    position:relative!important;width:100%!important;min-height:0!important;padding:26px!important;margin:0!important;z-index:1!important;
+  }
+  .v14 .v11-propose{
+    position:relative!important;width:94%!important;min-height:0!important;margin:-34px 0 0 6%!important;padding:26px!important;z-index:3!important;
+  }
+}
