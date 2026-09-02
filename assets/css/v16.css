@@ -1,0 +1,195 @@
+/* CQST V16 — editorial density, mobile reading, scroll polish and motion pass over consolidated V15. */
+.v16{
+  --v16-blue:#0000ff;
+  --v16-green:#85ff00;
+  --v16-orange:#ff7a00;
+  --v16-violet:#6f22ff;
+  --v16-plum:#341458;
+  --v16-ink:#221334;
+  --v16-paper:#fff8e9;
+}
+
+/* Restore the orbital blending language: the lines belong to the page, not above it. */
+.v16 .v11-orbit-layer{mix-blend-mode:difference!important;opacity:.60!important;z-index:9!important}
+.v16 .orbit-line{stroke:#7d69ff!important;opacity:.52!important;stroke-width:1.05!important}
+.v16 .v11-orbit-layer[data-tone="dark"] .orbit-line{stroke:#a797ff!important;opacity:.44!important}
+.v16 .v11-orbit-layer[data-tone="acid"] .orbit-line{stroke:#6b35ff!important;opacity:.48!important}
+.v16 .orbit-dot{mix-blend-mode:normal;filter:drop-shadow(0 0 5px rgba(133,255,0,.66))!important}
+
+/* HERO — desktop keeps the current-cycle console; mobile gets a real reading surface, not empty air. */
+.v16 .v16-mobile-current{display:none}
+.v16 .v11-hero-player{box-shadow:0 0 0 1px rgba(255,122,0,.18),0 0 26px rgba(255,122,0,.24),0 30px 72px rgba(21,6,0,.26)!important}
+
+/* READER — both scroll areas receive the same deliberate chrome. */
+.v16 .v11-jukebox{width:min(100%,1260px)!important}
+.v16 .v11-reader-preview{
+  scrollbar-width:thin;
+  scrollbar-color:rgba(135,112,255,.85) rgba(255,255,255,.035);
+}
+.v16 .v11-reader-preview::-webkit-scrollbar{width:8px}
+.v16 .v11-reader-preview::-webkit-scrollbar-track{background:transparent;margin:17px 0}
+.v16 .v11-reader-preview::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,#a896ff,#6b4cff);
+  border:2px solid transparent;
+  background-clip:padding-box;
+  border-radius:999px;
+}
+.v16 .v11-reader-preview::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#c2b7ff,#7c61ff);background-clip:padding-box}
+.v16 .v11-cycle-rail button,.v16 .v15-reader-story{transition:background .18s,border-color .18s,color .18s,transform .18s,box-shadow .18s}
+.v16 .v11-cycle-rail button:hover:not(.active){background:rgba(126,94,255,.10)!important;border-color:rgba(150,124,255,.22)!important;transform:translateX(2px)}
+.v16 .v15-reader-story:hover{background:linear-gradient(90deg,rgba(255,122,0,.065),transparent 70%);transform:translateX(3px)}
+.v16 .v15-reader-story:hover strong{color:#ffc18b!important}
+.v16 .v15-reader-story:hover b{color:var(--v16-green)!important;transform:translate(2px,-1px)}
+
+/* ETCETERA — inherited V11 absolutely positioned every span. Reset metadata explicitly. */
+.v16 .v11-etc-copy p{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:end!important;gap:8px 14px!important;padding-right:2px!important}
+.v16 .v11-etc-copy p span{position:static!important;inset:auto!important;display:block!important;min-width:0!important;font-size:10.5px!important;line-height:1.25!important;white-space:normal!important}
+.v16 .v11-etc-copy p span:first-child{font-weight:650;color:#fff!important;overflow-wrap:anywhere}
+.v16 .v11-etc-copy p span:last-child{text-align:right;white-space:nowrap!important;color:#d9d9ff!important;opacity:.88!important}
+.v16 .v11-etc-copy>span{position:absolute!important;right:14px!important;top:14px!important;bottom:auto!important;font-size:17px!important}
+.v16 .v11-etc-card:hover{transform:translateY(-6px) rotate(-.12deg)!important}
+.v16 .v11-etc-card:nth-child(2):hover{transform:translateY(-6px) rotate(.12deg)!important}
+.v16 .v11-etc-card:hover .v11-etc-copy{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+
+/* CHEVRON STRIPS — deliberately louder. JS supplies the extreme travel. */
+.v16 .v11-chevron-strip{height:134px!important;min-height:134px!important;gap:8px!important}
+.v16 .v11-chevron-strip::before{
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0 1px,transparent 1px 18px),linear-gradient(90deg,rgba(255,255,255,.02),rgba(255,255,255,.09),rgba(255,255,255,.02))!important;
+}
+.v16 .v11-chev{font-size:clamp(48px,6.8vw,92px)!important;letter-spacing:-.095em!important;text-shadow:0 0 13px rgba(255,255,255,.34),10px 0 0 rgba(255,255,255,.08)!important;filter:drop-shadow(0 0 5px rgba(255,255,255,.12))}
+.v16 .v11-chev-left{padding-right:4px!important}.v16 .v11-chev-right{padding-left:4px!important}
+.v16 .v11-chev-core{font-size:31px!important;filter:drop-shadow(0 0 12px rgba(255,255,255,.72))!important}
+
+/* YQP — clearer hierarchy, more editorial cards, less muddy ink. */
+.v16 .v11-about::before{background:radial-gradient(ellipse at 77% 12%,rgba(250,255,232,.44),rgba(250,255,232,.13) 34%,transparent 61%)!important}
+.v16 .v11-about .v11-section-head{color:var(--v16-violet)!important;background:linear-gradient(90deg,transparent,rgba(250,255,233,.14) 18%,rgba(250,255,233,.30))!important}
+.v16 .v11-about .v11-section-head h2,.v16 .v11-about .v11-section-head p{color:var(--v16-violet)!important}
+.v16 .v11-about-grid{gap:22px!important;padding-top:10px!important}
+.v16 .v11-about-card{min-height:442px!important;border-color:rgba(255,255,255,.82)!important;box-shadow:0 22px 48px rgba(69,18,119,.12),0 1px 0 rgba(255,255,255,.82) inset!important;transition:transform .24s var(--ease),box-shadow .24s,border-color .24s}
+.v16 .v11-about-card:hover{transform:translateY(-5px);border-color:rgba(111,34,255,.34)!important;box-shadow:0 28px 60px rgba(69,18,119,.16),0 0 0 1px rgba(111,34,255,.09),0 1px 0 rgba(255,255,255,.86) inset!important}
+.v16 .about-cqst{background:linear-gradient(145deg,rgba(255,252,237,.88),rgba(228,255,202,.76))!important}
+.v16 .about-narrans{background:linear-gradient(145deg,rgba(247,255,228,.86),rgba(241,233,255,.82))!important}
+.v16 .v11-card-label{color:#582090!important}
+.v16 .v11-card-body{font-size:14.5px!important;line-height:1.54!important;color:#503a67!important}
+.v16 .about-cqst h3,.v16 .about-narrans h4{color:var(--v16-ink)!important}
+.v16 .about-narrans .narrans-word{color:var(--v16-violet)!important}
+.v16 .about-voices .v11-card-label,.v16 .about-voices .v11-card-body{color:#f6f1ff!important}
+.v16 .v11-card-cta{transition:background .18s,color .18s,transform .18s,box-shadow .18s}
+.v16 .v11-card-cta:hover{transform:translateY(-2px);box-shadow:0 7px 0 rgba(74,29,120,.20),0 0 0 2px rgba(255,122,0,.18)!important}
+
+/* PARTICIPATE / FORMS — slightly cleaner interaction states. */
+.v16 .v11-email-row input:focus,.v16 .v11-dialog-shell input:focus,.v16 .v11-dialog-shell textarea:focus{border-color:rgba(111,34,255,.48)!important;box-shadow:0 0 0 3px rgba(133,255,0,.20),inset 0 1px 0 rgba(255,255,255,.86)!important}
+.v16 .v11-email-row button:hover,.v16 .v11-propose-button:hover,.v16 .v11-dialog-send:hover{background:#0b0815!important;color:#fff!important;box-shadow:0 0 0 2px #fff,0 0 0 5px rgba(133,255,0,.34)!important;transform:translateY(-1px)}
+
+/* Link language — every family reacts, but in its own dialect. */
+@media (hover:hover) and (pointer:fine){
+  .v16 .v11-hero-player-head>a:hover{color:#fff!important;text-shadow:0 0 9px rgba(255,122,0,.70)}
+  .v16 .v11-story:hover{background:linear-gradient(90deg,rgba(255,122,0,.055),transparent 76%)}
+  .v16 .v11-story:hover strong{color:#ffbd82!important}.v16 .v11-story:hover b{color:var(--v16-green)!important}
+  .v16 .v11-reader-cta:hover{color:#fff!important;text-shadow:0 0 8px rgba(255,122,0,.65);transform:translateX(3px)}
+  .v16 .v15-footer-navs a:hover,.v16 .v15-footer-navs button:hover{color:#dfffbc!important}
+  .v16 .v11-last-pixel a:hover{color:#fff!important;letter-spacing:.015em}
+}
+
+/* Footer navigation and Last Pixel must remain readable when the mobile dock yields. */
+.v16 .v11-dock{transition:bottom .28s var(--ease),opacity .22s,transform .28s var(--ease),background .28s,color .28s,border-color .28s!important}
+.v16 .v11-dock.is-footer-near{opacity:0!important;transform:translate(-50%,calc(100% + 28px))!important;pointer-events:none!important}
+.v16 .v11-last-pixel{z-index:40!important}
+
+@media(max-width:720px){
+  /* Dock: smaller footprint, intentional glitch clusters. */
+  .v16 .v11-dock{width:min(365px,calc(100vw - 42px))!important;height:45px!important;border-radius:16px!important;grid-template-columns:46px 1fr!important;bottom:calc(8px + env(safe-area-inset-bottom))!important}
+  .v16 .v11-dock-mark{width:40px!important;height:40px!important}.v16 .v11-dock-mark img{width:33px!important;height:33px!important}
+  .v16 .v11-dock nav a{height:39px!important;font-size:10.5px!important}
+  .v16 .v11-glitch{width:3px!important;height:3px!important;box-shadow:4px 0 var(--green),8px 0 var(--blue),8px 4px var(--purple),-4px 4px var(--orange)!important}
+
+  /* Orbits stay long and atomic on tall phones. */
+  .v16 .v11-orbit-layer{opacity:.43!important;mix-blend-mode:difference!important}
+  .v16 .orbit-line{stroke-width:.9!important;opacity:.46!important}
+
+  /* Hero: this must immediately look like a place where one reads. */
+  .v16 .v11-hero{padding:38px 16px 50px!important;background-position:center top!important}
+  .v16 .v11-brand-stage{min-height:286px!important}
+  .v16 .v11-hero-player,.v16 .v15-mobile-now{display:none!important}
+  .v16 .v16-mobile-current{
+    display:block;
+    width:100%;
+    margin:2px 0 0;
+    padding:20px 18px 10px;
+    border:1px solid rgba(255,122,0,.76);
+    border-radius:22px;
+    color:#fff;
+    background:linear-gradient(145deg,rgba(7,7,14,.96),rgba(10,8,20,.94) 70%,rgba(22,13,36,.92));
+    box-shadow:0 0 0 1px rgba(255,122,0,.12),0 0 20px rgba(255,122,0,.20),0 20px 44px rgba(40,14,5,.18);
+    position:relative;
+    overflow:visible;
+  }
+  .v16 .v16-mobile-current::before{content:"";position:absolute;left:-3px;top:12px;width:3px;height:3px;background:var(--v16-orange);box-shadow:4px 0 #ffc066,8px 0 var(--v16-green),8px 4px var(--v16-blue)}
+  .v16 .v16-mobile-current-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px}
+  .v16 .v16-mobile-current-head>span{display:grid;gap:5px}.v16 .v16-mobile-current-head .matrix{font-size:10px;color:var(--v16-orange)}
+  .v16 .v16-mobile-current-head strong{font-size:clamp(42px,13vw,56px);line-height:.84;letter-spacing:-.065em}
+  .v16 .v16-mobile-current-head>a{font-size:11px;font-weight:800;color:#ffad62;padding-bottom:4px}
+  .v16 .v16-mobile-current>p{font-size:14.5px;line-height:1.38;color:#ded8d0;margin:17px 0 14px}
+  .v16 .v16-mobile-current-rule{height:1px;background:rgba(255,122,0,.58);position:relative}
+  .v16 .v16-mobile-current-rule i{position:absolute;right:0;top:-5px;width:10px;height:10px;background:var(--v16-orange);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+  .v16 .v16-mobile-current-stories{display:grid}
+  .v16 .v16-mobile-current-stories>a,.v16 .v16-mobile-current-stories>div{min-height:64px;display:grid;grid-template-columns:minmax(0,1fr) 18px;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.09);padding:11px 0;color:#fff}
+  .v16 .v16-mobile-current-stories>div:last-child{border-bottom:0}
+  .v16 .v16-mobile-current-stories span{display:grid;gap:4px;min-width:0}
+  .v16 .v16-mobile-current-stories strong{font-size:13.5px;line-height:1.2}.v16 .v16-mobile-current-stories small{font-size:10px;color:#aaa5b3}
+  .v16 .v16-mobile-current-stories b{font-size:15px;font-weight:500;color:#ff9d43}.v16 .v16-mobile-current-stories .placeholder{opacity:.46}
+
+  /* Reader: more internal breathing room and a clearer app-console silhouette. */
+  .v16 .v11-reader{padding:58px 14px 86px!important}
+  .v16 .v11-reader .v11-section-head{margin:0 4px 26px!important}
+  .v16 .v11-jukebox{border-radius:23px!important;margin:0 2px!important;width:calc(100% - 4px)!important;box-shadow:0 0 0 1px rgba(255,122,0,.18),0 0 20px rgba(255,122,0,.20),0 22px 50px rgba(0,0,0,.30)!important}
+  .v16 .v11-cycle-rail{padding:14px 14px 17px!important;gap:9px!important;border-radius:22px 22px 0 0!important;mask-image:linear-gradient(90deg,#000 0 88%,transparent 100%)!important}
+  .v16 .v11-cycle-rail button{min-height:48px!important;padding:0 17px!important}
+  .v16 .v11-cycle-rail button strong{font-size:14.5px!important}
+  .v16 .v15-rail-meter{left:22px!important;right:22px!important;top:64px!important;height:2px!important}
+  .v16 .v11-reader-preview{padding:34px 22px 30px!important;min-height:390px!important;border-radius:0 0 22px 22px!important;scrollbar-width:none!important}
+  .v16 .v11-reader-preview::-webkit-scrollbar{display:none}
+  .v16 .v11-reader-preview .count{margin-bottom:11px!important}.v16 .v11-reader-preview h3{font-size:clamp(48px,15.5vw,66px)!important}
+  .v16 .v11-reader-preview .deck{font-size:15px!important;margin:15px 0 29px!important}
+  .v16 .v15-reader-story{min-height:72px!important;padding:14px 0!important}.v16 .v15-reader-story strong{font-size:14px!important}.v16 .v15-reader-story small{font-size:10.5px!important}
+  .v16 .jg-a{left:-2px!important;top:12px!important}.v16 .jg-b{right:-2px!important;bottom:12px!important}
+
+  /* Etcetera: metadata is now two real rows; no inherited absolute spans. */
+  .v16 .v11-etc{padding:58px 14px 82px!important}
+  .v16 .v11-etc .v11-section-head{margin:0 4px 24px!important}
+  .v16 .v11-etc-track{gap:15px!important;padding:6px 13vw 30px 2px!important;margin-right:-14px!important}
+  .v16 .v11-etc-card{flex-basis:84vw!important;padding:11px!important;border-radius:20px!important}
+  .v16 .v11-etc-copy{min-height:118px!important;padding:16px 16px 15px!important}
+  .v16 .v11-etc-copy h3{font-size:17px!important;line-height:1.15!important;margin:0 30px 15px 0!important}
+  .v16 .v11-etc-copy p{grid-template-columns:1fr!important;gap:4px!important}
+  .v16 .v11-etc-copy p span{font-size:10.5px!important;text-align:left!important;white-space:normal!important}
+  .v16 .v11-etc-copy p span:last-child{font-size:10px!important}
+  .v16 .v11-etc-copy>span{right:14px!important;top:14px!important}
+
+  /* Chevrons become an event between sections. */
+  .v16 .v11-chevron-strip{height:108px!important;min-height:108px!important}
+  .v16 .v11-chev{font-size:clamp(45px,15vw,64px)!important}
+  .v16 .v11-chev-core{font-size:25px!important}
+
+  /* YQP: stronger swipe affordance and better reading density. */
+  .v16 .v11-about{padding:58px 14px 84px!important}
+  .v16 .v11-about .v11-section-head{margin:0 4px 27px!important;padding:7px 8px!important;background:linear-gradient(90deg,rgba(249,255,231,.23),transparent 80%)!important}
+  .v16 .v11-about-grid{gap:15px!important;padding:10px 13vw 31px 2px!important;margin-right:-14px!important;scroll-padding-left:2px}
+  .v16 .v11-about-card{flex-basis:85vw!important;min-height:430px!important;padding:24px!important;box-shadow:0 17px 38px rgba(60,18,105,.14)!important}
+  .v16 .about-cqst h3{font-size:36px!important;margin:50px 0 17px!important}.v16 .about-narrans .narrans-word{font-size:51px!important;margin-bottom:29px!important}.v16 .about-narrans h4{font-size:30px!important}
+  .v16 .v11-card-body{font-size:14.5px!important;line-height:1.53!important}
+  .v16 .v15-about-pages{margin-top:0!important;gap:8px!important}.v16 .v15-about-pages button{height:7px!important;width:12px!important;border-radius:999px!important}.v16 .v15-about-pages button.is-active{width:32px!important}
+
+  /* Footer: dock fades before Last Pixel enters, so the ending remains an ending. */
+  .v16 .v15-footer{padding-bottom:0!important}
+  .v16 .v11-footer-meta{padding-bottom:68px!important}
+  .v16 .v11-last-pixel{height:34px!important}
+}
+
+@media(max-width:420px){
+  .v16 .v11-dock{width:calc(100vw - 38px)!important}
+  .v16 .v11-hero{padding-inline:13px!important}.v16 .v11-reader,.v16 .v11-etc,.v16 .v11-about,.v16 .v11-participate{padding-left:13px!important;padding-right:13px!important}
+  .v16 .v11-jukebox{margin-inline:1px!important;width:calc(100% - 2px)!important}
+  .v16 .v11-etc-track,.v16 .v11-about-grid{margin-right:-13px!important}
+  .v16 .v11-etc-card{flex-basis:86vw!important}.v16 .v11-about-card{flex-basis:87vw!important}
+}
