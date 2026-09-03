@@ -1,0 +1,11 @@
+[
+  {
+    "slug": "empezar",
+    "title": "Empezar",
+    "deck": "El principio cambia según quién lo cuenta.",
+    "status": "current",
+    "dateStart": "2026-08-19",
+    "order": 1,
+    "visualTheme": "empezar"
+  }
+]
