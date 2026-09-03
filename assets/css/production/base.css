@@ -1,0 +1,47 @@
+@font-face{
+  font-family:Matrixel;
+  src:url("../../Matrixel.ttf") format("truetype");
+  font-display:swap;
+}
+
+:root{
+  --cqst-blue:#0000ff;
+  --cqst-green:#85ff00;
+  --cqst-orange:#ff7a00;
+  --cqst-violet:#7227ff;
+  --cqst-pink:#ff32c8;
+  --cqst-night:#070812;
+  --cqst-paper:#f8f4ec;
+  --cqst-cream:#fff7dd;
+  --cqst-ink:#241532;
+  --cqst-edge:clamp(16px,4vw,72px);
+  --cqst-max:1460px;
+  --cqst-ease:cubic-bezier(.22,1,.36,1);
+  --cqst-radius-sm:14px;
+  --cqst-radius-md:22px;
+  --cqst-radius-lg:28px;
+  --cqst-space-1:clamp(6px,.5vw,9px);
+  --cqst-space-2:clamp(10px,.8vw,14px);
+  --cqst-space-3:clamp(16px,1.25vw,22px);
+  --cqst-space-4:clamp(22px,1.8vw,30px);
+  --cqst-space-5:clamp(30px,2.7vw,46px);
+  --cqst-font:"Grift","Avenir Next",Avenir,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--cqst-font);font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg,video{display:block;max-width:100%}
+button,input,textarea,select{font:inherit}
+a{color:inherit;text-decoration:none}
+button{color:inherit}
+.matrix{font-family:Matrixel,"Courier New",monospace!important;font-weight:400!important;letter-spacing:.02em}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.skip-link{position:fixed;left:12px;top:12px;z-index:9999;padding:10px 14px;border-radius:10px;background:#fff;color:#090912;transform:translateY(-160%);transition:transform .18s}
+.skip-link:focus{transform:translateY(0)}
+:focus-visible{outline:2px solid var(--cqst-green);outline-offset:3px}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
