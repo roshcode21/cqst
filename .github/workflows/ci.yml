@@ -27,13 +27,18 @@ jobs:
       - name: Build Eleventy + Pagefind
         run: npm run build
 
-      - name: Verify production entry points
+      - name: Verify production entry points and rendered home
         run: |
           test -f _site/index.html
           test -f _site/assets/css/production/base.css
           test -f _site/assets/css/production/home.css
           test -f _site/assets/js/production/home.js
           test -d _site/pagefind
+          grep -q 'id="main"' _site/index.html
+          grep -q 'class="home-hero scene"' _site/index.html
+          grep -q 'id="cycleRail"' _site/index.html
+          grep -q 'id="newsletterForm"' _site/index.html
+          grep -q 'application/ld+json' _site/index.html
 
       - name: Upload built site for parity QA
         uses: actions/upload-artifact@v4
