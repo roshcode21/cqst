@@ -59,6 +59,54 @@ jobs:
           test -f _site/sitemap.xml
           test -f _site/site.webmanifest
 
+      - name: Capture V20 vs V21 parity screenshots
+        run: |
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME"
+          mkdir -p parity
+
+          python3 -m http.server 4173 --directory _site >/tmp/cqst-v21-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
+          sleep 2
+
+          capture_scene() {
+            version="$1"
+            width="$2"
+            height="$3"
+            scene="$4"
+            base="$5"
+            "$CHROME" \
+              --headless=new \
+              --no-sandbox \
+              --disable-dev-shm-usage \
+              --disable-gpu \
+              --hide-scrollbars \
+              --force-prefers-reduced-motion \
+              --run-all-compositor-stages-before-draw \
+              --virtual-time-budget=1800 \
+              --window-size="${width},${height}" \
+              --screenshot="parity/${version}-${width}x${height}-${scene}.png" \
+              "${base}#${scene}"
+          }
+
+          for viewport in 390x844 430x932 768x1024 1024x768 1366x900 1920x1080; do
+            width="${viewport%x*}"
+            height="${viewport#*x}"
+            for scene in portada leer etcetera cqst participar; do
+              capture_scene v21 "$width" "$height" "$scene" "http://127.0.0.1:4173/"
+              capture_scene v20 "$width" "$height" "$scene" "https://roshcode21.github.io/cqst/v20/?v=20-2"
+            done
+          done
+
+      - name: Upload parity screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: cqst-v21-parity
+          path: parity
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Upload built site for parity QA
         uses: actions/upload-artifact@v4
         with:
