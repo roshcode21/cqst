@@ -6,6 +6,10 @@ on:
     branches:
       - v21-production-refactor
 
+concurrency:
+  group: cqst-v21-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -22,7 +26,7 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-audit --no-fund
 
       - name: Build Eleventy + Pagefind
         run: npm run build
