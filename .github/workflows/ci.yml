@@ -63,6 +63,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cqst-v21-site
-          path: _site
+          path: |
+            _site
+            package-lock.json
           if-no-files-found: error
           retention-days: 7
