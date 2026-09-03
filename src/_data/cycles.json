@@ -6,6 +6,7 @@
     "status": "current",
     "dateStart": "2026-08-19",
     "order": 1,
+    "expectedVoices": 3,
     "visualTheme": "empezar"
   }
 ]
