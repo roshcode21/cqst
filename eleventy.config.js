@@ -1,5 +1,24 @@
 export default function (eleventyConfig) {
+  /* Production assets are already shared by the lab and the new build. */
   eleventyConfig.addPassthroughCopy({ "assets": "assets" });
+
+  /*
+   * Strangler migration: keep current public routes alive while each page is
+   * rebuilt under src/. Remove a passthrough entry the moment its Eleventy
+   * replacement lands. This prevents the home refactor from breaking existing
+   * URLs during the editorial-system migration.
+   */
+  [
+    "cqst",
+    "empezar",
+    "privacidad",
+    "temas",
+    "voces",
+    "feed.xml",
+    "robots.txt",
+    "sitemap.xml",
+    "site.webmanifest"
+  ].forEach(path => eleventyConfig.addPassthroughCopy(path));
 
   eleventyConfig.addFilter("isoDate", value => {
     if (!value) return "";
