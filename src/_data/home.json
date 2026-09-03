@@ -32,7 +32,17 @@
   },
   "reader": {
     "title": "leer × tema",
-    "tagline": "Una cosa lleva a otra"
+    "tagline": "Una cosa lleva a otra",
+    "labCycles": [
+      {"slug":"empezar","title":"Empezar","count":3,"status":"current"},
+      {"slug":"dinero","title":"Dinero","count":4,"status":"prototype"},
+      {"slug":"casa","title":"Casa","count":4,"status":"prototype"},
+      {"slug":"cuerpo","title":"Cuerpo","count":3,"status":"prototype"},
+      {"slug":"tiempo","title":"Tiempo","count":4,"status":"prototype"},
+      {"slug":"deseo","title":"Deseo","count":3,"status":"prototype"},
+      {"slug":"duelo","title":"Duelo","count":4,"status":"prototype"},
+      {"slug":"fe","title":"Fe","count":3,"status":"prototype"}
+    ]
   },
   "etcetera": {
     "title": "etcétera",
