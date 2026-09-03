@@ -1,0 +1,79 @@
+{
+  "hero": {
+    "eyebrow": "AHORA",
+    "label": "Ciclo actual"
+  },
+  "reader": {
+    "title": "leer × tema",
+    "tagline": "Una cosa lleva a otra",
+    "prototypeCycles": [
+      {"slug":"dinero","title":"Dinero","count":4,"labOnly":true},
+      {"slug":"casa","title":"Casa","count":4,"labOnly":true},
+      {"slug":"cuerpo","title":"Cuerpo","count":3,"labOnly":true},
+      {"slug":"tiempo","title":"Tiempo","count":4,"labOnly":true},
+      {"slug":"deseo","title":"Deseo","count":3,"labOnly":true},
+      {"slug":"duelo","title":"Duelo","count":4,"labOnly":true},
+      {"slug":"fe","title":"Fe","count":3,"labOnly":true}
+    ]
+  },
+  "etcetera": {
+    "title": "etcétera",
+    "tagline": "Páginas sueltas",
+    "coda": "Sin orden de lectura.",
+    "cta": "Elegir por tema ↑",
+    "featured": [
+      {
+        "article": "la-fecha-la-ponemos-despues",
+        "image": "/assets/home/ufo-01.jpg",
+        "alt": "Escena nocturna con una nave sobre el agua"
+      },
+      {
+        "article": "no-fue-ese-dia",
+        "image": "/assets/home/ufo-02.jpg",
+        "alt": "Escena nocturna con una nave sobre una multitud"
+      },
+      {
+        "article": "mel-empezar-draft",
+        "image": "/assets/home/ufo-03.jpg",
+        "alt": "Escena nocturna con una nave sobre Veracruz"
+      }
+    ]
+  },
+  "about": {
+    "title": "… ¿y quién pregunta?",
+    "tagline": "Toda pregunta viene de algún lado",
+    "cqst": {
+      "label": "CADA QUIEN SU TEMA",
+      "title": "Un tema pasa por varias vidas y deja de ser el mismo.",
+      "body": "Cada quien su tema es una publicación por ciclos. En cada uno, distintas voces parten de una misma idea y llegan a lugares distintos.",
+      "cta": "Conocer el proyecto"
+    },
+    "narrans": {
+      "title": "No vivimos las cosas una sola vez.",
+      "body": "También las recordamos, las contamos y volvemos a ellas para entender qué fueron. Homo narrans pone nombre a ese impulso humano de convertir la experiencia en relato. Cada quien su tema parte de ahí."
+    },
+    "voices": {
+      "label": "VOCES",
+      "title": "Pensar se parece más a esto.",
+      "body": "Una cabeza, ideas que orbitan, se cruzan y vuelven. A veces, entre todo eso, algo toma forma. El símbolo acompaña a las voces de Cada quien su tema porque ninguna llega a un tema por el mismo camino."
+    }
+  },
+  "participate": {
+    "newsletter": {
+      "label": "POR CORREO",
+      "title": "Que el próximo tema te encuentre.",
+      "subtitle": "Un correo cuando haya algo que decir.",
+      "service": "Nuevos ciclos, artículos y voces.",
+      "button": "Recibir CQST →"
+    },
+    "topic": {
+      "label": "PROPONER",
+      "title": "Este espacio acepta temas.",
+      "bodyStrong": "Preguntas, ideas, contradicciones.",
+      "body": "Si algo merece más de una mirada, nos interesa.",
+      "button": "Proponer un tema →",
+      "dialogTitle": "¿Qué tema te anda rondando?",
+      "dialogIntro": "No hace falta resolverlo antes. Cuéntanos qué te interesa abrir y cómo podemos volver a ti."
+    }
+  }
+}
