@@ -34,3 +34,11 @@ jobs:
           test -f _site/assets/css/production/home.css
           test -f _site/assets/js/production/home.js
           test -d _site/pagefind
+
+      - name: Upload built site for parity QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: cqst-v21-site
+          path: _site
+          if-no-files-found: error
+          retention-days: 7
