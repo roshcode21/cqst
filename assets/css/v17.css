@@ -1,0 +1,200 @@
+/* CQST V17 — mobile authorship, editorial carousel affordance, typographic hierarchy and controlled motion. */
+.v17{
+  --v17-blue:#0000ff;
+  --v17-green:#85ff00;
+  --v17-orange:#ff7a00;
+  --v17-violet:#6f22ff;
+  --v17-violet-ink:#2c1447;
+  --v17-plum:#3e2555;
+  --v17-paper:#fff8ea;
+  font-family:"Grift","Avenir Next",Avenir,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+.v17 h1,.v17 h2,.v17 h3,.v17 h4,.v17 button,.v17 input,.v17 textarea,.v17 nav{font-family:inherit}
+.v17 a,.v17 button{transition:color .18s,background .18s,border-color .18s,box-shadow .18s,transform .18s,opacity .18s}
+.v17 a:focus-visible,.v17 button:focus-visible,.v17 input:focus-visible,.v17 textarea:focus-visible{outline:2px solid var(--v17-green)!important;outline-offset:3px!important}
+
+/* Mobile dock changes location by context. Hero = top. Reading onward = bottom. */
+.v17 .v11-dock{will-change:transform,opacity}
+.v17 .v11-dock.is-relocating{opacity:0!important;transform:translateX(-50%) scale(.97)!important}
+
+/* Reader: hide the browser chrome on the preview and use one designed indicator. */
+.v17 .v11-reader-preview{scrollbar-width:none!important}
+.v17 .v11-reader-preview::-webkit-scrollbar{display:none!important}
+.v17 .v17-preview-scroll{position:absolute;right:7px;top:22px;bottom:22px;width:4px;border-radius:999px;background:rgba(255,255,255,.055);z-index:11;pointer-events:none;overflow:hidden}
+.v17 .v17-preview-scroll i{position:absolute;left:0;top:0;width:100%;min-height:34px;border-radius:999px;background:linear-gradient(180deg,#b6a8ff,#765aff 58%,#5137e7);box-shadow:0 0 10px rgba(122,92,255,.30);transform:translateY(0)}
+.v17 .v17-preview-scroll.is-idle{opacity:.24}
+.v17 .v17-reader-divider{display:none}
+
+/* Reader desktop spacing: make the magazine feel deliberate rather than packed. */
+.v17 .v11-cycle-rail{padding:18px 17px 20px!important}
+.v17 .v11-cycle-rail button{min-height:69px!important;margin-bottom:8px!important;padding:11px 16px!important;border-radius:17px!important}
+.v17 .v11-cycle-rail button strong{font-size:18.5px!important}
+.v17 .v11-cycle-rail button small{padding:5px 8px!important}
+.v17 .v11-reader-preview{padding:50px 58px 48px!important}
+.v17 .v15-reader-story{padding:14px 3px!important}
+
+/* ETCETERA — card proportions, metadata and a restrained section coda. */
+.v17 .v11-etc-track{gap:26px!important;padding:10px 4px 31px!important}
+.v17 .v11-etc-card{padding:13px!important;border-radius:23px!important;overflow:visible!important}
+.v17 .v11-etc-image{border-radius:16px!important}
+.v17 .v11-etc-copy{min-height:116px!important;padding:17px 52px 16px 17px!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important;gap:13px!important;border-radius:14px!important}
+.v17 .v11-etc-copy h3{font-size:18.5px!important;line-height:1.08!important;margin:0!important;max-width:96%}
+.v17 .v11-etc-copy p{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:end!important;gap:8px 14px!important;margin:0!important}
+.v17 .v11-etc-copy p span{font-size:10.5px!important;line-height:1.25!important}
+.v17 .v11-etc-copy>span{right:14px!important;bottom:14px!important;top:auto!important;width:30px;height:30px;border-radius:50%;display:grid!important;place-items:center;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.20);font-size:15px!important}
+.v17 .v11-etc-card:hover .v11-etc-copy>span{background:var(--v17-green);color:#080817;border-color:var(--v17-green);transform:translate(2px,-2px)}
+.v17 .v17-etc-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 4px 0;border-top:1px solid rgba(22,20,58,.11);color:#1f1b35}
+.v17 .v17-etc-footer p{margin:0;font-size:13px;color:#6a6376}
+.v17 .v17-etc-footer a{font-size:12px;font-weight:850;position:relative;padding:8px 0}
+.v17 .v17-etc-footer a::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:1px;background:var(--v17-blue);transform:scaleX(.22);transform-origin:right;transition:transform .2s}
+.v17 .v17-etc-footer a:hover::after{transform:scaleX(1)}
+.v17 .v17-track-status{display:none}
+
+/* CHEVRON DIVIDERS — magnetic, symmetrical, legible. Never cross or improvise. */
+.v17 .v11-chevron-strip{height:110px!important;min-height:110px!important;gap:18px!important;background:#0000ff!important}
+.v17 .v11-chevron-strip::before{background:linear-gradient(90deg,transparent 0 18%,rgba(255,255,255,.04) 42%,rgba(255,255,255,.10) 50%,rgba(255,255,255,.04) 58%,transparent 82%),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 25px)!important}
+.v17 .v11-chev{font-size:clamp(44px,5.2vw,72px)!important;letter-spacing:-.10em!important;text-shadow:0 0 8px rgba(255,255,255,.22)!important;filter:none!important;opacity:.96}
+.v17 .v11-chev-core{font-size:27px!important;filter:drop-shadow(0 0 8px rgba(255,255,255,.50))!important}
+
+/* YQP — lower cards, editorial typography, no generic pill CTA. */
+.v17 .v11-about{padding-top:70px!important;padding-bottom:94px!important}
+.v17 .v11-about-grid{gap:20px!important;padding:7px 3px 24px!important}
+.v17 .v11-about-card{min-height:382px!important;border-radius:23px!important;box-shadow:0 18px 42px rgba(63,22,104,.11),0 1px 0 rgba(255,255,255,.84) inset!important}
+.v17 .about-cqst,.v17 .about-narrans,.v17 .about-voices{padding:24px 26px 25px!important}
+.v17 .about-cqst h3{font-size:clamp(29px,2.45vw,39px)!important;line-height:.98!important;margin:46px 0 14px!important;max-width:92%!important;color:#2b153f!important}
+.v17 .v11-card-body{font-size:13.8px!important;line-height:1.48!important;color:#4a355f!important}
+.v17 .v11-card-cta{margin-top:auto!important;padding:11px 0 7px!important;background:transparent!important;border:0!important;border-radius:0!important;color:var(--v17-violet)!important;box-shadow:none!important;font-size:12px!important;font-weight:850!important;position:relative}
+.v17 .v11-card-cta::after{content:"";position:absolute;left:0;width:72px;bottom:1px;height:2px;background:var(--v17-violet);transition:width .22s}
+.v17 .v11-card-cta:hover{background:transparent!important;color:#2f006f!important;transform:translateX(3px)!important;box-shadow:none!important}
+.v17 .v11-card-cta:hover::after{width:100%}
+.v17 .about-narrans .narrans-word{margin:0 0 24px!important;display:grid;align-content:start;gap:5px;line-height:1!important}
+.v17 .about-narrans .narrans-homo{font-family:"Grift","Avenir Next",Avenir,system-ui,sans-serif!important;font-size:12px!important;font-weight:900!important;letter-spacing:.19em;color:#4e2478;padding-left:3px}
+.v17 .about-narrans .narrans-narrans{font-size:clamp(50px,4.6vw,68px)!important;line-height:.74!important;letter-spacing:-.045em;color:var(--v17-violet)!important;white-space:nowrap}
+.v17 .about-narrans h4{font-size:clamp(24px,2vw,31px)!important;line-height:1!important;margin:0 0 14px!important;color:#2c1642!important}
+.v17 .about-voices{background:linear-gradient(145deg,rgba(25,29,48,.96),rgba(10,47,34,.93))!important}
+.v17 .v11-voices-art{min-height:122px!important;margin:0 auto 3px!important}
+.v17 .v11-voices-art img{width:min(58%,190px)!important;max-height:148px!important}
+.v17 .about-voices h3{font-size:clamp(28px,2.4vw,37px)!important;margin:2px 0 12px!important}
+.v17 .v12-article-glyph{width:58px!important;height:58px!important;top:22px!important;right:22px!important}
+
+/* Participate stays visually intact; only strengthen resolution safety. */
+.v17 .v11-participate-wrap{width:min(1280px,100%)!important}
+.v17 .v11-action-card{min-width:0}
+.v17 .v11-email-row{min-width:0}
+.v17 .v11-email-row input{width:100%}
+
+/* Dialog close must be a real touch target, above every inner layer. */
+.v17 .v11-dialog-close{z-index:30!important;pointer-events:auto!important;touch-action:manipulation!important;min-width:44px!important;min-height:44px!important;width:44px!important;height:44px!important;display:grid!important;place-items:center!important;line-height:1!important;-webkit-appearance:none;appearance:none}
+.v17 .v11-dialog-shell{isolation:isolate}
+
+/* Footer / links. */
+@media (hover:hover) and (pointer:fine){
+  .v17 .v15-footer-navs a:hover,.v17 .v15-footer-navs button:hover{transform:translateX(2px)}
+  .v17 .v16-mobile-current-head>a:hover{color:#fff!important}
+  .v17 .v17-etc-footer a:hover{color:var(--v17-blue)}
+  .v17 a[href^="mailto:"]:hover{opacity:.82}
+}
+
+@media(max-width:900px) and (min-width:721px){
+  .v17 .v11-about-card{min-height:360px!important}
+  .v17 .about-narrans .narrans-narrans{font-size:54px!important}
+}
+
+@media(max-width:720px){
+  .v17{font-family:"Grift","Avenir Next",Avenir,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  .v17 h1,.v17 h2,.v17 h3,.v17 h4{letter-spacing:-.04em}
+
+  /* Dock begins at top. JS switches it to the bottom when section 2 becomes the active surface. */
+  .v17 .v11-dock{top:calc(8px + env(safe-area-inset-top))!important;bottom:auto!important;width:min(354px,calc(100vw - 42px))!important;height:44px!important;border-radius:16px!important}
+  .v17 .v11-dock.is-mobile-bottom{top:auto!important;bottom:calc(8px + env(safe-area-inset-bottom))!important}
+  .v17 .v11-dock nav a{font-size:11.5px!important;font-weight:800!important;letter-spacing:-.025em!important;height:38px!important}
+  .v17 .v11-dock-mark{height:39px!important;width:40px!important}.v17 .v11-dock-mark img{width:32px!important;height:32px!important}
+  .v17 .v11-dock.is-footer-near{opacity:0!important;transform:translate(-50%,calc(100% + 24px))!important;pointer-events:none!important}
+
+  /* Hero gets a little more usable viewport because the nav no longer floats over its bottom. */
+  .v17 .v11-hero{padding-top:64px!important;padding-bottom:48px!important}
+  .v17 .v11-brand-stage{min-height:272px!important}
+  .v17 .v16-mobile-current{margin-top:0!important;padding:19px 17px 9px!important}
+
+  /* Reader pills: inset, tactile, then a CQST rule with a spark before the article surface. */
+  .v17 .v11-reader{padding:58px 16px 88px!important}
+  .v17 .v11-reader .v11-section-head{margin:0 2px 27px!important}
+  .v17 .v11-jukebox{margin:0!important;width:100%!important;border-radius:24px!important;overflow:visible!important}
+  .v17 .v11-cycle-rail{padding:15px 16px 17px!important;gap:10px!important;border-radius:23px 23px 0 0!important;scroll-padding-inline:16px!important;mask-image:linear-gradient(90deg,transparent 0,#000 13px,#000 calc(100% - 24px),transparent 100%)!important}
+  .v17 .v11-cycle-rail button{min-height:46px!important;padding:0 17px!important;border-radius:999px!important;margin:0!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+  .v17 .v11-cycle-rail button strong{font-size:14.5px!important;letter-spacing:-.025em!important}
+  .v17 .v15-rail-meter{left:17px!important;right:17px!important;top:62px!important}
+  .v17 .v17-reader-divider{display:block;position:absolute;left:16px;right:16px;top:72px;height:1px;background:linear-gradient(90deg,rgba(255,122,0,.20),rgba(255,122,0,.70));z-index:12;pointer-events:none}
+  .v17 .v17-reader-divider i{position:absolute;right:-1px;top:-5px;width:10px;height:10px;background:var(--v17-orange);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);filter:drop-shadow(0 0 5px rgba(255,122,0,.45))}
+  .v17 .v11-reader-preview{padding:31px 22px 34px!important;border-radius:0 0 23px 23px!important}
+  .v17 .v11-reader-preview .count{margin-bottom:11px!important}
+  .v17 .v11-reader-preview h3{font-size:clamp(48px,14.5vw,64px)!important}
+  .v17 .v11-reader-preview .deck{font-size:15px!important;margin:15px 0 28px!important}
+  .v17 .v15-reader-story{min-height:72px!important;padding:14px 0!important}
+  .v17 .v17-preview-scroll{display:none!important}
+
+  /* Etcetera: shadows need room inside the scrollport, metadata becomes two clean rows, next card is unmistakably present. */
+  .v17 .v11-etc{padding:60px 16px 78px!important;overflow:hidden!important}
+  .v17 .v11-etc-track{display:flex!important;gap:14px!important;overflow-x:auto!important;padding:12px 20vw 42px 3px!important;margin-right:-16px!important;scroll-padding-left:3px!important;scroll-snap-type:x mandatory!important;overscroll-behavior-x:contain!important}
+  .v17 .v11-etc-card{flex:0 0 76vw!important;scroll-snap-align:start!important;padding:11px!important;border-radius:20px!important;box-shadow:0 16px 36px rgba(28,17,63,.16)!important}
+  .v17 .v11-etc-copy{min-height:118px!important;padding:16px 47px 15px 16px!important;gap:12px!important}
+  .v17 .v11-etc-copy h3{font-size:17px!important;line-height:1.1!important}
+  .v17 .v11-etc-copy p{display:grid!important;grid-template-columns:1fr!important;gap:4px!important;align-items:start!important}
+  .v17 .v11-etc-copy p span{font-size:10.5px!important;text-align:left!important;white-space:normal!important}
+  .v17 .v11-etc-copy p span:last-child{opacity:.72!important}
+  .v17 .v11-etc-copy>span{width:29px!important;height:29px!important;right:13px!important;bottom:13px!important}
+  .v17 .v17-etc-footer{padding:4px 1px 0!important}
+  .v17 .v17-etc-footer p{font-size:12px}
+  .v17 .v17-etc-footer a{font-size:11.5px}
+  .v17 .v17-track-status{display:grid;grid-template-columns:auto minmax(80px,1fr) auto;align-items:center;gap:10px;margin:0 2px 18px;color:#45405b}
+  .v17 .v17-track-status>span,.v17 .v17-track-status>em{font-size:9px;font-style:normal;letter-spacing:.04em}
+  .v17 .v17-track-status>i{display:block;height:2px;background:rgba(41,24,77,.13);border-radius:99px;overflow:hidden}
+  .v17 .v17-track-status>i>b{display:block;width:33.333%;height:100%;background:var(--v17-violet);border-radius:99px;transform:translateX(0);transition:transform .18s}
+
+  /* Dividers: one magnetic gesture. Strong enough to notice, soft enough to belong. */
+  .v17 .v11-chevron-strip{height:84px!important;min-height:84px!important;gap:10px!important}
+  .v17 .v11-chev{font-size:38px!important;letter-spacing:-.105em!important;text-shadow:0 0 7px rgba(255,255,255,.22)!important}
+  .v17 .v11-chev-core{font-size:20px!important}
+
+  /* YQP: show substantially more of the next card and make the current position explicit. */
+  .v17 .v11-about{padding:58px 16px 78px!important;overflow:hidden!important}
+  .v17 .v11-about .v11-section-head{margin-bottom:24px!important}
+  .v17 .v11-about-grid{display:flex!important;gap:14px!important;overflow-x:auto!important;scroll-snap-type:x mandatory!important;overscroll-behavior-x:contain!important;padding:10px 21vw 38px 2px!important;margin-right:-16px!important;scroll-padding-left:2px!important}
+  .v17 .v11-about-card{flex:0 0 76vw!important;min-height:360px!important;scroll-snap-align:start!important;border-radius:21px!important;box-shadow:0 16px 36px rgba(53,17,92,.15)!important}
+  .v17 .about-cqst,.v17 .about-narrans,.v17 .about-voices{padding:21px!important}
+  .v17 .about-cqst h3{font-size:31px!important;margin:43px 0 13px!important;max-width:94%!important}
+  .v17 .v11-card-body{font-size:13.5px!important;line-height:1.46!important}
+  .v17 .about-narrans .narrans-word{gap:5px!important;margin-bottom:21px!important}
+  .v17 .about-narrans .narrans-homo{font-size:10.5px!important}
+  .v17 .about-narrans .narrans-narrans{font-size:51px!important;white-space:nowrap!important}
+  .v17 .about-narrans h4{font-size:26px!important}
+  .v17 .v11-voices-art{min-height:112px!important}
+  .v17 .v11-voices-art img{width:min(56%,166px)!important;max-height:136px!important}
+  .v17 .about-voices h3{font-size:30px!important}
+  .v17 .v15-about-pages{display:flex!important;justify-content:center!important;gap:0!important;margin:0 0 8px!important}
+  .v17 .v15-about-pages button{position:relative;width:44px!important;height:44px!important;background:transparent!important;border-radius:50%!important}
+  .v17 .v15-about-pages button::before{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;border-radius:50%;background:rgba(47,16,87,.24);transform:translate(-50%,-50%);transition:width .2s,background .2s,border-radius .2s}
+  .v17 .v15-about-pages button.is-active::before{width:24px;border-radius:999px;background:var(--v17-violet)}
+  .v17 .v17-about-status{margin-top:-5px!important;margin-bottom:0!important}
+
+  /* Participate / dialog. */
+  .v17 .v11-participate{padding-left:16px!important;padding-right:16px!important}
+  .v17 .v11-topic-dialog{width:calc(100vw - 18px)!important}
+  .v17 .v11-dialog-shell{padding-top:31px!important}
+  .v17 .v11-dialog-close{right:12px!important;top:11px!important}
+
+  /* Footer stays clear once the dock yields. */
+  .v17 .v15-footer{padding-left:16px!important;padding-right:16px!important}
+  .v17 .v11-footer-meta{padding-bottom:72px!important}
+}
+
+@media(max-width:390px){
+  .v17 .v11-dock{width:calc(100vw - 34px)!important}
+  .v17 .v11-reader,.v17 .v11-etc,.v17 .v11-about,.v17 .v11-participate{padding-left:14px!important;padding-right:14px!important}
+  .v17 .v11-etc-track,.v17 .v11-about-grid{margin-right:-14px!important}
+  .v17 .v11-etc-card,.v17 .v11-about-card{flex-basis:78vw!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .v17 .v11-chev,.v17 .v11-chev-core,.v17 .v11-dock,.v17 .v17-track-status>i>b{transition:none!important}
+}
