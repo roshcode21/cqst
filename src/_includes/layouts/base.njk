@@ -8,7 +8,7 @@
   <meta name="application-name" content="{{ site.name }}">
   <meta name="apple-mobile-web-app-title" content="{{ site.name }}">
 
-  <title>{% if title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+  <title>{% if seoTitle %}{{ seoTitle }}{% elif title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
   <meta name="description" content="{{ description or site.description }}">
   <meta name="robots" content="{{ robots or 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' }}">
   <link rel="canonical" href="{{ canonical or (site.url + page.url) }}">
@@ -17,16 +17,23 @@
   <meta property="og:locale" content="es_MX">
   <meta property="og:site_name" content="{{ site.name }}">
   <meta property="og:type" content="{{ ogType or 'website' }}">
-  <meta property="og:title" content="{{ ogTitle or title or site.name }}">
+  <meta property="og:title" content="{{ ogTitle or seoTitle or title or site.name }}">
   <meta property="og:description" content="{{ ogDescription or description or site.description }}">
   <meta property="og:url" content="{{ canonical or (site.url + page.url) }}">
-  {% if shareImage %}<meta property="og:image" content="{{ site.url }}{{ shareImage }}">{% endif %}
-  {% if shareImage %}<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">{% endif %}
+  {% if shareImage %}
+  <meta property="og:image" content="{{ site.url }}{{ shareImage }}">
+  <meta property="og:image:secure_url" content="{{ site.url }}{{ shareImage }}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {% if shareImageAlt %}<meta property="og:image:alt" content="{{ shareImageAlt }}">{% endif %}
+  {% endif %}
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ ogTitle or title or site.name }}">
+  <meta name="twitter:title" content="{{ ogTitle or seoTitle or title or site.name }}">
   <meta name="twitter:description" content="{{ ogDescription or description or site.description }}">
   {% if shareImage %}<meta name="twitter:image" content="{{ site.url }}{{ shareImage }}">{% endif %}
+  {% if shareImageAlt %}<meta name="twitter:image:alt" content="{{ shareImageAlt }}">{% endif %}
 
   <link rel="icon" href="/assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
@@ -34,6 +41,10 @@
 
   <link rel="stylesheet" href="/assets/css/production/base.css">
   {% if stylesheet %}<link rel="stylesheet" href="{{ stylesheet }}">{% endif %}
+
+  {% if site.analytics and site.analytics.provider == 'umami' %}
+  <script defer src="{{ site.analytics.src }}" data-website-id="{{ site.analytics.websiteId }}"></script>
+  {% endif %}
 
   {% block head %}{% endblock %}
 </head>
