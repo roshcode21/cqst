@@ -1,0 +1,253 @@
+---
+title: ""
+description: "Una publicación por ciclos. Distintas voces alrededor de una misma idea."
+robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+canonical: "https://cadaquiensutema.com/"
+shareImage: "/assets/brand/share-empezar-1200x630.png"
+themeColor: "#f8f4ec"
+stylesheet: "/assets/css/production/home.css"
+script: "/assets/js/production/home.js"
+bodyClass: "home"
+---
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": "{{ site.name }}",
+      "description": "{{ site.description }}",
+      "inLanguage": "{{ site.locale }}",
+      "publisher": {"@id": "{{ site.url }}/#organization"}
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "{{ site.name }}",
+      "url": "{{ site.url }}/",
+      "logo": "{{ site.url }}/assets/brand/logo-static.png",
+      "sameAs": [
+        "{{ site.social.instagram }}",
+        "{{ site.social.tiktok }}",
+        "{{ site.social.facebook }}"
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block body %}
+{% include "components/dock.njk" %}
+{% include "components/orbit-layer.njk" %}
+
+<main id="main">
+  <section class="home-hero scene" id="portada" data-scene="hero" data-tone="light">
+    <div class="home-hero__grid">
+      <div class="home-hero__brand">
+        <h1 class="sr-only">{{ site.name }}</h1>
+        <button class="kinetic-logo" id="kineticLogo" type="button" aria-label="Pausar logotipo cinético" aria-pressed="false">
+          <img id="kineticLogoImage" src="/assets/brand/kinetic/Logo.png" width="2048" height="659" alt="{{ site.name }}">
+        </button>
+        <span class="brand-spark brand-spark--orange" aria-hidden="true">✦</span>
+        <span class="brand-spark brand-spark--violet matrix" aria-hidden="true">+</span>
+      </div>
+
+      <article class="current-cycle current-cycle--desktop" aria-label="Ciclo actual {{ home.currentCycle.title }}">
+        <div class="current-cycle__eyebrow"><span class="matrix">{{ home.hero.eyebrow }}</span><span>{{ home.hero.label }}</span></div>
+        <div class="current-cycle__head">
+          <h2>{{ home.currentCycle.title }}</h2>
+          <a href="/{{ home.currentCycle.slug }}/">Entrar ↗</a>
+        </div>
+        <p class="current-cycle__deck">{{ home.currentCycle.deck }}</p>
+        <div class="spark-rule" aria-hidden="true"><i></i></div>
+        <div class="story-list">
+          {% for story in home.currentCycle.stories %}
+            {% if story.href %}<a class="story-row{% if story.status == 'published' %} is-published{% endif %}" href="{{ story.href }}">{% else %}<div class="story-row is-unpublished" aria-disabled="true">{% endif %}
+              <i aria-hidden="true"></i>
+              <span><strong>{{ story.title }}</strong><small>{{ story.author }}{% if story.time %} · {{ story.time }}{% endif %}</small></span>
+              <b aria-hidden="true">↗</b>
+            {% if story.href %}</a>{% else %}</div>{% endif %}
+          {% endfor %}
+        </div>
+        <span class="corner-pixels corner-pixels--a" aria-hidden="true"></span>
+        <span class="corner-pixels corner-pixels--b" aria-hidden="true"></span>
+      </article>
+
+      <section class="current-cycle current-cycle--mobile" aria-label="Ciclo actual {{ home.currentCycle.title }}">
+        <header class="current-cycle__mobile-head">
+          <span><span class="matrix">{{ home.hero.eyebrow }}</span><strong>{{ home.currentCycle.title }}</strong></span>
+          <a href="/{{ home.currentCycle.slug }}/">Ver ciclo ↗</a>
+        </header>
+        <p>{{ home.currentCycle.deck }}</p>
+        <div class="spark-rule" aria-hidden="true"><i></i></div>
+        <div class="story-list story-list--mobile">
+          {% for story in home.currentCycle.stories %}
+            {% if story.href %}<a class="story-row" href="{{ story.href }}">{% else %}<div class="story-row is-unpublished" aria-disabled="true">{% endif %}
+              <span><strong>{{ story.title }}</strong><small>{{ story.author }}{% if story.time %} · {{ story.time }}{% endif %}</small></span>
+              <b aria-hidden="true">↗</b>
+            {% if story.href %}</a>{% else %}</div>{% endif %}
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="reader scene" id="leer" data-scene="reader" data-tone="dark" aria-labelledby="readerTitle">
+    <div class="section-shell">
+      {% set icon = "/assets/leerxtema.png" %}
+      {% set heading = home.reader.title %}
+      {% set tagline = home.reader.tagline %}
+      {% set headingId = "readerTitle" %}
+      {% set align = "light" %}
+      {% include "components/section-heading.njk" %}
+
+      <div class="reader-console">
+        <nav class="cycle-rail" id="cycleRail" aria-label="Índice de ciclos">
+          {% for cycle in home.reader.labCycles %}
+            <button type="button" class="cycle-pill{% if cycle.status == 'current' %} is-active{% endif %}" data-cycle="{{ cycle.slug }}"{% if cycle.status != 'current' %} aria-disabled="true" data-prototype="true"{% endif %}>
+              <strong>{{ cycle.title }}</strong>
+              <small>{{ cycle.count }} voces</small>
+            </button>
+          {% endfor %}
+        </nav>
+        <div class="cycle-rail__meter" aria-hidden="true"><i></i></div>
+        <div class="reader-console__divider" aria-hidden="true"><i></i></div>
+
+        <article class="reader-preview" id="readerPreview" aria-live="polite">
+          <p class="reader-preview__count">{{ home.currentCycle.voiceCount }} voces</p>
+          <h3>{{ home.currentCycle.title }}</h3>
+          <p class="reader-preview__deck">{{ home.currentCycle.deck }}</p>
+          <ul class="reader-preview__stories">
+            {% for story in home.currentCycle.stories %}
+              <li{% if not story.href %} class="is-unpublished"{% endif %}>
+                {% if story.href %}<a class="reader-story" href="{{ story.href }}">{% else %}<div class="reader-story" aria-disabled="true">{% endif %}
+                  <span><strong>{{ story.title }}</strong><small>{{ story.author }}{% if story.time %} · {{ story.time }}{% endif %}</small></span>
+                  <b aria-hidden="true">↗</b>
+                {% if story.href %}</a>{% else %}</div>{% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+          <a class="reader-preview__cta" href="/{{ home.currentCycle.slug }}/">Entrar a {{ home.currentCycle.title }} →</a>
+        </article>
+
+        <div class="reader-preview__scroll" aria-hidden="true"><i></i></div>
+        <span class="console-pixels console-pixels--a" aria-hidden="true"></span>
+        <span class="console-pixels console-pixels--b" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="etcetera scene" id="etcetera" data-scene="etc" data-tone="light" aria-labelledby="etcTitle">
+    <div class="section-shell">
+      {% set icon = "/assets/etcetera.png" %}
+      {% set heading = home.etcetera.title %}
+      {% set tagline = home.etcetera.tagline %}
+      {% set headingId = "etcTitle" %}
+      {% set align = "dark" %}
+      {% include "components/section-heading.njk" %}
+
+      <div class="card-track" id="etcTrack" tabindex="0" aria-label="Tres páginas sueltas. Desliza para recorrerlas.">
+        {% for card in home.etcetera.cards %}
+          {% if card.href %}<a class="article-card" href="{{ card.href }}">{% else %}<article class="article-card is-unpublished" aria-disabled="true">{% endif %}
+            <div class="article-card__image"><img src="{{ card.image }}" alt="{{ card.alt }}" loading="eager" decoding="async"></div>
+            <div class="article-card__copy">
+              <h3>{{ card.title }}</h3>
+              <p><span>{{ card.author }}</span><span>{{ card.meta }}</span></p>
+              <span class="article-card__action" aria-hidden="true">↗</span>
+            </div>
+          {% if card.href %}</a>{% else %}</article>{% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="track-status track-status--etc" aria-hidden="true"><span class="matrix">01 / 03</span><i><b></b></i><em class="matrix">desliza</em></div>
+      <div class="sr-only" id="etcLive" aria-live="polite">Página 1 de 3</div>
+      <footer class="etcetera__coda"><p>{{ home.etcetera.coda }}</p><a href="#leer">{{ home.etcetera.cta }}</a></footer>
+    </div>
+  </section>
+
+  {% set scene = "chev1" %}{% set variant = "one" %}{% include "components/chevron-divider.njk" %}
+
+  <section class="about scene" id="cqst" data-scene="about" data-tone="acid" aria-labelledby="aboutTitle">
+    <div class="section-shell">
+      {% set icon = "/assets/yqp.png" %}
+      {% set heading = home.about.title %}
+      {% set tagline = home.about.tagline %}
+      {% set headingId = "aboutTitle" %}
+      {% set align = "about" %}
+      {% include "components/section-heading.njk" %}
+
+      <div class="about-track" id="aboutTrack" tabindex="0" aria-label="Tres ideas sobre Cada quien su tema. Desliza para recorrerlas.">
+        <article class="about-card about-card--cqst">
+          <img class="about-card__cycles" src="/assets/ciclos.png" alt="" aria-hidden="true">
+          <p class="about-card__label">{{ home.about.cqst.label }}</p>
+          <h3>{{ home.about.cqst.title }}</h3>
+          <p class="about-card__body">{{ home.about.cqst.body }}</p>
+          <a class="about-card__cta" href="/cqst/">{{ home.about.cqst.cta }} <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <article class="about-card about-card--narrans">
+          <h3 class="narrans-lockup"><span class="narrans-lockup__homo">HOMO</span><span class="matrix narrans-lockup__narrans">narrans</span></h3>
+          <h4>{{ home.about.narrans.title }}</h4>
+          <p class="about-card__body">{{ home.about.narrans.body }}</p>
+          <div class="cosmos-signature" aria-hidden="true"><span>✦</span><span>·</span><span>°</span><span>··</span><span>✧</span><span>+</span></div>
+        </article>
+
+        <article class="about-card about-card--voices">
+          <p class="about-card__label">{{ home.about.voices.label }}</p>
+          <div class="voices-symbol"><img src="/assets/simbolo_white.png" alt="Símbolo de Voces CQST"></div>
+          <h3>{{ home.about.voices.title }}</h3>
+          <p class="about-card__body">{{ home.about.voices.body }}</p>
+        </article>
+      </div>
+
+      <nav class="about-pager" aria-label="Elegir tarjeta">
+        <button class="is-active" type="button" aria-label="Ir a tarjeta 1"></button>
+        <button type="button" aria-label="Ir a tarjeta 2"></button>
+        <button type="button" aria-label="Ir a tarjeta 3"></button>
+      </nav>
+      <div class="track-status track-status--about" aria-hidden="true"><span class="matrix">01 / 03</span><i><b></b></i><em class="matrix">desliza</em></div>
+      <div class="sr-only" id="aboutLive" aria-live="polite">Tarjeta 1 de 3</div>
+    </div>
+  </section>
+
+  {% set scene = "chev2" %}{% set variant = "two" %}{% include "components/chevron-divider.njk" %}
+
+  <section class="participate scene" id="participar" data-scene="participate" data-tone="dark">
+    <div class="participate__wrap">
+      <article class="action-card action-card--newsletter">
+        <img class="action-card__icon" src="/assets/suscripcion.png" alt="" aria-hidden="true">
+        <p class="action-label matrix">{{ home.participate.newsletter.label }}</p>
+        <h2>{{ home.participate.newsletter.title }}</h2>
+        <h3>{{ home.participate.newsletter.subtitle }}</h3>
+        <p class="action-card__service">{{ home.participate.newsletter.service }}</p>
+        <form class="newsletter-form" id="newsletterForm" action="https://formspree.io/f/{{ site.formspreeId }}" method="POST">
+          <label class="sr-only" for="newsletterEmail">Tu correo</label>
+          <input id="newsletterEmail" name="email" type="email" placeholder="tu correo" required autocomplete="email">
+          <input type="hidden" name="_subject" value="Nueva suscripción — Cada quien su tema">
+          <input type="hidden" name="form_type" value="suscripcion">
+          <input type="hidden" name="origen" value="CQST home">
+          <button type="submit">{{ home.participate.newsletter.button }}</button>
+        </form>
+        <p class="form-note" id="newsletterNote" aria-live="polite"></p>
+      </article>
+
+      <article class="action-card action-card--topic">
+        <img class="action-card__icon" src="/assets/proponer.png" alt="" aria-hidden="true">
+        <p class="action-label matrix">{{ home.participate.topic.label }}</p>
+        <h2>{{ home.participate.topic.title }}</h2>
+        <p class="action-card__copy"><strong>{{ home.participate.topic.bodyStrong }}</strong> {{ home.participate.topic.body }}</p>
+        <button class="action-card__button" type="button" data-open-topic>{{ home.participate.topic.button }}</button>
+      </article>
+    </div>
+  </section>
+</main>
+
+{% include "components/topic-dialog.njk" %}
+{% include "components/footer.njk" %}
+{% endblock %}

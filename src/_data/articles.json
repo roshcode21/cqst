@@ -1,0 +1,59 @@
+[
+  {
+    "slug": "la-fecha-la-ponemos-despues",
+    "title": "La fecha la ponemos después",
+    "description": "Empezar parece claro cuando miramos hacia atrás. Rodolfo Raudales escribe sobre memoria, sesgo retrospectivo y la forma en que elegimos un comienzo.",
+    "cycle": "empezar",
+    "author": "rodolfo-raudales",
+    "published": "2026-08-19",
+    "modified": "2026-08-20",
+    "readingTime": 3,
+    "wordCount": 600,
+    "genre": "Ensayo",
+    "status": "published",
+    "subjects": [
+      "comienzos",
+      "memoria autobiográfica",
+      "efecto de nuevo comienzo",
+      "sesgo retrospectivo"
+    ],
+    "citations": [
+      "https://doi.org/10.1287/mnsc.2014.1901",
+      "https://doi.org/10.1002/wcs.1620",
+      "https://doi.org/10.1037/0096-1523.1.3.288"
+    ],
+    "shareImage": "/assets/brand/share-empezar-1200x630.png"
+  },
+  {
+    "slug": "no-fue-ese-dia",
+    "title": "No fue ese día",
+    "description": "",
+    "cycle": "empezar",
+    "author": "marivi-cerisola",
+    "published": null,
+    "modified": null,
+    "readingTime": 4,
+    "wordCount": null,
+    "genre": "",
+    "status": "scheduled",
+    "subjects": [],
+    "citations": [],
+    "shareImage": null
+  },
+  {
+    "slug": "mel-empezar-draft",
+    "title": null,
+    "description": "",
+    "cycle": "empezar",
+    "author": "mel-castan",
+    "published": null,
+    "modified": null,
+    "readingTime": null,
+    "wordCount": null,
+    "genre": "",
+    "status": "draft",
+    "subjects": [],
+    "citations": [],
+    "shareImage": null
+  }
+]
