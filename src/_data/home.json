@@ -3,6 +3,33 @@
     "eyebrow": "AHORA",
     "label": "Ciclo actual"
   },
+  "currentCycle": {
+    "slug": "empezar",
+    "title": "Empezar",
+    "deck": "El principio cambia según quién lo cuenta.",
+    "voiceCount": 3,
+    "stories": [
+      {
+        "title": "La fecha la ponemos después",
+        "author": "Rodolfo Raudales",
+        "time": "3 min",
+        "href": "/empezar/la-fecha-la-ponemos-despues/",
+        "status": "published"
+      },
+      {
+        "title": "No fue ese día",
+        "author": "Mariví Cerisola",
+        "time": "4 min",
+        "status": "scheduled"
+      },
+      {
+        "title": "[tu título aquí]",
+        "author": "Mel Castán",
+        "time": "",
+        "status": "lab-placeholder"
+      }
+    ]
+  },
   "reader": {
     "title": "leer × tema",
     "tagline": "Una cosa lleva a otra"
@@ -11,7 +38,34 @@
     "title": "etcétera",
     "tagline": "Páginas sueltas",
     "coda": "Sin orden de lectura.",
-    "cta": "Elegir por tema ↑"
+    "cta": "Elegir por tema ↑",
+    "cards": [
+      {
+        "title": "La fecha la ponemos después",
+        "author": "Rodolfo Raudales",
+        "meta": "3 min · Empezar",
+        "href": "/empezar/la-fecha-la-ponemos-despues/",
+        "image": "/assets/home/ufo-01.jpg",
+        "alt": "Escena nocturna con una nave sobre el agua",
+        "status": "published"
+      },
+      {
+        "title": "No fue ese día",
+        "author": "Mariví Cerisola",
+        "meta": "4 min · Empezar",
+        "image": "/assets/home/ufo-02.jpg",
+        "alt": "Escena nocturna con una nave sobre una multitud",
+        "status": "scheduled"
+      },
+      {
+        "title": "[tu título aquí]",
+        "author": "Mel Castán",
+        "meta": "Empezar",
+        "image": "/assets/home/ufo-03.jpg",
+        "alt": "Escena nocturna con una nave sobre Veracruz",
+        "status": "lab-placeholder"
+      }
+    ]
   },
   "about": {
     "title": "… ¿y quién pregunta?",
