@@ -1,0 +1,37 @@
+name: CQST build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - v21-production-refactor
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Eleventy + Pagefind
+        run: npm run build
+
+      - name: Verify production entry points
+        run: |
+          test -f _site/index.html
+          test -f _site/assets/css/production/base.css
+          test -f _site/assets/css/production/home.css
+          test -f _site/assets/js/production/home.js
+          test -d _site/pagefind
