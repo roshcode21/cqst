@@ -9,6 +9,11 @@
   "email": "hola@cadaquiensutema.com",
   "topicEmail": "temas@cadaquiensutema.com",
   "formspreeId": "moeqwono",
+  "analytics": {
+    "provider": "umami",
+    "src": "https://cloud.umami.is/script.js",
+    "websiteId": "9dfccd0b-94a4-437c-b156-fc464b1b226d"
+  },
   "social": {
     "instagram": "https://www.instagram.com/cadaquiensutema/",
     "tiktok": "https://www.tiktok.com/@cada.quien.su.tema",
