@@ -1,0 +1,143 @@
+/* CQST V19 — closed home candidate. Final typographic, interaction and spacing polish. */
+.v19{
+  --v19-blue:#0000ff;
+  --v19-blue-ink:#1119ee;
+  --v19-green:#85ff00;
+  --v19-orange:#ff7a00;
+  --v19-violet:#6f22ff;
+  --v19-violet-dark:#351451;
+  --v19-plum:#402455;
+  --v19-paper:#f8f4ec;
+}
+
+/* Global restraint: V19 is refinement, not another visual layer. */
+.v19 .v11-dock nav a{font-weight:620!important}
+.v19 .v11-email-row button,.v19 .v11-propose-button,.v19 .v11-dialog-send{font-weight:620!important}
+.v19 .v17-etc-footer a{font-weight:620!important}
+
+/* ORBITS — reduce sameness and smooth perceived motion without adding spectacle. */
+.v19 .v11-orbit-layer{opacity:.57!important}
+.v19 .orbit-set-0 .orbit-line{stroke-width:1.08!important;opacity:.55!important}
+.v19 .orbit-set-1 .orbit-line{stroke-width:.9!important;opacity:.43!important}
+.v19 .orbit-set-2 .orbit-line{stroke-width:.74!important;opacity:.34!important}
+.v19 .orbit-set-0 .orbit-dot{r:4px}
+.v19 .orbit-set-1 .orbit-dot{r:3.55px}
+.v19 .orbit-set-2 .orbit-dot{r:3.15px}
+
+/* SECTION HEADS — lock the three-part system before final. */
+.v19 .v11-section-head{column-gap:14px!important}
+.v19 .v11-section-head p{font-size:clamp(14px,1.03vw,16px)!important;line-height:1.08!important}
+
+/* READER — a little more breathing room between pill scroller / meter / spark rule on mobile. */
+@media(max-width:720px){
+  .v19 .v15-rail-meter{margin-bottom:7px!important}
+  .v19 .v17-reader-divider{margin-top:10px!important;margin-bottom:18px!important}
+}
+
+/* ETCETERA — coda must be understated, not invisible. */
+.v19 .v17-etc-footer p{color:#2e2749!important;font-weight:650!important;opacity:1!important}
+.v19 .v17-etc-footer p::before{content:"";display:inline-block;width:5px;height:5px;margin-right:8px;vertical-align:1px;background:var(--v19-violet);box-shadow:7px 0 0 rgba(111,34,255,.18)}
+
+/* Mobile raster icons are recolored as masks so icon and title are mathematically the same color. */
+@media(max-width:720px){
+  .v19 .v11-etc .v11-section-head,
+  .v19 .v11-about .v11-section-head{position:relative}
+  .v19 .v11-etc .v11-section-head>img,
+  .v19 .v11-about .v11-section-head>img{visibility:hidden!important;filter:none!important}
+  .v19 .v11-etc .v11-section-head::before,
+  .v19 .v11-about .v11-section-head::before{content:"";grid-column:1;grid-row:1;width:42px;height:42px;align-self:center;justify-self:center;background:currentColor;mask-repeat:no-repeat;mask-position:center;mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-size:contain}
+  .v19 .v11-etc .v11-section-head::before{mask-image:url("../etcetera.png");-webkit-mask-image:url("../etcetera.png")}
+  .v19 .v11-about .v11-section-head::before{mask-image:url("../yqp.png");-webkit-mask-image:url("../yqp.png")}
+}
+
+/* YQP — final three-card editorial system. */
+.v19 .v11-about-grid{grid-template-columns:1.05fr .98fr 1.01fr!important;gap:19px!important}
+.v19 .v11-about-card{min-height:404px!important}
+.v19 .about-cqst,.v19 .about-narrans,.v19 .about-voices{padding:24px 25px 23px!important}
+.v19 .v11-card-body{font-size:15px!important;line-height:1.52!important;color:var(--v19-plum)!important}
+
+/* CARD 1 — cycles is a real asset now, not a CSS construction. */
+.v19 .about-cqst{position:relative!important;display:grid!important;grid-template-rows:auto 1fr auto auto!important;background:linear-gradient(148deg,rgba(255,251,236,.91),rgba(225,255,194,.85))!important}
+.v19 .about-cqst .v12-article-glyph{display:none!important}
+.v19 .v19-cycles-glyph{position:absolute;top:20px;right:21px;width:66px;height:66px;object-fit:contain;z-index:3}
+.v19 .about-cqst h3{font-size:clamp(34px,2.95vw,46px)!important;line-height:.94!important;letter-spacing:-.055em!important;margin:56px 0 17px!important;max-width:91%!important;color:#2b133e!important}
+.v19 .about-cqst .v11-card-body{max-width:94%!important;margin:0 0 18px!important}
+
+/* CTA as an editorial control, not a generic button. */
+.v19 .v11-card-cta{position:relative!important;isolation:isolate;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:12px!important;width:100%!important;min-height:52px!important;margin-top:auto!important;padding:0 0 0 15px!important;border:1px solid rgba(31,10,82,.28)!important;border-radius:13px!important;background:#f8f4ea!important;color:#2b1245!important;box-shadow:inset 0 -1px 0 rgba(111,34,255,.12),0 5px 0 rgba(67,24,100,.10)!important;overflow:hidden!important;font-size:12.5px!important;font-weight:650!important;letter-spacing:-.01em!important}
+.v19 .v11-card-cta::before{content:"CQST";position:absolute;left:15px;bottom:5px;font-family:Matrixel,"Courier New",monospace;font-size:8px;line-height:1;color:rgba(111,34,255,.54);letter-spacing:.08em;z-index:-1;transition:transform .24s var(--ease),opacity .2s}
+.v19 .v11-card-cta::after{content:""!important;position:absolute!important;inset:0 auto 0 0!important;width:0!important;height:auto!important;background:linear-gradient(90deg,var(--v19-blue),#5030ff 72%,var(--v19-violet))!important;transition:width .32s var(--ease)!important;z-index:-2!important}
+.v19 .v11-card-cta span{width:52px;height:50px;display:grid;place-items:center;background:var(--v19-blue);color:#fff;border-left:1px solid rgba(255,255,255,.22);font-size:18px!important;transition:background .2s,color .2s,transform .24s var(--ease)}
+@media(hover:hover) and (pointer:fine){
+  .v19 .v11-card-cta:hover{color:#fff!important;border-color:rgba(133,255,0,.62)!important;box-shadow:0 6px 0 rgba(54,16,98,.14),0 0 0 2px rgba(133,255,0,.24)!important;transform:translateY(-2px)!important}
+  .v19 .v11-card-cta:hover::after{width:100%!important}
+  .v19 .v11-card-cta:hover::before{transform:translateX(9px);opacity:.15}
+  .v19 .v11-card-cta:hover span{background:var(--v19-green);color:#13002d;transform:translateX(-2px)}
+}
+
+/* CARD 2 — more like an editorial spread than a label + headline stack. */
+.v19 .about-narrans{position:relative!important;display:grid!important;grid-template-rows:auto auto 1fr auto!important;align-content:stretch!important;background:linear-gradient(145deg,rgba(233,255,204,.94),rgba(242,255,216,.91))!important}
+.v19 .about-narrans::after{content:"";position:absolute;left:24px;right:24px;top:178px;height:1px;background:linear-gradient(90deg,rgba(111,34,255,.20),rgba(111,34,255,.52),rgba(111,34,255,.10));pointer-events:none}
+.v19 .about-narrans .narrans-word{display:block!important;margin:2px 0 26px!important;line-height:.72!important;letter-spacing:0!important;position:relative;z-index:2}
+.v19 .about-narrans .narrans-homo{display:block!important;writing-mode:horizontal-tb!important;transform:none!important;font-family:Matrixel,"Courier New",monospace!important;font-size:clamp(59px,5vw,76px)!important;font-weight:400!important;line-height:.75!important;letter-spacing:-.035em!important;color:var(--v19-violet)!important;padding:0!important;text-align:center!important}
+.v19 .about-narrans .narrans-narrans{display:block!important;font-family:Matrixel,"Courier New",monospace!important;font-size:clamp(56px,4.82vw,73px)!important;line-height:.72!important;letter-spacing:-.04em!important;color:var(--v19-violet)!important;white-space:nowrap!important;margin-left:-10px!important}
+.v19 .about-narrans h4{font-size:clamp(27px,2.45vw,36px)!important;line-height:.96!important;letter-spacing:-.045em!important;margin:0 0 15px!important;padding:21px 0 0!important;border:0!important;color:#39124f!important;max-width:95%!important;position:relative;z-index:2}
+.v19 .about-narrans .v11-card-body{font-size:14.75px!important;line-height:1.5!important;margin:0!important;position:relative;z-index:2}
+.v19 .v19-cosmos-signature{display:flex;align-items:center;gap:7px;margin-top:14px;color:var(--v19-violet);font-family:Matrixel,"Courier New",monospace;font-size:12px;line-height:1;letter-spacing:.04em;opacity:.76;position:relative;z-index:2}
+.v19 .v19-cosmos-signature::after{content:"";height:1px;flex:1;max-width:64px;background:linear-gradient(90deg,rgba(111,34,255,.48),transparent)}
+.v19 .v19-cosmos-signature span:nth-child(1){font-size:14px}
+.v19 .v19-cosmos-signature span:nth-child(3){font-size:9px;transform:translateY(-2px)}
+.v19 .v19-cosmos-signature span:nth-child(5){color:#9c6bff}
+
+/* CARD 3 — hover changes light/ink, never rotates or scales the object. */
+.v19 .about-voices{position:relative!important;overflow:hidden!important;background:linear-gradient(145deg,rgba(24,28,47,.98),rgba(8,49,34,.96))!important}
+.v19 .about-voices::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 0 55%,rgba(133,255,0,.045) 66%,rgba(117,83,255,.09) 75%,transparent 87%);transform:translateX(-34%);opacity:0;transition:transform .45s var(--ease),opacity .25s;pointer-events:none}
+.v19 .v11-voices-art{transform:none!important;transition:filter .28s,opacity .28s!important}
+.v19 .about-voices:hover .v11-voices-art{transform:none!important;filter:drop-shadow(0 0 16px rgba(124,94,255,.35))!important}
+@media(hover:hover) and (pointer:fine){
+  .v19 .about-voices:hover::after{transform:translateX(15%);opacity:1}
+  .v19 .about-voices:hover{box-shadow:0 18px 42px rgba(27,11,59,.16),0 0 0 1px rgba(133,255,0,.26) inset!important}
+}
+
+/* MOBILE YQP — preserve drama without depending on hover. */
+@media(max-width:720px){
+  .v19 .v11-about-grid{padding-right:18vw!important}
+  .v19 .v11-about-card{flex-basis:79vw!important;min-height:438px!important}
+  .v19 .v19-cycles-glyph{top:18px;right:18px;width:58px;height:58px}
+  .v19 .about-cqst h3{font-size:36px!important;line-height:.94!important;margin-top:52px!important}
+  .v19 .v11-card-cta{min-height:54px!important;background:linear-gradient(90deg,#f8f4ea 0 calc(100% - 54px),var(--v19-blue) calc(100% - 54px))!important}
+  .v19 .v11-card-cta span{width:54px;height:52px;background:transparent!important}
+  .v19 .v11-card-cta:active{background:linear-gradient(90deg,var(--v19-violet) 0 calc(100% - 54px),var(--v19-green) calc(100% - 54px))!important;color:#fff!important;transform:translateY(1px)!important;box-shadow:0 3px 0 rgba(54,16,98,.12)!important}
+  .v19 .v11-card-cta:active span{color:#16002d!important}
+
+  .v19 .about-narrans::after{top:169px!important;left:22px!important;right:22px!important}
+  .v19 .about-narrans .narrans-word{margin-top:1px!important;margin-bottom:23px!important}
+  .v19 .about-narrans .narrans-homo{font-size:clamp(56px,17.5vw,68px)!important}
+  .v19 .about-narrans .narrans-narrans{font-size:clamp(53px,16.5vw,65px)!important;margin-left:-7px!important}
+  .v19 .about-narrans h4{font-size:30px!important;padding-top:20px!important;margin-bottom:14px!important}
+  .v19 .about-narrans .v11-card-body{font-size:14.5px!important}
+  .v19 .v19-cosmos-signature{margin-top:13px;font-size:11px}
+
+  .v19 .about-voices::after{display:none}
+  .v19 .about-voices:active{box-shadow:0 18px 42px rgba(27,11,59,.16),0 0 0 1px rgba(133,255,0,.28) inset!important}
+}
+
+/* Fine-size fallback for narrow phones. */
+@media(max-width:400px){
+  .v19 .v11-about-card{flex-basis:81vw!important}
+  .v19 .about-narrans .narrans-homo{font-size:53px!important}
+  .v19 .about-narrans .narrans-narrans{font-size:50px!important}
+  .v19 .about-cqst h3{font-size:34px!important}
+}
+
+/* Formspree states. */
+.v19 .v11-email-row button[disabled]{opacity:.58;cursor:wait!important}
+.v19 .v11-form-note{min-height:1.35em}
+.v19 .v11-form-note.is-success{color:#e9ffbf!important}
+.v19 .v11-form-note.is-error{color:#fff1bf!important}
+
+/* Reduced motion keeps all final interactions legible rather than absent. */
+@media(prefers-reduced-motion:reduce){
+  .v19 .v11-card-cta::after{transition:none!important}
+  .v19 .about-voices::after{transition:none!important}
+}
