@@ -1,6 +1,12 @@
 (()=>{
 'use strict';
 const $=(s,c=document)=>c.querySelector(s);
+const dialog=$('#topicDialog');
+const close=$('.v11-dialog-close',dialog);
+const closeDialog=e=>{e?.preventDefault?.();e?.stopImmediatePropagation?.();if(dialog?.open)dialog.close('cancel')};
+close?.addEventListener('pointerup',closeDialog,true);
+close?.addEventListener('click',closeDialog,true);
+
 const form=$('#v17TopicForm');
 if(!form)return;
 form.addEventListener('submit',e=>{
@@ -15,16 +21,17 @@ form.addEventListener('submit',e=>{
     'NUEVA PROPUESTA DE TEMA',
     'Cada quien su tema · laboratorio V18',
     '',
+    'QUIÉN ENVÍA',
     `Nombre: ${name}`,
     `Correo: ${email}`,
     '',
     'TEMA',
     topic,
     '',
+    'CONTEXTO',
     `Página: ${location.href}`,
     `Responder a: ${email}`
   ].join('\n');
-  const dialog=$('#topicDialog');
   if(dialog?.open)dialog.close('submit');
   location.href=`mailto:rodo.raudales@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 },true);
