@@ -1,0 +1,177 @@
+/* CQST V18 — typographic composition, navigation weight, mobile spacing and final-candidate polish. */
+.v18{
+  --v18-blue:#0000ff;
+  --v18-green:#85ff00;
+  --v18-orange:#ff7a00;
+  --v18-violet:#6f22ff;
+  --v18-violet-deep:#28123f;
+  --v18-plum:#4a3560;
+  --v18-paper:#fff8ea;
+}
+
+/* NAV — confident, not extra-bold. */
+.v18 .v11-dock nav a{font-weight:650!important;letter-spacing:-.015em!important}
+.v18 .v11-email-row button,.v18 .v11-propose-button,.v18 .v11-dialog-send{font-weight:650!important}
+.v18 .v17-etc-footer a,.v18 .v15-footer-navs a,.v18 .v15-footer-navs button{font-weight:600!important}
+
+/* ORBITS — same geometry, cleaner hierarchy between the three atomic paths. */
+.v18 .v11-orbit-layer{opacity:.61!important}
+.v18 .orbit-set-0 .orbit-line{stroke-width:1.15!important;opacity:.56!important}
+.v18 .orbit-set-1 .orbit-line{stroke-width:.95!important;opacity:.47!important}
+.v18 .orbit-set-2 .orbit-line{stroke-width:.82!important;opacity:.39!important}
+.v18 .orbit-set-0 .orbit-dot{filter:drop-shadow(0 0 5px rgba(133,255,0,.72))!important}
+.v18 .orbit-set-1 .orbit-dot{filter:drop-shadow(0 0 4px rgba(133,255,0,.58))!important}
+.v18 .orbit-set-2 .orbit-dot{filter:drop-shadow(0 0 3px rgba(133,255,0,.46))!important}
+
+/* SECTION LOCKUPS — icon, title and tagline become one typographic object. */
+.v18 .v11-section-head{grid-template-columns:56px minmax(0,1fr)!important;column-gap:15px!important;row-gap:0!important;align-items:center!important;margin-bottom:34px!important}
+.v18 .v11-section-head>img{width:54px!important;height:54px!important;align-self:center!important}
+.v18 .v11-section-head>div{gap:8px!important;align-content:center!important}
+.v18 .v11-section-head h2{font-size:clamp(48px,5vw,70px)!important;line-height:.84!important}
+.v18 .v11-section-head p{font-size:clamp(14px,1vw,16px)!important;line-height:1!important;letter-spacing:.015em!important}
+.v18 .v11-etc .v11-section-head>img{filter:brightness(0) saturate(100%) invert(8%) sepia(100%) saturate(7480%) hue-rotate(247deg) brightness(102%) contrast(145%)!important}
+.v18 .v11-about .v11-section-head>img{filter:brightness(0) saturate(100%) invert(25%) sepia(96%) saturate(6570%) hue-rotate(257deg) brightness(99%) contrast(106%)!important}
+
+/* READER — right scroll indicator gets a real gutter; reading surface never collides with it. */
+.v18 .v17-preview-scroll{right:12px!important;top:28px!important;bottom:28px!important;width:3px!important;background:rgba(196,183,255,.10)!important}
+.v18 .v17-preview-scroll i{background:linear-gradient(180deg,#c8beff,#8d75ff 52%,#5f43e8)!important;box-shadow:0 0 9px rgba(130,102,255,.32)!important}
+.v18 .v11-reader-preview{padding-right:72px!important}
+
+/* ETCETERA — less blue-box height, more deliberate metadata, readable coda. */
+.v18 .v11-etc-copy{min-height:101px!important;padding:15px 48px 14px 15px!important;gap:9px!important}
+.v18 .v11-etc-copy h3{font-size:18px!important;line-height:1.1!important}
+.v18 .v11-etc-copy p{gap:6px 12px!important}
+.v18 .v11-etc-copy p span{font-size:10.75px!important}
+.v18 .v11-etc-copy>span{width:28px!important;height:28px!important;right:13px!important;bottom:13px!important}
+.v18 .v17-etc-footer{padding-top:13px!important}
+.v18 .v17-etc-footer p{font-size:13.5px!important;color:#35304f!important;font-weight:600!important}
+.v18 .v17-etc-footer a{font-size:12.5px!important;color:#1119ee!important}
+
+/* CHEVRONS — V17 choreography was the right idea; refine the object, not the drama. */
+.v18 .v11-chevron-strip{height:106px!important;min-height:106px!important;gap:20px!important}
+.v18 .v11-chev{font-size:clamp(43px,5vw,69px)!important;opacity:.97!important;text-shadow:0 0 7px rgba(255,255,255,.18)!important}
+.v18 .v11-chev-core{font-size:26px!important;filter:drop-shadow(0 0 7px rgba(255,255,255,.48))!important}
+
+/* YQP — three cards, three editorial compositions, one grid. */
+.v18 .v11-about{padding-top:72px!important;padding-bottom:96px!important}
+.v18 .v11-about-grid{grid-template-columns:1.07fr .96fr 1.01fr!important;gap:18px!important;padding:9px 3px 25px!important}
+.v18 .v11-about-card{min-height:394px!important;border-radius:24px!important;overflow:hidden!important;box-shadow:0 18px 42px rgba(63,22,104,.12),0 1px 0 rgba(255,255,255,.86) inset!important}
+.v18 .about-cqst,.v18 .about-narrans,.v18 .about-voices{padding:24px 25px 24px!important}
+.v18 .v11-card-label{font-size:10.75px!important;letter-spacing:.085em!important;font-weight:750!important;color:#5a248c!important}
+.v18 .v11-card-body{font-size:15px!important;line-height:1.5!important;color:var(--v18-plum)!important}
+
+/* CQST card — strong headline, real reading text, branded action band. */
+.v18 .about-cqst{display:grid!important;grid-template-rows:auto 1fr auto auto!important;align-content:stretch!important;background:linear-gradient(145deg,rgba(255,252,237,.90),rgba(226,255,199,.80))!important}
+.v18 .about-cqst h3{font-size:clamp(33px,2.85vw,44px)!important;line-height:.96!important;letter-spacing:-.052em!important;margin:52px 0 16px!important;max-width:93%!important;color:var(--v18-violet-deep)!important}
+.v18 .about-cqst .v11-card-body{max-width:94%!important;margin-bottom:18px!important}
+.v18 .v11-card-cta{align-self:end!important;width:100%!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;margin:0!important;padding:13px 15px!important;background:var(--v18-blue)!important;color:#fff!important;border:1px solid rgba(255,255,255,.24)!important;border-radius:12px!important;box-shadow:0 5px 0 rgba(60,24,106,.16)!important;font-size:12.5px!important;font-weight:650!important;overflow:hidden!important;position:relative!important}
+.v18 .v11-card-cta::after{content:none!important}
+.v18 .v11-card-cta span{font-size:17px!important;transition:transform .2s}
+.v18 .v11-card-cta:hover{background:var(--v18-violet)!important;color:#fff!important;transform:translateY(-3px)!important;box-shadow:0 8px 0 rgba(60,24,106,.17),0 0 0 2px rgba(133,255,0,.55)!important}
+.v18 .v11-card-cta:hover span{transform:translate(3px,-2px)}
+
+/* HOMO NARRANS — editorial lockup, not two lines with a BR. */
+.v18 .about-narrans{position:relative!important;display:grid!important;grid-template-rows:auto auto 1fr!important;align-content:stretch!important;background:linear-gradient(145deg,rgba(247,255,226,.90),rgba(240,232,255,.86))!important}
+.v18 .about-narrans::after{content:"N";position:absolute;right:-10px;bottom:-35px;font-family:Matrixel,"Courier New",monospace;font-size:150px;line-height:1;color:rgba(111,34,255,.055);pointer-events:none}
+.v18 .about-narrans .narrans-word{display:grid!important;grid-template-columns:34px minmax(0,1fr)!important;align-items:end!important;column-gap:8px!important;margin:0 0 18px!important;position:relative;z-index:2}
+.v18 .about-narrans .narrans-homo{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px!important;font-weight:700!important;letter-spacing:.18em!important;line-height:1!important;color:#5d2d88!important;padding:0 0 2px!important;align-self:stretch;justify-self:center}
+.v18 .about-narrans .narrans-narrans{font-size:clamp(58px,5.05vw,76px)!important;line-height:.76!important;letter-spacing:-.05em!important;color:var(--v18-violet)!important;white-space:nowrap!important}
+.v18 .about-narrans h4{font-size:clamp(27px,2.35vw,35px)!important;line-height:.98!important;letter-spacing:-.042em!important;color:#32164b!important;margin:0 0 13px!important;padding-top:14px!important;border-top:1px solid rgba(111,34,255,.24)!important;position:relative;z-index:2}
+.v18 .about-narrans .v11-card-body{font-size:15px!important;line-height:1.5!important;margin-top:0!important;position:relative;z-index:2}
+
+/* Voices — stop centering everything; use the symbol as part of the composition. */
+.v18 .about-voices{position:relative!important;display:flex!important;flex-direction:column!important;background:linear-gradient(145deg,rgba(24,27,48,.97),rgba(9,48,35,.94))!important}
+.v18 .about-voices .v11-card-label{color:#dcd3ff!important;position:relative;z-index:3}
+.v18 .v11-voices-art{position:absolute!important;right:18px!important;top:50px!important;width:150px!important;height:145px!important;min-height:0!important;margin:0!important;display:grid!important;place-items:center!important;opacity:.96;z-index:1;transition:transform .28s var(--ease),opacity .28s}
+.v18 .v11-voices-art img{width:138px!important;max-height:138px!important;filter:drop-shadow(0 0 13px rgba(139,106,255,.22))!important}
+.v18 .about-voices h3{font-size:clamp(31px,2.7vw,40px)!important;line-height:.96!important;letter-spacing:-.045em!important;margin:70px 0 16px!important;max-width:62%!important;position:relative;z-index:2}
+.v18 .about-voices .v11-card-body{font-size:14.75px!important;line-height:1.5!important;margin-top:auto!important;color:#f1ebff!important;position:relative;z-index:2}
+.v18 .about-voices:hover .v11-voices-art{transform:rotate(5deg) scale(1.035);opacity:1}
+.v18 .about-narrans:hover .narrans-narrans{color:#5410d7!important}
+
+/* PARTICIPATE — keep the composition, soften typography on actions. */
+.v18 .v11-email-row button,.v18 .v11-propose-button,.v18 .v11-dialog-send{letter-spacing:-.01em!important}
+
+@media(max-width:900px) and (min-width:721px){
+  .v18 .v11-section-head p{font-size:14px!important}
+  .v18 .v11-about-card{min-height:405px!important}
+  .v18 .about-narrans .narrans-narrans{font-size:58px!important}
+  .v18 .about-voices h3{max-width:72%!important}
+}
+
+@media(max-width:720px){
+  /* Mobile UI typography: less generic weight, more deliberate hierarchy. */
+  .v18 .v11-dock nav a{font-size:11.5px!important;font-weight:650!important;letter-spacing:-.012em!important}
+  .v18 .v11-section-head{grid-template-columns:44px minmax(0,1fr)!important;column-gap:11px!important;margin-bottom:27px!important}
+  .v18 .v11-section-head>img{width:42px!important;height:42px!important}
+  .v18 .v11-section-head>div{gap:7px!important}
+  .v18 .v11-section-head h2{font-size:clamp(40px,11.8vw,52px)!important;line-height:.87!important}
+  .v18 .v11-section-head p{font-size:13.5px!important;line-height:1.04!important;letter-spacing:.01em!important}
+
+  /* Reader: pills, progress and star-divider live in normal flow, with real air between each layer. */
+  .v18 .v11-reader{padding:59px 16px 90px!important}
+  .v18 .v11-reader .v11-section-head{margin:0 3px 29px!important}
+  .v18 .v11-cycle-rail{padding:15px 18px 20px!important;gap:12px!important;scroll-padding-inline:18px!important;mask-image:linear-gradient(90deg,transparent 0,#000 15px,#000 calc(100% - 28px),transparent 100%)!important}
+  .v18 .v11-cycle-rail button{min-height:46px!important;padding:0 18px!important;border-radius:999px!important}
+  .v18 .v11-cycle-rail button strong{font-size:14.5px!important;font-weight:650!important}
+  .v18 .v15-rail-meter{position:relative!important;inset:auto!important;left:auto!important;right:auto!important;top:auto!important;display:block!important;width:auto!important;height:2px!important;margin:0 18px 9px!important;background:rgba(255,255,255,.09)!important;z-index:12!important}
+  .v18 .v15-rail-meter i{height:2px!important}
+  .v18 .v17-reader-divider{display:block!important;position:relative!important;inset:auto!important;left:auto!important;right:auto!important;top:auto!important;width:auto!important;height:1px!important;margin:0 18px 16px!important;background:linear-gradient(90deg,rgba(255,122,0,.16),rgba(255,122,0,.72))!important;z-index:12!important}
+  .v18 .v17-reader-divider i{right:-1px!important}
+  .v18 .v11-reader-preview{padding:30px 22px 35px!important;border-radius:0 0 23px 23px!important}
+  .v18 .v11-reader-preview .count{font-size:10.5px!important}
+  .v18 .v11-reader-preview .deck{font-size:15.5px!important;line-height:1.42!important}
+  .v18 .v15-reader-story strong{font-size:14px!important;font-weight:650!important}
+
+  /* Etcetera: exact blue lockup, smaller information block, room for shadows and obvious continuation. */
+  .v18 .v11-etc{padding-top:61px!important;padding-bottom:80px!important}
+  .v18 .v11-etc-track{padding-top:24px!important;padding-bottom:54px!important;gap:15px!important}
+  .v18 .v11-etc-card{flex-basis:75vw!important}
+  .v18 .v11-etc-copy{min-height:112px!important;padding:15px 46px 14px 15px!important;gap:9px!important}
+  .v18 .v11-etc-copy h3{font-size:18px!important}
+  .v18 .v11-etc-copy p{display:grid!important;grid-template-columns:1fr!important;gap:4px!important;align-items:start!important}
+  .v18 .v11-etc-copy p span:last-child{text-align:left!important;white-space:normal!important}
+  .v18 .v17-etc-footer{padding:13px 2px 0!important}
+  .v18 .v17-etc-footer p{font-size:12.5px!important;color:#37314f!important}
+  .v18 .v17-etc-footer a{font-size:12px!important}
+
+  /* Chevrons stay edible and smooth on small screens. */
+  .v18 .v11-chevron-strip{height:82px!important;min-height:82px!important;gap:10px!important}
+  .v18 .v11-chev{font-size:35px!important}
+  .v18 .v11-chev-core{font-size:20px!important}
+
+  /* YQP lockup and cards — bigger reading type, unmistakable swipe, no dead air. */
+  .v18 .v11-about{padding-top:60px!important;padding-bottom:82px!important}
+  .v18 .v11-about .v11-section-head{grid-template-columns:44px minmax(0,1fr)!important;padding:5px 7px 6px 6px!important}
+  .v18 .v11-about-grid{gap:14px!important;padding-top:15px!important;padding-bottom:38px!important;padding-right:18vw!important}
+  .v18 .v11-about-card{flex-basis:78vw!important;min-height:430px!important;border-radius:23px!important}
+  .v18 .about-cqst,.v18 .about-narrans,.v18 .about-voices{padding:22px 22px 21px!important}
+  .v18 .v11-card-body{font-size:14.75px!important;line-height:1.5!important}
+  .v18 .about-cqst h3{font-size:35px!important;margin:48px 0 15px!important;max-width:96%!important}
+  .v18 .about-cqst .v11-card-body{margin-bottom:17px!important}
+  .v18 .v11-card-cta{min-height:49px!important;padding:12px 14px!important;font-size:12.5px!important}
+  .v18 .about-narrans .narrans-word{grid-template-columns:29px minmax(0,1fr)!important;column-gap:7px!important;margin-bottom:18px!important}
+  .v18 .about-narrans .narrans-homo{font-size:10px!important}
+  .v18 .about-narrans .narrans-narrans{font-size:clamp(54px,16.5vw,65px)!important}
+  .v18 .about-narrans h4{font-size:29px!important;padding-top:13px!important;margin-bottom:13px!important}
+  .v18 .about-narrans::after{font-size:132px!important;right:-8px!important;bottom:-28px!important}
+  .v18 .v11-voices-art{right:12px!important;top:49px!important;width:125px!important;height:125px!important}
+  .v18 .v11-voices-art img{width:118px!important;max-height:118px!important}
+  .v18 .about-voices h3{font-size:33px!important;max-width:64%!important;margin-top:68px!important}
+  .v18 .about-voices .v11-card-body{font-size:14.5px!important}
+  .v18 .v17-track-status{margin-top:3px!important}
+
+  /* Actions keep their strength without looking typographically shouted. */
+  .v18 .v11-email-row button,.v18 .v11-propose-button,.v18 .v11-dialog-send{font-weight:650!important}
+}
+
+@media(max-width:420px){
+  .v18 .v11-cycle-rail{padding-left:17px!important;padding-right:17px!important}
+  .v18 .v15-rail-meter,.v18 .v17-reader-divider{margin-left:17px!important;margin-right:17px!important}
+  .v18 .v11-etc-card{flex-basis:77vw!important}
+  .v18 .v11-about-card{flex-basis:80vw!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .v18 .v11-card-cta,.v18 .v11-voices-art,.v18 .v11-about-card{transition:none!important}
+}
