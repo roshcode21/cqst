@@ -1,0 +1,16 @@
+{
+  "name": "cada-quien-su-tema",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build:site": "eleventy",
+    "build:search": "pagefind --site _site",
+    "build": "npm run build:site && npm run build:search"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "pagefind": "1.5.2"
+  }
+}
