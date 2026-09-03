@@ -5,5 +5,19 @@
     "shortName": "Rodolfo",
     "bio": "",
     "status": "published"
+  },
+  {
+    "slug": "marivi-cerisola",
+    "name": "Mariví Cerisola",
+    "shortName": "Mariví",
+    "bio": "",
+    "status": "scheduled"
+  },
+  {
+    "slug": "mel-castan",
+    "name": "Mel Castán",
+    "shortName": "Mel",
+    "bio": "",
+    "status": "draft"
   }
 ]
