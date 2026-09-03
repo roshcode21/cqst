@@ -1,0 +1,300 @@
+/* CQST V20 — final home correction layer. No new visual language: spacing, YQP, forms and responsive lockups only. */
+.v20{
+  --v20-blue:#0000ff;
+  --v20-green:#85ff00;
+  --v20-orange:#ff7a00;
+  --v20-violet:#7227ff;
+  --v20-violet-dark:#35134e;
+  --v20-plum:#452757;
+  --v20-paper:#f8f4ec;
+}
+
+/* Final global restraint. */
+.v20 .v11-dock nav a{font-weight:620!important}
+.v20 .v11-email-row button,.v20 .v11-propose-button,.v20 .v11-dialog-send{font-weight:620!important}
+
+/* Reader — on phones the scroll meter and star rule are two separate moments. */
+@media(max-width:720px){
+  .v20 .v15-rail-meter{
+    margin:0 18px 22px!important;
+  }
+  .v20 .v17-reader-divider{
+    margin:8px 18px 21px!important;
+  }
+}
+
+/* SECTION HEADS — final geometry. */
+.v20 .v11-section-head{align-items:center!important}
+.v20 .v11-about .v11-section-head{
+  width:min(100%,1030px)!important;
+  max-width:100%!important;
+  margin-left:auto!important;
+  padding:8px 9px 11px 12px!important;
+  grid-template-columns:62px minmax(0,1fr)!important;
+  column-gap:15px!important;
+  background:linear-gradient(90deg,transparent,rgba(245,255,226,.09) 28%,rgba(245,255,226,.22))!important;
+  text-align:left!important;
+}
+.v20 .v11-about .v11-section-head>img{width:58px!important;height:58px!important;align-self:center!important}
+.v20 .v11-about .v11-section-head>div{justify-items:end!important;gap:10px!important;min-width:0!important}
+.v20 .v11-about .v11-section-head h2{
+  font-size:clamp(54px,5.4vw,79px)!important;
+  line-height:.84!important;
+  letter-spacing:-.068em!important;
+  color:var(--v20-violet)!important;
+  white-space:normal!important;
+  text-wrap:balance;
+}
+.v20 .v11-about .v11-section-head p{
+  font-size:clamp(15px,1.1vw,17px)!important;
+  line-height:1.05!important;
+  color:var(--v20-violet)!important;
+  margin:0!important;
+  letter-spacing:.015em!important;
+  text-align:right!important;
+}
+
+/* ETCETERA — coda readable, never loud. */
+.v20 .v17-etc-footer p{color:#2a2442!important;font-weight:670!important;opacity:1!important}
+
+/* YQP — stop inheriting the slightly over-airy V18/V19 composition. */
+.v20 .v11-about-grid{grid-template-columns:1.05fr .99fr 1.01fr!important;gap:19px!important;align-items:stretch!important}
+.v20 .v11-about-card{min-height:398px!important}
+.v20 .about-cqst,.v20 .about-narrans,.v20 .about-voices{padding:23px 24px 22px!important}
+.v20 .v11-card-body{font-size:15px!important;line-height:1.5!important;color:var(--v20-plum)!important}
+
+/* CARD 1 — image, headline, copy and action share the same geometry. */
+.v20 .about-cqst{
+  display:grid!important;
+  grid-template-rows:auto 1fr auto auto!important;
+  background:linear-gradient(148deg,rgba(255,251,236,.93),rgba(225,255,194,.87))!important;
+}
+.v20 .v19-cycles-glyph{top:20px!important;right:20px!important;width:64px!important;height:64px!important}
+.v20 .about-cqst h3{
+  font-size:clamp(34px,2.9vw,45px)!important;
+  line-height:.95!important;
+  letter-spacing:-.052em!important;
+  margin:55px 0 16px!important;
+  max-width:92%!important;
+  color:#301541!important;
+}
+.v20 .about-cqst .v11-card-body{margin:0 0 17px!important;max-width:95%!important}
+
+/* Final CTA: one rounded object, one action cell, no stray micro-label. */
+.v20 .v11-card-cta{
+  min-height:54px!important;
+  padding:0 8px 0 16px!important;
+  border-radius:16px!important;
+  border:1px solid rgba(87,31,143,.34)!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.76),rgba(247,241,230,.95))!important;
+  color:#32154c!important;
+  box-shadow:0 5px 0 rgba(73,26,108,.10),inset 0 1px 0 rgba(255,255,255,.92)!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 39px!important;
+  gap:12px!important;
+  align-items:center!important;
+  overflow:hidden!important;
+  isolation:isolate;
+  font-size:13px!important;
+  font-weight:650!important;
+}
+.v20 .v11-card-cta::before{content:""!important;position:absolute!important;inset:auto 0 0!important;height:3px!important;background:linear-gradient(90deg,var(--v20-violet),var(--v20-blue),var(--v20-green))!important;opacity:.9!important;transform:none!important;z-index:1!important}
+.v20 .v11-card-cta::after{content:""!important;position:absolute!important;inset:0!important;width:auto!important;background:linear-gradient(100deg,var(--v20-blue),#4f2cff 68%,var(--v20-violet))!important;transform:translateX(-102%)!important;transition:transform .34s var(--ease)!important;z-index:-1!important}
+.v20 .v11-card-cta span{
+  width:36px!important;height:36px!important;
+  border-radius:50%!important;
+  display:grid!important;place-items:center!important;
+  background:var(--v20-violet)!important;color:#fff!important;
+  border:1px solid rgba(255,255,255,.30)!important;
+  font-size:17px!important;
+  transition:background .2s,color .2s,transform .24s var(--ease)!important;
+}
+@media(hover:hover) and (pointer:fine){
+  .v20 .v11-card-cta:hover{
+    color:#fff!important;
+    border-color:rgba(133,255,0,.62)!important;
+    box-shadow:0 7px 0 rgba(73,26,108,.11),0 0 0 2px rgba(133,255,0,.20)!important;
+    transform:translateY(-2px)!important;
+  }
+  .v20 .v11-card-cta:hover::after{transform:translateX(0)!important}
+  .v20 .v11-card-cta:hover span{background:var(--v20-green)!important;color:#1a0633!important;transform:translate(2px,-1px)!important}
+}
+
+/* CARD 2 — stable editorial layout based on the supplied reference: type is the image. */
+.v20 .about-narrans{
+  position:relative!important;
+  display:grid!important;
+  grid-template-rows:auto auto auto auto!important;
+  align-content:start!important;
+  background:linear-gradient(145deg,rgba(233,255,204,.96),rgba(242,255,216,.93))!important;
+}
+.v20 .about-narrans::after{content:none!important}
+.v20 .about-narrans .narrans-word{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:0!important;
+  margin:2px 0 17px!important;
+  padding:0 0 18px!important;
+  border-bottom:1px solid rgba(111,34,255,.22)!important;
+  line-height:1!important;
+  position:relative!important;
+}
+.v20 .about-narrans .narrans-homo,
+.v20 .about-narrans .narrans-narrans{
+  display:block!important;
+  writing-mode:horizontal-tb!important;
+  transform:none!important;
+  font-family:Matrixel,"Courier New",monospace!important;
+  font-weight:400!important;
+  color:var(--v20-violet)!important;
+  padding:0!important;
+}
+.v20 .about-narrans .narrans-homo{
+  font-size:clamp(58px,4.8vw,73px)!important;
+  line-height:.76!important;
+  letter-spacing:-.035em!important;
+  text-align:center!important;
+  margin:0 0 3px!important;
+}
+.v20 .about-narrans .narrans-narrans{
+  font-size:clamp(55px,4.65vw,70px)!important;
+  line-height:.74!important;
+  letter-spacing:-.04em!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  margin:0 0 0 -6px!important;
+}
+.v20 .about-narrans h4{
+  font-size:clamp(27px,2.35vw,35px)!important;
+  line-height:.97!important;
+  letter-spacing:-.042em!important;
+  color:#3b174e!important;
+  margin:0 0 14px!important;
+  padding:0!important;
+  border:0!important;
+  max-width:96%!important;
+}
+.v20 .about-narrans .v11-card-body{font-size:14.9px!important;line-height:1.5!important;margin:0!important}
+.v20 .v19-cosmos-signature{
+  margin:11px 0 0!important;
+  align-self:start!important;
+  opacity:.92!important;
+  color:var(--v20-violet)!important;
+  font-size:12px!important;
+}
+.v20 .v19-cosmos-signature::after{max-width:76px!important;background:linear-gradient(90deg,rgba(111,34,255,.62),transparent)!important}
+
+/* CARD 3 — interaction is light, not object rotation/scale. */
+.v20 .about-voices:hover .v11-voices-art{transform:none!important}
+.v20 .v11-voices-art{transform:none!important}
+
+/* Forms — one visual state language for both AJAX submissions. */
+.v20 .v11-form-note,.v20 .v20-topic-note{font-size:12px;line-height:1.35;min-height:1.4em;margin-top:9px}
+.v20 .v20-topic-note{color:#4d3562;margin-bottom:0}
+.v20 .v20-topic-note.is-success{color:#235b00}
+.v20 .v20-topic-note.is-error{color:#8a2600}
+.v20 .v11-dialog-send[disabled],.v20 .v11-email-row button[disabled]{opacity:.58;cursor:wait!important}
+
+@media(max-width:900px) and (min-width:721px){
+  .v20 .v11-about .v11-section-head{grid-template-columns:55px minmax(0,1fr)!important}
+  .v20 .v11-about .v11-section-head h2{font-size:55px!important}
+  .v20 .v11-about .v11-section-head p{font-size:14.5px!important}
+  .v20 .v11-about-card{min-height:410px!important}
+}
+
+@media(max-width:720px){
+  /* Mobile section lockups — icon and words are one object, with a readable tagline. */
+  .v20 .v11-section-head{grid-template-columns:44px minmax(0,1fr)!important;column-gap:12px!important}
+  .v20 .v11-section-head>div{gap:7px!important}
+  .v20 .v11-section-head p{font-size:13.75px!important;line-height:1.05!important}
+
+  /* Etcetera icon: use exact brand blue, independent of PNG antialiasing/filter differences. */
+  .v20 .v11-etc .v11-section-head{position:relative!important;color:var(--v20-blue)!important}
+  .v20 .v11-etc .v11-section-head>img{visibility:hidden!important}
+  .v20 .v11-etc .v11-section-head::before{
+    content:""!important;
+    position:absolute!important;
+    left:0!important;top:50%!important;
+    width:42px!important;height:42px!important;
+    transform:translateY(-50%)!important;
+    background:var(--v20-blue)!important;
+    -webkit-mask:url("../etcetera.png") center/contain no-repeat!important;
+    mask:url("../etcetera.png") center/contain no-repeat!important;
+  }
+
+  /* YQP heading: no collision, no tiny caption. */
+  .v20 .v11-about .v11-section-head{
+    width:100%!important;
+    margin:0 0 30px!important;
+    padding:6px 7px 8px 4px!important;
+    grid-template-columns:45px minmax(0,1fr)!important;
+    column-gap:11px!important;
+    text-align:left!important;
+    background:linear-gradient(90deg,rgba(245,255,226,.10),rgba(245,255,226,.22),transparent)!important;
+    color:var(--v20-violet)!important;
+    position:relative!important;
+  }
+  .v20 .v11-about .v11-section-head>img{visibility:hidden!important;width:44px!important;height:44px!important}
+  .v20 .v11-about .v11-section-head::before{
+    content:""!important;
+    position:absolute!important;
+    left:4px!important;top:50%!important;
+    width:42px!important;height:42px!important;
+    transform:translateY(-50%)!important;
+    background:var(--v20-violet)!important;
+    -webkit-mask:url("../yqp.png") center/contain no-repeat!important;
+    mask:url("../yqp.png") center/contain no-repeat!important;
+  }
+  .v20 .v11-about .v11-section-head>div{justify-items:start!important;gap:8px!important;min-width:0!important}
+  .v20 .v11-about .v11-section-head h2{
+    font-size:clamp(38px,10.7vw,48px)!important;
+    line-height:.88!important;
+    letter-spacing:-.058em!important;
+    text-align:left!important;
+  }
+  .v20 .v11-about .v11-section-head p{
+    font-size:13.5px!important;
+    line-height:1.05!important;
+    text-align:left!important;
+    justify-self:start!important;
+  }
+
+  /* YQP cards: stable swipe width and stable internal typography. */
+  .v20 .v11-about-grid{gap:14px!important;padding-right:18vw!important;padding-bottom:38px!important}
+  .v20 .v11-about-card{flex-basis:79vw!important;min-height:432px!important}
+  .v20 .about-cqst,.v20 .about-narrans,.v20 .about-voices{padding:21px 21px 20px!important}
+  .v20 .v19-cycles-glyph{top:17px!important;right:17px!important;width:57px!important;height:57px!important}
+  .v20 .about-cqst h3{font-size:35px!important;line-height:.95!important;margin:51px 0 15px!important;max-width:95%!important}
+  .v20 .about-cqst .v11-card-body{font-size:14.6px!important;margin-bottom:16px!important}
+
+  /* CTA on touch: expressive at rest; tap is feedback, not a hidden desktop hover. */
+  .v20 .v11-card-cta{
+    min-height:54px!important;
+    grid-template-columns:minmax(0,1fr) 40px!important;
+    padding-left:15px!important;
+    background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(247,241,230,.96))!important;
+  }
+  .v20 .v11-card-cta span{width:38px!important;height:38px!important}
+  .v20 .v11-card-cta:active{color:#fff!important;border-color:var(--v20-green)!important;transform:translateY(1px)!important}
+  .v20 .v11-card-cta:active::after{transform:translateX(0)!important}
+  .v20 .v11-card-cta:active span{background:var(--v20-green)!important;color:#1a0633!important}
+
+  /* Homo narrans mobile: same editorial idea, resized instead of recomposed badly. */
+  .v20 .about-narrans .narrans-word{margin:1px 0 16px!important;padding-bottom:17px!important}
+  .v20 .about-narrans .narrans-homo{font-size:clamp(52px,15.8vw,62px)!important;line-height:.77!important;margin-bottom:3px!important}
+  .v20 .about-narrans .narrans-narrans{font-size:clamp(50px,15.1vw,60px)!important;line-height:.75!important;margin-left:-4px!important}
+  .v20 .about-narrans h4{font-size:29px!important;line-height:.98!important;margin-bottom:13px!important}
+  .v20 .about-narrans .v11-card-body{font-size:14.5px!important;line-height:1.49!important}
+  .v20 .v19-cosmos-signature{margin-top:10px!important;font-size:11.5px!important;opacity:.94!important}
+}
+
+@media(max-width:400px){
+  .v20 .v11-about .v11-section-head h2{font-size:37px!important}
+  .v20 .v11-about-card{flex-basis:81vw!important}
+  .v20 .about-narrans .narrans-homo{font-size:50px!important}
+  .v20 .about-narrans .narrans-narrans{font-size:48px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .v20 .v11-card-cta::after{transition:none!important}
+}
