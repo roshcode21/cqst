@@ -34,11 +34,30 @@ jobs:
           test -f _site/assets/css/production/home.css
           test -f _site/assets/js/production/home.js
           test -d _site/pagefind
+
+          # Home must contain real server-rendered editorial content.
           grep -q 'id="main"' _site/index.html
           grep -q 'class="home-hero scene"' _site/index.html
           grep -q 'id="cycleRail"' _site/index.html
+          grep -q 'La fecha la ponemos después' _site/index.html
           grep -q 'id="newsletterForm"' _site/index.html
+          grep -q 'https://formspree.io/f/moeqwono' _site/index.html
           grep -q 'application/ld+json' _site/index.html
+
+          # The production home must not leak version-scoped lab classes.
+          ! grep -Eq 'class="[^"]*v(11|15|16|17|18|19|20)' _site/index.html
+
+          # Existing public routes stay alive until each one is migrated to src/.
+          test -f _site/cqst/index.html
+          test -f _site/empezar/index.html
+          test -f _site/empezar/la-fecha-la-ponemos-despues/index.html
+          test -f _site/privacidad/index.html
+          test -f _site/temas/index.html
+          test -f _site/voces/index.html
+          test -f _site/feed.xml
+          test -f _site/robots.txt
+          test -f _site/sitemap.xml
+          test -f _site/site.webmanifest
 
       - name: Upload built site for parity QA
         uses: actions/upload-artifact@v4
