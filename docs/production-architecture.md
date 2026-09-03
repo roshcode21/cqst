@@ -6,6 +6,8 @@
 
 V20 queda congelada como referencia visual del home. La rama `v21-production-refactor` reconstruye ese resultado como sistema de producción. El objetivo no es rediseñar el home, sino retirar deuda de laboratorio sin alterar la experiencia aprobada.
 
+V21 ya cuenta con Grift real como webfont, CI de build, comparación visual automatizada y una rama nuevamente sincronizada con `main` y mergeable.
+
 ## Principios
 
 1. El contenido editorial existe en HTML aunque JavaScript no cargue.
@@ -16,6 +18,7 @@ V20 queda congelada como referencia visual del home. La rama `v21-production-ref
 6. No se publican ciclos ficticios para llenar una interfaz.
 7. No se arrastran clases o estilos con número de versión al código final.
 8. Accesibilidad, SEO, AEO y GEO se resuelven desde estructura semántica y contenido real, no con capas de keywords artificiales.
+9. Las diferencias producidas por servir la tipografía oficial Grift en todos los dispositivos se evalúan como dirección tipográfica real, no como motivo para volver a los fallbacks del laboratorio.
 
 ## Stack
 
@@ -94,6 +97,24 @@ Estados editoriales sugeridos
 
 Sólo `published` entra en home público, ciclo público, RSS, sitemap y Pagefind.
 
+## Home de producción
+
+- `src/index.njk` — HTML semántico y server-rendered.
+- `src/_data/` — fuente de verdad editorial y configuración global.
+- `assets/css/production/base.css` — tokens, fundamentos y webfonts.
+- `assets/css/production/home.css` — presentación completa del home sin cascada V11→V20.
+- `assets/js/production/home.js` — dock, órbitas, chevrons, scroll/swipe, logotipo cinético, formularios AJAX y analytics. No genera contenido editorial ni inyecta CSS.
+
+## Tipografía
+
+Grift se sirve como WOFF2 en los pesos realmente utilizados por CQST: 400, 500, 600, 700, 800 y 900. Se retiraron del branch las copias TTF, WOFF, itálicas y pesos que el home no consume. Matrixel continúa como display pixel.
+
+La webfont real es la referencia tipográfica de producción. Los fallbacks permanecen únicamente como degradación técnica.
+
+## Formularios
+
+Newsletter y Proponer un tema utilizan Formspree `moeqwono` mediante AJAX, con `action` y `method="POST"` presentes también en HTML como degradación funcional.
+
 ## Structured data
 
 - Home — `WebSite` + `Organization`
@@ -117,18 +138,35 @@ Filtros previstos cuando el volumen los justifique
 
 La página `/buscar/` no sustituye navegación editorial. Es una herramienta de archivo.
 
-## Refactor V21
+## Migración progresiva
 
-Orden de trabajo
+Eleventy genera el home nuevo. Las rutas existentes (`/cqst/`, `/empezar/`, artículo actual, `/temas/`, `/voces/`, `/privacidad/`, RSS, sitemap, robots y manifest) se conservan temporalmente mediante passthrough hasta que cada una sea reconstruida en `src/`.
 
-1. Separar contenido de presentación.
-2. Crear tokens y estilos base compartidos.
-3. Consolidar V20 en `home.css` sin cascada V11–V20.
-4. Consolidar comportamiento en `home.js` sin parches CSS inyectados.
-5. Renderizar el contenido visible directamente desde Eleventy.
-6. Comparar V21 contra V20 en desktop, móvil y anchos intermedios.
-7. Sólo después retirar código de laboratorio de la ruta de producción.
+Cuando una ruta tenga reemplazo Eleventy, se elimina únicamente su passthrough. No se hace un big-bang rewrite.
+
+## QA V21
+
+CI comprueba
+
+- build Eleventy + Pagefind;
+- existencia del home y de las rutas públicas actuales;
+- contenido editorial server-rendered;
+- ausencia de clases históricas V11–V20 en el home de producción;
+- Formspree y JSON-LD presentes;
+- capturas V20 vs V21 en 390, 430, 768, 1024, 1366 y 1920 px para portada, Leer × tema, etcétera, YQP y Participar.
+
+La revisión con Grift real confirma que no hay una ruptura estructural del home. Las diferencias visibles son principalmente métricas tipográficas propias de dejar de depender del fallback y deben resolverse sólo si alteran jerarquía, legibilidad o composición, no para reproducir artificialmente la métrica de otra fuente.
+
+## Orden después de V21
+
+1. `/empezar/` — portada de ciclo.
+2. plantilla definitiva de artículo.
+3. `/cqst/` — conocer el proyecto.
+4. `/voces/` y perfiles individuales.
+5. `/temas/` — memoria de ciclos.
+6. `/buscar/` — Pagefind con interfaz CQST.
+7. lanzamiento de dominio, redirects, indexación y observabilidad.
 
 ## Regla de oro
 
-Si una limpieza cambia visualmente V20 sin que exista una razón funcional, semántica, accesible o de rendimiento aprobada, la limpieza es incorrecta.
+Si una limpieza cambia visualmente V20 sin que exista una razón funcional, semántica, accesible o de rendimiento aprobada, la limpieza es incorrecta. Grift oficial sí constituye una razón tipográfica válida; los ajustes posteriores se hacen alrededor de esa fuente, no sustituyéndola.
