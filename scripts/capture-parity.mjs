@@ -1,10 +1,13 @@
-import { chromium } from 'playwright-core';
-import { mkdir } from 'node:fs/promises';
+import { spawn } from 'node:child_process';
+import { mkdir, writeFile, rm } from 'node:fs/promises';
+import { setTimeout as sleep } from 'node:timers/promises';
 
 const chromePath = process.env.CHROME_BIN || process.env.CHROME_PATH || '/usr/bin/google-chrome';
 const output = process.env.PARITY_DIR || 'parity';
 const v21Base = process.env.V21_URL || 'http://127.0.0.1:4173/';
 const v20Base = process.env.V20_URL || 'https://roshcode21.github.io/cqst/v20/?v=20-2';
+const debugPort = 9222;
+const profileDir = `/tmp/cqst-parity-chrome-${process.pid}`;
 
 const viewports = [
   [390, 844],
@@ -18,41 +21,145 @@ const scenes = ['portada', 'leer', 'etcetera', 'cqst', 'participar'];
 
 await mkdir(output, { recursive: true });
 
-const browser = await chromium.launch({
-  executablePath: chromePath,
-  headless: true,
-  args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
-});
+const chrome = spawn(chromePath, [
+  '--headless=new',
+  '--no-sandbox',
+  '--disable-dev-shm-usage',
+  '--disable-gpu',
+  '--hide-scrollbars',
+  `--remote-debugging-port=${debugPort}`,
+  `--user-data-dir=${profileDir}`,
+  'about:blank'
+], { stdio: ['ignore', 'ignore', 'pipe'] });
 
-async function capture(version, base, width, height, scene) {
-  const context = await browser.newContext({
-    viewport: { width, height },
-    reducedMotion: 'reduce',
-    colorScheme: 'light'
-  });
-  const page = await context.newPage();
+let chromeError = '';
+chrome.stderr.on('data', chunk => { chromeError += chunk.toString(); });
 
-  await page.route('**/cloud.umami.is/**', route => route.abort()).catch(() => {});
-  await page.goto(base, { waitUntil: 'domcontentloaded', timeout: 45000 });
-  await page.evaluate(async () => {
-    if (document.fonts?.ready) await document.fonts.ready;
-    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-  });
+async function waitForTarget() {
+  for (let attempt = 0; attempt < 80; attempt += 1) {
+    try {
+      const response = await fetch(`http://127.0.0.1:${debugPort}/json/list`);
+      if (response.ok) {
+        const targets = await response.json();
+        const page = targets.find(target => target.type === 'page');
+        if (page?.webSocketDebuggerUrl) return page.webSocketDebuggerUrl;
+      }
+    } catch (_) {}
+    await sleep(125);
+  }
+  throw new Error(`Chrome DevTools no inició. ${chromeError.slice(-1200)}`);
+}
 
-  const target = page.locator(`#${scene}`);
-  if (await target.count()) {
-    await target.evaluate(element => element.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' }));
-    await page.waitForTimeout(180);
+class CDP {
+  constructor(url) {
+    this.socket = new WebSocket(url);
+    this.nextId = 1;
+    this.pending = new Map();
+    this.listeners = new Map();
   }
 
-  await page.screenshot({
-    path: `${output}/${version}-${width}x${height}-${scene}.png`,
-    animations: 'disabled',
-    caret: 'hide',
-    fullPage: false
+  async open() {
+    if (this.socket.readyState === WebSocket.OPEN) return;
+    await new Promise((resolve, reject) => {
+      this.socket.addEventListener('open', resolve, { once: true });
+      this.socket.addEventListener('error', reject, { once: true });
+    });
+    this.socket.addEventListener('message', event => {
+      const message = JSON.parse(event.data);
+      if (message.id) {
+        const pending = this.pending.get(message.id);
+        if (!pending) return;
+        this.pending.delete(message.id);
+        if (message.error) pending.reject(new Error(message.error.message));
+        else pending.resolve(message.result);
+        return;
+      }
+      const waiters = this.listeners.get(message.method);
+      if (!waiters?.length) return;
+      this.listeners.set(message.method, []);
+      waiters.forEach(resolve => resolve(message.params));
+    });
+  }
+
+  send(method, params = {}) {
+    const id = this.nextId++;
+    return new Promise((resolve, reject) => {
+      this.pending.set(id, { resolve, reject });
+      this.socket.send(JSON.stringify({ id, method, params }));
+    });
+  }
+
+  once(method) {
+    return new Promise(resolve => {
+      const waiters = this.listeners.get(method) || [];
+      waiters.push(resolve);
+      this.listeners.set(method, waiters);
+    });
+  }
+
+  close() {
+    this.socket.close();
+  }
+}
+
+const socketUrl = await waitForTarget();
+const cdp = new CDP(socketUrl);
+await cdp.open();
+await cdp.send('Page.enable');
+await cdp.send('Runtime.enable');
+await cdp.send('Network.enable');
+await cdp.send('Network.setBlockedURLs', { urls: ['*://cloud.umami.is/*'] });
+await cdp.send('Emulation.setEmulatedMedia', {
+  features: [{ name: 'prefers-reduced-motion', value: 'reduce' }]
+});
+
+async function settlePage() {
+  await cdp.send('Runtime.evaluate', {
+    expression: `(() => Promise.all([
+      document.fonts?.ready || Promise.resolve(),
+      Promise.all([...document.images].map(img => img.complete ? Promise.resolve() : new Promise(resolve => {
+        img.addEventListener('load', resolve, {once:true});
+        img.addEventListener('error', resolve, {once:true});
+      })))
+    ]).then(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))))()`,
+    awaitPromise: true,
+    returnByValue: true
+  });
+  await sleep(120);
+}
+
+async function capture(version, base, width, height, scene) {
+  await cdp.send('Emulation.setDeviceMetricsOverride', {
+    width,
+    height,
+    deviceScaleFactor: 1,
+    mobile: false,
+    screenWidth: width,
+    screenHeight: height
   });
 
-  await context.close();
+  const loaded = cdp.once('Page.loadEventFired');
+  await cdp.send('Page.navigate', { url: base });
+  await Promise.race([loaded, sleep(15000)]);
+  await settlePage();
+
+  await cdp.send('Runtime.evaluate', {
+    expression: `(() => {
+      const target = document.getElementById(${JSON.stringify(scene)});
+      if (!target) return false;
+      target.scrollIntoView({block:'start', inline:'nearest', behavior:'instant'});
+      return true;
+    })()`,
+    returnByValue: true
+  });
+  await sleep(220);
+
+  const { data } = await cdp.send('Page.captureScreenshot', {
+    format: 'png',
+    fromSurface: true,
+    captureBeyondViewport: false
+  });
+  await writeFile(`${output}/${version}-${width}x${height}-${scene}.png`, Buffer.from(data, 'base64'));
 }
 
 try {
@@ -63,5 +170,7 @@ try {
     }
   }
 } finally {
-  await browser.close();
+  cdp.close();
+  chrome.kill('SIGTERM');
+  await rm(profileDir, { recursive: true, force: true }).catch(() => {});
 }
