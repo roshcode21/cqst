@@ -6,7 +6,7 @@
 
 V20 queda congelada como referencia visual del home. La rama `v21-production-refactor` reconstruye ese resultado como sistema de producción. El objetivo no es rediseñar el home, sino retirar deuda de laboratorio sin alterar la experiencia aprobada.
 
-V21 ya cuenta con Grift real como webfont, CI de build, comparación visual automatizada y una rama nuevamente sincronizada con `main` y mergeable.
+V21 ya cuenta con Grift real como webfont, CI de build, comparación visual automatizada, preview aislada y una rama sincronizada con `main` y mergeable.
 
 ## Principios
 
@@ -156,6 +156,8 @@ CI comprueba
 - capturas V20 vs V21 en 390, 430, 768, 1024, 1366 y 1920 px para portada, Leer × tema, etcétera, YQP y Participar.
 
 La revisión con Grift real confirma que no hay una ruptura estructural del home. Las diferencias visibles son principalmente métricas tipográficas propias de dejar de depender del fallback y deben resolverse sólo si alteran jerarquía, legibilidad o composición, no para reproducir artificialmente la métrica de otra fuente.
+
+La carpeta `preview/` existe únicamente para revisión visual de V21 antes del merge. No forma parte de la arquitectura pública final y debe retirarse al cerrar el refactor.
 
 ## Orden después de V21
 
