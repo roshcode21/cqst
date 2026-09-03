@@ -3,6 +3,38 @@
 const $=(s,c=document)=>c.querySelector(s);
 const track=(name,data={})=>{try{window.umami&&window.umami.track(name,data)}catch(_){}};
 
+/* Final V20 visual fix: on desktop the YQP icon must belong to the title lockup,
+   not sit at the far edge of a stretched grid column. Keep the whole lockup
+   right-aligned while letting the icon hug the title. */
+function fixYqpHeader(){
+  const style=document.createElement('style');
+  style.id='v20-yqp-lockup-fix';
+  style.textContent=`
+    @media (min-width:721px){
+      .v20 .v11-about .v11-section-head{
+        width:max-content!important;
+        max-width:100%!important;
+        grid-template-columns:58px auto!important;
+        column-gap:14px!important;
+        padding:8px 10px 11px 10px!important;
+        margin-left:auto!important;
+      }
+      .v20 .v11-about .v11-section-head>img{
+        width:54px!important;
+        height:54px!important;
+        justify-self:end!important;
+        align-self:center!important;
+      }
+      .v20 .v11-about .v11-section-head>div{
+        width:auto!important;
+        justify-items:end!important;
+        min-width:0!important;
+      }
+    }
+  `;
+  document.head.append(style);
+}
+
 async function submitFormspree(form){
   const response=await fetch(form.action,{
     method:'POST',
@@ -83,6 +115,6 @@ function initTopic(){
   },true);
 }
 
-function init(){initNewsletter();initTopic()}
+function init(){fixYqpHeader();initNewsletter();initTopic()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
