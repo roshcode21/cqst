@@ -183,6 +183,15 @@ summary {
   border: 0 !important;
 }
 
+/* El artículo usa el signo de ciclos en móvil: la pieza pertenece a un ciclo,
+   no al favicon genérico de la publicación. content conserva el HTML estable. */
+@media (max-width: 720px) {
+  body[data-article] .header-logo-mobile img {
+    content: url("../ciclos.png");
+    object-fit: contain;
+  }
+}
+
 /* Progressive enhancement. Navegaciones del mismo sitio ganan continuidad
    visual en navegadores que soportan View Transitions. */
 @view-transition { navigation: auto; }
