@@ -1,0 +1,17 @@
+{
+  "name": "Cada quien su tema",
+  "shortName": "CQST",
+  "tagline": "El mismo tema no le pasa igual a todos.",
+  "description": "Una publicación por ciclos. Distintas voces alrededor de una misma idea.",
+  "locale": "es-MX",
+  "language": "es",
+  "url": "https://cadaquiensutema.com",
+  "email": "hola@cadaquiensutema.com",
+  "topicEmail": "temas@cadaquiensutema.com",
+  "formspreeId": "moeqwono",
+  "social": {
+    "instagram": "https://www.instagram.com/cadaquiensutema/",
+    "tiktok": "https://www.tiktok.com/@cada.quien.su.tema",
+    "facebook": "https://www.facebook.com/cadaquiensutema"
+  }
+}
