@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 const readJson = name => JSON.parse(
   readFileSync(new URL(`./${name}`, import.meta.url), "utf8")
@@ -19,6 +19,21 @@ const formatDate = value => {
     year: "numeric",
     timeZone: "UTC"
   }).format(new Date(`${value}T12:00:00Z`));
+};
+
+const initials = name => name
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map(part => part[0])
+  .join("")
+  .toUpperCase();
+
+const readArticleBody = article => {
+  if (!article.contentFile) return "";
+  const path = new URL(`../_content/articles/${article.contentFile}`, import.meta.url);
+  if (!existsSync(path)) throw new Error(`Falta el contenido de ${article.slug}: ${article.contentFile}`);
+  return readFileSync(path, "utf8").trim();
 };
 
 const published = articles
@@ -54,7 +69,12 @@ export default published.map(article => {
   return {
     article,
     cycle,
-    author,
+    author: {
+      ...author,
+      initials: initials(author.name),
+      profileHref: `/voces/${author.slug}/`
+    },
+    bodyHtml: readArticleBody(article),
     href,
     canonical: `https://cadaquiensutema.com${href}`,
     dateLabel: formatDate(article.published),
