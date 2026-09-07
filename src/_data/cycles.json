@@ -7,6 +7,7 @@
     "featured": true,
     "dateStart": "2026-08-19",
     "order": 1,
-    "visualTheme": "empezar"
+    "visualTheme": "empezar",
+    "subjects": ["comienzos", "memoria", "relato", "experiencia", "cambio"]
   }
 ]
