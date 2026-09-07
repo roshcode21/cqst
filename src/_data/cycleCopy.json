@@ -1,13 +1,13 @@
 {
   "empezar": {
     "kicker": "Ciclo / Empezar",
-    "indexLabel": "Tema / Empezar",
-    "intro": "Empezar casi nunca ocurre en el momento exacto que después señalamos. A veces lo decidimos; otras, solo entendemos que algo había comenzado cuando ya estamos dentro. Este ciclo reúne piezas que pueden aparecer en momentos distintos y volver sobre la misma pregunta desde lugares diferentes.",
-    "piecesHeading": "Piezas del ciclo",
-    "piecesDeck": "Este ciclo seguirá creciendo. No hay un orden obligatorio de lectura y cada nueva pieza se suma a la conversación sin cerrar las anteriores.",
+    "indexLabel": "Temas / Empezar",
+    "intro": "Empezar casi nunca ocurre en el momento exacto que después señalamos. A veces lo decidimos; otras, solo entendemos que algo había comenzado cuando ya estamos dentro. Aquí distintas voces vuelven sobre ese momento desde experiencias y tiempos distintos.",
+    "piecesHeading": "Las piezas",
+    "piecesDeck": "Cada texto entra por otro lado. No hay un orden obligatorio de lectura.",
     "untitledLabel": "Pieza de {{author}}",
     "closingTitle": "El principio no se pone de acuerdo.",
-    "closingBody": "Empezar no intenta fijar una definición. Guarda distintas formas de reconocer, recordar o elegir un comienzo y deja que convivan en el tiempo.",
+    "closingBody": "Empezar no intenta fijar una definición. Reúne distintas maneras de reconocer, recordar o elegir un comienzo y las deja convivir.",
     "moreCyclesLabel": "Seguir por otro tema",
     "homeLabel": "Volver a la portada",
     "shareImageAlt": "Empezar, ciclo editorial de Cada Quien Su Tema"
