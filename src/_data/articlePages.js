@@ -72,7 +72,7 @@ export default published.map(article => {
     author: {
       ...author,
       initials: initials(author.name),
-      profileHref: `/voces/${author.slug}/`
+      profileHref: "#"
     },
     bodyHtml: readArticleBody(article),
     href,
