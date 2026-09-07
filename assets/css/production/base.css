@@ -83,6 +83,12 @@ button{color:inherit}
 .skip-link:focus{transform:translateY(0)}
 :focus-visible{outline:2px solid var(--cqst-green);outline-offset:3px}
 
+/* Brand primitive retained from the approved V20 dock geometry. */
+.home .site-dock__orbit{
+  border-radius:50% 42% 50% 44%/38% 50% 40% 50%;
+  transform:rotate(23deg) scaleX(1.08);
+}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
