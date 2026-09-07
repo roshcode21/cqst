@@ -83,10 +83,31 @@ button{color:inherit}
 .skip-link:focus{transform:translateY(0)}
 :focus-visible{outline:2px solid var(--cqst-green);outline-offset:3px}
 
-/* Brand primitive retained from the approved V20 dock geometry. */
+/* Approved V20 dock geometry: a branded primitive shared by the home shell. */
+.home .site-dock{
+  width:min(430px,calc(100vw - 28px));
+  height:50px;
+  box-shadow:0 8px 22px rgba(45,33,94,.10),inset 0 1px 0 rgba(255,255,255,.88);
+}
+.home .site-dock[data-tone="dark"]{
+  box-shadow:0 9px 24px rgba(10,3,38,.25),0 0 12px rgba(107,34,255,.07);
+}
 .home .site-dock__orbit{
   border-radius:50% 42% 50% 44%/38% 50% 40% 50%;
   transform:rotate(23deg) scaleX(1.08);
+}
+.home .site-dock__nav a::after{
+  left:31%;
+  right:31%;
+  bottom:7px;
+}
+
+@media(max-width:720px){
+  .home .site-dock{
+    width:min(354px,calc(100vw - 42px));
+    height:44px;
+    border-radius:16px;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
