@@ -1,17 +1,15 @@
 {
   "empezar": {
-    "kicker": "Ciclo en curso",
+    "kicker": "Ciclo / Empezar",
     "indexLabel": "Tema / Empezar",
-    "intro": "Empezar casi nunca ocurre en el momento exacto que después señalamos. A veces lo decidimos; otras, solo entendemos que algo había comenzado cuando ya estamos dentro. Este ciclo reúne tres voces alrededor de esa diferencia.",
-    "piecesHeading": "Tres entradas",
-    "piecesDeck": "No hay orden de lectura. Cada texto empieza en otro lugar.",
-    "publishedLabel": "Ya está aquí",
-    "scheduledLabel": "En camino",
-    "draftLabel": "Por llegar",
-    "untitledLabel": "[tu título aquí]",
+    "intro": "Empezar casi nunca ocurre en el momento exacto que después señalamos. A veces lo decidimos; otras, solo entendemos que algo había comenzado cuando ya estamos dentro. Este ciclo reúne piezas que pueden aparecer en momentos distintos y volver sobre la misma pregunta desde lugares diferentes.",
+    "piecesHeading": "Piezas del ciclo",
+    "piecesDeck": "Este ciclo seguirá creciendo. No hay un orden obligatorio de lectura y cada nueva pieza se suma a la conversación sin cerrar las anteriores.",
+    "untitledLabel": "Pieza de {{author}}",
     "closingTitle": "El principio no se pone de acuerdo.",
-    "closingBody": "Este ciclo no intenta decidir qué cuenta como un comienzo. Reúne tres maneras de mirarlo y deja la diferencia a la vista.",
-    "backLabel": "Todos los temas",
+    "closingBody": "Empezar no intenta fijar una definición. Guarda distintas formas de reconocer, recordar o elegir un comienzo y deja que convivan en el tiempo.",
+    "moreCyclesLabel": "Seguir por otro tema",
+    "homeLabel": "Volver a la portada",
     "shareImageAlt": "Empezar, ciclo editorial de Cada Quien Su Tema"
   }
 }
