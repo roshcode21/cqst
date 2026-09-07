@@ -1,0 +1,166 @@
+---
+seoTitle: "Empezar — Tres voces sobre un mismo comienzo | Cada Quien Su Tema"
+title: "Empezar"
+description: "Empezar reúne tres voces alrededor de lo que significa reconocer, elegir o recordar un comienzo."
+robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+canonical: "https://cadaquiensutema.com/empezar/"
+shareImage: "/assets/brand/share-empezar-1200x630.png"
+shareImageAlt: "Empezar, ciclo editorial de Cada Quien Su Tema"
+themeColor: "#c8ff64"
+stylesheet: "/assets/css/production/cycle.css"
+bodyClass: "cycle-page cycle-page--empezar"
+permalink: "/empezar/index.html"
+---
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "{{ site.url }}/empezar/#page",
+      "url": "{{ site.url }}/empezar/",
+      "name": "Empezar",
+      "description": {{ description | json | safe }},
+      "inLanguage": "{{ site.locale }}",
+      "isPartOf": {"@id": "{{ site.url }}/#website"},
+      "mainEntity": {"@id": "{{ site.url }}/empezar/#cycle"}
+    },
+    {
+      "@type": "CreativeWorkSeries",
+      "@id": "{{ site.url }}/empezar/#cycle",
+      "name": "Empezar",
+      "description": {{ empezar.cycle.deck | json | safe }},
+      "url": "{{ site.url }}/empezar/",
+      "inLanguage": "{{ site.locale }}",
+      "publisher": {"@id": "{{ site.url }}/#organization"},
+      "keywords": ["comienzos", "memoria", "relato", "experiencia"],
+      "hasPart": [
+        {% for piece in empezar.publishedPieces %}
+        {
+          "@type": "Article",
+          "name": {{ piece.title | json | safe }},
+          "url": "{{ site.url }}{{ piece.href }}",
+          "author": {"@type": "Person", "name": {{ piece.author | json | safe }}}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "{{ site.url }}/empezar/#pieces",
+      "name": "Piezas publicadas de Empezar",
+      "numberOfItems": {{ empezar.publishedPieces.length }},
+      "itemListElement": [
+        {% for piece in empezar.publishedPieces %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.index }},
+          "url": "{{ site.url }}{{ piece.href }}",
+          "name": {{ piece.title | json | safe }}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Portada","item":"{{ site.url }}/"},
+        {"@type":"ListItem","position":2,"name":"Temas","item":"{{ site.url }}/temas/"},
+        {"@type":"ListItem","position":3,"name":"Empezar","item":"{{ site.url }}/empezar/"}
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block body %}
+{% set navCurrent = "temas" %}
+{% include "components/interior-nav.njk" %}
+
+<main id="main" data-pagefind-body>
+  <section class="cycle-hero" aria-labelledby="cycleTitle">
+    <div class="cycle-hero__noise" aria-hidden="true"></div>
+    <div class="cycle-hero__shell">
+      <div class="cycle-hero__meta">
+        <span class="matrix">{{ empezar.copy.kicker }}</span>
+        <span>{{ empezar.voiceCount }} voces</span>
+        <span>{{ empezar.year }}</span>
+      </div>
+
+      <div class="cycle-hero__title-wrap">
+        <p class="cycle-hero__index matrix">{{ empezar.copy.indexLabel }}</p>
+        <h1 id="cycleTitle">{{ empezar.cycle.title }}</h1>
+        <span class="cycle-hero__spark" aria-hidden="true">✦</span>
+      </div>
+
+      <div class="cycle-hero__copy">
+        <p class="cycle-hero__premise">{{ empezar.cycle.deck }}</p>
+        <p class="cycle-hero__intro">{{ empezar.copy.intro }}</p>
+      </div>
+
+      <nav class="cycle-axis" aria-label="Entradas del ciclo Empezar">
+        <span class="cycle-axis__line" aria-hidden="true"></span>
+        {% for piece in empezar.pieces %}
+          <a class="cycle-axis__point cycle-axis__point--{{ piece.status }}" href="#piece-{{ piece.order }}">
+            <span class="cycle-axis__node" aria-hidden="true"></span>
+            <span class="matrix">0{{ piece.order }}</span>
+            <strong>{{ piece.author }}</strong>
+            <small>{{ piece.statusLabel }}</small>
+          </a>
+        {% endfor %}
+      </nav>
+    </div>
+  </section>
+
+  <section class="cycle-pieces" aria-labelledby="piecesTitle">
+    <header class="cycle-pieces__head">
+      <div>
+        <p class="matrix">EMPEZAR / VOCES</p>
+        <h2 id="piecesTitle">{{ empezar.copy.piecesHeading }}</h2>
+      </div>
+      <p>{{ empezar.copy.piecesDeck }}</p>
+    </header>
+
+    <div class="cycle-pieces__list">
+      {% for piece in empezar.pieces %}
+      <article class="cycle-piece cycle-piece--{{ piece.status }}" id="piece-{{ piece.order }}">
+        <div class="cycle-piece__number matrix" aria-hidden="true">0{{ piece.order }}</div>
+        <div class="cycle-piece__main">
+          <p class="cycle-piece__state matrix"><span></span>{{ piece.statusLabel }}</p>
+          <h3>{% if piece.href %}<a href="{{ piece.href }}">{{ piece.title }}</a>{% else %}{{ piece.title }}{% endif %}</h3>
+          {% if piece.excerpt %}<p class="cycle-piece__excerpt">{{ piece.excerpt }}</p>{% endif %}
+        </div>
+        <aside class="cycle-piece__aside">
+          <p class="cycle-piece__author">{{ piece.author }}</p>
+          {% if piece.genre %}<p>{{ piece.genre }}</p>{% endif %}
+          {% if piece.readingTime %}<p>{{ piece.readingTime }} min de lectura</p>{% endif %}
+          {% if piece.href %}
+            <a class="cycle-piece__cta" href="{{ piece.href }}"><span>Leer la pieza</span><b aria-hidden="true">↗</b></a>
+          {% else %}
+            <span class="cycle-piece__pending">Todavía no publicada</span>
+          {% endif %}
+        </aside>
+        <span class="cycle-piece__pixel cycle-piece__pixel--a" aria-hidden="true"></span>
+        <span class="cycle-piece__pixel cycle-piece__pixel--b" aria-hidden="true"></span>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="cycle-closing" aria-labelledby="closingTitle">
+    <div class="cycle-closing__mark" aria-hidden="true"><img src="/assets/ciclos.png" alt=""></div>
+    <div class="cycle-closing__copy">
+      <p class="matrix">UNA IDEA / VARIAS VIDAS</p>
+      <h2 id="closingTitle">{{ empezar.copy.closingTitle }}</h2>
+      <p>{{ empezar.copy.closingBody }}</p>
+      <a href="/temas/">{{ empezar.copy.backLabel }} →</a>
+    </div>
+  </section>
+</main>
+
+{% include "components/interior-footer.njk" %}
+{% endblock %}
