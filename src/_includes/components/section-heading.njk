@@ -1,0 +1,7 @@
+<header class="section-heading{% if align %} section-heading--{{ align }}{% endif %}"{% if headingId %} aria-labelledby="{{ headingId }}"{% endif %}>
+  <img class="section-heading__icon" src="{{ icon }}" alt="" aria-hidden="true">
+  <div class="section-heading__copy">
+    <h2{% if headingId %} id="{{ headingId }}"{% endif %}>{{ heading }}</h2>
+    {% if tagline %}<p>{{ tagline }}</p>{% endif %}
+  </div>
+</header>

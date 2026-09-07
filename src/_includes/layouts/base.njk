@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="{{ site.language }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="{{ themeColor or '#070812' }}">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="application-name" content="{{ site.name }}">
+  <meta name="apple-mobile-web-app-title" content="{{ site.name }}">
+
+  <title>{% if seoTitle %}{{ seoTitle }}{% elif title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="robots" content="{{ robots or 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' }}">
+  <link rel="canonical" href="{{ canonical or (site.url + page.url) }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.url }}/feed.xml">
+
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:title" content="{{ ogTitle or seoTitle or title or site.name }}">
+  <meta property="og:description" content="{{ ogDescription or description or site.description }}">
+  <meta property="og:url" content="{{ canonical or (site.url + page.url) }}">
+  {% if shareImage %}
+  <meta property="og:image" content="{{ site.url }}{{ shareImage }}">
+  <meta property="og:image:secure_url" content="{{ site.url }}{{ shareImage }}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {% if shareImageAlt %}<meta property="og:image:alt" content="{{ shareImageAlt }}">{% endif %}
+  {% endif %}
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ ogTitle or seoTitle or title or site.name }}">
+  <meta name="twitter:description" content="{{ ogDescription or description or site.description }}">
+  {% if shareImage %}<meta name="twitter:image" content="{{ site.url }}{{ shareImage }}">{% endif %}
+  {% if shareImageAlt %}<meta name="twitter:image:alt" content="{{ shareImageAlt }}">{% endif %}
+
+  <link rel="icon" href="/assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="preload" href="/assets/fonts/Grift-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/Grift-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/Grift-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/production/base.css">
+  {% if stylesheet %}<link rel="stylesheet" href="{{ stylesheet }}">{% endif %}
+
+  {% if site.analytics and site.analytics.provider == 'umami' %}
+  <script defer src="{{ site.analytics.src }}" data-website-id="{{ site.analytics.websiteId }}"></script>
+  {% endif %}
+
+  {% block head %}{% endblock %}
+</head>
+<body class="{{ bodyClass or '' }}">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  {% block body %}{% endblock %}
+  <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+  {% if script %}<script defer src="{{ script }}"></script>{% endif %}
+  {% block scripts %}{% endblock %}
+</body>
+</html>

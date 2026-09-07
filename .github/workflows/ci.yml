@@ -1,0 +1,92 @@
+name: CQST build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - v21-production-refactor
+
+concurrency:
+  group: cqst-v21-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build Eleventy + Pagefind
+        run: npm run build
+
+      - name: Verify production entry points and rendered home
+        run: |
+          test -f _site/index.html
+          test -f _site/assets/css/production/base.css
+          test -f _site/assets/css/production/home.css
+          test -f _site/assets/js/production/home.js
+          test -d _site/pagefind
+
+          # Home must contain real server-rendered editorial content.
+          grep -q 'id="main"' _site/index.html
+          grep -q 'class="home-hero scene"' _site/index.html
+          grep -q 'id="cycleRail"' _site/index.html
+          grep -q 'La fecha la ponemos después' _site/index.html
+          grep -q 'id="newsletterForm"' _site/index.html
+          grep -q 'https://formspree.io/f/moeqwono' _site/index.html
+          grep -q 'application/ld+json' _site/index.html
+
+          # The production home must not leak version-scoped lab classes.
+          ! grep -Eq 'class="[^"]*v(11|15|16|17|18|19|20)' _site/index.html
+
+          # Existing public routes stay alive until each one is migrated to src/.
+          test -f _site/cqst/index.html
+          test -f _site/empezar/index.html
+          test -f _site/empezar/la-fecha-la-ponemos-despues/index.html
+          test -f _site/privacidad/index.html
+          test -f _site/temas/index.html
+          test -f _site/voces/index.html
+          test -f _site/feed.xml
+          test -f _site/robots.txt
+          test -f _site/sitemap.xml
+          test -f _site/site.webmanifest
+
+      - name: Capture V20 vs V21 parity screenshots
+        run: |
+          export CHROME_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME_BIN"
+          python3 -m http.server 4173 --directory _site >/tmp/cqst-v21-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
+          sleep 2
+          npm run qa:parity
+
+      - name: Upload parity screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: cqst-v21-parity
+          path: parity
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload built site for parity QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: cqst-v21-site
+          path: |
+            _site
+            package-lock.json
+          if-no-files-found: error
+          retention-days: 7

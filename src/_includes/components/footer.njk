@@ -1,0 +1,38 @@
+<footer class="site-footer scene" data-scene="footer" data-tone="dark">
+  <div class="site-footer__brand">
+    <a href="#portada" class="site-footer__logo" aria-label="Volver a la portada">
+      <img src="/assets/brand/logo-static.png" alt="{{ site.name }}">
+    </a>
+    <p>{{ site.description }}</p>
+  </div>
+
+  <div class="site-footer__navs">
+    <nav aria-label="Explorar">
+      <strong>Explorar</strong>
+      <a href="#leer">Ciclos</a>
+      <a href="#etcetera">Etcétera</a>
+      <a href="/cqst/">Sobre CQST</a>
+    </nav>
+    <nav aria-label="Participar">
+      <strong>Participar</strong>
+      <a href="#participar">Recibir CQST</a>
+      <button type="button" data-open-topic>Proponer un tema ↗</button>
+    </nav>
+    <nav aria-label="Seguir">
+      <strong>Seguir</strong>
+      <a href="{{ site.social.instagram }}" target="_blank" rel="me noopener">Instagram ↗</a>
+      <a href="{{ site.social.tiktok }}" target="_blank" rel="me noopener">TikTok ↗</a>
+      <a href="{{ site.social.facebook }}" target="_blank" rel="me noopener">Facebook ↗</a>
+    </nav>
+  </div>
+
+  <div class="site-footer__meta">
+    <span>© 2026 {{ site.name }}</span>
+    <span><a href="/feed.xml">RSS</a> · <a href="/privacidad/">Privacidad</a></span>
+  </div>
+
+  <div class="last-pixel">
+    <span aria-hidden="true"></span>
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+  </div>
+</footer>

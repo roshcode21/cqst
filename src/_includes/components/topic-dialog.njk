@@ -1,0 +1,31 @@
+<dialog class="topic-dialog" id="topicDialog">
+  <form class="topic-dialog__shell" id="topicForm" action="https://formspree.io/f/{{ site.formspreeId }}" method="POST">
+    <button class="topic-dialog__close" type="button" aria-label="Cerrar formulario">×</button>
+    <p class="action-label matrix">{{ home.participate.topic.label }}</p>
+    <h2>{{ home.participate.topic.dialogTitle }}</h2>
+    <p class="topic-dialog__intro">{{ home.participate.topic.dialogIntro }}</p>
+
+    <div class="topic-dialog__grid">
+      <label class="field">
+        <span>Nombre</span>
+        <input name="name" type="text" autocomplete="name" required>
+      </label>
+      <label class="field">
+        <span>Correo</span>
+        <input name="email" type="email" autocomplete="email" inputmode="email" required>
+      </label>
+    </div>
+
+    <label class="field">
+      <span>Tu tema</span>
+      <textarea name="message" rows="5" maxlength="600" placeholder="Escribe aquí…" required></textarea>
+    </label>
+
+    <input type="hidden" name="_subject" value="Nueva propuesta de tema — Cada quien su tema">
+    <input type="hidden" name="form_type" value="proponer_tema">
+    <input type="hidden" name="origen" value="CQST home">
+
+    <button class="topic-dialog__send" type="submit">Enviar la idea →</button>
+    <p class="form-note topic-dialog__note" aria-live="polite"></p>
+  </form>
+</dialog>
