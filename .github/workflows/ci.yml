@@ -39,7 +39,10 @@ jobs:
           test -f _site/assets/css/production/base.css
           test -f _site/assets/css/production/home.css
           test -f _site/assets/css/production/cycle.css
+          test -f _site/assets/css/production/article.css
           test -f _site/assets/js/production/home.js
+          test -f _site/assets/js/production/cycle.js
+          test -f _site/assets/js/production/article.js
           test -d _site/pagefind
 
           # Home must contain server-rendered editorial content and no lab-version classes.
@@ -57,6 +60,19 @@ jobs:
           grep -q 'Rodolfo Raudales' _site/empezar/index.html
           grep -q 'Mariví Cerisola' _site/empezar/index.html
           grep -q 'Mel Castán' _site/empezar/index.html
+
+          # Published article must be generated from the clean article system.
+          ARTICLE=_site/empezar/la-fecha-la-ponemos-despues/index.html
+          grep -q 'class="article-page article-page--empezar"' "$ARTICLE"
+          grep -q 'itemtype="https://schema.org/Article"' "$ARTICLE"
+          grep -q 'La fecha la ponemos después' "$ARTICLE"
+          grep -q 'Digamos que empieza aquí.' "$ARTICLE"
+          grep -q 'Efecto de nuevo comienzo' "$ARTICLE"
+          grep -q 'data-pagefind-meta="type:article"' "$ARTICLE"
+          grep -q '/assets/css/production/article.css' "$ARTICLE"
+          grep -q '/assets/js/production/article.js' "$ARTICLE"
+          ! grep -q '/assets/css/article/' "$ARTICLE"
+          ! grep -q 'site-footer.css' "$ARTICLE"
 
           # Existing public routes stay alive until each one is migrated to src/.
           test -f _site/cqst/index.html
