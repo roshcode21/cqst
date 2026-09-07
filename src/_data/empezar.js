@@ -59,6 +59,9 @@ const pieces = articles
 const publishedPieces = pieces.filter(piece => piece.isPublished);
 const uniqueVoices = new Set(pieces.map(piece => piece.authorSlug));
 const otherCycles = cycles.filter(item => item.slug !== cycle.slug);
+const publishedDates = publishedPieces.map(piece => piece.published).filter(Boolean).sort();
+const dateModified = publishedDates.at(-1) || cycle.dateStart || "";
+const keywords = [...new Set([...(cycle.subjects || []), ...publishedPieces.flatMap(piece => piece.subjects || [])])];
 
 export default {
   cycle,
@@ -67,5 +70,7 @@ export default {
   publishedPieces,
   pieceCount: pieces.length,
   voiceCount: uniqueVoices.size,
+  dateModified,
+  keywords,
   hasOtherCycles: otherCycles.length > 0
 };
