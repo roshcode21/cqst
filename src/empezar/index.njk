@@ -1,7 +1,7 @@
 ---
-seoTitle: "Empezar — Tres voces sobre un mismo comienzo | Cada Quien Su Tema"
+seoTitle: "Empezar — textos y voces sobre los comienzos | Cada Quien Su Tema"
 title: "Empezar"
-description: "Empezar reúne tres voces alrededor de lo que significa reconocer, elegir o recordar un comienzo."
+description: "Empezar reúne textos y voces que vuelven sobre lo que significa reconocer, elegir, recordar o inventar un comienzo."
 robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
 canonical: "https://cadaquiensutema.com/empezar/"
 shareImage: "/assets/brand/share-empezar-1200x630.png"
@@ -36,7 +36,7 @@ permalink: "/empezar/index.html"
       "url": "{{ site.url }}/empezar/",
       "inLanguage": "{{ site.locale }}",
       "publisher": {"@id": "{{ site.url }}/#organization"},
-      "keywords": ["comienzos", "memoria", "relato", "experiencia"],
+      "keywords": ["comienzos", "memoria", "relato", "experiencia", "cambio"],
       "hasPart": [
         {% for piece in empezar.publishedPieces %}
         {
@@ -83,12 +83,12 @@ permalink: "/empezar/index.html"
 
 <main id="main" data-pagefind-body>
   <section class="cycle-hero" aria-labelledby="cycleTitle">
-    <div class="cycle-hero__noise" aria-hidden="true"></div>
+    <div class="cycle-hero__orbit" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="cycle-hero__shell">
-      <div class="cycle-hero__meta">
-        <span class="matrix">{{ empezar.copy.kicker }}</span>
-        <span>{{ empezar.voiceCount }} voces</span>
-        <span>{{ empezar.year }}</span>
+      <div class="cycle-hero__meta" aria-label="Ubicación editorial">
+        <a href="/temas/">Temas</a>
+        <span aria-hidden="true">/</span>
+        <strong>{{ empezar.cycle.title }}</strong>
       </div>
 
       <div class="cycle-hero__title-wrap">
@@ -102,16 +102,16 @@ permalink: "/empezar/index.html"
         <p class="cycle-hero__intro">{{ empezar.copy.intro }}</p>
       </div>
 
-      <nav class="cycle-axis" aria-label="Entradas del ciclo Empezar">
-        <span class="cycle-axis__line" aria-hidden="true"></span>
-        {% for piece in empezar.pieces %}
-          <a class="cycle-axis__point cycle-axis__point--{{ piece.status }}" href="#piece-{{ piece.order }}">
-            <span class="cycle-axis__node" aria-hidden="true"></span>
-            <span class="matrix">0{{ piece.order }}</span>
-            <strong>{{ piece.author }}</strong>
-            <small>{{ piece.statusLabel }}</small>
+      <nav class="cycle-index" aria-label="Índice de piezas de Empezar">
+        <p class="cycle-index__label matrix">ÍNDICE DEL CICLO</p>
+        <div class="cycle-index__track">
+          {% for piece in empezar.pieces %}
+          <a class="cycle-index__item" href="#piece-{{ piece.order }}">
+            <span class="cycle-index__number matrix">{% if piece.order < 10 %}0{% endif %}{{ piece.order }}</span>
+            <span class="cycle-index__copy"><strong>{{ piece.title }}</strong><small>{{ piece.author }}</small></span>
           </a>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </nav>
     </div>
   </section>
@@ -119,7 +119,7 @@ permalink: "/empezar/index.html"
   <section class="cycle-pieces" aria-labelledby="piecesTitle">
     <header class="cycle-pieces__head">
       <div>
-        <p class="matrix">EMPEZAR / VOCES</p>
+        <p class="matrix">{{ empezar.cycle.title | upper }} / ARCHIVO ABIERTO</p>
         <h2 id="piecesTitle">{{ empezar.copy.piecesHeading }}</h2>
       </div>
       <p>{{ empezar.copy.piecesDeck }}</p>
@@ -127,25 +127,26 @@ permalink: "/empezar/index.html"
 
     <div class="cycle-pieces__list">
       {% for piece in empezar.pieces %}
-      <article class="cycle-piece cycle-piece--{{ piece.status }}" id="piece-{{ piece.order }}">
-        <div class="cycle-piece__number matrix" aria-hidden="true">0{{ piece.order }}</div>
-        <div class="cycle-piece__main">
-          <p class="cycle-piece__state matrix"><span></span>{{ piece.statusLabel }}</p>
-          <h3>{% if piece.href %}<a href="{{ piece.href }}">{{ piece.title }}</a>{% else %}{{ piece.title }}{% endif %}</h3>
-          {% if piece.excerpt %}<p class="cycle-piece__excerpt">{{ piece.excerpt }}</p>{% endif %}
-        </div>
-        <aside class="cycle-piece__aside">
-          <p class="cycle-piece__author">{{ piece.author }}</p>
-          {% if piece.genre %}<p>{{ piece.genre }}</p>{% endif %}
-          {% if piece.readingTime %}<p>{{ piece.readingTime }} min de lectura</p>{% endif %}
-          {% if piece.href %}
-            <a class="cycle-piece__cta" href="{{ piece.href }}"><span>Leer la pieza</span><b aria-hidden="true">↗</b></a>
-          {% else %}
-            <span class="cycle-piece__pending">Todavía no publicada</span>
-          {% endif %}
-        </aside>
-        <span class="cycle-piece__pixel cycle-piece__pixel--a" aria-hidden="true"></span>
-        <span class="cycle-piece__pixel cycle-piece__pixel--b" aria-hidden="true"></span>
+      <article class="cycle-piece" id="piece-{{ piece.order }}">
+        <a class="cycle-piece__link" href="{{ piece.href }}"{% if not piece.isPublished %} data-preview-link="true"{% endif %}>
+          <div class="cycle-piece__number matrix" aria-hidden="true">{% if piece.order < 10 %}0{% endif %}{{ piece.order }}</div>
+          <div class="cycle-piece__main">
+            <p class="cycle-piece__eyebrow matrix">{{ piece.author }}</p>
+            <h3>{{ piece.title }}</h3>
+            {% if piece.excerpt %}<p class="cycle-piece__excerpt">{{ piece.excerpt }}</p>{% endif %}
+          </div>
+          <aside class="cycle-piece__aside">
+            <div class="cycle-piece__meta">
+              <p class="cycle-piece__author">{{ piece.author }}</p>
+              {% if piece.dateLabel %}<p>{{ piece.dateLabel }}</p>{% endif %}
+              {% if piece.genre %}<p>{{ piece.genre }}</p>{% endif %}
+              {% if piece.readingTime %}<p>{{ piece.readingTime }} min de lectura</p>{% endif %}
+            </div>
+            <span class="cycle-piece__cta"><span>Leer la pieza</span><b aria-hidden="true">↗</b></span>
+          </aside>
+          <span class="cycle-piece__pixel cycle-piece__pixel--a" aria-hidden="true"></span>
+          <span class="cycle-piece__pixel cycle-piece__pixel--b" aria-hidden="true"></span>
+        </a>
       </article>
       {% endfor %}
     </div>
@@ -157,7 +158,11 @@ permalink: "/empezar/index.html"
       <p class="matrix">UNA IDEA / VARIAS VIDAS</p>
       <h2 id="closingTitle">{{ empezar.copy.closingTitle }}</h2>
       <p>{{ empezar.copy.closingBody }}</p>
-      <a href="/temas/">{{ empezar.copy.backLabel }} →</a>
+      {% if empezar.hasOtherCycles %}
+        <a href="/temas/">{{ empezar.copy.moreCyclesLabel }} →</a>
+      {% else %}
+        <a href="/">{{ empezar.copy.homeLabel }} →</a>
+      {% endif %}
     </div>
   </section>
 </main>
