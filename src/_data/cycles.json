@@ -8,6 +8,35 @@
     "dateStart": "2026-08-19",
     "order": 1,
     "visualTheme": "empezar",
-    "subjects": ["comienzos", "memoria", "relato", "experiencia", "cambio"]
+    "seoTitle": "Empezar — textos y voces sobre los comienzos | Cada Quien Su Tema",
+    "description": "Empezar reúne textos y voces que vuelven sobre lo que significa reconocer, elegir, recordar o inventar un comienzo.",
+    "shareImage": "/assets/brand/share-empezar-1200x630.png",
+    "shareImageAlt": "Empezar, ciclo editorial de Cada Quien Su Tema",
+    "themeColor": "#f5f1e9",
+    "subjects": [
+      "comienzos",
+      "memoria",
+      "relato",
+      "experiencia",
+      "cambio"
+    ],
+    "art": {
+      "heroBackground": "/assets/bg_c2.png",
+      "closingBackground": "/assets/bg_c1.png"
+    },
+    "copy": {
+      "intro": "Empezar casi nunca ocurre en el momento exacto que después señalamos. A veces lo decidimos; otras, solo entendemos que algo había comenzado cuando ya estamos dentro. Distintas voces vuelven sobre esa experiencia desde lugares diferentes.",
+      "piecesHeading": "Las piezas",
+      "piecesDeck": "Cada texto entra por otro lado. No hay un orden obligatorio de lectura.",
+      "closingKicker": "UNA IDEA / VARIAS VIDAS",
+      "closingTitle": "El principio no se pone de acuerdo.",
+      "closingBody": "Empezar no intenta fijar una definición. Guarda distintas formas de reconocer, recordar o elegir un comienzo y deja que convivan en el tiempo.",
+      "moreCyclesLabel": "Seguir por otro tema",
+      "homeLabel": "Volver a la portada"
+    },
+    "rail": {
+      "allUntil": 10,
+      "selectionSize": 6
+    }
   }
 ]
