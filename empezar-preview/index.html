@@ -36,11 +36,14 @@
   <link rel="icon" href="../assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png" sizes="180x180">
   <link rel="manifest" href="../site.webmanifest">
+
   <link rel="preload" href="../assets/fonts/Grift-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/Grift-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/Grift-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/production/base.css">
   <link rel="stylesheet" href="../assets/css/production/cycle.css">
+  <link rel="stylesheet" href="../assets/css/production/cycle-index-mobile.css">
+
   <script defer src="https://cloud.umami.is/script.js" data-website-id="9dfccd0b-94a4-437c-b156-fc464b1b226d"></script>
 
 <script type="application/ld+json">
@@ -115,7 +118,6 @@
   <nav class="interior-nav__links" aria-label="Explorar">
     <a href="../">Portada</a>
     <a href="../temas/" aria-current="page">Temas</a>
-    <a href="../voces/">Voces</a>
     <a href="../cqst/">CQST</a>
   </nav>
 </header>
@@ -137,21 +139,25 @@
       </div>
 
       <nav class="cycle-index" aria-label="Piezas de Empezar">
-        <p class="cycle-index__label matrix">EN ESTE CICLO</p>
-        <div class="cycle-index__track">
-          <a class="cycle-index__item" href="#piece-1">
+        <div class="cycle-index__topline">
+          <p class="cycle-index__label matrix">EN ESTE CICLO</p>
+          <p class="cycle-index__cue matrix" aria-live="polite"><span data-cycle-index-current>01</span> / 03 — desliza →</p>
+        </div>
+        <div class="cycle-index__track" data-cycle-index-track>
+          <a class="cycle-index__item" href="#piece-1" data-cycle-index-item>
             <span class="cycle-index__number matrix">01</span>
             <span class="cycle-index__copy"><strong>La fecha la ponemos después</strong><small>Rodolfo Raudales</small></span>
           </a>
-          <a class="cycle-index__item" href="#piece-2">
+          <a class="cycle-index__item" href="#piece-2" data-cycle-index-item>
             <span class="cycle-index__number matrix">02</span>
             <span class="cycle-index__copy"><strong>No fue ese día</strong><small>Mariví Cerisola</small></span>
           </a>
-          <a class="cycle-index__item" href="#piece-3">
+          <a class="cycle-index__item" href="#piece-3" data-cycle-index-item>
             <span class="cycle-index__number matrix">03</span>
             <span class="cycle-index__copy"><strong>Pieza de Mel Castán</strong><small>Mel Castán</small></span>
           </a>
         </div>
+        <div class="cycle-index__meter" aria-hidden="true"><i data-cycle-index-meter></i></div>
       </nav>
     </div>
   </section>
@@ -231,7 +237,7 @@
 
     <nav class="interior-footer__nav" aria-label="Explorar">
       <a href="../temas/">Temas</a>
-      <a href="../voces/">Voces</a>
+      <a href="/voces/">Voces</a>
       <a href="../cqst/">Conocer</a>
       <a href="https://www.instagram.com/cadaquiensutema/" target="_blank" rel="me noopener">Instagram ↗</a>
       <a href="https://www.tiktok.com/@cada.quien.su.tema" target="_blank" rel="me noopener">TikTok ↗</a>
@@ -247,5 +253,6 @@
 </footer>
 
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script defer src="../assets/js/production/cycle.js"></script>
 </body>
 </html>
