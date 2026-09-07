@@ -25,12 +25,13 @@ const statusLabel = status => ({
 
 const pieces = articles
   .filter(article => article.cycle === cycle.slug)
+  .sort((a, b) => (a.order || 999) - (b.order || 999))
   .map((article, index) => {
     const voice = voiceBySlug.get(article.author);
     if (!voice) throw new Error(`Voz desconocida en ${article.slug}: ${article.author}`);
 
     return {
-      order: index + 1,
+      order: article.order || index + 1,
       slug: article.slug,
       title: article.title || copy.untitledLabel,
       description: article.description,
