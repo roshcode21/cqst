@@ -17,23 +17,30 @@ if (!copy) throw new Error(`Falta copy editorial para el ciclo ${cycle.slug}.`);
 
 const voiceBySlug = new Map(voices.map(voice => [voice.slug, voice]));
 
-const statusLabel = status => ({
-  published: copy.publishedLabel,
-  scheduled: copy.scheduledLabel,
-  draft: copy.draftLabel
-}[status] || status);
+const formatDate = value => {
+  if (!value) return "";
+  return new Intl.DateTimeFormat("es-MX", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC"
+  }).format(new Date(`${value}T12:00:00Z`));
+};
 
 const pieces = articles
   .filter(article => article.cycle === cycle.slug)
-  .sort((a, b) => (a.order || 999) - (b.order || 999))
+  .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
   .map((article, index) => {
     const voice = voiceBySlug.get(article.author);
     if (!voice) throw new Error(`Voz desconocida en ${article.slug}: ${article.author}`);
 
+    const isPublished = article.status === "published";
+    const title = article.title || `Pieza de ${voice.name}`;
+
     return {
-      order: article.order || index + 1,
+      order: article.order ?? index + 1,
       slug: article.slug,
-      title: article.title || copy.untitledLabel,
+      title,
       description: article.description,
       excerpt: article.excerpt || "",
       author: voice.name,
@@ -41,21 +48,24 @@ const pieces = articles
       readingTime: article.readingTime,
       genre: article.genre,
       status: article.status,
-      statusLabel: statusLabel(article.status),
-      href: article.status === "published" ? `/${cycle.slug}/${article.slug}/` : null,
+      isPublished,
+      href: isPublished ? `/${cycle.slug}/${article.slug}/` : "#",
       published: article.published,
+      dateLabel: formatDate(article.published),
       subjects: article.subjects || []
     };
   });
 
-const publishedPieces = pieces.filter(piece => piece.href);
+const publishedPieces = pieces.filter(piece => piece.isPublished);
+const uniqueVoices = new Set(pieces.map(piece => piece.authorSlug));
+const otherCycles = cycles.filter(item => item.slug !== cycle.slug);
 
 export default {
   cycle,
   copy,
   pieces,
   publishedPieces,
-  voiceCount: cycle.expectedVoices || pieces.length,
-  publishedCount: publishedPieces.length,
-  year: new Date(`${cycle.dateStart}T12:00:00Z`).getUTCFullYear()
+  pieceCount: pieces.length,
+  voiceCount: uniqueVoices.size,
+  hasOtherCycles: otherCycles.length > 0
 };
