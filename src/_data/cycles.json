@@ -3,10 +3,10 @@
     "slug": "empezar",
     "title": "Empezar",
     "deck": "El principio cambia según quién lo cuenta.",
-    "status": "current",
+    "status": "active",
+    "featured": true,
     "dateStart": "2026-08-19",
     "order": 1,
-    "expectedVoices": 3,
     "visualTheme": "empezar"
   }
 ]
