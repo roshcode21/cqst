@@ -82,8 +82,10 @@
     const image = $('#kineticLogoImage');
     if (!button || !image) return;
 
+    const firstFrame = new URL(image.getAttribute('src') || image.src, document.baseURI);
+    const frameBase = new URL('./', firstFrame);
     const frames = ['Logo.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png']
-      .map(name => `/assets/brand/kinetic/${name}`);
+      .map(name => new URL(name, frameBase).href);
 
     let frame = 0;
     let paused = prefersReducedMotion || savesData;
