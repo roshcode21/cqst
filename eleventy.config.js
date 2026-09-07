@@ -1,16 +1,15 @@
 export default function (eleventyConfig) {
-  /* Production assets are already shared by the lab and the new build. */
+  /* Production assets are shared by the current site and the Eleventy build. */
   eleventyConfig.addPassthroughCopy({ "assets": "assets" });
 
   /*
-   * Strangler migration: keep current public routes alive while each page is
-   * rebuilt under src/. Remove a passthrough entry the moment its Eleventy
-   * replacement lands. This prevents the home refactor from breaking existing
-   * URLs during the editorial-system migration.
+   * Strangler migration: keep legacy public routes alive until their Eleventy
+   * replacement lands. Empezar itself is now generated from src/, while its
+   * published article remains passthrough until the article template migrates.
    */
   [
     "cqst",
-    "empezar",
+    "empezar/la-fecha-la-ponemos-despues",
     "privacidad",
     "temas",
     "voces",

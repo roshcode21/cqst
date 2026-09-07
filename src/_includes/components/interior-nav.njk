@@ -1,0 +1,14 @@
+<header class="interior-nav" aria-label="Navegación de {{ site.name }}">
+  <a class="interior-nav__brand" href="/" aria-label="Ir a la portada de {{ site.name }}">
+    <span class="interior-nav__mark" aria-hidden="true">
+      <img src="/assets/brand/simbolo.png" alt="">
+      <i><b></b></i>
+    </span>
+    <span class="interior-nav__name">{{ site.name }}</span>
+  </a>
+  <nav class="interior-nav__links" aria-label="Explorar">
+    <a href="/"{% if navCurrent == 'portada' %} aria-current="page"{% endif %}>Portada</a>
+    <a href="/temas/"{% if navCurrent == 'temas' %} aria-current="page"{% endif %}>Temas</a>
+    <a href="/cqst/"{% if navCurrent == 'cqst' %} aria-current="page"{% endif %}>CQST</a>
+  </nav>
+</header>
