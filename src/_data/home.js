@@ -13,10 +13,22 @@ const voiceBySlug = new Map(voices.map(voice => [voice.slug, voice]));
 const articleBySlug = new Map(articles.map(article => [article.slug, article]));
 const cycleBySlug = new Map(cycles.map(cycle => [cycle.slug, cycle]));
 
-const currentCycle = cycles.find(cycle => cycle.status === "current");
-if (!currentCycle) throw new Error("CQST necesita exactamente un ciclo actual para construir el home.");
+/*
+ * A cycle can be active without being the one featured on the home.
+ * This lets CQST run two or more cycles at the same time later without
+ * forcing the homepage to pretend there is only one "current" cycle.
+ */
+const featuredCycle = cycles.find(cycle => cycle.featured === true)
+  || cycles.find(cycle => cycle.status === "active")
+  || cycles[0];
 
-const cycleArticles = articles.filter(article => article.cycle === currentCycle.slug);
+if (!featuredCycle) throw new Error("CQST necesita al menos un ciclo para construir el home.");
+
+const cycleArticles = articles
+  .filter(article => article.cycle === featuredCycle.slug)
+  .sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
+
+const uniqueCycleAuthors = new Set(cycleArticles.map(article => article.author));
 
 const toStory = article => {
   const voice = voiceBySlug.get(article.author);
@@ -24,10 +36,10 @@ const toStory = article => {
 
   return {
     slug: article.slug,
-    title: article.title || "[tu título aquí]",
+    title: article.title || `[pieza de ${voice.shortName || voice.name}]`,
     author: voice.name,
     time: article.readingTime ? `${article.readingTime} min` : "",
-    href: article.status === "published" ? `/${currentCycle.slug}/${article.slug}/` : null,
+    href: article.status === "published" ? `/${featuredCycle.slug}/${article.slug}/` : null,
     status: article.status
   };
 };
@@ -48,7 +60,7 @@ const featuredCards = copy.etcetera.featured.map(feature => {
 
   return {
     slug: article.slug,
-    title: article.title || "[tu título aquí]",
+    title: article.title || `[pieza de ${voice.shortName || voice.name}]`,
     author: voice.name,
     meta: pieces.join(" · "),
     href: article.status === "published" ? `/${cycle.slug}/${article.slug}/` : null,
@@ -61,10 +73,10 @@ const featuredCards = copy.etcetera.featured.map(feature => {
 export default {
   hero: copy.hero,
   currentCycle: {
-    slug: currentCycle.slug,
-    title: currentCycle.title,
-    deck: currentCycle.deck,
-    voiceCount: currentCycle.expectedVoices || stories.length,
+    slug: featuredCycle.slug,
+    title: featuredCycle.title,
+    deck: featuredCycle.deck,
+    voiceCount: uniqueCycleAuthors.size,
     stories
   },
   reader: {
@@ -72,10 +84,10 @@ export default {
     tagline: copy.reader.tagline,
     labCycles: [
       {
-        slug: currentCycle.slug,
-        title: currentCycle.title,
-        count: currentCycle.expectedVoices || stories.length,
-        status: "current",
+        slug: featuredCycle.slug,
+        title: featuredCycle.title,
+        count: uniqueCycleAuthors.size,
+        status: "featured",
         labOnly: false
       },
       ...copy.reader.prototypeCycles.map(cycle => ({ ...cycle, status: "prototype" }))
