@@ -27,44 +27,30 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@graph": [
+  "@context":"https://schema.org",
+  "@graph":[
     {
-      "@type": "Article",
-      "@id": "{{ articlePage.canonical }}#article",
-      "headline": {{ articlePage.article.title | json | safe }},
-      "description": {{ articlePage.article.description | json | safe }},
-      "url": "{{ articlePage.canonical }}",
-      "mainEntityOfPage": "{{ articlePage.canonical }}",
-      "inLanguage": "{{ site.locale }}",
-      "datePublished": "{{ articlePage.article.published }}",
-      "dateModified": "{{ articlePage.article.modified or articlePage.article.published }}",
-      "articleSection": {{ articlePage.cycle.title | json | safe }},
-      "genre": {{ articlePage.article.genre | json | safe }},
-      "isAccessibleForFree": true,
-      "wordCount": {{ articlePage.article.wordCount or 0 }},
-      "timeRequired": "{{ articlePage.timeRequired }}",
-      "keywords": {{ articlePage.article.subjects | json | safe }},
-      "about": [
-        {% for subject in articlePage.article.subjects %}{"@type":"Thing","name":{{ subject | json | safe }}}{% if not loop.last %},{% endif %}{% endfor %}
-      ],
-      "citation": {{ articlePage.article.citations | json | safe }},
-      {% if articlePage.article.shareImage %}
-      "image": {
-        "@type": "ImageObject",
-        "url": "{{ site.url }}{{ articlePage.article.shareImage }}",
-        "width": 1200,
-        "height": 630
-      },
-      {% endif %}
-      "author": {"@id":"{{ articlePage.canonical }}#author"},
-      "publisher": {"@id":"{{ site.url }}/#organization"},
-      "isPartOf": {
-        "@type":"CreativeWorkSeries",
-        "@id":"{{ site.url }}/{{ articlePage.cycle.slug }}/#cycle",
-        "name":{{ articlePage.cycle.title | json | safe }},
-        "url":"{{ site.url }}/{{ articlePage.cycle.slug }}/"
-      }
+      "@type":"Article",
+      "@id":"{{ articlePage.canonical }}#article",
+      "headline":{{ articlePage.article.title | json | safe }},
+      "description":{{ articlePage.article.description | json | safe }},
+      "url":"{{ articlePage.canonical }}",
+      "mainEntityOfPage":"{{ articlePage.canonical }}",
+      "inLanguage":"{{ site.locale }}",
+      "datePublished":"{{ articlePage.article.published }}",
+      "dateModified":"{{ articlePage.article.modified or articlePage.article.published }}",
+      "articleSection":{{ articlePage.cycle.title | json | safe }},
+      "genre":{{ articlePage.article.genre | json | safe }},
+      "isAccessibleForFree":true,
+      "wordCount":{{ articlePage.article.wordCount or 0 }},
+      "timeRequired":"{{ articlePage.timeRequired }}",
+      "keywords":{{ articlePage.article.subjects | json | safe }},
+      "about":[{% for subject in articlePage.article.subjects %}{"@type":"Thing","name":{{ subject | json | safe }}}{% if not loop.last %},{% endif %}{% endfor %}],
+      "citation":{{ articlePage.article.citations | json | safe }},
+      {% if articlePage.article.shareImage %}"image":{"@type":"ImageObject","url":"{{ site.url }}{{ articlePage.article.shareImage }}","width":1200,"height":630},{% endif %}
+      "author":{"@id":"{{ articlePage.canonical }}#author"},
+      "publisher":{"@id":"{{ site.url }}/#organization"},
+      "isPartOf":{"@type":"CreativeWorkSeries","@id":"{{ site.url }}/{{ articlePage.cycle.slug }}/#cycle","name":{{ articlePage.cycle.title | json | safe }},"url":"{{ site.url }}/{{ articlePage.cycle.slug }}/"}
     },
     {
       "@type":"Person",
@@ -94,39 +80,58 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
 {% endblock %}
 
 {% block body %}
-<header class="reading-bar" data-reading-bar>
+<header class="reading-bar" aria-label="Navegación de lectura">
   <a class="reading-bar__brand" href="/" aria-label="{{ site.name }}, ir a la portada">
-    <img class="reading-bar__wordmark" src="/assets/brand/logo-static.png" alt="{{ site.name }}">
+    <img class="reading-bar__wordmark" src="/assets/brand/logo-article.svg" alt="{{ site.name }}">
     <img class="reading-bar__mobile-mark" src="/assets/ciclos.png" alt="" aria-hidden="true">
   </a>
-  <a class="reading-bar__cycle" href="/{{ articlePage.cycle.slug }}/"><span class="matrix">CICLO</span><strong>{{ articlePage.cycle.title }}</strong><span aria-hidden="true">↗</span></a>
-  <div class="reading-bar__progress" aria-hidden="true"><i data-reading-progress></i></div>
+
+  <div class="reading-progress" aria-label="Progreso de lectura">
+    <span class="reading-progress__track" aria-hidden="true"></span>
+    <span class="reading-progress__fill" data-reading-progress aria-hidden="true"></span>
+    <span class="reading-progress__breath" data-reading-breath aria-hidden="true"></span>
+    <span class="reading-progress__breath" data-reading-breath aria-hidden="true"></span>
+    <span class="reading-progress__last-pixel" aria-hidden="true"></span>
+  </div>
+
+  <a class="reading-bar__cycle" href="/{{ articlePage.cycle.slug }}/" data-cycle-continue>
+    <span class="matrix">CICLO</span>
+    <strong>{{ articlePage.cycle.title }}</strong>
+    <span class="reading-bar__cycle-arrow" aria-hidden="true">↗</span>
+  </a>
 </header>
 
 <main id="main" data-pagefind-body>
-  <article class="article-document" itemscope itemtype="https://schema.org/Article">
-    <header class="article-hero">
-      <div class="article-hero__inner">
-        <p class="article-hero__kicker matrix"><a href="/{{ articlePage.cycle.slug }}/">{{ articlePage.cycle.title | upper }}</a> / {{ articlePage.article.genre | upper }}</p>
-        <h1 itemprop="headline">{{ articlePage.article.title }}</h1>
+  <article class="article-document"
+    itemscope itemtype="https://schema.org/Article"
+    data-article-slug="{{ articlePage.article.slug }}"
+    data-cycle-slug="{{ articlePage.cycle.slug }}"
+    data-voice-slug="{{ articlePage.author.slug }}">
 
-        <div class="article-hero__side">
-          <p class="article-hero__deck" itemprop="description">{{ articlePage.article.deck or articlePage.article.excerpt }}</p>
-          <div class="article-byline">
-            <a href="{{ articlePage.author.profileHref }}" data-preview-link="true"><strong itemprop="author">{{ articlePage.author.name }}</strong></a>
-            <time datetime="{{ articlePage.article.published }}" itemprop="datePublished">{{ articlePage.dateLabel }}</time>
-            {% if articlePage.article.readingTime %}<span>{{ articlePage.article.readingTime }} min de lectura</span>{% endif %}
-          </div>
-          <button class="article-share article-share--hero" type="button" data-share>Compartir <span aria-hidden="true">↗</span></button>
+    <header class="article-opening">
+      <div class="article-opening__inner">
+        <p class="article-opening__kicker matrix"><a href="/{{ articlePage.cycle.slug }}/">{{ articlePage.cycle.title }}</a> / {{ articlePage.article.genre }}</p>
+        <h1 itemprop="headline">{{ articlePage.article.title }}</h1>
+        <p class="article-opening__deck" itemprop="description">{{ articlePage.article.deck or articlePage.article.excerpt }}</p>
+
+        <div class="article-opening__meta">
+          <strong itemprop="author">{{ articlePage.author.name }}</strong>
+          <time datetime="{{ articlePage.article.published }}" itemprop="datePublished">{{ articlePage.dateLabel }}</time>
+          {% if articlePage.article.readingTime %}<span>{{ articlePage.article.readingTime }} min de lectura</span>{% endif %}
+        </div>
+
+        <div class="article-opening__actions">
+          <button class="article-share" type="button" data-share>Compartir ↗</button>
         </div>
       </div>
-
-      {% if articlePage.article.heroImage %}
-      <figure class="article-visual">
-        <img src="{{ articlePage.article.heroImage }}" alt="{{ articlePage.article.heroImageAlt }}" fetchpriority="high" decoding="async">
-      </figure>
-      {% endif %}
     </header>
+
+    {% if articlePage.article.heroImage %}
+    <figure class="article-visual">
+      <img src="{{ articlePage.article.heroImage }}" alt="{{ articlePage.article.heroImageAlt }}" fetchpriority="high" decoding="async">
+      {% if articlePage.article.heroImageCaption %}<figcaption>{{ articlePage.article.heroImageCaption }}</figcaption>{% endif %}
+    </figure>
+    {% endif %}
 
     {% if articlePage.article.audio %}
     <section class="article-audio" aria-label="Audio de la pieza">
@@ -135,16 +140,8 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
     {% endif %}
 
     <section class="article-reading" id="texto" aria-label="Texto de {{ articlePage.article.title }}">
-      <div class="article-reading__grid">
-        <aside class="article-reading__rail" aria-label="Herramientas de lectura">
-          <div class="article-reading__rail-inner">
-            <p class="matrix">{{ articlePage.cycle.title | upper }}</p>
-            {% if articlePage.article.readingTime %}<span>{{ articlePage.article.readingTime }} MIN</span>{% endif %}
-            <button type="button" data-share>Compartir ↗</button>
-          </div>
-        </aside>
-
-        <div class="article-copy" itemprop="articleBody">
+      <div class="article-reading__inner">
+        <div class="article-copy" itemprop="articleBody" data-reading-copy>
           {{ articlePage.bodyHtml | safe }}
         </div>
 
@@ -152,19 +149,20 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
           <div class="article-margin__inner" data-margin-note>
             <p class="matrix">NOTAS</p>
             <strong>Al margen</strong>
-            <p>Los números dentro del texto abren contexto y fuentes sin interrumpir la lectura.</p>
+            <p>Los números dentro del texto abren contexto y fuentes sin sacar la lectura de su eje.</p>
           </div>
         </aside>
       </div>
     </section>
 
-    {% if articlePage.article.notes.length %}
-    <section class="article-notes" aria-labelledby="articleNotesTitle">
-      <div class="article-notes__inner">
-        <header>
-          <p class="matrix">FUENTES / {{ articlePage.article.notes.length }}</p>
-          <h2 id="articleNotesTitle">Notas al margen</h2>
-        </header>
+    <section class="article-after" aria-label="Notas y herramientas">
+      {% if articlePage.article.notes.length %}
+      <details class="notes-ledger" id="notes">
+        <summary>
+          <span class="notes-ledger__title">Notas al margen</span>
+          <span class="notes-ledger__count">{{ articlePage.article.notes.length | string | padStart(2, '0') if false else articlePage.article.notes.length }}</span>
+          <span class="notes-ledger__sign" aria-hidden="true"></span>
+        </summary>
         <ol class="article-notes__list">
           {% for note in articlePage.article.notes %}
           <li id="note-{{ note.id }}" data-note-source="{{ note.id }}">
@@ -172,14 +170,19 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
             <div>
               <h3>{{ note.title }}</h3>
               <p>{{ note.text }}</p>
-              <a href="{{ note.url }}" target="_blank" rel="noopener noreferrer">{{ note.source }} <span aria-hidden="true">↗</span></a>
+              <a href="{{ note.url }}" target="_blank" rel="noopener noreferrer">{{ note.source }} ↗</a>
             </div>
           </li>
           {% endfor %}
         </ol>
+      </details>
+      {% endif %}
+
+      <div class="article-tools">
+        <span class="matrix">ESTA PIEZA</span>
+        <button class="article-share" type="button" data-share>Compartir ↗</button>
       </div>
     </section>
-    {% endif %}
 
     <section class="article-voice" aria-labelledby="articleVoiceTitle">
       <div class="article-voice__inner">
@@ -189,28 +192,39 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
           <h2 id="articleVoiceTitle">{{ articlePage.author.name }}</h2>
           {% if articlePage.author.bio %}<p>{{ articlePage.author.bio }}</p>{% endif %}
           <div class="article-voice__links">
-            <a href="{{ articlePage.author.profileHref }}" data-preview-link="true">Ver su voz →</a>
-            {% for social in articlePage.author.sameAs %}<a href="{{ social }}" target="_blank" rel="me noopener">{% if 'instagram' in social %}Instagram{% elif 'linkedin' in social %}LinkedIn{% elif 'threads' in social %}Threads{% else %}Perfil{% endif %} ↗</a>{% endfor %}
+            <a href="#" data-preview-link>Ver su voz →</a>
+            {% for social in articlePage.author.sameAs %}
+              {% if 'instagram' in social %}<a href="{{ social }}" target="_blank" rel="me noopener">Instagram ↗</a>{% endif %}
+              {% if 'linkedin' in social %}<a href="{{ social }}" target="_blank" rel="me noopener">LinkedIn ↗</a>{% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
     </section>
 
-    <section class="article-cycle-exit" aria-labelledby="articleCycleExitTitle">
-      <div class="article-cycle-exit__inner">
-        <p class="matrix">DENTRO DE {{ articlePage.cycle.title | upper }}</p>
-        <h2 id="articleCycleExitTitle">El tema sigue.</h2>
-        <div class="article-cycle-exit__links">
-          {% if articlePage.previous %}
-          <a href="{{ articlePage.previous.href }}"><small>← Anterior</small><strong>{{ articlePage.previous.title }}</strong><span>{{ articlePage.previous.author }}</span></a>
-          {% endif %}
-          {% if articlePage.next %}
-          <a href="{{ articlePage.next.href }}"><small>Siguiente →</small><strong>{{ articlePage.next.title }}</strong><span>{{ articlePage.next.author }}</span></a>
-          {% endif %}
-          {% if not articlePage.previous and not articlePage.next %}
-          <a class="article-cycle-exit__cycle" href="/{{ articlePage.cycle.slug }}/"><small>Volver al ciclo</small><strong>{{ articlePage.cycle.title }}</strong><span>{{ articlePage.cycle.deck }}</span></a>
-          {% endif %}
-        </div>
+    <section class="article-continuation" aria-labelledby="articleContinuationTitle">
+      <div class="article-continuation__inner">
+        <p class="matrix">SIGUE EN {{ articlePage.cycle.title | upper }}</p>
+        <h2 id="articleContinuationTitle">El tema no termina aquí.</h2>
+
+        {% if articlePage.next %}
+        <a class="article-continuation__link" href="{{ articlePage.next.href }}" data-cycle-continue>
+          <div><small>Siguiente pieza · {{ articlePage.next.author }}</small><strong>{{ articlePage.next.title }}</strong></div>
+          <span aria-hidden="true">→</span>
+        </a>
+        {% elif articlePage.previous %}
+        <a class="article-continuation__link" href="{{ articlePage.previous.href }}" data-cycle-continue>
+          <div><small>Otra pieza · {{ articlePage.previous.author }}</small><strong>{{ articlePage.previous.title }}</strong></div>
+          <span aria-hidden="true">→</span>
+        </a>
+        {% else %}
+        <a class="article-continuation__link" href="/{{ articlePage.cycle.slug }}/" data-cycle-continue>
+          <div><small>Volver al ciclo</small><strong>{{ articlePage.cycle.title }}</strong></div>
+          <span aria-hidden="true">→</span>
+        </a>
+        {% endif %}
+
+        <a class="article-continuation__cycle" href="/{{ articlePage.cycle.slug }}/" data-cycle-continue>Ver todo {{ articlePage.cycle.title }} →</a>
       </div>
     </section>
   </article>
@@ -218,11 +232,12 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
 
 <section class="article-newsletter" aria-labelledby="articleNewsletterTitle">
   <div class="article-newsletter__inner">
-    <div>
-      <p class="matrix">DESPUÉS DE LEER</p>
+    <div class="article-newsletter__copy">
+      <p class="matrix">SIGUE CERCA</p>
       <h2 id="articleNewsletterTitle">Que el próximo tema te encuentre.</h2>
       <p>Un correo cuando haya algo que decir.</p>
     </div>
+
     <form data-article-newsletter action="https://formspree.io/f/{{ site.formspreeId }}" method="POST">
       <label class="sr-only" for="articleNewsletterEmail">Tu correo</label>
       <input id="articleNewsletterEmail" type="email" name="email" placeholder="tu correo" required autocomplete="email">
