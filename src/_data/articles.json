@@ -4,6 +4,7 @@
     "title": "La fecha la ponemos después",
     "description": "Empezar parece claro cuando miramos hacia atrás. Rodolfo Raudales escribe sobre memoria, sesgo retrospectivo y la forma en que elegimos un comienzo.",
     "excerpt": "Hay comienzos que elegimos y otros que solo aprendemos a reconocer cuando ya pasaron.",
+    "deck": "Hay comienzos que elegimos y otros que solo aprendemos a reconocer cuando ya pasaron. En el medio queda el presente, esa zona borrosa donde las cosas ya están sucediendo, pero todavía no sabemos qué lugar van a ocupar en nuestra vida.",
     "cycle": "empezar",
     "author": "rodolfo-raudales",
     "order": 1,
@@ -13,11 +14,42 @@
     "wordCount": 600,
     "genre": "Ensayo",
     "status": "published",
+    "contentFile": "la-fecha-la-ponemos-despues.html",
+    "heroImage": "/assets/home/ufo-01.jpg",
+    "heroImageAlt": "Imagen editorial de prueba para la plantilla del artículo",
+    "heroImageCaption": "Imagen de prueba para revisar escala y ritmo de la plantilla.",
+    "audio": null,
     "subjects": [
       "comienzos",
       "memoria autobiográfica",
       "efecto de nuevo comienzo",
       "sesgo retrospectivo"
+    ],
+    "notes": [
+      {
+        "id": "fresh",
+        "number": 1,
+        "title": "Efecto de nuevo comienzo",
+        "text": "Ciertos hitos temporales pueden separar mentalmente un periodo de otro y, en determinados contextos, aumentar conductas orientadas a metas.",
+        "source": "Dai, Milkman & Riis, 2014",
+        "url": "https://doi.org/10.1287/mnsc.2014.1901"
+      },
+      {
+        "id": "memory",
+        "number": 2,
+        "title": "Memoria autobiográfica",
+        "text": "Recordar no equivale a reproducir una grabación intacta. La memoria integra reconstrucción, inferencias, información posterior y significado.",
+        "source": "Fivush & Grysman, 2023",
+        "url": "https://doi.org/10.1002/wcs.1620"
+      },
+      {
+        "id": "hindsight",
+        "number": 3,
+        "title": "Sesgo retrospectivo",
+        "text": "Conocer el desenlace puede hacer que ese resultado parezca más previsible o inevitable de lo que parecía antes de ocurrir.",
+        "source": "Fischhoff, 1975",
+        "url": "https://doi.org/10.1037/0096-1523.1.3.288"
+      }
     ],
     "citations": [
       "https://doi.org/10.1287/mnsc.2014.1901",
@@ -31,6 +63,7 @@
     "title": "No fue ese día",
     "description": "",
     "excerpt": "",
+    "deck": "",
     "cycle": "empezar",
     "author": "marivi-cerisola",
     "order": 2,
@@ -40,7 +73,12 @@
     "wordCount": null,
     "genre": "",
     "status": "scheduled",
+    "contentFile": null,
+    "heroImage": null,
+    "heroImageAlt": "",
+    "audio": null,
     "subjects": [],
+    "notes": [],
     "citations": [],
     "shareImage": null
   },
@@ -49,6 +87,7 @@
     "title": null,
     "description": "",
     "excerpt": "",
+    "deck": "",
     "cycle": "empezar",
     "author": "mel-castan",
     "order": 3,
@@ -58,7 +97,12 @@
     "wordCount": null,
     "genre": "",
     "status": "draft",
+    "contentFile": null,
+    "heroImage": null,
+    "heroImageAlt": "",
+    "audio": null,
     "subjects": [],
+    "notes": [],
     "citations": [],
     "shareImage": null
   }

@@ -1,0 +1,190 @@
+@import url("./article.css");
+
+/* CQST Article final review pass — compact flow + touch-reference lightbox.
+   This file is intentionally small for the review pass and will be folded into
+   article.css before PR #4 is merged. */
+
+.article-visual{
+  margin:0 auto;
+}
+.article-reading{
+  padding-top:clamp(40px,4.8vw,62px);
+}
+
+/* Semantic color grammar: notes are violet, audio is orange. */
+.article-audio__main::before{
+  background:var(--article-orange);
+}
+.article-audio__meter i{
+  background:var(--article-orange);
+}
+
+.article-note-dialog{
+  width:min(430px,calc(100vw - 28px));
+  max-width:430px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:var(--article-ink);
+}
+.article-note-dialog::backdrop{
+  background:rgba(7,8,18,.52);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+}
+.article-note-dialog__card{
+  position:relative;
+  padding:24px 22px 22px;
+  border:1px solid rgba(114,39,255,.22);
+  border-top:3px solid var(--article-violet);
+  background:var(--article-paper);
+  box-shadow:0 28px 80px rgba(7,8,18,.28);
+}
+.article-note-dialog__top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:16px;
+}
+.article-note-dialog__top .matrix{
+  margin:0;
+  color:var(--article-violet);
+  font-size:8px;
+}
+.article-note-dialog__close{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(114,39,255,.28);
+  border-radius:50%;
+  background:transparent;
+  color:var(--article-violet);
+  font:inherit;
+  font-size:18px;
+  cursor:pointer;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .2s var(--article-ease);
+}
+.article-note-dialog h2{
+  margin:0 0 11px;
+  font-size:clamp(24px,7vw,31px);
+  line-height:1;
+  letter-spacing:-.045em;
+  font-weight:620;
+}
+.article-note-dialog__text{
+  margin:0;
+  color:var(--article-muted);
+  font-size:14px;
+  line-height:1.58;
+}
+.article-note-dialog__source{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-height:42px;
+  margin-top:17px;
+  color:var(--article-violet);
+  font-size:11px;
+  font-weight:620;
+  position:relative;
+}
+.article-note-dialog__source::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:5px;
+  height:1px;
+  background:var(--article-violet);
+  transform:scaleX(.24);
+  transform-origin:left;
+  opacity:.42;
+  transition:transform .22s var(--article-ease),opacity .18s ease;
+}
+
+@media(hover:hover) and (pointer:fine){
+  .article-note-dialog__close:hover,
+  .article-note-dialog__close:focus-visible{
+    background:var(--article-violet);
+    border-color:var(--article-violet);
+    color:#fff;
+    transform:rotate(4deg);
+  }
+  .article-note-dialog__source:hover::after,
+  .article-note-dialog__source:focus-visible::after{
+    transform:scaleX(1);
+    opacity:1;
+  }
+}
+
+@media(max-width:900px){
+  .article-opening{
+    min-height:auto;
+    padding-bottom:44px;
+  }
+  .article-opening__utility{
+    grid-template-columns:1fr;
+  }
+  .article-share--opening{
+    justify-self:start;
+  }
+  .article-visual{
+    width:calc(100vw - 28px);
+    margin-bottom:0;
+  }
+  .article-reading{
+    padding-top:36px;
+  }
+}
+
+@media(max-width:720px){
+  .article-opening{
+    min-height:auto;
+    padding:calc(var(--article-header-h) + 76px) var(--article-edge) 32px;
+    display:block;
+    background-size:auto 72%;
+    background-position:58% top;
+  }
+  .article-opening__utility{
+    margin-top:22px;
+    padding-top:14px;
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+  .article-share--opening{
+    min-height:40px;
+    justify-self:start;
+  }
+  .article-visual{
+    width:100%;
+    margin-bottom:0;
+  }
+  .article-visual img{
+    height:66vw;
+    max-height:390px;
+  }
+  .article-reading{
+    padding-top:28px;
+  }
+  .inline-note{
+    display:none!important;
+  }
+  .article-note-dialog{
+    margin:auto auto max(16px,env(safe-area-inset-bottom));
+    width:calc(100vw - 24px);
+  }
+  .article-note-dialog__card{
+    padding:22px 20px 20px;
+  }
+
+  /* In the cycle drawer, mobile uses the clean wordmark without tagline. */
+  .article-cycle-drawer__brand-crop{
+    height:38px;
+    background:url("../../brand/logo-article.svg") left center/contain no-repeat;
+  }
+  .article-cycle-drawer__brand-crop img{
+    display:none;
+  }
+}

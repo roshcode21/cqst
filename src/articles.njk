@@ -1,0 +1,342 @@
+---
+pagination:
+  data: articlePages
+  size: 1
+  alias: articlePage
+  addAllPagesToCollections: false
+permalink: "{{ articlePage.href }}index.html"
+robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+---
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+<link rel="icon" href="/assets/ciclos.png" type="image/png">
+<meta name="author" content="{{ articlePage.author.name }}">
+<meta property="article:published_time" content="{{ articlePage.article.published }}">
+{% if articlePage.article.modified %}<meta property="article:modified_time" content="{{ articlePage.article.modified }}">{% endif %}
+<meta property="article:section" content="{{ articlePage.cycle.title }}">
+<meta property="article:author" content="{{ articlePage.author.name }}">
+{% for subject in articlePage.article.subjects %}<meta property="article:tag" content="{{ subject }}">{% endfor %}
+
+<meta data-pagefind-meta="type:article">
+<meta data-pagefind-meta="cycle:{{ articlePage.cycle.title }}">
+<meta data-pagefind-meta="voice:{{ articlePage.author.name }}">
+<meta data-pagefind-filter="type:article">
+<meta data-pagefind-filter="cycle:{{ articlePage.cycle.title }}">
+<meta data-pagefind-filter="voice:{{ articlePage.author.name }}">
+{% for subject in articlePage.article.subjects %}<meta data-pagefind-meta="subject:{{ subject }}">{% endfor %}
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Article",
+      "@id":"{{ articlePage.canonical }}#article",
+      "headline":{{ articlePage.article.title | json | safe }},
+      "description":{{ articlePage.article.description | json | safe }},
+      "url":"{{ articlePage.canonical }}",
+      "mainEntityOfPage":"{{ articlePage.canonical }}",
+      "inLanguage":"{{ site.locale }}",
+      "datePublished":"{{ articlePage.article.published }}",
+      "dateModified":"{{ articlePage.article.modified or articlePage.article.published }}",
+      "articleSection":{{ articlePage.cycle.title | json | safe }},
+      "genre":{{ articlePage.article.genre | json | safe }},
+      "isAccessibleForFree":true,
+      "wordCount":{{ articlePage.article.wordCount or 0 }},
+      "timeRequired":"{{ articlePage.timeRequired }}",
+      "keywords":{{ articlePage.article.subjects | json | safe }},
+      "about":[{% for subject in articlePage.article.subjects %}{"@type":"Thing","name":{{ subject | json | safe }}}{% if not loop.last %},{% endif %}{% endfor %}],
+      "citation":{{ articlePage.article.citations | json | safe }},
+      {% if articlePage.article.shareImage %}"image":{"@type":"ImageObject","url":"{{ site.url }}{{ articlePage.article.shareImage }}","width":1200,"height":630},{% endif %}
+      "author":{"@id":"{{ articlePage.canonical }}#author"},
+      "publisher":{"@id":"{{ site.url }}/#organization"},
+      "isPartOf":{"@type":"CreativeWorkSeries","@id":"{{ site.url }}/{{ articlePage.cycle.slug }}/#cycle","name":{{ articlePage.cycle.title | json | safe }},"url":"{{ site.url }}/{{ articlePage.cycle.slug }}/"}
+    },
+    {
+      "@type":"Person",
+      "@id":"{{ articlePage.canonical }}#author",
+      "name":{{ articlePage.author.name | json | safe }},
+      "description":{{ articlePage.author.bio | json | safe }},
+      "sameAs":{{ articlePage.author.sameAs | json | safe }}
+    },
+    {
+      "@type":"Organization",
+      "@id":"{{ site.url }}/#organization",
+      "name":{{ site.name | json | safe }},
+      "url":"{{ site.url }}/",
+      "logo":{"@type":"ImageObject","url":"{{ site.url }}/assets/brand/icon-512.png"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Portada","item":"{{ site.url }}/"},
+        {"@type":"ListItem","position":2,"name":{{ articlePage.cycle.title | json | safe }},"item":"{{ site.url }}/{{ articlePage.cycle.slug }}/"},
+        {"@type":"ListItem","position":3,"name":{{ articlePage.article.title | json | safe }},"item":"{{ articlePage.canonical }}"}
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block body %}
+<header class="reading-bar" data-reading-bar aria-label="Navegación de lectura">
+  <a class="reading-bar__brand" href="/" aria-label="{{ site.name }}, ir a la portada">
+    <img class="reading-bar__wordmark" src="/assets/brand/logo-article.svg" alt="{{ site.name }}">
+    <img class="reading-bar__favicon" src="/assets/ciclos.png" alt="" aria-hidden="true">
+  </a>
+
+  <div class="reading-progress" data-reading-progress-wrap aria-label="Progreso de lectura">
+    <span class="reading-progress__track" aria-hidden="true"></span>
+    <span class="reading-progress__fill" data-reading-progress aria-hidden="true"></span>
+    <span class="reading-progress__breath" data-reading-breath aria-hidden="true"></span>
+    <span class="reading-progress__breath" data-reading-breath aria-hidden="true"></span>
+    <span class="reading-progress__finish" aria-hidden="true"></span>
+  </div>
+
+  <button class="reading-bar__cycle" type="button" data-cycle-menu aria-haspopup="dialog" aria-expanded="false" aria-controls="articleCycleDrawer">
+    <span class="matrix">CICLO</span>
+    <strong>{{ articlePage.cycle.title }}</strong>
+    <span class="reading-bar__cycle-caret" aria-hidden="true">⌄</span>
+  </button>
+</header>
+
+<main id="main" data-pagefind-body>
+  <article class="article-document"
+    itemscope itemtype="https://schema.org/Article"
+    data-article-slug="{{ articlePage.article.slug }}"
+    data-cycle-slug="{{ articlePage.cycle.slug }}"
+    data-cycle-name="{{ articlePage.cycle.title }}"
+    data-voice-slug="{{ articlePage.author.slug }}"
+    data-voice-name="{{ articlePage.author.name }}"
+    data-title="{{ articlePage.article.title }}">
+
+    <header class="article-opening">
+      <div class="article-opening__inner">
+        <p class="article-opening__kicker matrix"><a href="/{{ articlePage.cycle.slug }}/">{{ articlePage.cycle.title }}</a> / {{ articlePage.article.genre }}</p>
+        <h1 itemprop="headline">{{ articlePage.article.title }}</h1>
+
+        <div class="article-opening__meta">
+          <strong itemprop="author">{{ articlePage.author.name }}</strong>
+          <time datetime="{{ articlePage.article.published }}" itemprop="datePublished">{{ articlePage.dateLabel }}</time>
+          {% if articlePage.article.readingTime %}<span>{{ articlePage.article.readingTime }} min de lectura</span>{% endif %}
+        </div>
+
+        <p class="article-opening__deck" itemprop="description">{{ articlePage.article.deck or articlePage.article.excerpt }}</p>
+
+        <div class="article-opening__utility">
+          <section class="article-audio" data-audio-module data-audio-src="{{ articlePage.article.audio or '' }}" aria-label="Escuchar esta pieza">
+            <button class="article-audio__main" type="button" data-audio-toggle aria-label="Escuchar este texto">
+              <span class="article-audio__icon" data-audio-icon aria-hidden="true">▶</span>
+              <span class="article-audio__copy"><strong>Escuchar este texto</strong><small>Leído por {{ articlePage.author.name }}</small></span>
+              <span class="article-audio__duration" data-audio-duration>—:—</span>
+            </button>
+            <span class="article-audio__meter" aria-hidden="true"><i data-audio-meter></i></span>
+            <audio data-article-audio preload="metadata"{% if articlePage.article.audio %} src="{{ articlePage.article.audio }}"{% endif %}></audio>
+          </section>
+
+          <button class="article-share article-share--opening" type="button" data-share>
+            <span>Compartir esta pieza</span><b aria-hidden="true">↗</b>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    {% if articlePage.article.heroImage %}
+    <figure class="article-visual">
+      <div class="article-visual__frame">
+        <img src="{{ articlePage.article.heroImage }}" alt="{{ articlePage.article.heroImageAlt }}" fetchpriority="high" decoding="async">
+        <span class="article-visual__pixel article-visual__pixel--a" aria-hidden="true"></span>
+        <span class="article-visual__pixel article-visual__pixel--b" aria-hidden="true"></span>
+      </div>
+      {% if articlePage.article.heroImageCaption %}<figcaption>{{ articlePage.article.heroImageCaption }}</figcaption>{% endif %}
+    </figure>
+    {% endif %}
+
+    <section class="article-reading" id="texto" aria-label="Texto de {{ articlePage.article.title }}">
+      <div class="article-reading__inner">
+        <div class="article-copy" itemprop="articleBody" data-reading-copy>
+          {{ articlePage.bodyHtml | safe }}
+        </div>
+
+        <aside class="article-margin" data-margin-note aria-live="polite" aria-hidden="true">
+          <div class="article-margin__inner">
+            <div class="article-margin__head"><p class="matrix" data-margin-number>NOTA</p><button type="button" data-note-margin-close aria-label="Cerrar nota">×</button></div>
+            <h2 data-margin-title></h2>
+            <p data-margin-text></p>
+            <a data-margin-link target="_blank" rel="noopener noreferrer"></a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="article-after" aria-label="Notas y herramientas">
+      {% if articlePage.article.notes.length %}
+      <details class="notes-ledger" data-notes-ledger>
+        <summary>
+          <span><small class="matrix">FUENTES / CONTEXTO</small><strong>Notas al margen</strong></span>
+          <span class="notes-ledger__count matrix">0{{ articlePage.article.notes.length }}</span>
+          <span class="notes-ledger__sign" aria-hidden="true"></span>
+        </summary>
+        <ol class="article-notes__list">
+          {% for note in articlePage.article.notes %}
+          <li id="note-{{ note.id }}" data-note-source="{{ note.id }}">
+            <span class="article-notes__number matrix">0{{ note.number }}</span>
+            <div>
+              <h3>{{ note.title }}</h3>
+              <p>{{ note.text }}</p>
+              <a href="{{ note.url }}" target="_blank" rel="noopener noreferrer">{{ note.source }} <b aria-hidden="true">↗</b></a>
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+      </details>
+      {% endif %}
+
+      <div class="article-tools">
+        <span class="matrix">FIN DE LA PIEZA</span>
+        <button class="article-share" type="button" data-share><span>Compartir</span><b aria-hidden="true">↗</b></button>
+      </div>
+    </section>
+
+    <section class="article-voice" aria-labelledby="articleVoiceTitle">
+      <div class="article-voice__inner">
+        <div class="article-voice__portrait-wrap" aria-hidden="true">
+          <span class="article-voice__orbit article-voice__orbit--a"></span>
+          <span class="article-voice__orbit article-voice__orbit--b"></span>
+          <span class="article-voice__orbit article-voice__orbit--c"></span>
+          <span class="article-voice__pixel"></span>
+          <div class="article-voice__portrait">
+            <span>{{ articlePage.author.initials }}</span>
+            <img src="{{ articlePage.author.imageHref }}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true">
+          </div>
+        </div>
+        <div class="article-voice__copy">
+          <div class="article-voice__eyebrow"><p class="matrix">LA VOZ</p><span>{{ articlePage.cycle.title }}</span></div>
+          <h2 id="articleVoiceTitle">{{ articlePage.author.name }}</h2>
+          {% if articlePage.author.bio %}<p class="article-voice__bio">{{ articlePage.author.bio }}</p>{% endif %}
+          <div class="article-voice__links">
+            <a class="is-primary" href="#" data-preview-link>Ver su voz <b aria-hidden="true">→</b></a>
+            {% for social in articlePage.author.sameAs %}
+              {% if 'instagram' in social %}<a href="{{ social }}" target="_blank" rel="me noopener">Instagram ↗</a>{% endif %}
+              {% if 'linkedin' in social %}<a href="{{ social }}" target="_blank" rel="me noopener">LinkedIn ↗</a>{% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-cycle-browser" aria-labelledby="cycleBrowserTitle">
+      <div class="article-cycle-browser__shell">
+        <div class="article-cycle-index">
+          <div class="article-cycle-index__head">
+            <span class="matrix">SIGUE EN EL CICLO</span>
+            <span>{{ articlePage.cycleEntries.length }} piezas</span>
+          </div>
+          <h2 id="cycleBrowserTitle">{{ articlePage.cycle.title }}</h2>
+          <p>{{ articlePage.cycle.deck }}</p>
+
+          <nav class="article-cycle-list" aria-label="Piezas de {{ articlePage.cycle.title }}">
+            {% for item in articlePage.cycleEntries %}
+            <a class="article-cycle-entry{% if item.isCurrent %} is-current{% endif %}" href="{{ item.href }}"{% if item.previewOnly %} data-preview-link{% endif %}
+              data-cycle-preview
+              data-preview-title="{{ item.title }}"
+              data-preview-author="{{ item.author }}"
+              data-preview-time="{% if item.readingTime %}{{ item.readingTime }} min de lectura{% endif %}"
+              data-preview-excerpt="{{ item.excerpt }}"
+              data-preview-href="{{ item.href }}"
+              data-preview-only="{{ item.previewOnly }}">
+              <span class="article-cycle-entry__dot" aria-hidden="true"></span>
+              <span><strong>{{ item.title }}</strong><small>{{ item.author }}{% if item.isCurrent %} · esta pieza{% elif item.readingTime %} · {{ item.readingTime }} min{% endif %}</small></span>
+              <b aria-hidden="true">↗</b>
+            </a>
+            {% endfor %}
+          </nav>
+          <a class="article-cycle-index__all" href="/{{ articlePage.cycle.slug }}/">Ver todo {{ articlePage.cycle.title }} <b aria-hidden="true">→</b></a>
+        </div>
+
+        <div class="article-cycle-preview" data-cycle-preview-panel>
+          <div class="article-cycle-preview__eyebrow"><p class="matrix">SIGUIENTE LECTURA</p><span aria-hidden="true">✦</span></div>
+          {% if articlePage.continuation %}
+          <div class="article-cycle-preview__content">
+            <h3 data-cycle-preview-title>{{ articlePage.continuation.title }}</h3>
+            <p data-cycle-preview-excerpt>{{ articlePage.continuation.excerpt or 'Otra entrada al mismo tema, desde otra vida.' }}</p>
+            <div class="article-cycle-preview__meta"><span data-cycle-preview-author>{{ articlePage.continuation.author }}</span>{% if articlePage.continuation.readingTime %}<span data-cycle-preview-time>{{ articlePage.continuation.readingTime }} min de lectura</span>{% else %}<span data-cycle-preview-time></span>{% endif %}</div>
+          </div>
+          <a class="article-cycle-preview__read" data-cycle-preview-read href="{{ articlePage.continuation.href }}"{% if articlePage.continuation.previewOnly %} data-preview-link{% endif %}>Leer <span aria-hidden="true">→</span></a>
+          {% else %}
+          <div class="article-cycle-preview__content"><h3 data-cycle-preview-title>{{ articlePage.cycle.title }}</h3><p data-cycle-preview-excerpt>{{ articlePage.cycle.deck }}</p><div class="article-cycle-preview__meta"><span data-cycle-preview-author>Volver al ciclo</span><span data-cycle-preview-time></span></div></div>
+          <a class="article-cycle-preview__read" data-cycle-preview-read href="/{{ articlePage.cycle.slug }}/">Entrar <span aria-hidden="true">→</span></a>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+  </article>
+</main>
+
+<section class="article-newsletter" aria-labelledby="articleNewsletterTitle">
+  <div class="article-newsletter__inner">
+    <div class="article-newsletter__copy">
+      <p class="matrix">SIGUE CERCA</p>
+      <h2 id="articleNewsletterTitle">Que el próximo tema te encuentre.</h2>
+      <p>Un correo cuando haya algo que decir.</p>
+    </div>
+    <form data-article-newsletter action="https://formspree.io/f/{{ site.formspreeId }}" method="POST">
+      <label class="sr-only" for="articleNewsletterEmail">Tu correo</label>
+      <input id="articleNewsletterEmail" type="email" name="email" placeholder="tu correo" required autocomplete="email">
+      <input type="hidden" name="_subject" value="Nueva suscripción — Artículo {{ articlePage.article.title }}">
+      <input type="hidden" name="form_type" value="suscripcion">
+      <input type="hidden" name="origen" value="Artículo / {{ articlePage.cycle.title }} / {{ articlePage.article.title }}">
+      <button type="submit">Recibir →</button>
+      <p data-newsletter-note aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+{% include "components/article-footer.njk" %}
+
+<dialog class="article-cycle-drawer" id="articleCycleDrawer" aria-labelledby="articleCycleDrawerTitle">
+  <div class="article-cycle-drawer__shell">
+    <div class="article-cycle-drawer__top">
+      <a href="/" class="article-cycle-drawer__brand" aria-label="Ir a la portada">
+        <span class="article-cycle-drawer__brand-crop"><img src="/assets/brand/logo-static.png" alt="{{ site.name }}"></span>
+      </a>
+      <div class="article-cycle-drawer__top-actions"><a href="/">Portada ↗</a><button type="button" data-cycle-close aria-label="Cerrar ciclo">×</button></div>
+    </div>
+
+    <div class="article-cycle-drawer__intro">
+      <div><p class="matrix">CICLO</p><span>{{ articlePage.cycleEntries.length }} piezas</span></div>
+      <h2 id="articleCycleDrawerTitle">{{ articlePage.cycle.title }}</h2>
+      <p>{{ articlePage.cycle.deck }}</p>
+    </div>
+
+    <nav class="article-cycle-drawer__list" aria-label="Piezas de {{ articlePage.cycle.title }}">
+      {% for item in articlePage.cycleEntries %}
+      <a class="article-cycle-drawer__item{% if item.isCurrent %} is-current{% endif %}" href="{{ item.href }}"{% if item.previewOnly %} data-preview-link{% endif %}>
+        <span class="article-cycle-drawer__index matrix">0{{ loop.index }}</span>
+        <span class="article-cycle-drawer__item-copy"><strong>{{ item.title }}</strong><small>{{ item.author }}{% if item.readingTime %} · {{ item.readingTime }} min{% endif %}</small></span>
+        <b>{% if item.isCurrent %}<em>esta pieza</em>{% else %}→{% endif %}</b>
+      </a>
+      {% endfor %}
+    </nav>
+
+    <div class="article-cycle-drawer__footer">
+      <a class="article-cycle-drawer__footer-cycle" href="/{{ articlePage.cycle.slug }}/"><span>Ver {{ articlePage.cycle.title }}</span><b aria-hidden="true">→</b></a>
+      <button class="article-cycle-drawer__footer-share" type="button" data-share><span>Compartir esta pieza</span><b aria-hidden="true">↗</b></button>
+    </div>
+  </div>
+</dialog>
+
+<div class="article-audio-dock" data-audio-dock aria-label="Reproductor de audio">
+  <button type="button" data-audio-dock-toggle aria-label="Reproducir o pausar">▶</button>
+  <div class="article-audio-dock__body">
+    <strong>{{ articlePage.article.title }}</strong>
+    <small>{{ articlePage.author.name }} · {{ articlePage.cycle.title }}</small>
+    <div><span data-audio-current>0:00</span><input data-audio-range type="range" min="0" max="0" value="0" step=".1" aria-label="Posición del audio"><span data-audio-total>—:—</span></div>
+  </div>
+  <button type="button" data-audio-speed>1×</button>
+</div>
+
+<div class="article-toast" data-article-toast role="status" aria-live="polite"></div>
+{% endblock %}
