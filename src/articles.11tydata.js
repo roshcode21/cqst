@@ -9,7 +9,7 @@ export default {
     ogType: () => "article",
     ogTitle: data => data.articlePage?.article?.title || data.site.name,
     ogDescription: data => data.articlePage?.article?.description || data.site.description,
-    themeColor: () => "#f7f3eb",
+    themeColor: () => "#f4f2ec",
     stylesheet: () => "/assets/css/production/article.css",
     script: () => "/assets/js/production/article.js",
     bodyClass: data => data.articlePage ? `article-page article-page--${data.articlePage.cycle.visualTheme || data.articlePage.cycle.slug}` : "article-page"
