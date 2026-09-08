@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,max-image-preview:large">
+  <meta name="theme-color" content="#F4F2EC">
+  <title>¿Y quién pregunta? — Cada Quien Su Tema</title>
+  <meta name="description" content="Qué es Cada Quien Su Tema, cómo funciona y por qué reúne distintas voces alrededor de un mismo tema.">
+  <link rel="icon" href="../assets/brand/favicon.ico" sizes="any">
+  <link rel="icon" href="../assets/brand/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png" sizes="180x180">
+  <style>
+    @font-face{font-family:Grift;src:url('../assets/fonts/Grift-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:Grift;src:url('../assets/fonts/Grift-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:Grift;src:url('../assets/fonts/Grift-Black.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
+
+    :root{
+      --paper:#f4f2ec;
+      --ink:#101010;
+      --blue:#2747ff;
+      --violet:#7227ff;
+      --pink:#ff39ad;
+      --green:#baff22;
+      --line:rgba(16,16,16,.18);
+      --muted:rgba(16,16,16,.62);
+      --max:1320px;
+      --pad:clamp(20px,4vw,64px);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--paper)}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Grift,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit}
+    button,input{font:inherit}
+    img{max-width:100%;display:block}
+    ::selection{background:var(--green);color:var(--ink)}
+
+    .skip{position:fixed;left:16px;top:12px;z-index:200;background:var(--ink);color:white;padding:10px 14px;transform:translateY(-180%);transition:transform .2s;text-decoration:none}
+    .skip:focus{transform:none}
+
+    .topbar{position:fixed;z-index:100;top:18px;left:50%;transform:translateX(-50%);width:min(calc(100% - 28px),760px);min-height:54px;border:1px solid rgba(16,16,16,.16);border-radius:999px;background:rgba(244,242,236,.84);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 8px 7px 15px;box-shadow:0 8px 35px rgba(0,0,0,.06)}
+    .brand{font-weight:900;letter-spacing:-.04em;text-decoration:none;white-space:nowrap}
+    .topbar nav{display:flex;align-items:center;gap:2px}
+    .topbar nav a{font-size:13px;text-decoration:none;padding:10px 13px;border-radius:999px;color:rgba(16,16,16,.7)}
+    .topbar nav a[aria-current="page"]{background:var(--ink);color:white}
+
+    .hero{min-height:100svh;padding:150px var(--pad) 64px;position:relative;display:grid;align-content:space-between;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero::before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 75% 20%,rgba(114,39,255,.18),transparent 28%),radial-gradient(circle at 20% 70%,rgba(39,71,255,.14),transparent 30%),radial-gradient(circle at 66% 78%,rgba(255,57,173,.10),transparent 22%);filter:blur(2px);pointer-events:none}
+    .hero::after{content:"";position:absolute;inset:0;opacity:.22;background-image:linear-gradient(rgba(16,16,16,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(16,16,16,.08) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(to bottom,black,transparent 70%);pointer-events:none}
+    .hero-inner,.hero-foot{width:min(100%,var(--max));margin:auto;position:relative;z-index:1}
+    .kicker{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;margin:0 0 28px}
+    .hero h1{font-size:clamp(72px,13vw,210px);line-height:.78;letter-spacing:-.075em;margin:0;max-width:1200px;font-weight:900}
+    .hero h1 span{display:block;margin-left:clamp(0px,8vw,120px);color:var(--blue)}
+    .hero-foot{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.6fr);gap:60px;align-items:end;margin-top:80px}
+    .hero-thesis{font-size:clamp(26px,3.3vw,49px);line-height:1.02;letter-spacing:-.045em;margin:0;max-width:850px;font-weight:600}
+    .hero-thesis strong{font-weight:900}
+    .hero-note{font-size:15px;line-height:1.45;margin:0;color:var(--muted);max-width:330px}
+
+    .section{padding:clamp(82px,12vw,170px) var(--pad);border-bottom:1px solid var(--line);position:relative}
+    .section-inner{width:min(100%,var(--max));margin:auto}
+    .section-label{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.16em;margin:0 0 52px;color:rgba(16,16,16,.72)}
+    .section-label::before{content:"";width:9px;height:9px;background:var(--blue);border-radius:50%}
+    .display{font-size:clamp(45px,7vw,108px);line-height:.9;letter-spacing:-.065em;margin:0;font-weight:900;max-width:1100px}
+    .lead{font-size:clamp(22px,2.8vw,38px);line-height:1.08;letter-spacing:-.035em;margin:38px 0 0;max-width:850px}
+    .copy{font-size:clamp(17px,1.5vw,21px);line-height:1.55;max-width:720px;margin:34px 0 0;color:rgba(16,16,16,.78)}
+
+    .mechanic{padding-bottom:clamp(100px,14vw,190px)}
+    .theme-stage{min-height:min(76vw,820px);margin-top:80px;position:relative;display:grid;place-items:center;isolation:isolate}
+    .theme-stage::before,.theme-stage::after{content:"";position:absolute;border:1px solid rgba(16,16,16,.22);border-radius:50%;width:min(76vw,850px);height:min(38vw,420px);transform:rotate(-14deg);z-index:-1}
+    .theme-stage::after{transform:rotate(19deg);width:min(62vw,690px);height:min(55vw,610px);border-color:rgba(114,39,255,.3)}
+    .theme-word{font-size:clamp(65px,14vw,200px);font-weight:900;letter-spacing:-.07em;color:var(--blue);line-height:.8;text-align:center;text-transform:uppercase}
+    .thought{position:absolute;display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid rgba(16,16,16,.26);border-radius:999px;padding:12px 16px;font-size:clamp(13px,1.25vw,17px);box-shadow:0 10px 40px rgba(0,0,0,.05)}
+    .thought::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pink)}
+    .thought:nth-of-type(1){left:8%;top:20%;transform:rotate(-5deg)}
+    .thought:nth-of-type(2){right:7%;top:24%;transform:rotate(4deg)}
+    .thought:nth-of-type(3){left:15%;bottom:20%;transform:rotate(3deg)}
+    .thought:nth-of-type(4){right:12%;bottom:18%;transform:rotate(-4deg)}
+    .stage-caption{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:13px;color:var(--muted);white-space:nowrap}
+
+    .method{background:var(--ink);color:var(--paper)}
+    .method .section-label{color:rgba(244,242,236,.72)}
+    .method .section-label::before{background:var(--green)}
+    .method-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:78px;border-top:1px solid rgba(244,242,236,.25)}
+    .method-row{padding:34px 0;border-bottom:1px solid rgba(244,242,236,.25);display:grid;grid-template-columns:170px 1fr;gap:30px;grid-column:1/-1}
+    .method-row .verb{color:var(--green);font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.15em;padding-top:6px}
+    .method-row p{font-size:clamp(22px,3vw,42px);line-height:1.02;letter-spacing:-.035em;margin:0;max-width:900px}
+
+    .anti{background:var(--blue);color:white;overflow:hidden}
+    .anti .section-label{color:rgba(255,255,255,.72)}
+    .anti .section-label::before{background:var(--green)}
+    .anti .display{max-width:1250px}
+    .anti .display em{font-style:normal;color:var(--green)}
+    .anti .lead{color:rgba(255,255,255,.88)}
+    .echoes{margin-top:90px;display:grid;gap:0;border-top:1px solid rgba(255,255,255,.35)}
+    .echo{display:grid;grid-template-columns:minmax(140px,.28fr) 1fr;gap:30px;padding:25px 0;border-bottom:1px solid rgba(255,255,255,.35);align-items:baseline}
+    .echo small{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.68)}
+    .echo strong{font-size:clamp(24px,3.8vw,55px);letter-spacing:-.045em;line-height:1;font-weight:600}
+
+    .narrans{background:var(--paper)}
+    .narrans-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.55fr);gap:clamp(50px,8vw,120px);align-items:start}
+    .side-note{border-top:4px solid var(--violet);padding-top:20px;position:sticky;top:110px}
+    .side-note p{font-size:15px;line-height:1.5;margin:0 0 18px;color:var(--muted)}
+    .side-note a{font-size:13px;font-weight:600;text-underline-offset:4px}
+    .narrans .copy + .copy{margin-top:18px}
+
+    .mark{background:#e9e5db;overflow:hidden}
+    .mark-layout{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(50px,9vw,140px);align-items:center}
+    .mark-figure{aspect-ratio:1;display:grid;place-items:center;position:relative}
+    .mark-figure::before{content:"";position:absolute;width:80%;height:80%;border-radius:50%;background:radial-gradient(circle at 55% 35%,rgba(186,255,34,.76),rgba(114,39,255,.16) 45%,transparent 67%);filter:blur(12px)}
+    .mark-figure img{position:relative;width:min(74%,480px);filter:grayscale(1) contrast(1.15)}
+    .mark .display{font-size:clamp(50px,7vw,100px)}
+
+    .maker{background:var(--paper)}
+    .maker-grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(50px,10vw,150px);align-items:start}
+    .maker-name{font-size:clamp(28px,4vw,58px);line-height:.95;letter-spacing:-.05em;font-weight:900;margin:0}
+    .maker-role{font-size:13px;line-height:1.45;color:var(--muted);margin:18px 0 0;max-width:300px}
+    .maker-copy{font-size:clamp(25px,3.4vw,47px);line-height:1.04;letter-spacing:-.04em;margin:0}
+    .maker-copy + .copy{margin-top:36px}
+
+    .exit{background:var(--ink);color:white;min-height:92svh;display:grid;align-content:center}
+    .exit .section-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(270px,.55fr);gap:clamp(60px,10vw,150px);align-items:end}
+    .exit h2{font-size:clamp(62px,10vw,150px);line-height:.82;letter-spacing:-.07em;margin:0;font-weight:900}
+    .exit h2 span{color:var(--green)}
+    .exit-actions{display:grid;border-top:1px solid rgba(255,255,255,.35)}
+    .exit-actions a{display:flex;justify-content:space-between;gap:30px;padding:21px 0;border-bottom:1px solid rgba(255,255,255,.35);text-decoration:none;font-size:17px;transition:padding .2s ease,color .2s ease}
+    .exit-actions a:hover,.exit-actions a:focus-visible{padding-left:10px;color:var(--green);outline:none}
+    .exit-meta{margin-top:28px;font-size:12px;line-height:1.5;color:rgba(255,255,255,.55)}
+
+    .research-flag{position:fixed;z-index:110;right:14px;bottom:14px;background:var(--green);color:var(--ink);border:1px solid rgba(16,16,16,.25);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:9px 11px;border-radius:999px;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+
+    @media (max-width:800px){
+      .topbar{top:auto;bottom:12px;width:calc(100% - 24px);padding:6px 7px 6px 12px;min-height:50px}
+      .brand{font-size:12px;max-width:118px;white-space:normal;line-height:1}
+      .topbar nav a{font-size:11px;padding:9px 10px}
+      .hero{padding-top:100px;padding-bottom:110px}
+      .hero h1{font-size:clamp(68px,21vw,120px)}
+      .hero h1 span{margin-left:0}
+      .hero-foot{grid-template-columns:1fr;gap:24px;margin-top:80px}
+      .hero-note{max-width:500px}
+      .section{padding-bottom:clamp(105px,20vw,145px)}
+      .section-label{margin-bottom:38px}
+      .theme-stage{min-height:650px;margin-top:55px}
+      .theme-stage::before{width:115vw;height:58vw}
+      .theme-stage::after{width:95vw;height:88vw}
+      .thought{padding:10px 12px}
+      .thought:nth-of-type(1){left:0;top:15%}
+      .thought:nth-of-type(2){right:0;top:28%}
+      .thought:nth-of-type(3){left:4%;bottom:23%}
+      .thought:nth-of-type(4){right:2%;bottom:12%}
+      .method-row{grid-template-columns:1fr;gap:10px;padding:27px 0}
+      .echo{grid-template-columns:1fr;gap:10px}
+      .narrans-layout,.mark-layout,.maker-grid,.exit .section-inner{grid-template-columns:1fr}
+      .side-note{position:relative;top:auto;margin-top:18px}
+      .mark-figure{order:2;max-width:520px}
+      .exit{min-height:auto;padding-bottom:150px}
+      .exit-actions{margin-top:20px}
+      .research-flag{bottom:75px;font-size:9px}
+    }
+
+    @media (max-width:480px){
+      .topbar nav a:nth-child(2),.topbar nav a:nth-child(3){display:none}
+      .hero{min-height:96svh}
+      .kicker{font-size:11px}
+      .hero-thesis{font-size:28px}
+      .theme-stage{min-height:560px}
+      .theme-word{font-size:21vw}
+      .stage-caption{white-space:normal;text-align:center;width:90%;bottom:-6px}
+    }
+
+    @media (prefers-reduced-motion:no-preference){
+      .theme-stage::before{animation:driftA 14s ease-in-out infinite alternate}
+      .theme-stage::after{animation:driftB 18s ease-in-out infinite alternate}
+      .thought{animation:float 6s ease-in-out infinite alternate}
+      .thought:nth-of-type(2){animation-delay:-2s}.thought:nth-of-type(3){animation-delay:-4s}.thought:nth-of-type(4){animation-delay:-1s}
+      @keyframes driftA{to{transform:rotate(-8deg) scale(1.03)}}
+      @keyframes driftB{to{transform:rotate(24deg) scale(.98)}}
+      @keyframes float{to{translate:0 -8px}}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+
+  <header class="topbar">
+    <a class="brand" href="../v20/">Cada Quien Su Tema</a>
+    <nav aria-label="Navegación de laboratorio">
+      <a href="../v20/">Portada</a>
+      <a href="../empezar-preview/">Empezar</a>
+      <a href="#main" aria-current="page">¿Y quién pregunta?</a>
+    </nav>
+  </header>
+
+  <div class="research-flag">V0.1 · laboratorio</div>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <p class="kicker">Cada Quien Su Tema</p>
+        <h1 id="hero-title">¿Y quién <span>pregunta?</span></h1>
+      </div>
+      <div class="hero-foot">
+        <p class="hero-thesis"><strong>Ponemos un tema sobre la mesa.</strong> Después dejamos que cada persona haga otra cosa con él.</p>
+        <p class="hero-note">Cada Quien Su Tema reúne piezas independientes alrededor de un mismo asunto. No buscamos una respuesta común. Nos interesa ver qué cambia cuando cambia quien escribe.</p>
+      </div>
+    </section>
+
+    <section class="section mechanic" aria-labelledby="mecanica-title">
+      <div class="section-inner">
+        <p class="section-label">La mecánica</p>
+        <h2 class="display" id="mecanica-title">El tema es el punto de partida, no la respuesta.</h2>
+        <p class="lead">Un ciclo empieza con una palabra, una pregunta o un asunto. Las voces reciben el mismo punto de partida, pero no una tesis que demostrar.</p>
+
+        <div class="theme-stage" aria-label="Distintas maneras de entrar al tema Empezar">
+          <div class="theme-word">Empezar</div>
+          <span class="thought">una fecha</span>
+          <span class="thought">algo que ya pasó</span>
+          <span class="thought">una decisión</span>
+          <span class="thought">un regreso</span>
+          <p class="stage-caption">Mismo tema. Distintas entradas. Cada pieza conserva su forma.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section method" aria-labelledby="metodo-title">
+      <div class="section-inner">
+        <p class="section-label">Cómo se hace</p>
+        <h2 class="display" id="metodo-title">No repartimos respuestas. Construimos condiciones para que aparezcan.</h2>
+        <div class="method-grid">
+          <div class="method-row"><span class="verb">Elegir</span><p>Un tema lo bastante abierto para admitir experiencias, ideas y contradicciones.</p></div>
+          <div class="method-row"><span class="verb">Invitar</span><p>Personas que puedan mover ese tema hacia lugares que no habíamos previsto.</p></div>
+          <div class="method-row"><span class="verb">Editar</span><p>Cada pieza por lo que intenta ser, no para hacerla sonar como las demás.</p></div>
+          <div class="method-row"><span class="verb">Publicar</span><p>Las diferencias juntas. Ahí empieza la conversación entre textos.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section anti" aria-labelledby="consenso-title">
+      <div class="section-inner">
+        <p class="section-label">Lo que no buscamos</p>
+        <h2 class="display" id="consenso-title">No necesitamos que las voces estén de acuerdo. <em>Necesitamos que sean suyas.</em></h2>
+        <p class="lead">Una pieza puede contradecir a otra, apenas rozarla o abrir una lectura que el tema todavía no tenía.</p>
+        <div class="echoes" aria-label="Principios editoriales">
+          <div class="echo"><small>No una encuesta</small><strong>cada texto vive completo</strong></div>
+          <div class="echo"><small>No una mesa redonda</small><strong>nadie responde por los demás</strong></div>
+          <div class="echo"><small>No una conclusión</small><strong>el ciclo puede quedar abierto en la cabeza</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section narrans" aria-labelledby="narrans-title">
+      <div class="section-inner narrans-layout">
+        <div>
+          <p class="section-label">Una pista detrás del proyecto</p>
+          <h2 class="display" id="narrans-title">Homo narrans.</h2>
+          <p class="lead">La idea de que las personas no sólo viven cosas: también las ordenan, interpretan y vuelven a contar.</p>
+          <p class="copy">No la usamos como una etiqueta científica para explicar a todo el mundo. Nos sirve como una forma sencilla de recordar por qué una voz concreta cambia un tema. Dos personas pueden partir del mismo hecho y construir sentidos distintos sin que una de las dos esté “mal”.</p>
+          <p class="copy">En Cada Quien Su Tema esa diferencia no es ruido que haya que corregir. Es parte del material editorial.</p>
+        </div>
+        <aside class="side-note">
+          <p><strong>De dónde viene.</strong> El término <em>Homo narrans</em> ha sido trabajado desde distintas disciplinas. John D. Niles lo desarrolla en relación con la tradición narrativa y la construcción cultural.</p>
+          <a href="https://www.pennpress.org/9780812221077/homo-narrans/" target="_blank" rel="noopener">Ver la referencia ↗</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section mark" aria-labelledby="marca-title">
+      <div class="section-inner mark-layout">
+        <div class="mark-figure" aria-hidden="true"><img src="../assets/brand/simbolo.png" alt=""></div>
+        <div>
+          <p class="section-label">La marca</p>
+          <h2 class="display" id="marca-title">Una identidad hecha para admitir más de una lectura.</h2>
+          <p class="copy">El sistema visual cambia de intensidad según dónde estás. La portada puede hacer más ruido. El artículo se aparta para dejar leer. Los ciclos toman carácter propio. La identidad no intenta aplastar esas diferencias: las mantiene dentro del mismo universo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section maker" aria-labelledby="quien-title">
+      <div class="section-inner">
+        <p class="section-label">Quién está detrás</p>
+        <div class="maker-grid">
+          <div>
+            <h2 class="maker-name" id="quien-title">Rodolfo Raudales</h2>
+            <p class="maker-role">Edición, dirección visual y coordinación de esta primera etapa de Cada Quien Su Tema.</p>
+          </div>
+          <div>
+            <p class="maker-copy">El proyecto tiene una persona editándolo, pero no una sola voz hablándolo.</p>
+            <p class="copy">Las voces cambian con cada ciclo y cada pieza pertenece a quien la firma. Conforme el proyecto crezca, esta página también tendrá que contar con claridad quién participa en hacerlo posible.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section exit" aria-labelledby="salida-title">
+      <div class="section-inner">
+        <h2 id="salida-title">Ya sabes<br>quién <span>pregunta.</span></h2>
+        <div>
+          <div class="exit-actions">
+            <a href="../empezar-preview/"><span>Abrir Empezar</span><span>→</span></a>
+            <a href="mailto:hola@cadaquiensutema.com?subject=Tengo%20un%20tema"><span>Proponer un tema</span><span>→</span></a>
+            <a href="mailto:hola@cadaquiensutema.com"><span>Escribirnos</span><span>→</span></a>
+          </div>
+          <p class="exit-meta">Cada Quien Su Tema · laboratorio editorial · CDMX · 2026</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.documentElement.classList.remove('no-js');
+    const flag=document.querySelector('.research-flag');
+    let hideTimer;
+    const hush=()=>{clearTimeout(hideTimer);hideTimer=setTimeout(()=>{flag.style.opacity='.28'},2200)};
+    addEventListener('scroll',()=>{flag.style.opacity='1';hush()},{passive:true});
+    hush();
+  </script>
+</body>
+</html>
