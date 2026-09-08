@@ -10,6 +10,7 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
 {% extends "layouts/base.njk" %}
 
 {% block head %}
+<link rel="icon" href="/assets/ciclos.png" type="image/png">
 <meta name="author" content="{{ articlePage.author.name }}">
 <meta property="article:published_time" content="{{ articlePage.article.published }}">
 {% if articlePage.article.modified %}<meta property="article:modified_time" content="{{ articlePage.article.modified }}">{% endif %}
@@ -83,7 +84,7 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
 <header class="reading-bar" data-reading-bar aria-label="Navegación de lectura">
   <a class="reading-bar__brand" href="/" aria-label="{{ site.name }}, ir a la portada">
     <img class="reading-bar__wordmark" src="/assets/brand/logo-article.svg" alt="{{ site.name }}">
-    <img class="reading-bar__favicon" src="/assets/brand/favicon-master-600.png" alt="" aria-hidden="true">
+    <img class="reading-bar__favicon" src="/assets/ciclos.png" alt="" aria-hidden="true">
   </a>
 
   <div class="reading-progress" data-reading-progress-wrap aria-label="Progreso de lectura">
@@ -122,24 +123,33 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
           {% if articlePage.article.readingTime %}<span>{{ articlePage.article.readingTime }} min de lectura</span>{% endif %}
         </div>
 
-        <section class="article-audio" data-audio-module data-audio-src="{{ articlePage.article.audio or '' }}" aria-label="Escuchar esta pieza">
-          <button class="article-audio__main" type="button" data-audio-toggle aria-label="Escuchar este texto">
-            <span class="article-audio__icon" data-audio-icon aria-hidden="true">▶</span>
-            <span class="article-audio__copy"><strong>Escuchar este texto</strong><small>Leído por {{ articlePage.author.name }}</small></span>
-            <span class="article-audio__duration" data-audio-duration>—:—</span>
-          </button>
-          <span class="article-audio__meter" aria-hidden="true"><i data-audio-meter></i></span>
-          <audio data-article-audio preload="metadata"{% if articlePage.article.audio %} src="{{ articlePage.article.audio }}"{% endif %}></audio>
-        </section>
-
         <p class="article-opening__deck" itemprop="description">{{ articlePage.article.deck or articlePage.article.excerpt }}</p>
-        <button class="article-share article-share--opening" type="button" data-share>Compartir <span aria-hidden="true">↗</span></button>
+
+        <div class="article-opening__utility">
+          <section class="article-audio" data-audio-module data-audio-src="{{ articlePage.article.audio or '' }}" aria-label="Escuchar esta pieza">
+            <button class="article-audio__main" type="button" data-audio-toggle aria-label="Escuchar este texto">
+              <span class="article-audio__icon" data-audio-icon aria-hidden="true">▶</span>
+              <span class="article-audio__copy"><strong>Escuchar este texto</strong><small>Leído por {{ articlePage.author.name }}</small></span>
+              <span class="article-audio__duration" data-audio-duration>—:—</span>
+            </button>
+            <span class="article-audio__meter" aria-hidden="true"><i data-audio-meter></i></span>
+            <audio data-article-audio preload="metadata"{% if articlePage.article.audio %} src="{{ articlePage.article.audio }}"{% endif %}></audio>
+          </section>
+
+          <button class="article-share article-share--opening" type="button" data-share>
+            <span>Compartir esta pieza</span><b aria-hidden="true">↗</b>
+          </button>
+        </div>
       </div>
     </header>
 
     {% if articlePage.article.heroImage %}
     <figure class="article-visual">
-      <img src="{{ articlePage.article.heroImage }}" alt="{{ articlePage.article.heroImageAlt }}" fetchpriority="high" decoding="async">
+      <div class="article-visual__frame">
+        <img src="{{ articlePage.article.heroImage }}" alt="{{ articlePage.article.heroImageAlt }}" fetchpriority="high" decoding="async">
+        <span class="article-visual__pixel article-visual__pixel--a" aria-hidden="true"></span>
+        <span class="article-visual__pixel article-visual__pixel--b" aria-hidden="true"></span>
+      </div>
       {% if articlePage.article.heroImageCaption %}<figcaption>{{ articlePage.article.heroImageCaption }}</figcaption>{% endif %}
     </figure>
     {% endif %}
@@ -152,7 +162,7 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
 
         <aside class="article-margin" data-margin-note aria-live="polite" aria-hidden="true">
           <div class="article-margin__inner">
-            <p class="matrix" data-margin-number>NOTA</p>
+            <div class="article-margin__head"><p class="matrix" data-margin-number>NOTA</p><button type="button" data-note-margin-close aria-label="Cerrar nota">×</button></div>
             <h2 data-margin-title></h2>
             <p data-margin-text></p>
             <a data-margin-link target="_blank" rel="noopener noreferrer"></a>
@@ -165,7 +175,7 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
       {% if articlePage.article.notes.length %}
       <details class="notes-ledger" data-notes-ledger>
         <summary>
-          <span class="notes-ledger__title">Notas al margen</span>
+          <span><small class="matrix">FUENTES / CONTEXTO</small><strong>Notas al margen</strong></span>
           <span class="notes-ledger__count matrix">0{{ articlePage.article.notes.length }}</span>
           <span class="notes-ledger__sign" aria-hidden="true"></span>
         </summary>
@@ -176,7 +186,7 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
             <div>
               <h3>{{ note.title }}</h3>
               <p>{{ note.text }}</p>
-              <a href="{{ note.url }}" target="_blank" rel="noopener noreferrer">{{ note.source }} ↗</a>
+              <a href="{{ note.url }}" target="_blank" rel="noopener noreferrer">{{ note.source }} <b aria-hidden="true">↗</b></a>
             </div>
           </li>
           {% endfor %}
@@ -185,8 +195,8 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
       {% endif %}
 
       <div class="article-tools">
-        <span class="matrix">ESTA PIEZA</span>
-        <button class="article-share" type="button" data-share>Compartir <span aria-hidden="true">↗</span></button>
+        <span class="matrix">FIN DE LA PIEZA</span>
+        <button class="article-share" type="button" data-share><span>Compartir</span><b aria-hidden="true">↗</b></button>
       </div>
     </section>
 
@@ -195,6 +205,7 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
         <div class="article-voice__portrait-wrap" aria-hidden="true">
           <span class="article-voice__orbit article-voice__orbit--a"></span>
           <span class="article-voice__orbit article-voice__orbit--b"></span>
+          <span class="article-voice__orbit article-voice__orbit--c"></span>
           <span class="article-voice__pixel"></span>
           <div class="article-voice__portrait">
             <span>{{ articlePage.author.initials }}</span>
@@ -202,11 +213,11 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
           </div>
         </div>
         <div class="article-voice__copy">
-          <p class="matrix">LA VOZ</p>
+          <div class="article-voice__eyebrow"><p class="matrix">LA VOZ</p><span>{{ articlePage.cycle.title }}</span></div>
           <h2 id="articleVoiceTitle">{{ articlePage.author.name }}</h2>
           {% if articlePage.author.bio %}<p class="article-voice__bio">{{ articlePage.author.bio }}</p>{% endif %}
           <div class="article-voice__links">
-            <a href="#" data-preview-link>Ver su voz →</a>
+            <a class="is-primary" href="#" data-preview-link>Ver su voz <b aria-hidden="true">→</b></a>
             {% for social in articlePage.author.sameAs %}
               {% if 'instagram' in social %}<a href="{{ social }}" target="_blank" rel="me noopener">Instagram ↗</a>{% endif %}
               {% if 'linkedin' in social %}<a href="{{ social }}" target="_blank" rel="me noopener">LinkedIn ↗</a>{% endif %}
@@ -220,7 +231,7 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
       <div class="article-cycle-browser__shell">
         <div class="article-cycle-index">
           <div class="article-cycle-index__head">
-            <span class="matrix">CICLO / {{ articlePage.cycle.title | upper }}</span>
+            <span class="matrix">SIGUE EN EL CICLO</span>
             <span>{{ articlePage.cycleEntries.length }} piezas</span>
           </div>
           <h2 id="cycleBrowserTitle">{{ articlePage.cycle.title }}</h2>
@@ -242,11 +253,11 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
             </a>
             {% endfor %}
           </nav>
-          <a class="article-cycle-index__all" href="/{{ articlePage.cycle.slug }}/">Ver {{ articlePage.cycle.title }} →</a>
+          <a class="article-cycle-index__all" href="/{{ articlePage.cycle.slug }}/">Ver todo {{ articlePage.cycle.title }} <b aria-hidden="true">→</b></a>
         </div>
 
         <div class="article-cycle-preview" data-cycle-preview-panel>
-          <p class="matrix">SIGUIENTE LECTURA</p>
+          <div class="article-cycle-preview__eyebrow"><p class="matrix">SIGUIENTE LECTURA</p><span aria-hidden="true">✦</span></div>
           {% if articlePage.continuation %}
           <div class="article-cycle-preview__content">
             <h3 data-cycle-preview-title>{{ articlePage.continuation.title }}</h3>
@@ -288,23 +299,32 @@ robots: "noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview
 <dialog class="article-cycle-drawer" id="articleCycleDrawer" aria-labelledby="articleCycleDrawerTitle">
   <div class="article-cycle-drawer__shell">
     <div class="article-cycle-drawer__top">
-      <a href="/" class="article-cycle-drawer__brand" aria-label="Ir a la portada"><img src="/assets/brand/logo-static.png" alt="{{ site.name }}"></a>
-      <div><a href="/">Portada ↗</a><button type="button" data-cycle-close aria-label="Cerrar ciclo">×</button></div>
+      <a href="/" class="article-cycle-drawer__brand" aria-label="Ir a la portada">
+        <span class="article-cycle-drawer__brand-crop"><img src="/assets/brand/logo-static.png" alt="{{ site.name }}"></span>
+      </a>
+      <div class="article-cycle-drawer__top-actions"><a href="/">Portada ↗</a><button type="button" data-cycle-close aria-label="Cerrar ciclo">×</button></div>
     </div>
+
     <div class="article-cycle-drawer__intro">
-      <p class="matrix">CICLO</p>
+      <div><p class="matrix">CICLO</p><span>{{ articlePage.cycleEntries.length }} piezas</span></div>
       <h2 id="articleCycleDrawerTitle">{{ articlePage.cycle.title }}</h2>
       <p>{{ articlePage.cycle.deck }}</p>
     </div>
+
     <nav class="article-cycle-drawer__list" aria-label="Piezas de {{ articlePage.cycle.title }}">
       {% for item in articlePage.cycleEntries %}
       <a class="article-cycle-drawer__item{% if item.isCurrent %} is-current{% endif %}" href="{{ item.href }}"{% if item.previewOnly %} data-preview-link{% endif %}>
-        <span><strong>{{ item.title }}</strong><small>{{ item.author }}{% if item.readingTime %} · {{ item.readingTime }} min{% endif %}</small></span>
-        <b>{% if item.isCurrent %}esta pieza{% else %}→{% endif %}</b>
+        <span class="article-cycle-drawer__index matrix">0{{ loop.index }}</span>
+        <span class="article-cycle-drawer__item-copy"><strong>{{ item.title }}</strong><small>{{ item.author }}{% if item.readingTime %} · {{ item.readingTime }} min{% endif %}</small></span>
+        <b>{% if item.isCurrent %}<em>esta pieza</em>{% else %}→{% endif %}</b>
       </a>
       {% endfor %}
     </nav>
-    <div class="article-cycle-drawer__footer"><a href="/{{ articlePage.cycle.slug }}/">Ver {{ articlePage.cycle.title }} →</a><button type="button" data-share>Compartir esta pieza ↗</button></div>
+
+    <div class="article-cycle-drawer__footer">
+      <a class="article-cycle-drawer__footer-cycle" href="/{{ articlePage.cycle.slug }}/"><span>Ver {{ articlePage.cycle.title }}</span><b aria-hidden="true">→</b></a>
+      <button class="article-cycle-drawer__footer-share" type="button" data-share><span>Compartir esta pieza</span><b aria-hidden="true">↗</b></button>
+    </div>
   </div>
 </dialog>
 
