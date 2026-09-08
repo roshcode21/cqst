@@ -12,8 +12,7 @@
   };
 
   function track(name, detail = {}) {
-    const payload = { ...metadata, ...detail };
-    if (window.umami?.track) window.umami.track(name, payload);
+    if (window.umami?.track) window.umami.track(name, { ...metadata, ...detail });
   }
 
   const toast = $('[data-article-toast]');
@@ -26,7 +25,7 @@
     toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 1800);
   }
 
-  /* Header belongs to the artwork at the top, then becomes reading chrome. */
+  /* Reading chrome ----------------------------------------------------- */
   function initHeader() {
     const bar = $('[data-reading-bar]');
     if (!bar) return;
@@ -40,35 +39,43 @@
       ticking = true;
       requestAnimationFrame(draw);
     };
-    addEventListener('scroll', requestDraw, { passive: true });
+    addEventListener('scroll', requestDraw, { passive:true });
     draw();
   }
 
-  /* Reading progress uses the two editorial breath paragraphs as landmarks. */
   function initReadingProgress() {
     const copy = $('[data-reading-copy]');
     const fill = $('[data-reading-progress]');
     const wrap = $('[data-reading-progress-wrap]');
     const markers = $$('[data-reading-breath]');
     const breaths = $$('.article-copy__breath', copy || document);
-    if (!copy || !fill || !wrap) return;
+    if (!copy || !fill || !wrap || markers.length < 2) return;
 
     const reached = new Set();
     let started = false;
     let ticking = false;
-
     const documentY = node => scrollY + node.getBoundingClientRect().top;
 
     function placeMarkers() {
       const start = documentY(copy);
       const end = Math.max(start + 1, start + copy.offsetHeight);
-      markers.forEach((marker, index) => {
+      const raw = markers.map((marker, index) => {
         const paragraph = breaths[index];
-        const fallback = index === 0 ? .36 : .7;
+        const fallback = index === 0 ? .34 : .73;
         const ratio = paragraph ? (documentY(paragraph) - start) / (end - start) : fallback;
-        const safeRatio = Math.max(.08, Math.min(.92, ratio));
-        marker.style.left = `${safeRatio * 100}%`;
-        marker.dataset.position = String(safeRatio);
+        return Math.max(.12, Math.min(.88, ratio));
+      });
+
+      /* Keep both breaths visibly distinct even on very narrow bars. */
+      if (raw[1] - raw[0] < .22) {
+        const middle = (raw[0] + raw[1]) / 2;
+        raw[0] = Math.max(.12, middle - .11);
+        raw[1] = Math.min(.88, middle + .11);
+      }
+
+      markers.forEach((marker, index) => {
+        marker.style.left = `${raw[index] * 100}%`;
+        marker.dataset.position = String(raw[index]);
       });
     }
 
@@ -79,17 +86,13 @@
       const progress = clamp((scrollY - start) / Math.max(1, end - start));
       fill.style.transform = `translateY(-50%) scaleX(${progress})`;
       wrap.classList.toggle('is-complete', progress >= .995);
-
-      markers.forEach(marker => {
-        marker.classList.toggle('is-passed', progress >= Number(marker.dataset.position || 2));
-      });
+      markers.forEach(marker => marker.classList.toggle('is-passed', progress >= Number(marker.dataset.position || 2)));
 
       if (!started && progress > .015) {
         started = true;
         track('article_start');
       }
-
-      [25, 50, 75, 100].forEach(percent => {
+      [25,50,75,100].forEach(percent => {
         if (progress >= percent / 100 && !reached.has(percent)) {
           reached.add(percent);
           track(percent === 100 ? 'read_complete' : `read_${percent}`);
@@ -106,19 +109,20 @@
 
     placeMarkers();
     draw();
-    addEventListener('scroll', requestDraw, { passive: true });
+    addEventListener('scroll', requestDraw, { passive:true });
     addEventListener('resize', () => {
       placeMarkers();
       requestDraw();
-    }, { passive: true });
+    }, { passive:true });
   }
 
-  /* Notes: hover previews on desktop, click pins. On narrow screens they open inline. */
+  /* Notes -------------------------------------------------------------- */
   function initNotes() {
     const margin = $('[data-margin-note]');
     const readingInner = $('.article-reading__inner');
     const ledger = $('[data-notes-ledger]');
     const refs = $$('.note-ref');
+    const marginClose = $('[data-note-margin-close]');
     let pinned = null;
 
     const wide = () => matchMedia('(min-width:1181px)').matches;
@@ -131,7 +135,7 @@
         title: $('h3', source)?.textContent?.trim() || '',
         text: $('p', source)?.textContent?.trim() || '',
         href: $('a', source)?.href || '',
-        source: $('a', source)?.textContent?.replace('↗', '')?.trim() || ''
+        source: $('a', source)?.textContent?.replace('↗','')?.trim() || ''
       };
     }
 
@@ -139,7 +143,7 @@
       if (!margin || !readingInner || !ref) return;
       const innerTop = readingInner.getBoundingClientRect().top;
       const refTop = ref.getBoundingClientRect().top;
-      const top = Math.max(0, refTop - innerTop - 10);
+      const top = Math.max(0, refTop - innerTop - 30);
       margin.style.top = `${top}px`;
     }
 
@@ -154,17 +158,19 @@
       link.textContent = `${data.source} ↗`;
       positionMargin(ref);
       margin.classList.add('is-visible');
-      margin.setAttribute('aria-hidden', 'false');
+      margin.setAttribute('aria-hidden','false');
     }
 
-    function hideMargin() {
+    function clearPinned() {
+      pinned = null;
+      refs.forEach(ref => ref.setAttribute('aria-expanded','false'));
       margin?.classList.remove('is-visible');
-      margin?.setAttribute('aria-hidden', 'true');
+      margin?.setAttribute('aria-hidden','true');
     }
 
     function removeInline() {
       $$('.inline-note').forEach(node => node.remove());
-      refs.forEach(ref => ref.setAttribute('aria-expanded', 'false'));
+      refs.forEach(ref => ref.setAttribute('aria-expanded','false'));
     }
 
     function openInline(ref, id) {
@@ -175,29 +181,35 @@
       panel.className = 'inline-note';
       panel.innerHTML = `<p class="matrix">NOTA ${data.number}</p><h2>${data.title}</h2><p>${data.text}</p><a href="${data.href}" target="_blank" rel="noopener noreferrer">${data.source} ↗</a>`;
       paragraph.insertAdjacentElement('afterend', panel);
-      ref.setAttribute('aria-expanded', 'true');
+      ref.setAttribute('aria-expanded','true');
     }
 
     refs.forEach(ref => {
       const id = ref.dataset.note;
-      ref.setAttribute('aria-expanded', 'false');
+      ref.setAttribute('aria-expanded','false');
 
       ref.addEventListener('mouseenter', () => {
         if (wide() && !pinned) renderMargin(ref, id);
       });
       ref.addEventListener('mouseleave', () => {
-        if (wide() && !pinned) hideMargin();
+        if (wide() && !pinned) {
+          margin?.classList.remove('is-visible');
+          margin?.setAttribute('aria-hidden','true');
+        }
       });
       ref.addEventListener('focus', () => {
         if (wide() && !pinned) renderMargin(ref, id);
       });
       ref.addEventListener('blur', () => {
-        if (wide() && !pinned) hideMargin();
+        if (wide() && !pinned) {
+          margin?.classList.remove('is-visible');
+          margin?.setAttribute('aria-hidden','true');
+        }
       });
       ref.addEventListener('click', event => {
         event.preventDefault();
         const data = noteData(id);
-        track('note_open', { nota: data?.title || id });
+        track('note_open', { nota:data?.title || id });
 
         if (!wide()) {
           const wasOpen = ref.getAttribute('aria-expanded') === 'true';
@@ -207,45 +219,45 @@
         }
 
         if (pinned === id) {
-          pinned = null;
-          ref.setAttribute('aria-expanded', 'false');
-          hideMargin();
+          clearPinned();
           return;
         }
-
         pinned = id;
         refs.forEach(item => item.setAttribute('aria-expanded', String(item === ref)));
         renderMargin(ref, id);
       });
     });
 
+    marginClose?.addEventListener('click', clearPinned);
     document.addEventListener('keydown', event => {
       if (event.key !== 'Escape') return;
-      pinned = null;
-      hideMargin();
+      clearPinned();
       removeInline();
     });
-
     ledger?.addEventListener('toggle', () => {
       if (ledger.open) track('notes_ledger_open');
     });
   }
 
+  /* Sharing ------------------------------------------------------------ */
   async function shareArticle(source = 'article') {
     const canonical = $('link[rel="canonical"]')?.href || location.href;
+    const shareUrl = location.hostname.includes('raw.githack.com') ? location.href : canonical;
     const data = {
       title: document.title,
       text: $('meta[name="description"]')?.content || '',
-      url: location.hostname.includes('raw.githack.com') ? location.href : canonical
+      url: shareUrl
     };
     try {
       if (navigator.share) {
         await navigator.share(data);
         track('share', { metodo:'native', origen:source });
-      } else {
+      } else if (navigator.clipboard) {
         await navigator.clipboard.writeText(data.url);
         showToast('Enlace copiado');
         track('share', { metodo:'clipboard', origen:source });
+      } else {
+        showToast('Copia el enlace desde tu navegador');
       }
     } catch (error) {
       if (error?.name !== 'AbortError') showToast('Copia el enlace desde tu navegador');
@@ -253,9 +265,12 @@
   }
 
   function initShare() {
-    $$('[data-share]').forEach(button => button.addEventListener('click', () => shareArticle(button.closest('.article-cycle-drawer') ? 'drawer' : 'article')));
+    $$('[data-share]').forEach(button => button.addEventListener('click', () => {
+      shareArticle(button.closest('.article-cycle-drawer') ? 'drawer' : 'article');
+    }));
   }
 
+  /* Cycle drawer ------------------------------------------------------- */
   function initCycleDrawer() {
     const dialog = $('#articleCycleDrawer');
     const open = $('[data-cycle-menu]');
@@ -265,30 +280,30 @@
     const closeDrawer = () => {
       if (!dialog.open) return;
       dialog.close();
-      open.setAttribute('aria-expanded', 'false');
+      open.setAttribute('aria-expanded','false');
     };
 
     open.addEventListener('click', () => {
       dialog.showModal();
-      open.setAttribute('aria-expanded', 'true');
+      open.setAttribute('aria-expanded','true');
       track('cycle_menu_open');
     });
     close?.addEventListener('click', closeDrawer);
     dialog.addEventListener('click', event => {
       if (event.target === dialog) closeDrawer();
     });
-    dialog.addEventListener('close', () => open.setAttribute('aria-expanded', 'false'));
+    dialog.addEventListener('close', () => open.setAttribute('aria-expanded','false'));
   }
 
+  /* Cycle continuation ------------------------------------------------ */
   function initCycleBrowser() {
-    const panel = $('[data-cycle-preview-panel]');
     const title = $('[data-cycle-preview-title]');
     const excerpt = $('[data-cycle-preview-excerpt]');
     const author = $('[data-cycle-preview-author]');
     const time = $('[data-cycle-preview-time]');
     const read = $('[data-cycle-preview-read]');
     const entries = $$('[data-cycle-preview]');
-    if (!panel || !title || !read) return;
+    if (!title || !read) return;
 
     function render(entry) {
       title.textContent = entry.dataset.previewTitle || '';
@@ -297,6 +312,7 @@
       time.textContent = entry.dataset.previewTime || '';
       read.href = entry.dataset.previewHref || '#';
       read.toggleAttribute('data-preview-link', entry.dataset.previewOnly === 'true');
+      entries.forEach(item => item.classList.toggle('is-previewing', item === entry));
     }
 
     entries.forEach(entry => {
@@ -306,6 +322,7 @@
         if (entry.dataset.previewOnly === 'true' || entry.classList.contains('is-current')) {
           event.preventDefault();
           render(entry);
+          if (entry.dataset.previewOnly === 'true') showToast('Enlace de maqueta');
         }
       });
     });
@@ -318,7 +335,6 @@
       }
       track('cycle_continue');
     });
-
     $('.article-cycle-index__all')?.addEventListener('click', () => track('cycle_continue', { destino:'cycle' }));
   }
 
@@ -334,6 +350,7 @@
     });
   }
 
+  /* Audio -------------------------------------------------------------- */
   function initAudio() {
     const module = $('[data-audio-module]');
     const audio = $('[data-article-audio]');
@@ -364,7 +381,7 @@
 
     function setState(playing) {
       const glyph = playing ? 'Ⅱ' : '▶';
-      icon.textContent = glyph;
+      if (icon) icon.textContent = glyph;
       if (dockToggle) dockToggle.textContent = glyph;
       module.classList.toggle('is-playing', playing);
       if (ready && dock) dock.classList.toggle('is-open', playing || audio.currentTime > 0);
@@ -377,19 +394,16 @@
       }
       if (audio.paused) {
         try { await audio.play(); } catch { showToast('No se pudo iniciar el audio'); }
-      } else {
-        audio.pause();
-      }
+      } else audio.pause();
     }
 
     toggle.addEventListener('click', playToggle);
     dockToggle?.addEventListener('click', playToggle);
-
     if (!source) return;
 
     audio.addEventListener('loadedmetadata', () => {
       ready = true;
-      duration.textContent = fmt(audio.duration);
+      if (duration) duration.textContent = fmt(audio.duration);
       if (total) total.textContent = fmt(audio.duration);
       if (range) range.max = String(audio.duration || 0);
     });
@@ -419,36 +433,44 @@
     });
     if (audio.readyState >= 1) {
       ready = true;
-      duration.textContent = fmt(audio.duration);
+      if (duration) duration.textContent = fmt(audio.duration);
     }
   }
 
+  /* Newsletter --------------------------------------------------------- */
   function initNewsletter() {
     const form = $('[data-article-newsletter]');
     const note = $('[data-newsletter-note]');
     if (!form) return;
+
     form.addEventListener('submit', async event => {
       event.preventDefault();
       const button = $('button[type="submit"]', form);
-      const original = button?.textContent || 'Recibir →';
-      if (button) { button.disabled = true; button.textContent = 'Enviando…'; }
-      if (note) note.textContent = '';
+      button?.setAttribute('disabled','');
+      if (note) note.textContent = 'Enviando…';
       try {
-        const response = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{Accept:'application/json'} });
+        const response = await fetch(form.action, {
+          method:'POST',
+          body:new FormData(form),
+          headers:{ Accept:'application/json' }
+        });
         if (!response.ok) throw new Error('form');
         form.reset();
-        if (note) note.textContent = 'Listo. Nos leemos por correo.';
-        if (button) button.textContent = 'Recibido ✓';
+        if (note) note.textContent = 'Listo. Nos leemos pronto.';
         track('newsletter_signup');
       } catch {
-        if (note) note.textContent = 'No se pudo enviar. Inténtalo otra vez.';
-        if (button) button.textContent = original;
+        if (note) note.textContent = 'No se pudo enviar. Intenta otra vez.';
       } finally {
-        if (button) {
-          button.disabled = false;
-          if (button.textContent === 'Recibido ✓') setTimeout(() => { button.textContent = original; }, 2200);
-        }
+        button?.removeAttribute('disabled');
       }
+    });
+  }
+
+  /* Global touch/keyboard niceties ------------------------------------ */
+  function initVisitStates() {
+    $$('.article-cycle-entry,.article-cycle-drawer__item,.article-voice__links a,.article-footer__navs a').forEach(link => {
+      link.addEventListener('pointerdown', () => link.classList.add('is-tapping'));
+      ['pointerup','pointercancel','pointerleave'].forEach(eventName => link.addEventListener(eventName, () => link.classList.remove('is-tapping')));
     });
   }
 
@@ -462,4 +484,5 @@
   initPreviewLinks();
   initAudio();
   initNewsletter();
+  initVisitStates();
 })();
