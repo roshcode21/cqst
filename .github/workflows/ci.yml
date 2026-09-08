@@ -40,6 +40,7 @@ jobs:
           test -f _site/assets/css/production/home.css
           test -f _site/assets/css/production/cycle.css
           test -f _site/assets/css/production/article.css
+          test -f _site/assets/css/production/article-final.css
           test -f _site/assets/js/production/home.js
           test -f _site/assets/js/production/cycle.js
           test -f _site/assets/js/production/article.js
@@ -69,7 +70,7 @@ jobs:
           grep -q 'Digamos que empieza aquí.' "$ARTICLE"
           grep -q 'Efecto de nuevo comienzo' "$ARTICLE"
           grep -q 'data-pagefind-meta="type:article"' "$ARTICLE"
-          grep -q '/assets/css/production/article.css' "$ARTICLE"
+          grep -q '/assets/css/production/article-final.css' "$ARTICLE"
           grep -q '/assets/js/production/article.js' "$ARTICLE"
           ! grep -q '/assets/css/article/' "$ARTICLE"
           ! grep -q 'site-footer.css' "$ARTICLE"
