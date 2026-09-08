@@ -66,7 +66,6 @@
         return Math.max(.12, Math.min(.88, ratio));
       });
 
-      /* Keep both breaths visibly distinct even on very narrow bars. */
       if (raw[1] - raw[0] < .22) {
         const middle = (raw[0] + raw[1]) / 2;
         raw[0] = Math.max(.12, middle - .11);
@@ -168,20 +167,50 @@
       margin?.setAttribute('aria-hidden','true');
     }
 
-    function removeInline() {
-      $$('.inline-note').forEach(node => node.remove());
-      refs.forEach(ref => ref.setAttribute('aria-expanded','false'));
+    let noteDialog = null;
+    let dialogRef = null;
+
+    function ensureNoteDialog() {
+      if (noteDialog) return noteDialog;
+      noteDialog = document.createElement('dialog');
+      noteDialog.className = 'article-note-dialog';
+      noteDialog.setAttribute('aria-labelledby','articleNoteDialogTitle');
+      noteDialog.innerHTML = `
+        <div class="article-note-dialog__card">
+          <div class="article-note-dialog__top">
+            <p class="matrix" data-note-dialog-number>NOTA</p>
+            <button class="article-note-dialog__close" type="button" data-note-dialog-close aria-label="Cerrar nota">×</button>
+          </div>
+          <h2 id="articleNoteDialogTitle" data-note-dialog-title></h2>
+          <p class="article-note-dialog__text" data-note-dialog-text></p>
+          <a class="article-note-dialog__source" data-note-dialog-link target="_blank" rel="noopener noreferrer"></a>
+        </div>`;
+      document.body.append(noteDialog);
+      $('[data-note-dialog-close]', noteDialog)?.addEventListener('click', () => noteDialog.close());
+      noteDialog.addEventListener('click', event => {
+        if (event.target === noteDialog) noteDialog.close();
+      });
+      noteDialog.addEventListener('close', () => {
+        if (dialogRef) dialogRef.setAttribute('aria-expanded','false');
+        dialogRef = null;
+      });
+      return noteDialog;
     }
 
-    function openInline(ref, id) {
+    function openLightbox(ref, id) {
       const data = noteData(id);
-      const paragraph = ref.closest('p');
-      if (!data || !paragraph) return;
-      const panel = document.createElement('aside');
-      panel.className = 'inline-note';
-      panel.innerHTML = `<p class="matrix">NOTA ${data.number}</p><h2>${data.title}</h2><p>${data.text}</p><a href="${data.href}" target="_blank" rel="noopener noreferrer">${data.source} ↗</a>`;
-      paragraph.insertAdjacentElement('afterend', panel);
-      ref.setAttribute('aria-expanded','true');
+      const dialog = ensureNoteDialog();
+      if (!data || !dialog) return;
+      $('[data-note-dialog-number]', dialog).textContent = `NOTA ${data.number}`;
+      $('[data-note-dialog-title]', dialog).textContent = data.title;
+      $('[data-note-dialog-text]', dialog).textContent = data.text;
+      const link = $('[data-note-dialog-link]', dialog);
+      link.href = data.href;
+      link.textContent = `${data.source} ↗`;
+      if (dialog.open) dialog.close();
+      dialogRef = ref;
+      refs.forEach(item => item.setAttribute('aria-expanded', String(item === ref)));
+      dialog.showModal();
     }
 
     refs.forEach(ref => {
@@ -212,9 +241,7 @@
         track('note_open', { nota:data?.title || id });
 
         if (!wide()) {
-          const wasOpen = ref.getAttribute('aria-expanded') === 'true';
-          removeInline();
-          if (!wasOpen) openInline(ref, id);
+          openLightbox(ref, id);
           return;
         }
 
@@ -232,7 +259,7 @@
     document.addEventListener('keydown', event => {
       if (event.key !== 'Escape') return;
       clearPinned();
-      removeInline();
+      if (noteDialog?.open) noteDialog.close();
     });
     ledger?.addEventListener('toggle', () => {
       if (ledger.open) track('notes_ledger_open');
