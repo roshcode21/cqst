@@ -15,8 +15,9 @@
     "genre": "Ensayo",
     "status": "published",
     "contentFile": "la-fecha-la-ponemos-despues.html",
-    "heroImage": null,
-    "heroImageAlt": "",
+    "heroImage": "/assets/home/ufo-01.jpg",
+    "heroImageAlt": "Imagen editorial de prueba para la plantilla del artículo",
+    "heroImageCaption": "Imagen de prueba para revisar escala y ritmo de la plantilla.",
     "audio": null,
     "subjects": [
       "comienzos",
