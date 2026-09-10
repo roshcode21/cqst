@@ -1,0 +1,224 @@
+/* Cada Quien Su Tema — CQST / ¿Y quién pregunta? — research prototype V0.2
+   10 Sep 2026. Uses the production visual language without inheriting a generic About page. */
+
+.cqst-about{
+  --about-paper:#f8f4ec;
+  --about-ink:#281437;
+  --about-muted:#66576d;
+  --about-blue:#0000ff;
+  --about-violet:#7227ff;
+  --about-green:#85ff00;
+  --about-pink:#ff32c8;
+  --about-night:#070812;
+  margin:0;
+  overflow-x:hidden;
+  background:var(--about-paper);
+  color:var(--about-ink);
+}
+.cqst-about ::selection{background:var(--about-green);color:#160520}
+.cqst-about main{overflow:hidden}
+
+/* Exact interior-navigation family already used by the cycle system. */
+.interior-nav{
+  position:fixed;z-index:1200;top:max(10px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);
+  width:min(600px,calc(100vw - 26px));min-height:50px;padding:3px 5px 3px 4px;
+  display:grid;grid-template-columns:minmax(168px,1fr) auto;align-items:center;gap:10px;
+  color:#17131d;border:1px solid rgba(29,17,51,.22);border-radius:18px;
+  background:linear-gradient(92deg,rgba(255,249,231,.93),rgba(239,242,231,.88) 48%,rgba(235,226,255,.92));
+  box-shadow:0 8px 24px rgba(48,34,92,.12),inset 0 1px 0 rgba(255,255,255,.9);
+  backdrop-filter:blur(13px) saturate(145%);-webkit-backdrop-filter:blur(13px) saturate(145%);
+}
+.interior-nav::before{content:"";position:absolute;inset:-2px;border-radius:20px;padding:2px;background:linear-gradient(90deg,#00e5ff 0 14%,#ffee81 34%,#df8eff 65%,var(--about-green) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.58;pointer-events:none}
+.interior-nav__brand{min-width:0;display:flex;align-items:center;gap:9px;font-size:12px;font-weight:600;letter-spacing:-.018em}
+.interior-nav__mark{position:relative;flex:0 0 42px;width:42px;height:42px;display:grid;place-items:center}
+.interior-nav__mark img{position:relative;z-index:2;width:31px;height:31px;object-fit:contain}
+.interior-nav__mark>i{position:absolute;inset:1px;border:1.15px solid var(--about-blue);border-radius:50% 42% 50% 44%/38% 50% 40% 50%;transform:rotate(23deg) scaleX(1.08)}
+.interior-nav__mark>i>b{position:absolute;top:-3px;left:51%;width:6px;height:6px;border-radius:50%;background:var(--about-green);box-shadow:0 0 0 1px rgba(255,255,255,.9),0 0 9px rgba(133,255,0,.64)}
+.interior-nav__name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.interior-nav__links{display:flex;align-items:center;gap:2px}
+.interior-nav__links a{position:relative;min-width:72px;height:40px;padding:0 11px;display:grid;place-items:center;border-radius:13px;font-size:11.5px;font-weight:600;letter-spacing:-.018em}
+.interior-nav__links a::after{content:"";position:absolute;left:32%;right:32%;bottom:6px;height:2px;border-radius:99px;background:transparent;transform:scaleX(.25);transition:transform .18s var(--cqst-ease),background .18s}
+.interior-nav__links a:hover::after,.interior-nav__links a[aria-current="page"]::after{background:var(--about-violet);transform:scaleX(1)}
+
+.about-shell{width:min(100%,1460px);margin-inline:auto}
+.about-edge{padding-left:var(--cqst-edge);padding-right:var(--cqst-edge)}
+.about-label{margin:0 0 18px;color:var(--about-violet);font-size:10.5px;text-transform:uppercase;letter-spacing:.03em}
+.about-display{margin:0;font-size:clamp(64px,9vw,142px);line-height:.79;letter-spacing:-.085em;font-weight:700;text-wrap:balance}
+.about-copy{max-width:61ch;margin:0;color:#53445c;font-size:clamp(16px,1.35vw,19px);line-height:1.58}
+
+/* YQP gets its own visual territory instead of a generic institutional hero. */
+.about-hero{position:relative;min-height:100svh;padding:118px var(--cqst-edge) 64px;display:grid;align-items:end;isolation:isolate;background:#edf0e5;overflow:hidden}
+.about-hero::before{content:"";position:absolute;inset:0;z-index:-4;background:url("../../bg_yqp.png") center/cover no-repeat}
+.about-hero::after{content:"";position:absolute;inset:0;z-index:-3;background:linear-gradient(90deg,rgba(248,244,236,.12),rgba(247,250,232,.04) 52%,rgba(114,39,255,.04)),linear-gradient(180deg,rgba(255,255,255,.04),rgba(248,244,236,.28));pointer-events:none}
+.about-hero__orbit{position:absolute;inset:-7% -15%;z-index:-1;pointer-events:none;opacity:.58}
+.about-hero__orbit i{position:absolute;display:block;border:1px solid rgba(114,39,255,.28);border-radius:50%;width:76vw;height:24vw;min-height:155px}
+.about-hero__orbit i:nth-child(1){left:-20vw;top:19%;transform:rotate(10deg)}
+.about-hero__orbit i:nth-child(2){right:-19vw;top:42%;border-color:rgba(0,0,255,.18);transform:rotate(-14deg)}
+.about-hero__inner{width:min(100%,1460px);margin-inline:auto;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);grid-template-rows:auto auto;gap:clamp(34px,5vw,80px);align-items:end}
+.about-hero__title{grid-column:1/-1;position:relative}
+.about-hero__eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 28px;color:var(--about-violet);font-size:11px}
+.about-hero__eyebrow img{width:44px;height:44px;object-fit:contain}
+.about-hero h1{max-width:1260px;margin:0;color:var(--about-violet);font-size:clamp(78px,13.4vw,205px);line-height:.72;letter-spacing:-.095em;font-weight:700;text-wrap:balance}
+.about-hero__thesis{margin:0;max-width:770px;font-size:clamp(31px,4.1vw,62px);line-height:.96;letter-spacing:-.058em;font-weight:600;color:#321543}
+.about-hero__intro{align-self:end;max-width:44ch;margin:0 0 5px;color:#4b3658;font-size:15px;line-height:1.55}
+
+/* Mechanic — one shared coordinate, three independent trajectories. */
+.about-mechanic{padding:118px var(--cqst-edge) 132px;background:var(--about-paper)}
+.about-mechanic__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,430px);gap:50px;align-items:end}
+.about-mechanic__head h2{max-width:1000px;color:#2d143e}
+.about-mechanic__stage{position:relative;width:min(100%,1160px);height:clamp(560px,67vw,820px);margin:65px auto 0;display:grid;place-items:center;isolation:isolate}
+.about-mechanic__stage::before{content:"";position:absolute;inset:10% 4%;z-index:-4;background:radial-gradient(circle at 48% 47%,rgba(133,255,0,.24),rgba(0,0,255,.08) 37%,transparent 68%);filter:blur(18px)}
+.about-mechanic__orbits{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.about-mechanic__orbits ellipse{fill:none;stroke-width:1.25;vector-effect:non-scaling-stroke;transform-origin:center;transform-box:fill-box}
+.about-mechanic__orbits .orbit-a{stroke:rgba(114,39,255,.42);transform:rotate(-13deg)}
+.about-mechanic__orbits .orbit-b{stroke:rgba(0,0,255,.34);transform:rotate(19deg)}
+.about-mechanic__orbits .orbit-c{stroke:rgba(255,50,200,.31);transform:rotate(3deg)}
+.about-mechanic__word{position:relative;z-index:2;color:var(--about-blue);font-size:clamp(92px,17vw,245px);line-height:.75;letter-spacing:-.085em;font-weight:700;text-transform:uppercase}
+.about-mechanic__node{position:absolute;z-index:3;max-width:210px;padding:11px 14px;border:1px solid rgba(53,25,73,.2);border-radius:14px;background:rgba(255,250,239,.84);box-shadow:0 12px 38px rgba(44,25,61,.08);backdrop-filter:blur(9px);font-size:12px;line-height:1.25;color:#3a2448}
+.about-mechanic__node::before{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--about-green);box-shadow:0 0 8px rgba(133,255,0,.65)}
+.about-mechanic__node:nth-of-type(1){left:4%;top:20%;transform:rotate(-3deg)}
+.about-mechanic__node:nth-of-type(1)::before{right:-4px;top:50%}
+.about-mechanic__node:nth-of-type(2){right:5%;top:22%;transform:rotate(3deg)}
+.about-mechanic__node:nth-of-type(2)::before{left:-4px;top:46%}
+.about-mechanic__node:nth-of-type(3){left:11%;bottom:21%;transform:rotate(2deg)}
+.about-mechanic__node:nth-of-type(3)::before{right:-4px;top:44%}
+.about-mechanic__node:nth-of-type(4){right:9%;bottom:17%;transform:rotate(-2deg)}
+.about-mechanic__node:nth-of-type(4)::before{left:-4px;top:45%}
+.about-mechanic__caption{position:absolute;left:50%;bottom:2%;width:min(92%,760px);transform:translateX(-50%);margin:0;text-align:center;color:#65566c;font-size:13.5px;line-height:1.45}
+
+/* Editorial process: prose leads, structure supports. */
+.about-process{position:relative;padding:122px var(--cqst-edge) 140px;color:#f8f4ec;background:var(--about-night);overflow:hidden;isolation:isolate}
+.about-process::before{content:"";position:absolute;inset:-10%;z-index:-3;background:radial-gradient(circle at 85% 18%,rgba(114,39,255,.27),transparent 31%),radial-gradient(circle at 15% 78%,rgba(0,0,255,.20),transparent 31%)}
+.about-process__grid{display:grid;grid-template-columns:minmax(230px,.55fr) minmax(0,1.45fr);gap:clamp(48px,8vw,125px);align-items:start}
+.about-process .about-label{color:var(--about-green);position:sticky;top:106px}
+.about-process__main h2{max-width:990px;color:#fff}
+.about-process__lead{max-width:800px;margin:42px 0 0;color:#eee7f2;font-size:clamp(23px,2.7vw,40px);line-height:1.12;letter-spacing:-.035em}
+.about-process__copy{max-width:760px;margin:30px 0 0;color:#c9c0cf;font-size:16px;line-height:1.62}
+.about-process__line{margin-top:62px;border-top:1px solid rgba(255,255,255,.23);display:grid;grid-template-columns:repeat(4,1fr)}
+.about-process__line span{position:relative;padding:17px 10px 0 0;color:#eee8f2;font-size:11px}
+.about-process__line span::before{content:"";position:absolute;left:0;top:-4px;width:7px;height:7px;border-radius:50%;background:var(--about-violet);box-shadow:0 0 0 1px var(--about-night)}
+.about-process__line span:last-child::before{background:var(--about-green)}
+
+/* Difference is the point, but without the synthetic 'what we are not' checklist. */
+.about-difference{padding:118px var(--cqst-edge) 136px;background:var(--about-blue);color:#fff;overflow:hidden}
+.about-difference .about-label{color:var(--about-green)}
+.about-difference h2{max-width:1200px}
+.about-difference__copy{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.55fr);gap:clamp(45px,8vw,120px);margin-top:54px;align-items:start}
+.about-difference__statement{margin:0;color:#fff;font-size:clamp(25px,3.3vw,50px);line-height:1.03;letter-spacing:-.045em}
+.about-difference__small{margin:4px 0 0;color:rgba(255,255,255,.76);font-size:15px;line-height:1.56}
+.about-difference__voices{margin-top:86px;border-top:1px solid rgba(255,255,255,.3)}
+.about-difference__voices p{margin:0;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.3);font-size:clamp(25px,4.3vw,66px);line-height:.98;letter-spacing:-.052em;font-weight:600}
+.about-difference__voices p:nth-child(2){padding-left:13%}
+.about-difference__voices p:nth-child(3){padding-left:29%;color:var(--about-green)}
+
+/* Homo narrans — conceptual axis with enough context to mean something. */
+.about-narrans{position:relative;padding:126px var(--cqst-edge) 142px;background:var(--about-paper);isolation:isolate;overflow:hidden}
+.about-narrans::before{content:"";position:absolute;inset:0;z-index:-4;background:url("../../bg_a.png") center top/cover no-repeat;opacity:.22}
+.about-narrans::after{content:"";position:absolute;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(248,244,236,.78),rgba(248,244,236,.96) 36%,rgba(248,244,236,1) 82%)}
+.about-narrans__title{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;border-bottom:1px solid rgba(49,25,67,.22);padding-bottom:30px}
+.about-narrans__word{margin:0;color:var(--about-violet);font-family:Matrixel,"Courier New",monospace;font-size:clamp(70px,12vw,190px);line-height:.7;letter-spacing:-.045em;font-weight:400}
+.about-narrans__note{max-width:300px;margin:0 0 2px;color:#67586e;font-size:12px;line-height:1.45}
+.about-narrans__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.58fr);gap:clamp(55px,9vw,145px);margin-top:58px;align-items:start}
+.about-narrans__lead{max-width:850px;margin:0;color:#2f163f;font-size:clamp(29px,4vw,58px);line-height:1.02;letter-spacing:-.052em;font-weight:600}
+.about-narrans__body{display:grid;gap:19px}
+.about-narrans__body p{margin:0;color:#54465c;font-size:15.5px;line-height:1.62}
+.about-narrans__source{margin-top:34px;padding-top:18px;border-top:3px solid var(--about-violet);display:grid;gap:7px;color:#4b3659;font-size:12px;line-height:1.42}
+.about-narrans__source a{text-decoration:underline;text-underline-offset:4px;font-weight:600}
+
+/* Keep the successful radial mark treatment; rewrite everything around it. */
+.about-mark{padding:116px var(--cqst-edge) 132px;background:#ece8de}
+.about-mark__grid{display:grid;grid-template-columns:minmax(320px,.72fr) minmax(0,1.28fr);gap:clamp(54px,9vw,145px);align-items:center}
+.about-mark__figure{position:relative;aspect-ratio:1;display:grid;place-items:center;isolation:isolate}
+.about-mark__figure::before{content:"";position:absolute;width:88%;height:88%;z-index:-2;border-radius:50%;background:radial-gradient(circle at 44% 42%,rgba(133,255,0,.92) 0,rgba(133,255,0,.52) 17%,rgba(0,0,255,.31) 42%,rgba(114,39,255,.12) 58%,transparent 72%);filter:blur(18px)}
+.about-mark__figure::after{content:"";position:absolute;width:72%;height:28%;z-index:-1;border:1px solid rgba(0,0,255,.30);border-radius:50%;transform:rotate(-17deg)}
+.about-mark__figure img{width:min(69%,470px);filter:drop-shadow(0 14px 38px rgba(0,0,255,.12))}
+.about-mark__copy h2{max-width:820px;color:#301540}
+.about-mark__copy .about-copy{margin-top:34px}
+
+/* Authorship — credits the real scope without pretending there is an institution behind it. */
+.about-making{padding:120px var(--cqst-edge) 136px;background:var(--about-paper)}
+.about-making__grid{display:grid;grid-template-columns:minmax(260px,.55fr) minmax(0,1.45fr);gap:clamp(54px,9vw,145px);align-items:start}
+.about-making__aside{position:sticky;top:108px}
+.about-making__aside .about-label{margin-bottom:13px}
+.about-making__aside strong{display:block;color:var(--about-violet);font-size:clamp(31px,4vw,58px);line-height:.94;letter-spacing:-.05em}
+.about-making__main h2{max-width:920px;color:#2d143e}
+.about-making__main>p{max-width:790px;margin:36px 0 0;color:#55465d;font-size:16px;line-height:1.6}
+.about-making__roles{margin-top:52px;border-top:1px solid rgba(47,24,64,.23)}
+.about-making__role{display:grid;grid-template-columns:minmax(155px,.32fr) minmax(0,1fr);gap:30px;padding:23px 0;border-bottom:1px solid rgba(47,24,64,.2)}
+.about-making__role span{color:var(--about-violet);font-size:11px}
+.about-making__role p{margin:0;color:#352243;font-size:clamp(18px,2vw,28px);line-height:1.18;letter-spacing:-.025em}
+
+/* Participation uses the participation artwork already assigned in V20. */
+.about-exit{position:relative;min-height:72svh;padding:112px var(--cqst-edge) 92px;display:grid;align-items:center;color:#fff;background:var(--about-night);isolation:isolate;overflow:hidden}
+.about-exit::before{content:"";position:absolute;inset:0;z-index:-3;background:url("../../bg_p.png") center/cover no-repeat;opacity:.84}
+.about-exit::after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(7,8,18,.9),rgba(17,9,40,.68) 58%,rgba(0,0,255,.22))}
+.about-exit__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(290px,.55fr);gap:clamp(55px,8vw,120px);align-items:end}
+.about-exit h2{max-width:900px;margin:0;font-size:clamp(65px,9.4vw,145px);line-height:.78;letter-spacing:-.083em;font-weight:700}
+.about-exit h2 span{color:var(--about-green)}
+.about-exit__actions{display:grid;border-top:1px solid rgba(255,255,255,.35)}
+.about-exit__actions a{display:flex;justify-content:space-between;gap:24px;padding:19px 0;border-bottom:1px solid rgba(255,255,255,.35);font-size:15px}
+.about-exit__actions a:hover,.about-exit__actions a:focus-visible{color:var(--about-green)}
+.about-exit__note{margin:24px 0 0;color:rgba(255,255,255,.62);font-size:11px;line-height:1.5}
+
+.about-footer{padding:30px var(--cqst-edge) 34px;background:var(--about-night);color:#fff;border-top:1px solid rgba(255,255,255,.14)}
+.about-footer__inner{width:min(100%,1460px);margin-inline:auto;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
+.about-footer__logo img{width:min(280px,56vw)}
+.about-footer__meta{text-align:right;color:rgba(255,255,255,.54);font-size:10.5px;line-height:1.5}
+
+@media(max-width:900px){
+  .about-hero__inner,.about-mechanic__head,.about-difference__copy,.about-narrans__grid,.about-mark__grid,.about-making__grid,.about-exit__grid{grid-template-columns:1fr}
+  .about-hero__intro{max-width:62ch}
+  .about-process__grid{grid-template-columns:1fr}
+  .about-process .about-label,.about-making__aside{position:static}
+  .about-mark__figure{width:min(78vw,520px);margin-inline:auto}
+  .about-narrans__title{grid-template-columns:1fr}
+  .about-narrans__note{max-width:520px}
+  .about-making__aside strong{max-width:500px}
+}
+
+@media(max-width:720px){
+  .interior-nav{top:auto;bottom:max(10px,env(safe-area-inset-bottom));width:min(354px,calc(100vw - 28px));min-height:46px;border-radius:16px;grid-template-columns:46px 1fr;padding:2px 4px}
+  .interior-nav__brand{display:block;width:42px;height:42px;overflow:hidden}
+  .interior-nav__name{display:none}
+  .interior-nav__mark{width:42px;height:42px}
+  .interior-nav__links{display:grid;grid-template-columns:repeat(3,1fr);gap:1px}
+  .interior-nav__links a{min-width:0;height:38px;padding:0 6px;font-size:10.5px}
+
+  .about-hero{padding-top:76px;padding-bottom:105px;min-height:100svh}
+  .about-hero h1{font-size:clamp(72px,22.5vw,112px);line-height:.76}
+  .about-hero__eyebrow{margin-bottom:20px}
+  .about-hero__eyebrow img{width:38px;height:38px}
+  .about-hero__thesis{font-size:clamp(29px,9vw,43px)}
+  .about-hero__inner{gap:30px}
+  .about-hero__orbit i{height:42vw;width:120vw}
+
+  .about-mechanic,.about-process,.about-difference,.about-narrans,.about-mark,.about-making{padding-top:88px;padding-bottom:104px}
+  .about-display{font-size:clamp(54px,16vw,82px);line-height:.82}
+  .about-mechanic__stage{height:610px;margin-top:38px}
+  .about-mechanic__word{font-size:clamp(88px,27vw,132px)}
+  .about-mechanic__node{max-width:148px;padding:9px 10px;font-size:10.5px}
+  .about-mechanic__node:nth-of-type(1){left:0;top:17%}
+  .about-mechanic__node:nth-of-type(2){right:0;top:25%}
+  .about-mechanic__node:nth-of-type(3){left:1%;bottom:24%}
+  .about-mechanic__node:nth-of-type(4){right:0;bottom:15%}
+  .about-mechanic__caption{bottom:0;font-size:11.5px}
+  .about-process__line{grid-template-columns:1fr 1fr;row-gap:28px}
+  .about-difference__voices p:nth-child(2),.about-difference__voices p:nth-child(3){padding-left:0}
+  .about-narrans__word{font-size:clamp(65px,20vw,104px)}
+  .about-mark__figure{width:90vw;max-width:430px}
+  .about-making__role{grid-template-columns:1fr;gap:8px}
+  .about-exit{padding-top:92px;padding-bottom:120px;min-height:82svh}
+  .about-exit h2{font-size:clamp(62px,19vw,96px)}
+  .about-footer{padding-bottom:92px}
+  .about-footer__inner{grid-template-columns:1fr;align-items:start}
+  .about-footer__meta{text-align:left}
+}
+
+@media(prefers-reduced-motion:no-preference){
+  .about-mechanic__orbits .orbit-a{animation:orbitA 18s ease-in-out infinite alternate}
+  .about-mechanic__orbits .orbit-b{animation:orbitB 22s ease-in-out infinite alternate}
+  .about-mechanic__orbits .orbit-c{animation:orbitC 26s ease-in-out infinite alternate}
+  @keyframes orbitA{to{transform:rotate(-8deg) translateX(8px)}}
+  @keyframes orbitB{to{transform:rotate(24deg) translateY(-7px)}}
+  @keyframes orbitC{to{transform:rotate(-2deg) translateX(-6px)}}
+}
