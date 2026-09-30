@@ -4,12 +4,10 @@ export default function (eleventyConfig) {
 
   /*
    * Strangler migration: keep legacy public routes alive until their Eleventy
-   * replacement lands. Empezar itself is now generated from src/, while its
-   * published article remains passthrough until the article template migrates.
+   * replacement lands. Home, cycle pages and published articles now come from src/.
    */
   [
     "cqst",
-    "empezar/la-fecha-la-ponemos-despues",
     "privacidad",
     "temas",
     "voces",

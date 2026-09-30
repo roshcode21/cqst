@@ -3,21 +3,28 @@
     "slug": "rodolfo-raudales",
     "name": "Rodolfo Raudales",
     "shortName": "Rodolfo",
-    "bio": "",
-    "status": "published"
+    "bio": "Diseño, escribo y estudio arquitectura. El trabajo me llevó también a la estrategia y la tecnología. Casi nunca me basta la primera explicación.",
+    "status": "published",
+    "sameAs": [
+      "https://www.instagram.com/heyrolphie/",
+      "https://www.linkedin.com/in/rodolforaudales/",
+      "https://www.threads.com/@heyrolphie"
+    ]
   },
   {
     "slug": "marivi-cerisola",
     "name": "Mariví Cerisola",
     "shortName": "Mariví",
     "bio": "",
-    "status": "scheduled"
+    "status": "scheduled",
+    "sameAs": []
   },
   {
     "slug": "mel-castan",
     "name": "Mel Castán",
     "shortName": "Mel",
     "bio": "",
-    "status": "draft"
+    "status": "draft",
+    "sameAs": []
   }
 ]
